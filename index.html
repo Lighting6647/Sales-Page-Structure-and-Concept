@@ -67,24 +67,24 @@
         <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10 text-center">
 
             <!-- Centered Image Showcase (3D Coverflow Slider) -->
-            <div class="relative w-full mx-auto h-[400px] sm:h-[550px] md:h-[750px] mt-10 perspective-[2000px] flex justify-center items-center" id="hero-gallery">
+            <div class="relative w-full max-w-[1400px] mx-auto h-[350px] sm:h-[450px] md:h-[600px] mt-10 perspective-[2000px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
-                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
                 
                 <!-- App 2: Accounting -->
-                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
+                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
 
                 <!-- App 3: IT Dashboard (Default Center) -->
-                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.5)] border-4 border-white/80 z-30 object-cover opacity-0 ring-4 ring-purple-500/30">
+                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.5)] border-4 border-white/80 z-30 object-cover opacity-0 ring-4 ring-purple-500/30">
                 
                 <!-- App 4: Pass Vault -->
-                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
+                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
                 
                 <!-- App 5: Asset Monitor -->
-                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
 
                 <!-- App 6: Team Task Tracking -->
-                <img src="images/task_tracking.png" alt="Team Task Tracking" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[75%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+                <img src="images/task_tracking.png" alt="Team Task Tracking" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
             </div>
 
             <!-- Coverflow Controls -->
@@ -761,13 +761,13 @@
             const getPositionProps = (offset) => {
                 // Baseline is xPercent: -50 to counteract CSS left-1/2
                 if (offset === 0) return { opacity: 1, xPercent: -50, y: 0, rotateY: 0, scale: 1, zIndex: 30 };
-                if (offset === -1) return { opacity: 0.8, xPercent: -90, y: -15, rotateY: 20, scale: 0.85, zIndex: 20 };
-                if (offset === 1) return { opacity: 0.8, xPercent: -10, y: -15, rotateY: -20, scale: 0.85, zIndex: 20 };
-                if (offset === -2) return { opacity: 0.5, xPercent: -120, y: -30, rotateY: 35, scale: 0.7, zIndex: 10 };
-                if (offset === 2) return { opacity: 0.5, xPercent: 20, y: -30, rotateY: -35, scale: 0.7, zIndex: 10 };
+                if (offset === -1) return { opacity: 0.8, xPercent: -105, y: -15, rotateY: 20, scale: 0.85, zIndex: 20 };
+                if (offset === 1) return { opacity: 0.8, xPercent: 5, y: -15, rotateY: -20, scale: 0.85, zIndex: 20 };
+                if (offset === -2) return { opacity: 0.5, xPercent: -145, y: -30, rotateY: 35, scale: 0.7, zIndex: 10 };
+                if (offset === 2) return { opacity: 0.5, xPercent: 45, y: -30, rotateY: -35, scale: 0.7, zIndex: 10 };
                 
                 // Hidden beyond edges
-                return { opacity: 0, xPercent: offset < 0 ? -150 : 50, y: -45, rotateY: offset < 0 ? 45 : -45, scale: 0.5, zIndex: 0 };
+                return { opacity: 0, xPercent: offset < 0 ? -180 : 80, y: -45, rotateY: offset < 0 ? 45 : -45, scale: 0.5, zIndex: 0 };
             };
 
             const updateSlider = () => {
