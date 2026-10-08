@@ -30,9 +30,21 @@
                     <a href="#stats" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Community</a>
                     <a href="#" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Blog</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-4">
-                    <!-- Removed Login and Register buttons as requested -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-green-500 focus:outline-none p-2 rounded-md bg-gray-50 border border-gray-100">
+                        <i class="ph-bold ph-list text-2xl"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0 transition-all duration-300">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
+                <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Features</a>
+                <a href="#products" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Products</a>
+                <a href="#testimonials" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Testimonials</a>
+                <a href="#pricing" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Pricing</a>
             </div>
         </div>
     </nav>
@@ -746,15 +758,33 @@
     </footer>
 
     <script>
-        // GSAP Hero Animation Logic (Interactive 3D Coverflow Slider)
+        // --- Mobile Menu Toggle ---
         document.addEventListener("DOMContentLoaded", () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- GSAP Hero Animation Logic (Interactive 3D Coverflow Slider) ---
             const images = Array.from(document.querySelectorAll('.hero-img'));
             const dots = document.querySelectorAll('.dot');
             const prevBtn = document.getElementById('prev-slide');
             const nextBtn = document.getElementById('next-slide');
+            const gallery = document.getElementById('hero-gallery');
             
             let currentIndex = 2; // Center image initially (IT Dashboard)
             let isAnimating = false;
+            let touchStartX = 0;
+            let touchEndX = 0;
 
             // Define coverflow positions relative to center (0)
             const getPositionProps = (offset) => {
@@ -847,6 +877,35 @@
                     }
                 });
             });
+
+            // Touch Swipe Support for Mobile
+            gallery.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+
+            gallery.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+
+            const handleSwipe = () => {
+                if (isAnimating) return;
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe Left (Next)
+                    if (currentIndex < images.length - 1) {
+                        currentIndex++;
+                        updateSlider();
+                    }
+                }
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe Right (Prev)
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSlider();
+                    }
+                }
+            };
             
             // Allow clicking directly on background images to bring them to front
             images.forEach((img, idx) => {
