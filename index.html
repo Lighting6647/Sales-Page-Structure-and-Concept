@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizApp Suite - ยกระดับธุรกิจของคุณ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+    </style>
+    <!-- Phosphor Icons for modern icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- GSAP for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- 1. Header & Navigation -->
+    <nav class="bg-white fixed w-full z-50 top-0 transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-hexagon text-green-500 text-4xl"></i>
+                    <span class="font-bold text-2xl tracking-tight text-gray-900">BizApp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Features</a>
+                    <a href="#products" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Products</a>
+                    <a href="#stats" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Community</a>
+                    <a href="#" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Blog</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- Removed Login and Register buttons as requested -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section class="pt-32 pb-32 lg:pt-40 lg:pb-48 bg-white relative overflow-hidden">
+        <!-- Background Blur Blobs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] opacity-40 pointer-events-none z-0 flex justify-center items-center">
+            <div class="absolute w-[400px] h-[400px] bg-pink-300 rounded-full mix-blend-multiply filter blur-[100px] -ml-40 animate-pulse"></div>
+            <div class="absolute w-[400px] h-[400px] bg-blue-300 rounded-full mix-blend-multiply filter blur-[100px] ml-40 animate-pulse" style="animation-delay: 2s;"></div>
+            <div class="absolute w-[400px] h-[400px] bg-purple-200 rounded-full mix-blend-multiply filter blur-[100px] mt-40 animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-gray-900 mb-6 tracking-tight">
+                ยกระดับองค์กรด้วย <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500">BizApp Solution</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                บริหารจัดการองค์กรตั้งแต่เรื่องบัญชี, สต๊อกสินค้า, ติดตามงาน, ไปจนถึงความปลอดภัยด้านไอที จบครบในแพลตฟอร์มเดียว เพื่อให้คุณโฟกัสกับเป้าหมายได้เต็มที่
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20">
+                <a href="#cta" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white px-8 py-3.5 rounded-full font-medium text-lg transition-colors shadow-lg">
+                    Start Your Free Trial
+                </a>
+                <a href="#products" class="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 px-8 py-3.5 rounded-full font-medium text-lg transition-colors shadow-sm flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-play-circle text-xl"></i> Watch Demo
+                </a>
+            </div>
+
+            <!-- Centered Image Showcase (Stacked Design for 5 Apps) -->
+            <div class="relative w-full max-w-6xl mx-auto h-[300px] sm:h-[450px] md:h-[600px] mt-10 perspective-[2000px] flex justify-center" id="hero-gallery">
+                <!-- Image 5: Inventory (Far Left Back) -->
+                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 -left-12 md:left-4 w-[40%] rounded-2xl shadow-md border border-gray-100 z-10 object-cover opacity-0">
+                
+                <!-- Image 4: Asset Monitor (Far Right Back) -->
+                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-16 -right-12 md:right-4 w-[40%] rounded-2xl shadow-md border border-gray-100 z-10 object-cover opacity-0">
+
+                <!-- Image 3: Accounting (Mid Left) -->
+                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-20 left-4 md:left-24 w-[50%] rounded-2xl shadow-lg border border-gray-100 z-20 object-cover opacity-0">
+                
+                <!-- Image 2: Pass App (Mid Right) -->
+                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-28 right-4 md:right-24 w-[50%] rounded-2xl shadow-lg border border-gray-100 z-20 object-cover opacity-0">
+                
+                <!-- Image 1: IT Dashboard (Front Center) -->
+                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-36 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-2xl border-4 border-white z-30 object-cover opacity-0 ring-4 ring-white/50">
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Clients Section -->
+    <section class="py-10 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Our Clients</h2>
+            <p class="text-gray-500 mb-8">We have been working with some Fortune 500+ clients</p>
+            <div class="flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="ph ph-apple-logo text-4xl"></i>
+                <i class="ph ph-stripe-logo text-4xl"></i>
+                <i class="ph ph-slack-logo text-4xl"></i>
+                <i class="ph ph-microsoft-logo text-4xl"></i>
+                <i class="ph ph-amazon-logo text-4xl"></i>
+                <i class="ph ph-google-logo text-4xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Core Values (Our Products Overview) -->
+    <section id="features" class="py-20 bg-white text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 max-w-lg mx-auto leading-snug">จัดการทุกระบบขององค์กร<br>ในระบบเดียว</h2>
+            <p class="text-gray-500 mb-16">แอปพลิเคชันไหนที่ BizApp เหมาะสมกับคุณ?</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- App 1: IT Dashboard -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100">
+                        <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">IT Monthly Dashboard</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time</p>
+                    <a href="https://it-monthly-dashboard-hb21.onrender.com/#/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+                
+                <!-- App 2: Pass App -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100">
+                        <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Pass App (Vault)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัล ลืมคำว่า "ลืมรหัสผ่าน" พร้อมแชร์ให้ทีมได้อย่างปลอดภัย</p>
+                    <a href="https://pass-app-9isy.onrender.com/#dashboard" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+                
+                <!-- App 3: iOS Monitor -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100">
+                        <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">iOS Device Monitor</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ควบคุมอุปกรณ์บริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที</p>
+                    <a href="https://ios-device-monitor-lkxv.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+
+                <!-- App 4: Team Task Tracking -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
+                        <!-- Use inventory image as placeholder for task since it has cards -->
+                        <img src="images/inventory.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Team Task Tracking</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time</p>
+                    <a href="https://team-task-tracking.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+
+                <!-- App 5: Thai Accounting -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
+                        <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Thai Accounting App</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
+                    <a href="https://thai-accounting-app.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+
+                <!-- App 6: Inventory App -->
+                <div class="p-8 rounded-xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1 flex flex-col">
+                    <div class="w-full h-32 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
+                        <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Inventory App</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน</p>
+                    <a href="https://inventory-app-dvlk.onrender.com/pos" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-medium py-2.5 rounded-lg transition-colors border border-green-100">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Removed Demos Section -->
+    <!-- 5. Benefit Deep Dive 1 (Left Image / Right Text) -->
+    <section id="products" class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6">
+                    <img src="images/it_dashboard.png" alt="IT Monthly Dashboard" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(37,_99,_235,_0.1)] border border-gray-100">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">มองเห็นภาพรวมในหน้าเดียวด้วย <br><span class="text-blue-600">IT Monthly Dashboard</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        เปลี่ยนแผนก IT จากหลังบ้านที่มองไม่เห็น ให้เป็นทีมที่ขับเคลื่อนธุรกิจด้วยข้อมูล รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ไม่ต้องเปิดหลายโปรแกรมให้วุ่นวาย
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-blue-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ตัดสินใจแม่นยำด้วย Data:</strong> รู้ทันทีว่าระบบไหนมีปัญหาบ่อย หรือทีมงานแก้ปัญหาได้เร็วแค่ไหน</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-blue-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ลดเวลาทำ Report:</strong> ไม่ต้องเสียเวลาดึงข้อมูล Excel ทุกสิ้นเดือน ระบบสรุปให้แบบ Real-time</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 2 (Right Image) -->
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">ความปลอดภัยสูงสุดด้วย <br><span class="text-green-500">Pass App (Vault)</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        ลืมคำว่า "ลืมรหัสผ่าน" ไปได้เลย เก็บข้อมูลรหัสผ่านทั้งหมดไว้ในตู้เซฟดิจิทัลที่มีการเข้ารหัสระดับสูง จำแค่ Master Password เพียงรหัสเดียว
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>แชร์รหัสในทีมอย่างปลอดภัย:</strong> ส่งต่อการเข้าถึงระบบให้ทีมงานได้โดยไม่ต้องบอกรหัสผ่านจริงๆ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ใช้งานง่าย:</strong> กดคัดลอก (Copy) หรือใช้ระบบ Auto-fill เพื่อเข้าสู่ระบบต่างๆ ได้ทันที</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <img src="images/pass_app.png" alt="Pass App" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.1)] border border-gray-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 3 (Left Image) -->
+    <section class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.1)] border border-gray-100">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จัดการอุปกรณ์เบ็ดเสร็จด้วย <br><span class="text-purple-600">iOS Device Monitor</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        ติดตามสถานะการทำงานของ iPhone/iPad ของบริษัทได้ทุกเครื่องจากศูนย์กลาง ป้องกันปัญหาพนักงานนำอุปกรณ์ไปใช้ผิดวัตถุประสงค์
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-purple-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>รักษาความปลอดภัยข้อมูล:</strong> หากเครื่องหาย สามารถสั่งล็อคหรือล้างข้อมูล (Wipe) ได้จากระยะไกลทันที</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-purple-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>เพิ่ม Productivity:</strong> ควบคุมการลงแอปพลิเคชัน เฉพาะที่เกี่ยวกับการทำงานเท่านั้น</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 4 (Right Image) -->
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">ไม่มีงานหล่นหาย ด้วยระบบ <br><span class="text-pink-600">Team Task Tracking</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        เปลี่ยนการตามงานผ่านแชทที่วุ่นวาย ให้เป็นระบบที่ทุกคนเห็นภาพรวมตรงกัน ทุกงานถูกบันทึกและมอบหมายผู้รับผิดชอบชัดเจน (Who/What/When)
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-pink-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ลดการตามงานผ่านแชท:</strong> การคุยงานและส่งไฟล์จบใน Task เดียว ไม่ต้องรื้อหาในไลน์</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-pink-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ติดตามแบบ Real-time:</strong> รู้ทันทีว่าโปรเจกต์ถึงขั้นตอนไหน อัปเดตสถานะง่ายๆ ด้วยการ Drag & Drop</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
+                    <img src="images/inventory.png" alt="Task Tracking" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.1)] border border-gray-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 5 (Left Image) -->
+    <section class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 bg-white rounded-2xl flex justify-center">
+                    <img src="images/accounting.png" alt="Thai Accounting" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.1)] border border-gray-100">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จบเรื่องปวดหัวด้านบัญชี กับ <br><span class="text-yellow-600">Thai Accounting App</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        ยุติความปวดหัวเรื่องเอกสารหาย บิลตกหล่น และปัญหาภาษีย้อนหลัง ด้วยแอปพลิเคชันที่ออกแบบมาเพื่อธุรกิจไทยโดยเฉพาะ รองรับระบบภาษี (VAT/WHT)
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-yellow-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>รู้กำไร-ขาดทุน ชัดเจน:</strong> บันทึกรายจ่ายปุ๊บ รู้กระแสเงินสดปั๊บ ไม่ต้องรอสำนักงานบัญชีสรุปให้</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-yellow-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>เตรียมเอกสารง่ายขึ้น:</strong> ช่วยจัดกลุ่มค่าใช้จ่าย ทำให้การทำเอกสารส่งสรรพากรเป็นเรื่องง่าย</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 6 (Right Image) -->
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จัดการคลังสินค้ามีประสิทธิภาพ ด้วย <br><span class="text-orange-500">Inventory App (POS)</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        ระบบนี้ช่วยคุณบริหารพื้นที่คลังสินค้าให้เกิดประโยชน์สูงสุด ลดความผิดพลาดจากคน (Human Error) ที่อาจคลาดเคลื่อนจากการจดมือหรือ Excel
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-orange-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ป้องกันสินค้าขาด/ล้นสต๊อก:</strong> รู้ยอดสินค้าคงเหลือแบบ Real-time รับแจ้งเตือนทันทีเมื่อสินค้าใกล้หมด</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-orange-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>ค้นหาสินค้าเจอง่าย:</strong> รู้พิกัดตำแหน่งจัดเก็บของแต่ละรายการ ช่วยให้หยิบของส่งลูกค้าได้เร็วขึ้น</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
+                    <img src="images/inventory.png" alt="Inventory POS" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.1)] border border-gray-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Proof in Numbers (Stats) -->
+    <section id="stats" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="w-full lg:w-1/3">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">ช่วยให้ธุรกิจท้องถิ่น<br><span class="text-green-500">ปรับตัวเข้าสู่ยุคดิจิทัล</span></h2>
+                    <p class="text-gray-600">เราเริ่มต้นจากการทำงานหนักและมุ่งมั่นที่จะแก้ปัญหาให้ SME ไทย</p>
+                </div>
+                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-2 gap-8">
+                    <div class="flex items-center gap-4">
+                        <i class="ph-fill ph-users text-4xl text-green-500"></i>
+                        <div>
+                            <h4 class="text-2xl font-bold text-gray-800">2,245,341</h4>
+                            <p class="text-gray-500 text-sm">ผู้ใช้งานระบบ (Members)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="ph-fill ph-buildings text-4xl text-green-500"></i>
+                        <div>
+                            <h4 class="text-2xl font-bold text-gray-800">46,328</h4>
+                            <p class="text-gray-500 text-sm">องค์กรที่ไว้วางใจ</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="ph-fill ph-hand-coins text-4xl text-green-500"></i>
+                        <div>
+                            <h4 class="text-2xl font-bold text-gray-800">828,867</h4>
+                            <p class="text-gray-500 text-sm">รายการเบิกจ่าย</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="ph-fill ph-credit-card text-4xl text-green-500"></i>
+                        <div>
+                            <h4 class="text-2xl font-bold text-gray-800">1,926,436</h4>
+                            <p class="text-gray-500 text-sm">การทำธุรกรรม</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Social Proof / Testimonial -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 bg-gray-50 rounded-2xl p-8 lg:p-12">
+                <div class="w-full lg:w-1/3 flex justify-center">
+                    <!-- Placeholder Logo (e.g. Tesla in the original) -->
+                    <div class="w-48 h-48 bg-white shadow-md rounded-xl flex items-center justify-center">
+                         <i class="ph-fill ph-storefront text-7xl text-gray-800"></i>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/3">
+                    <p class="text-gray-600 text-lg italic mb-6 leading-relaxed">
+                        "ตั้งแต่เราเปลี่ยนมาใช้ระบบจัดการสต๊อกและตามงานของ BizApp ทีมงานเราทำงานได้เร็วขึ้นมาก ไม่ต้องเสียเวลาหาของในคลัง และยังลดค่าใช้จ่ายจิปาถะไปได้กว่า 30% ถือเป็นการลงทุนที่คุ้มค่าที่สุดในรอบปี"
+                    </p>
+                    <h4 class="text-xl font-bold text-green-500 mb-1">คุณสมชาย ใจดี</h4>
+                    <p class="text-gray-500 text-sm mb-6">CEO, Thai Trading Co., Ltd.</p>
+                    
+                    <div class="flex items-center gap-6 flex-wrap">
+                        <span class="text-sm text-gray-500 mr-2">ลูกค้าอื่นๆ ของเรา:</span>
+                        <i class="ph-fill ph-spotify-logo text-2xl text-gray-400"></i>
+                        <i class="ph-fill ph-dropbox-logo text-2xl text-gray-400"></i>
+                        <i class="ph-fill ph-twitch-logo text-2xl text-gray-400"></i>
+                        <a href="#" class="text-green-500 text-sm font-bold flex items-center hover:underline ml-auto">
+                            Meet all customers <i class="ph-bold ph-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Final Call to Action (Design 2: Pastel Blur) -->
+    <section id="cta" class="py-24 bg-white relative overflow-hidden text-center border-t border-gray-100">
+        <!-- Background Blur Blobs for CTA -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] opacity-30 pointer-events-none z-0 flex justify-center items-center">
+            <div class="absolute w-[300px] h-[300px] bg-pink-300 rounded-full mix-blend-multiply filter blur-[80px] -ml-32 animate-pulse"></div>
+            <div class="absolute w-[300px] h-[300px] bg-blue-300 rounded-full mix-blend-multiply filter blur-[80px] ml-32 animate-pulse" style="animation-delay: 1.5s;"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
+                พร้อมที่จะเปลี่ยนวิธีทำงาน <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500">ของคุณหรือยัง?</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-10">เริ่มต้นใช้งานแอปพลิเคชันทั้งหมดของเราได้ฟรี 14 วัน (ไม่ต้องใช้บัตรเครดิต)</p>
+            <a href="#features" class="inline-block bg-gray-900 hover:bg-gray-800 text-white px-10 py-4 rounded-full font-medium text-lg transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-300">
+                เลือกแอปพลิเคชันเพื่อใช้งาน &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- 10. Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="ph-fill ph-hexagon text-green-500 text-3xl"></i>
+                    <span class="font-bold text-xl">BizApp</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 max-w-xs">
+                    Copyright © 2026 BizApp Suite.<br>All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-500 transition"><i class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-500 transition"><i class="ph-fill ph-dribbble-logo"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-500 transition"><i class="ph-fill ph-twitter-logo"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">Company</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">About us</a></li>
+                    <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact us</a></li>
+                    <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                    <li><a href="#" class="hover:text-white transition">Testimonials</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">Stay up to date</h4>
+                <div class="flex bg-gray-800 rounded-md overflow-hidden">
+                    <input type="email" placeholder="Your email address" class="bg-transparent text-sm px-4 py-2 w-full focus:outline-none text-white">
+                    <button class="bg-gray-700 px-4 hover:bg-green-500 transition"><i class="ph-bold ph-paper-plane-tilt"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Hero Animation Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const images = document.querySelectorAll('.hero-img');
+            
+            // Set initial starting positions (hidden and small)
+            gsap.set(images[0], { x: 150, y: 150, rotate: 0, scale: 0.6 }); // Far Left
+            gsap.set(images[1], { x: -150, y: 150, rotate: 0, scale: 0.6 }); // Far Right
+            gsap.set(images[2], { x: 100, y: 100, rotate: 0, scale: 0.75 }); // Mid Left
+            gsap.set(images[3], { x: -100, y: 100, rotate: 0, scale: 0.75 }); // Mid Right
+            gsap.set(images[4], { y: 150, scale: 0.8 }); // Center
+
+            // Spread out animation (Entrance)
+            const tl = gsap.timeline();
+            
+            tl.to(images[0], { opacity: 1, x: 0, y: 0, rotate: -12, scale: 1, duration: 1.2, ease: "back.out(1.2)" }, 0)
+              .to(images[1], { opacity: 1, x: 0, y: 0, rotate: 12, scale: 1, duration: 1.2, ease: "back.out(1.2)" }, 0.1)
+              .to(images[2], { opacity: 1, x: 0, y: 0, rotate: -6, scale: 1, duration: 1.2, ease: "back.out(1.4)" }, 0.2)
+              .to(images[3], { opacity: 1, x: 0, y: 0, rotate: 6, scale: 1, duration: 1.2, ease: "back.out(1.4)" }, 0.3)
+              .to(images[4], { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.2, ease: "back.out(1.7)" }, 0.4);
+
+            // Gentle floating effect after entrance
+            images.forEach((img, index) => {
+                gsap.to(img, {
+                    y: "-=12",
+                    duration: 2.5 + (index * 0.3),
+                    yoyo: true,
+                    repeat: -1,
+                    ease: "sine.inOut",
+                    delay: 1.5 // Start after entrance finishes
+                });
+            });
+
+            // Hover interactions (bring to front)
+            images.forEach(img => {
+                // Store original z-index to reset later
+                const origZ = img.className.match(/z-(\d+)/) ? img.className.match(/z-(\d+)/)[1] : 10;
+                
+                img.addEventListener('mouseenter', () => {
+                    gsap.to(img, { scale: 1.05, zIndex: 50, duration: 0.3, ease: "power2.out" });
+                });
+                img.addEventListener('mouseleave', () => {
+                    gsap.to(img, { scale: 1, zIndex: parseInt(origZ), duration: 0.3, ease: "power2.out" });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
