@@ -788,16 +788,25 @@
 
             // Define coverflow positions relative to center (0)
             const getPositionProps = (offset) => {
+                const isMobile = window.innerWidth < 768;
+                
                 // Baseline is xPercent: -50 to counteract CSS left-1/2
                 if (offset === 0) return { opacity: 1, xPercent: -50, y: 0, rotateY: 0, scale: 1, zIndex: 30 };
-                if (offset === -1) return { opacity: 0.9, xPercent: -115, y: 0, rotateY: 45, scale: 0.75, zIndex: 20 };
-                if (offset === 1) return { opacity: 0.9, xPercent: 15, y: 0, rotateY: -45, scale: 0.75, zIndex: 20 };
-                if (offset === -2) return { opacity: 0.6, xPercent: -160, y: 0, rotateY: 55, scale: 0.55, zIndex: 10 };
-                if (offset === 2) return { opacity: 0.6, xPercent: 60, y: 0, rotateY: -55, scale: 0.55, zIndex: 10 };
+                
+                if (offset === -1) return { opacity: 0.9, xPercent: isMobile ? -80 : -115, y: 0, rotateY: isMobile ? 35 : 45, scale: isMobile ? 0.8 : 0.75, zIndex: 20 };
+                if (offset === 1) return { opacity: 0.9, xPercent: isMobile ? -20 : 15, y: 0, rotateY: isMobile ? -35 : -45, scale: isMobile ? 0.8 : 0.75, zIndex: 20 };
+                
+                if (offset === -2) return { opacity: 0.6, xPercent: isMobile ? -110 : -160, y: 0, rotateY: isMobile ? 45 : 55, scale: isMobile ? 0.6 : 0.55, zIndex: 10 };
+                if (offset === 2) return { opacity: 0.6, xPercent: isMobile ? 10 : 60, y: 0, rotateY: isMobile ? -45 : -55, scale: isMobile ? 0.6 : 0.55, zIndex: 10 };
                 
                 // Hidden beyond edges
-                return { opacity: 0, xPercent: offset < 0 ? -200 : 100, y: 0, rotateY: offset < 0 ? 65 : -65, scale: 0.4, zIndex: 0 };
+                return { opacity: 0, xPercent: offset < 0 ? (isMobile ? -150 : -200) : (isMobile ? 50 : 100), y: 0, rotateY: offset < 0 ? 65 : -65, scale: 0.4, zIndex: 0 };
             };
+
+            // Re-calculate on resize
+            window.addEventListener('resize', () => {
+                if (!isAnimating) updateSlider();
+            });
 
             const updateSlider = () => {
                 if(isAnimating) return;
