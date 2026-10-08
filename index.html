@@ -79,7 +79,7 @@
         <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10 text-center">
 
             <!-- Centered Image Showcase (3D Coverflow Slider) -->
-            <div class="relative w-full max-w-[1400px] mx-auto h-[350px] sm:h-[450px] md:h-[600px] mt-10 perspective-[2000px] flex justify-center items-center" id="hero-gallery">
+            <div class="relative w-full max-w-[1400px] mx-auto h-[350px] sm:h-[450px] md:h-[600px] mt-10 perspective-[1000px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
                 <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[85%] md:w-[65%] lg:w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
                 
@@ -790,13 +790,13 @@
             const getPositionProps = (offset) => {
                 // Baseline is xPercent: -50 to counteract CSS left-1/2
                 if (offset === 0) return { opacity: 1, xPercent: -50, y: 0, rotateY: 0, scale: 1, zIndex: 30 };
-                if (offset === -1) return { opacity: 0.8, xPercent: -105, y: -15, rotateY: 20, scale: 0.85, zIndex: 20 };
-                if (offset === 1) return { opacity: 0.8, xPercent: 5, y: -15, rotateY: -20, scale: 0.85, zIndex: 20 };
-                if (offset === -2) return { opacity: 0.5, xPercent: -145, y: -30, rotateY: 35, scale: 0.7, zIndex: 10 };
-                if (offset === 2) return { opacity: 0.5, xPercent: 45, y: -30, rotateY: -35, scale: 0.7, zIndex: 10 };
+                if (offset === -1) return { opacity: 0.9, xPercent: -115, y: 0, rotateY: 45, scale: 0.75, zIndex: 20 };
+                if (offset === 1) return { opacity: 0.9, xPercent: 15, y: 0, rotateY: -45, scale: 0.75, zIndex: 20 };
+                if (offset === -2) return { opacity: 0.6, xPercent: -160, y: 0, rotateY: 55, scale: 0.55, zIndex: 10 };
+                if (offset === 2) return { opacity: 0.6, xPercent: 60, y: 0, rotateY: -55, scale: 0.55, zIndex: 10 };
                 
                 // Hidden beyond edges
-                return { opacity: 0, xPercent: offset < 0 ? -180 : 80, y: -45, rotateY: offset < 0 ? 45 : -45, scale: 0.5, zIndex: 0 };
+                return { opacity: 0, xPercent: offset < 0 ? -200 : 100, y: 0, rotateY: offset < 0 ? 65 : -65, scale: 0.4, zIndex: 0 };
             };
 
             const updateSlider = () => {
