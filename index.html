@@ -62,22 +62,40 @@
                 </a>
             </div>
 
-            <!-- Centered Image Showcase (3D Coverflow Design) -->
-            <div class="relative w-full max-w-6xl mx-auto h-[350px] sm:h-[450px] md:h-[600px] mt-10 perspective-[1500px] flex justify-center" id="hero-gallery">
-                <!-- Image 5: Inventory (Far Left Back) -->
-                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+            <!-- Centered Image Showcase (3D Coverflow Slider) -->
+            <div class="relative w-full max-w-6xl mx-auto h-[350px] sm:h-[450px] md:h-[550px] mt-10 perspective-[1500px] flex justify-center" id="hero-gallery">
+                <!-- App 1: Inventory -->
+                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
                 
-                <!-- Image 4: Asset Monitor (Far Right Back) -->
-                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+                <!-- App 2: Accounting -->
+                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
 
-                <!-- Image 3: Accounting (Mid Left) -->
-                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[60%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
+                <!-- App 3: IT Dashboard (Default Center) -->
+                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.5)] border-4 border-white/80 z-30 object-cover opacity-0 ring-4 ring-purple-500/30">
                 
-                <!-- Image 2: Pass App (Mid Right) -->
-                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[60%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
+                <!-- App 4: Pass Vault -->
+                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
                 
-                <!-- Image 1: IT Dashboard (Front Center) -->
-                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-24 left-1/2 -translate-x-1/2 w-[70%] rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.5)] border-4 border-white/80 z-30 object-cover opacity-0 ring-4 ring-purple-500/30">
+                <!-- App 5: Asset Monitor -->
+                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
+            </div>
+
+            <!-- Coverflow Controls -->
+            <div class="flex justify-center items-center gap-4 mt-8 relative z-40">
+                <button id="prev-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95">
+                    <i class="ph-bold ph-caret-left text-2xl"></i>
+                </button>
+                <div class="flex gap-2 mx-4" id="slide-dots">
+                    <!-- Dots will be updated by JS -->
+                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
+                    <div class="w-8 h-2 rounded-full bg-white cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
+                </div>
+                <button id="next-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95">
+                    <i class="ph-bold ph-caret-right text-2xl"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -621,53 +639,118 @@
     </footer>
 
     <script>
-        // GSAP Hero Animation Logic (3D Coverflow)
+        // GSAP Hero Animation Logic (Interactive 3D Coverflow Slider)
         document.addEventListener("DOMContentLoaded", () => {
-            const images = document.querySelectorAll('.hero-img');
+            const images = Array.from(document.querySelectorAll('.hero-img'));
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
             
-            // Set initial starting positions (hidden and small in the center)
+            let currentIndex = 2; // Center image initially (IT Dashboard)
+            let isAnimating = false;
+
+            // Define coverflow positions relative to center (0)
+            const getPositionProps = (offset) => {
+                if (offset === 0) return { opacity: 1, xPercent: 0, y: 0, rotateY: 0, scale: 1, zIndex: 30 };
+                if (offset === -1) return { opacity: 0.8, xPercent: -40, y: -15, rotateY: 20, scale: 0.85, zIndex: 20 };
+                if (offset === 1) return { opacity: 0.8, xPercent: 40, y: -15, rotateY: -20, scale: 0.85, zIndex: 20 };
+                if (offset === -2) return { opacity: 0.5, xPercent: -70, y: -30, rotateY: 35, scale: 0.7, zIndex: 10 };
+                if (offset === 2) return { opacity: 0.5, xPercent: 70, y: -30, rotateY: -35, scale: 0.7, zIndex: 10 };
+                
+                // Hidden beyond edges
+                return { opacity: 0, xPercent: offset < 0 ? -100 : 100, y: -45, rotateY: offset < 0 ? 45 : -45, scale: 0.5, zIndex: 0 };
+            };
+
+            const updateSlider = () => {
+                if(isAnimating) return;
+                isAnimating = true;
+
+                // Update dots UI
+                dots.forEach((dot, idx) => {
+                    if (idx === currentIndex) {
+                        dot.className = "w-8 h-2 rounded-full bg-white cursor-pointer dot transition-all";
+                    } else {
+                        dot.className = "w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 cursor-pointer dot transition-all";
+                    }
+                });
+
+                // Update images layout
+                images.forEach((img, idx) => {
+                    const offset = idx - currentIndex;
+                    const props = getPositionProps(offset);
+                    
+                    gsap.to(img, {
+                        ...props,
+                        duration: 0.8,
+                        ease: "power3.out",
+                        onComplete: () => {
+                            if (idx === images.length - 1) isAnimating = false;
+                        }
+                    });
+                });
+            };
+
+            // 1. Initial Entrance Animation
             gsap.set(images, { xPercent: 0, y: 50, rotateY: 0, scale: 0.5, opacity: 0, transformStyle: "preserve-3d" });
-
-            // Spread out animation (Entrance Coverflow)
-            const tl = gsap.timeline();
             
-            // images[0] = Far Left
-            // images[1] = Far Right
-            // images[2] = Mid Left
-            // images[3] = Mid Right
-            // images[4] = Center
-            
-            tl.to(images[0], { opacity: 0.5, xPercent: -70, y: -30, rotateY: 35, scale: 0.7, duration: 1.5, ease: "power3.out" }, 0)
-              .to(images[1], { opacity: 0.5, xPercent: 70, y: -30, rotateY: -35, scale: 0.7, duration: 1.5, ease: "power3.out" }, 0.1)
-              .to(images[2], { opacity: 0.8, xPercent: -40, y: -15, rotateY: 20, scale: 0.85, duration: 1.5, ease: "power3.out" }, 0.2)
-              .to(images[3], { opacity: 0.8, xPercent: 40, y: -15, rotateY: -20, scale: 0.85, duration: 1.5, ease: "power3.out" }, 0.3)
-              .to(images[4], { opacity: 1, xPercent: 0, y: 0, rotateY: 0, scale: 1, duration: 1.5, ease: "back.out(1.2)" }, 0.4);
-
-            // Gentle floating effect after entrance
-            images.forEach((img, index) => {
+            images.forEach((img, idx) => {
+                const offset = idx - currentIndex;
+                const props = getPositionProps(offset);
                 gsap.to(img, {
-                    y: "-=15",
-                    duration: 2.5 + (index * 0.3),
-                    yoyo: true,
-                    repeat: -1,
-                    ease: "sine.inOut",
-                    delay: 1.5 // Start after entrance finishes
+                    ...props,
+                    duration: 1.5,
+                    delay: Math.abs(offset) * 0.15,
+                    ease: "back.out(1.2)"
                 });
             });
 
-            // Hover interactions (bring to front slightly, brighten)
+            // 2. Continuous Floating Effect (Independent timeline)
             images.forEach((img, index) => {
-                // Store original z-index to reset later
-                const origZ = img.className.match(/z-(\d+)/) ? img.className.match(/z-(\d+)/)[1] : 10;
+                gsap.to(img, {
+                    y: "-=12",
+                    duration: 2.5 + (index * 0.2),
+                    yoyo: true,
+                    repeat: -1,
+                    ease: "sine.inOut",
+                    delay: 1.5
+                });
+            });
+
+            // 3. Event Listeners for Controls
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0 && !isAnimating) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < images.length - 1 && !isAnimating) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    if (currentIndex !== idx && !isAnimating) {
+                        currentIndex = idx;
+                        updateSlider();
+                    }
+                });
+            });
+            
+            // Allow clicking directly on background images to bring them to front
+            images.forEach((img, idx) => {
+                img.addEventListener('click', () => {
+                    if (currentIndex !== idx && !isAnimating) {
+                        currentIndex = idx;
+                        updateSlider();
+                    }
+                });
                 
-                img.addEventListener('mouseenter', () => {
-                    gsap.to(img, { opacity: 1, scale: "+=0.05", zIndex: 50, duration: 0.3, ease: "power2.out" });
-                });
-                img.addEventListener('mouseleave', () => {
-                    let targetOpacity = (index === 4) ? 1 : (index >= 2 ? 0.8 : 0.5);
-                    let baseScale = (index === 4) ? 1 : (index >= 2 ? 0.85 : 0.7);
-                    gsap.to(img, { opacity: targetOpacity, scale: baseScale, zIndex: parseInt(origZ), duration: 0.3, ease: "power2.out" });
-                });
+                // Add cursor pointer for interactivity cue
+                img.style.cursor = 'pointer';
             });
         });
     </script>
