@@ -62,22 +62,22 @@
                 </a>
             </div>
 
-            <!-- Centered Image Showcase (Stacked Design for 5 Apps) -->
-            <div class="relative w-full max-w-6xl mx-auto h-[300px] sm:h-[450px] md:h-[600px] mt-10 perspective-[2000px] flex justify-center" id="hero-gallery">
+            <!-- Centered Image Showcase (3D Coverflow Design) -->
+            <div class="relative w-full max-w-6xl mx-auto h-[350px] sm:h-[450px] md:h-[600px] mt-10 perspective-[1500px] flex justify-center" id="hero-gallery">
                 <!-- Image 5: Inventory (Far Left Back) -->
-                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 -left-12 md:left-4 w-[40%] rounded-2xl shadow-md border border-gray-100 z-10 object-cover opacity-0">
+                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
                 
                 <!-- Image 4: Asset Monitor (Far Right Back) -->
-                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-16 -right-12 md:right-4 w-[40%] rounded-2xl shadow-md border border-gray-100 z-10 object-cover opacity-0">
+                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-10 left-1/2 -translate-x-1/2 w-[55%] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/20 z-10 object-cover opacity-0">
 
                 <!-- Image 3: Accounting (Mid Left) -->
-                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-20 left-4 md:left-24 w-[50%] rounded-2xl shadow-lg border border-gray-100 z-20 object-cover opacity-0">
+                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[60%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
                 
                 <!-- Image 2: Pass App (Mid Right) -->
-                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-28 right-4 md:right-24 w-[50%] rounded-2xl shadow-lg border border-gray-100 z-20 object-cover opacity-0">
+                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-16 left-1/2 -translate-x-1/2 w-[60%] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-white/20 z-20 object-cover opacity-0">
                 
                 <!-- Image 1: IT Dashboard (Front Center) -->
-                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-36 left-1/2 -translate-x-1/2 w-[65%] rounded-2xl shadow-2xl border-4 border-white z-30 object-cover opacity-0 ring-4 ring-white/50">
+                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-24 left-1/2 -translate-x-1/2 w-[70%] rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.5)] border-4 border-white/80 z-30 object-cover opacity-0 ring-4 ring-purple-500/30">
             </div>
         </div>
     </section>
@@ -621,30 +621,32 @@
     </footer>
 
     <script>
-        // GSAP Hero Animation Logic
+        // GSAP Hero Animation Logic (3D Coverflow)
         document.addEventListener("DOMContentLoaded", () => {
             const images = document.querySelectorAll('.hero-img');
             
-            // Set initial starting positions (hidden and small)
-            gsap.set(images[0], { x: 150, y: 150, rotate: 0, scale: 0.6 }); // Far Left
-            gsap.set(images[1], { x: -150, y: 150, rotate: 0, scale: 0.6 }); // Far Right
-            gsap.set(images[2], { x: 100, y: 100, rotate: 0, scale: 0.75 }); // Mid Left
-            gsap.set(images[3], { x: -100, y: 100, rotate: 0, scale: 0.75 }); // Mid Right
-            gsap.set(images[4], { y: 150, scale: 0.8 }); // Center
+            // Set initial starting positions (hidden and small in the center)
+            gsap.set(images, { xPercent: 0, y: 50, rotateY: 0, scale: 0.5, opacity: 0, transformStyle: "preserve-3d" });
 
-            // Spread out animation (Entrance)
+            // Spread out animation (Entrance Coverflow)
             const tl = gsap.timeline();
             
-            tl.to(images[0], { opacity: 1, x: 0, y: 0, rotate: -12, scale: 1, duration: 1.2, ease: "back.out(1.2)" }, 0)
-              .to(images[1], { opacity: 1, x: 0, y: 0, rotate: 12, scale: 1, duration: 1.2, ease: "back.out(1.2)" }, 0.1)
-              .to(images[2], { opacity: 1, x: 0, y: 0, rotate: -6, scale: 1, duration: 1.2, ease: "back.out(1.4)" }, 0.2)
-              .to(images[3], { opacity: 1, x: 0, y: 0, rotate: 6, scale: 1, duration: 1.2, ease: "back.out(1.4)" }, 0.3)
-              .to(images[4], { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.2, ease: "back.out(1.7)" }, 0.4);
+            // images[0] = Far Left
+            // images[1] = Far Right
+            // images[2] = Mid Left
+            // images[3] = Mid Right
+            // images[4] = Center
+            
+            tl.to(images[0], { opacity: 0.5, xPercent: -70, y: -30, rotateY: 35, scale: 0.7, duration: 1.5, ease: "power3.out" }, 0)
+              .to(images[1], { opacity: 0.5, xPercent: 70, y: -30, rotateY: -35, scale: 0.7, duration: 1.5, ease: "power3.out" }, 0.1)
+              .to(images[2], { opacity: 0.8, xPercent: -40, y: -15, rotateY: 20, scale: 0.85, duration: 1.5, ease: "power3.out" }, 0.2)
+              .to(images[3], { opacity: 0.8, xPercent: 40, y: -15, rotateY: -20, scale: 0.85, duration: 1.5, ease: "power3.out" }, 0.3)
+              .to(images[4], { opacity: 1, xPercent: 0, y: 0, rotateY: 0, scale: 1, duration: 1.5, ease: "back.out(1.2)" }, 0.4);
 
             // Gentle floating effect after entrance
             images.forEach((img, index) => {
                 gsap.to(img, {
-                    y: "-=12",
+                    y: "-=15",
                     duration: 2.5 + (index * 0.3),
                     yoyo: true,
                     repeat: -1,
@@ -653,16 +655,18 @@
                 });
             });
 
-            // Hover interactions (bring to front)
-            images.forEach(img => {
+            // Hover interactions (bring to front slightly, brighten)
+            images.forEach((img, index) => {
                 // Store original z-index to reset later
                 const origZ = img.className.match(/z-(\d+)/) ? img.className.match(/z-(\d+)/)[1] : 10;
                 
                 img.addEventListener('mouseenter', () => {
-                    gsap.to(img, { scale: 1.05, zIndex: 50, duration: 0.3, ease: "power2.out" });
+                    gsap.to(img, { opacity: 1, scale: "+=0.05", zIndex: 50, duration: 0.3, ease: "power2.out" });
                 });
                 img.addEventListener('mouseleave', () => {
-                    gsap.to(img, { scale: 1, zIndex: parseInt(origZ), duration: 0.3, ease: "power2.out" });
+                    let targetOpacity = (index === 4) ? 1 : (index >= 2 ? 0.8 : 0.5);
+                    let baseScale = (index === 4) ? 1 : (index >= 2 ? 0.85 : 0.7);
+                    gsap.to(img, { opacity: targetOpacity, scale: baseScale, zIndex: parseInt(origZ), duration: 0.3, ease: "power2.out" });
                 });
             });
         });
