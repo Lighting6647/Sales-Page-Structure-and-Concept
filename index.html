@@ -190,7 +190,21 @@
     <section id="features" class="py-20 bg-white text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-4 max-w-lg mx-auto leading-snug">จัดการทุกระบบขององค์กร<br>ในระบบเดียว</h2>
-            <p class="text-gray-500 mb-8">แอปพลิเคชันไหนใน NexusCore ที่เหมาะสมกับคุณ?</p>
+            <p class="text-gray-500 mb-6">แอปพลิเคชันไหนใน NexusCore ที่เหมาะสมกับคุณ?</p>
+
+            <!-- Real-time Instant Search Bar (Feature 3: Data & Operations) -->
+            <div class="max-w-md mx-auto mb-6 relative px-4">
+                <div class="relative flex items-center">
+                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-gray-400 text-lg pointer-events-none"></i>
+                    <input type="text" id="solution-search-input" 
+                           placeholder="ค้นหาฟังก์ชันหรือชื่อระบบ (เช่น บัญชี, สต๊อก, POS, MDM, IT, ฟิตเนส)..." 
+                           class="w-full pl-11 pr-10 py-3 rounded-full bg-gray-50 hover:bg-gray-100/80 focus:bg-white border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm">
+                    <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="ph-fill ph-x-circle text-lg"></i>
+                    </button>
+                </div>
+                <div id="search-feedback" class="text-xs text-gray-500 mt-2 min-h-[18px] transition-all"></div>
+            </div>
 
             <!-- Category Filter Tabs (Feature 3: Data & Operations) -->
             <div class="flex flex-wrap justify-center items-center gap-2 mb-12" id="solution-filter-tabs" role="tablist" aria-label="หมวดหมู่โซลูชัน">
@@ -1255,13 +1269,79 @@
                 img.style.cursor = 'pointer';
             });
 
-            // --- Feature 3: Category Filter Tabs Logic ---
+            // --- Feature 3: Category Filter Tabs & Real-time Search Logic ---
             const filterTabs = document.querySelectorAll('#solution-filter-tabs .filter-tab');
             const solutionCards = document.querySelectorAll('#solution-cards-grid .solution-card');
+            const searchInput = document.getElementById('solution-search-input');
+            const searchClearBtn = document.getElementById('solution-search-clear');
+            const searchFeedback = document.getElementById('search-feedback');
+            let currentFilter = 'all';
+
+            const filterAndSearchCards = () => {
+                const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+                let matchedCount = 0;
+
+                if (searchClearBtn) {
+                    if (query.length > 0) {
+                        searchClearBtn.classList.remove('hidden');
+                    } else {
+                        searchClearBtn.classList.add('hidden');
+                    }
+                }
+
+                solutionCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category') || '';
+                    const title = (card.getAttribute('data-title') || '').toLowerCase();
+                    const badge = (card.getAttribute('data-badge') || '').toLowerCase();
+                    const desc = (card.getAttribute('data-desc') || '').toLowerCase();
+                    const highlights = (card.getAttribute('data-highlights') || '').toLowerCase();
+                    
+                    const matchesCategory = (currentFilter === 'all' || cardCategory === currentFilter);
+                    const matchesQuery = query === '' || 
+                        title.includes(query) || 
+                        badge.includes(query) || 
+                        desc.includes(query) || 
+                        highlights.includes(query);
+
+                    if (matchesCategory && matchesQuery) {
+                        matchedCount++;
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+
+                if (searchFeedback) {
+                    if (query.length > 0) {
+                        if (matchedCount > 0) {
+                            searchFeedback.innerHTML = `<span class="text-green-600 font-medium">พบ ${matchedCount} ระบบ</span> ที่ตรงกับคำค้นหา "<span class="font-semibold text-gray-800">${query}</span>"`;
+                        } else {
+                            searchFeedback.innerHTML = `<span class="text-amber-600 font-medium">ไม่พบระบบที่ตรงกับ "${query}"</span> — <button type="button" id="reset-search-btn" class="text-green-600 underline font-semibold hover:text-green-700">ล้างการค้นหา</button>`;
+                            const resetBtn = document.getElementById('reset-search-btn');
+                            if (resetBtn) {
+                                resetBtn.addEventListener('click', () => {
+                                    if (searchInput) searchInput.value = '';
+                                    filterAndSearchCards();
+                                });
+                            }
+                        }
+                    } else {
+                        searchFeedback.innerHTML = '';
+                    }
+                }
+            };
 
             filterTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    const filter = tab.getAttribute('data-filter');
+                    currentFilter = tab.getAttribute('data-filter');
                     
                     // Update active tab styles
                     filterTabs.forEach(t => {
@@ -1282,25 +1362,22 @@
                         activeBadge.classList.remove('bg-gray-200', 'text-gray-700');
                     }
 
-                    // Filter cards with smooth fade
-                    solutionCards.forEach(card => {
-                        const cardCategory = card.getAttribute('data-category');
-                        if (filter === 'all' || cardCategory === filter) {
-                            card.style.display = 'flex';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 20);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(10px)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 200);
-                        }
-                    });
+                    filterAndSearchCards();
                 });
             });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterAndSearchCards);
+            }
+            if (searchClearBtn) {
+                searchClearBtn.addEventListener('click', () => {
+                    if (searchInput) {
+                        searchInput.value = '';
+                        searchInput.focus();
+                    }
+                    filterAndSearchCards();
+                });
+            }
 
             // --- Feature 1: Quick View Modal Logic ---
             const qvModal = document.getElementById('quickview-modal');
@@ -1384,6 +1461,47 @@
                     closeQuickView();
                     openLeadModal(currentSolutionKey);
                 });
+            }
+
+            // --- Feature 2: Floating Quick Navigation Dock Logic ---
+            const floatingDock = document.getElementById('floating-dock');
+            const dockScrollTop = document.getElementById('dock-scroll-top');
+            const dockTrialBtn = document.getElementById('dock-trial-btn');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (!floatingDock) return;
+
+                if (currentScrollY > 350) {
+                    floatingDock.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    floatingDock.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    floatingDock.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    floatingDock.classList.remove('translate-y-0', 'opacity-100');
+                }
+            }, { passive: true });
+
+            if (dockScrollTop) {
+                dockScrollTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            if (dockTrialBtn) {
+                dockTrialBtn.addEventListener('click', () => {
+                    openLeadModal('all');
+                });
+            }
+
+            // --- Feature 1: Register Service Worker for PWA Offline Caching ---
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => {
+                        console.log('NexusCore PWA ServiceWorker active:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('ServiceWorker registration error:', err);
+                    });
             }
         });
     </script>
@@ -1500,6 +1618,43 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating Quick Navigation Dock (Feature 2: UX & Conversion) -->
+    <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-950/90 backdrop-blur-xl border border-white/10 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center gap-1 sm:gap-2 pointer-events-auto">
+            <!-- Jump to Products -->
+            <a href="#features" class="dock-link px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-grid-four text-base text-green-400"></i>
+                <span class="hidden sm:inline">ระบบทั้งหมด</span>
+            </a>
+
+            <!-- Jump to Pricing -->
+            <a href="#pricing" class="dock-link px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-tag text-base text-emerald-400"></i>
+                <span class="hidden sm:inline">แพ็กเกจ</span>
+            </a>
+
+            <!-- Free Trial Trigger -->
+            <button type="button" id="dock-trial-btn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 hover:bg-green-400 text-slate-950 transition-all shadow-md flex items-center gap-1.5">
+                <i class="ph-bold ph-rocket-launch text-base"></i>
+                <span>ทดลองใช้ฟรี</span>
+            </button>
+
+            <!-- LINE Official Button -->
+            <a href="https://line.me" target="_blank" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm" title="แชทปรึกษาทาง LINE">
+                <i class="ph-fill ph-chat-circle-dots text-base"></i>
+                <span class="hidden md:inline">LINE</span>
+            </a>
+
+            <!-- Separator -->
+            <div class="w-px h-5 bg-white/20 mx-0.5"></div>
+
+            <!-- Scroll to Top -->
+            <button type="button" id="dock-scroll-top" aria-label="Scroll to top" class="w-8 h-8 rounded-full hover:bg-white/15 text-gray-300 hover:text-white flex items-center justify-center transition-all" title="ขึ้นด้านบน">
+                <i class="ph-bold ph-arrow-up text-base"></i>
+            </button>
+        </div>
+    </nav>
 
 </body>
 </html>
