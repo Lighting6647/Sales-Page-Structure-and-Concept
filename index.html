@@ -190,89 +190,243 @@
     <section id="features" class="py-20 bg-white text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-4 max-w-lg mx-auto leading-snug">จัดการทุกระบบขององค์กร<br>ในระบบเดียว</h2>
-            <p class="text-gray-500 mb-16">แอปพลิเคชันไหนใน NexusCore ที่เหมาะสมกับคุณ?</p>
+            <p class="text-gray-500 mb-8">แอปพลิเคชันไหนใน NexusCore ที่เหมาะสมกับคุณ?</p>
+
+            <!-- Category Filter Tabs (Feature 3: Data & Operations) -->
+            <div class="flex flex-wrap justify-center items-center gap-2 mb-12" id="solution-filter-tabs" role="tablist" aria-label="หมวดหมู่โซลูชัน">
+                <button type="button" data-filter="all" class="filter-tab active px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-slate-900 text-white shadow-sm flex items-center gap-2">
+                    <span>ทั้งหมด</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white font-medium filter-count">7</span>
+                </button>
+                <button type="button" data-filter="it" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
+                    <i class="ph-bold ph-desktop"></i>
+                    <span>ระบบ IT & อุปกรณ์</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">2</span>
+                </button>
+                <button type="button" data-filter="finance" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
+                    <i class="ph-bold ph-receipt"></i>
+                    <span>บัญชี & สต๊อกสินค้า</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">2</span>
+                </button>
+                <button type="button" data-filter="ops" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
+                    <i class="ph-bold ph-check-square-offset"></i>
+                    <span>จัดการงาน & ทีม</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">2</span>
+                </button>
+                <button type="button" data-filter="special" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
+                    <i class="ph-bold ph-barbell"></i>
+                    <span>ฟิตเนส & ยิม</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">1</span>
+                </button>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="solution-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- App 1: IT Dashboard -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50">
-                        <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="it"
+                     data-title="IT Monthly Dashboard"
+                     data-badge="IT INFRASTRUCTURE"
+                     data-desc="รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time ไม่ต้องเปิดหลายโปรแกรมให้วุ่นวาย"
+                     data-img="images/it_dashboard.png"
+                     data-link="https://it-monthly-dashboard-hb21.onrender.com/#/"
+                     data-highlights='["มอนิเตอร์สถานะเซิร์ฟเวอร์และ Service สำคัญ 24/7 พร้อมแจ้งเตือน", "สรุป SLA และประสิทธิภาพการทำงานของทีมซัพพอร์ตอัตโนมัติ", "Export กราฟและข้อมูลเป็นรายงานสรุปส่งผู้บริหารในคลิกเดียว"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
+                        <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">IT Monthly Dashboard</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full">IT Dashboard</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">IT Monthly Dashboard</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time</p>
                     <a href="https://it-monthly-dashboard-hb21.onrender.com/#/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
                 
                 <!-- App 2: Pass App -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50">
-                        <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="ops"
+                     data-title="Pass App (Vault)"
+                     data-badge="SECURITY VAULT"
+                     data-desc="เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัลที่มีการเข้ารหัสระดับสูง ลืมคำว่า 'ลืมรหัสผ่าน' พร้อมแชร์ให้ทีมได้อย่างปลอดภัย"
+                     data-img="images/pass_app.png"
+                     data-link="https://pass-app-9isy.onrender.com/#dashboard"
+                     data-highlights='["เข้ารหัสแบบ Zero-Knowledge ปลอดภัยสูงสุด", "แบ่งกลุ่มสิทธิ์การเข้าถึงรหัสผ่านตามบทบาทหน้าที่ของพนักงาน", "ระบบ Auto-fill และ Copy รหัสผ่านพร้อมล้างคลิปบอร์ดอัตโนมัติ"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
+                        <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">Pass App (Vault)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัล ลืมคำว่า "ลืมรหัสผ่าน" พร้อมแชร์ให้ทีมได้อย่างปลอดภัย</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full">Security</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Pass App (Vault)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัล ลืมคำว่า "ลืมรหัสผ่าน" พร้อมแชร์ให้ทีมได้อย่างปลอดภัย</p>
                     <a href="https://pass-app-9isy.onrender.com/#dashboard" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
                 
                 <!-- App 3: iOS Monitor -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50">
-                        <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="it"
+                     data-title="iOS Device Monitor"
+                     data-badge="MOBILE DEVICE MGMT"
+                     data-desc="ควบคุมอุปกรณ์ iPhone/iPad ของบริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที"
+                     data-img="images/asset_monitor.png"
+                     data-link="https://ios-device-monitor-lkxv.onrender.com/"
+                     data-highlights='["ตรวจสอบสถานะเครื่อง แบตเตอรี่ และเวอร์ชัน OS จากศูนย์กลาง", "สั่งล็อคหรือล้างข้อมูลเครื่อง (Remote Wipe) กรณีสูญหาย", "ควบคุมการติดตั้งแอปพลิเคชันให้อยู่ในนโยบายความปลอดภัย"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
+                        <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">iOS Device Monitor</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ควบคุมอุปกรณ์บริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">MDM System</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">iOS Device Monitor</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ควบคุมอุปกรณ์บริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที</p>
                     <a href="https://ios-device-monitor-lkxv.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 4: Team Task Tracking -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
-                        <img src="images/task_tracking.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="ops"
+                     data-title="Team Task Tracking"
+                     data-badge="TASK & PRODUCTIVITY"
+                     data-desc="ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time ไม่พลาดทุก Deadline"
+                     data-img="images/task_tracking.png"
+                     data-link="https://team-task-tracking.onrender.com/"
+                     data-highlights='["มุมมอง Kanban Board และ Timeline ติดตามความคืบหน้าโปรเจกต์", "ระบบมอบหมายงาน แจ้งเตือน และแนบเอกสารที่เกี่ยวข้องในที่เดียว", "วิเคราะห์ Workload ของทีมงานเพื่อกระจายงานได้อย่างสมดุล"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
+                        <img src="images/task_tracking.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">Team Task Tracking</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-full">Task Management</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Team Task Tracking</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time</p>
                     <a href="https://team-task-tracking.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 5: Thai Accounting -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
-                        <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="finance"
+                     data-title="Thai Accounting App"
+                     data-badge="THAI ACCOUNTING & TAX"
+                     data-desc="บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น"
+                     data-img="images/accounting.png"
+                     data-link="https://thai-accounting-app.onrender.com/"
+                     data-highlights='["รองรับภาษีมูลค่าเพิ่ม (VAT 7%) และภาษีหัก ณ ที่จ่าย (Withholding Tax)", "ออกเอกสารใบเสร็จ ใบกำกับภาษี และใบแจ้งหนี้มาตรฐานสรรพากร", "สรุปงบกำไรขาดทุน (P&L) และกระแสเงินสดแบบ Real-time"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
+                        <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">Thai Accounting App</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">Accounting & Tax</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Thai Accounting App</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
                     <a href="https://thai-accounting-app.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 6: Inventory App -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
-                        <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="finance"
+                     data-title="Inventory App (POS)"
+                     data-badge="POS & INVENTORY"
+                     data-desc="ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน"
+                     data-img="images/inventory.png"
+                     data-link="https://inventory-app-dvlk.onrender.com/pos"
+                     data-highlights='["ระบบขายหน้าร้าน (POS) ยิงบาร์โค้ด ตัดสต๊อกอัตโนมัติทันที", "แจ้งเตือนจุดสั่งซื้อซ้ำ (Reorder Point) เมื่อสินค้าใกล้หมดสต๊อก", "ระบุพิกัดตำแหน่งจัดเก็บสินค้า (Shelf / Zone) เพื่อหยิบของได้เร็ว"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
+                        <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">Inventory App</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full">POS & Warehouse</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Inventory App (POS)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน</p>
                     <a href="https://inventory-app-dvlk.onrender.com/pos" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 7: FitPulse Pro (Fitness & Gym Management) -->
-                <div class="p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col md:col-span-2 lg:col-span-1 lg:col-start-2">
-                    <div class="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-slate-950 flex items-center justify-center relative">
+                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col md:col-span-2 lg:col-span-1 lg:col-start-2"
+                     data-category="special"
+                     data-title="FitPulse Pro (Gym OS)"
+                     data-badge="GYM & FITNESS OS"
+                     data-desc="ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time"
+                     data-img="images/fitpulse.png"
+                     data-link="https://fitness-zo64.onrender.com/"
+                     data-highlights='["สแกน QR Code เช็คอินหน้าร้าน ตรวจสอบสิทธิ์สมาชิกทันที", "จัดการสัญญาซื้อขายคอร์ส PT และระบบตัดจำนวนครั้งคงเหลือ", "วิเคราะห์ช่วงเวลาคนเข้ายิมหนาแน่น (Peak Hours) เพื่อจัดเวรเทรนเนอร์"]'>
+                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-slate-950 flex items-center justify-center relative cursor-pointer group/img">
                         <span class="absolute top-2 right-2 bg-lime-400 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">NEW</span>
-                        <img src="images/fitpulse.png" alt="FitPulse Pro" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <img src="images/fitpulse.png" alt="FitPulse Pro" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors">FitPulse Pro (Gym OS)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-lime-700 bg-lime-100 px-2.5 py-0.5 rounded-full">Fitness Platform</span>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">FitPulse Pro (Gym OS)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time</p>
                     <a href="https://fitness-zo64.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
@@ -287,7 +441,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6">
-                    <img src="images/it_dashboard.png" alt="IT Monthly Dashboard" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(37,_99,_235,_0.1)] border border-gray-100">
+                    <img src="images/it_dashboard.png" alt="IT Monthly Dashboard" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(37,_99,_235,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">มองเห็นภาพรวมในหน้าเดียวด้วย <br><span class="text-blue-600">IT Monthly Dashboard</span></h2>
@@ -330,7 +484,7 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <img src="images/pass_app.png" alt="Pass App" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.1)] border border-gray-100">
+                    <img src="images/pass_app.png" alt="Pass App" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -341,7 +495,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.1)] border border-gray-100">
+                    <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จัดการอุปกรณ์เบ็ดเสร็จด้วย <br><span class="text-purple-600">iOS Device Monitor</span></h2>
@@ -384,7 +538,7 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
-                    <img src="images/task_tracking.png" alt="Task Tracking" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.1)] border border-gray-100">
+                    <img src="images/task_tracking.png" alt="Task Tracking" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -395,7 +549,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 bg-white rounded-2xl flex justify-center">
-                    <img src="images/accounting.png" alt="Thai Accounting" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.1)] border border-gray-100">
+                    <img src="images/accounting.png" alt="Thai Accounting" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จบเรื่องปวดหัวด้านบัญชี กับ <br><span class="text-yellow-600">Thai Accounting App</span></h2>
@@ -438,7 +592,7 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
-                    <img src="images/inventory.png" alt="Inventory POS" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.1)] border border-gray-100">
+                    <img src="images/inventory.png" alt="Inventory POS" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.1)] border border-gray-100" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -449,7 +603,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
-                    <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(132,_204,_22,_0.15)] border border-gray-200 hover:shadow-2xl transition-all duration-300">
+                    <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(132,_204,_22,_0.15)] border border-gray-200 hover:shadow-2xl transition-all duration-300" loading="lazy" decoding="async">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <div class="inline-flex items-center gap-2 bg-lime-100 text-lime-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
@@ -1100,8 +1254,196 @@
                 // Add cursor pointer for interactivity cue
                 img.style.cursor = 'pointer';
             });
+
+            // --- Feature 3: Category Filter Tabs Logic ---
+            const filterTabs = document.querySelectorAll('#solution-filter-tabs .filter-tab');
+            const solutionCards = document.querySelectorAll('#solution-cards-grid .solution-card');
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const filter = tab.getAttribute('data-filter');
+                    
+                    // Update active tab styles
+                    filterTabs.forEach(t => {
+                        t.classList.remove('active', 'bg-slate-900', 'text-white', 'shadow-sm');
+                        t.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                        const badge = t.querySelector('.filter-count');
+                        if (badge) {
+                            badge.classList.remove('bg-white/20', 'text-white');
+                            badge.classList.add('bg-gray-200', 'text-gray-700');
+                        }
+                    });
+
+                    tab.classList.add('active', 'bg-slate-900', 'text-white', 'shadow-sm');
+                    tab.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                    const activeBadge = tab.querySelector('.filter-count');
+                    if (activeBadge) {
+                        activeBadge.classList.add('bg-white/20', 'text-white');
+                        activeBadge.classList.remove('bg-gray-200', 'text-gray-700');
+                    }
+
+                    // Filter cards with smooth fade
+                    solutionCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (filter === 'all' || cardCategory === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 20);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 200);
+                        }
+                    });
+                });
+            });
+
+            // --- Feature 1: Quick View Modal Logic ---
+            const qvModal = document.getElementById('quickview-modal');
+            const qvCloseBtn = document.getElementById('close-quickview-btn');
+            const qvImage = document.getElementById('qv-image');
+            const qvTitle = document.getElementById('qv-title');
+            const qvBadge = document.getElementById('qv-badge');
+            const qvDesc = document.getElementById('qv-desc');
+            const qvHighlights = document.getElementById('qv-highlights');
+            const qvLink = document.getElementById('qv-link');
+            const qvContactBtn = document.getElementById('qv-contact-btn');
+            let currentSolutionKey = 'all';
+
+            const openQuickView = (card) => {
+                if (!qvModal || !card) return;
+                const title = card.getAttribute('data-title') || '';
+                const badge = card.getAttribute('data-badge') || 'SOLUTION';
+                const desc = card.getAttribute('data-desc') || '';
+                const img = card.getAttribute('data-img') || '';
+                const link = card.getAttribute('data-link') || '#';
+                currentSolutionKey = card.getAttribute('data-category') || 'all';
+
+                let highlights = [];
+                try {
+                    highlights = JSON.parse(card.getAttribute('data-highlights') || '[]');
+                } catch (e) {
+                    highlights = [];
+                }
+
+                if (qvTitle) qvTitle.textContent = title;
+                if (qvBadge) qvBadge.textContent = badge;
+                if (qvDesc) qvDesc.textContent = desc;
+                if (qvImage) {
+                    qvImage.src = img;
+                    qvImage.alt = title;
+                }
+                if (qvLink) qvLink.href = link;
+
+                if (qvHighlights) {
+                    qvHighlights.innerHTML = highlights.map(hl => `
+                        <li class="flex items-start gap-2.5">
+                            <i class="ph-fill ph-check-circle text-green-600 text-lg flex-shrink-0 mt-0.5"></i>
+                            <span>${hl}</span>
+                        </li>
+                    `).join('');
+                }
+
+                qvModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeQuickView = () => {
+                if (!qvModal) return;
+                qvModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+
+            // Attach Quick View trigger to all cards
+            document.querySelectorAll('.solution-card').forEach(card => {
+                const trigger = card.querySelector('.quickview-trigger');
+                const btn = card.querySelector('.quickview-btn');
+                if (trigger) trigger.addEventListener('click', () => openQuickView(card));
+                if (btn) btn.addEventListener('click', () => openQuickView(card));
+            });
+
+            if (qvCloseBtn) qvCloseBtn.addEventListener('click', closeQuickView);
+            if (qvModal) {
+                qvModal.addEventListener('click', (e) => {
+                    if (e.target === qvModal) closeQuickView();
+                });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && qvModal && !qvModal.classList.contains('hidden')) {
+                    closeQuickView();
+                }
+            });
+
+            // "ขอใบเสนอราคา / ปรึกษาทีมงาน" inside Quick View opens Lead Modal
+            if (qvContactBtn) {
+                qvContactBtn.addEventListener('click', () => {
+                    closeQuickView();
+                    openLeadModal(currentSolutionKey);
+                });
+            }
         });
     </script>
+
+    <!-- App Quick View Modal (Feature 1: UX & Engagement) -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="qv-title">
+        <div class="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative border border-gray-100 overflow-hidden max-h-[92vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50/70">
+                <div class="flex items-center gap-3">
+                    <span id="qv-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 uppercase tracking-wider">SOLUTION</span>
+                    <h3 id="qv-title" class="text-xl font-bold text-gray-900">App Name</h3>
+                </div>
+                <button id="close-quickview-btn" type="button" aria-label="Close modal" class="text-gray-400 hover:text-gray-700 text-xl w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Scrollable) -->
+            <div class="overflow-y-auto p-6 sm:p-8 space-y-6">
+                <!-- Full Preview Image -->
+                <div class="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-slate-900 flex items-center justify-center">
+                    <img id="qv-image" src="" alt="App Preview" class="w-full h-auto max-h-[50vh] object-contain">
+                </div>
+
+                <!-- App Details & Highlights -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                    <div class="md:col-span-2 space-y-4 text-left">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">ภาพรวมของระบบ</h4>
+                            <p id="qv-desc" class="text-gray-600 text-sm sm:text-base leading-relaxed"></p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2.5">จุดเด่นสำคัญ</h4>
+                            <ul id="qv-highlights" class="space-y-2 text-sm text-gray-700"></ul>
+                        </div>
+                    </div>
+
+                    <!-- CTA Action Box -->
+                    <div class="bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col justify-between text-left">
+                        <div>
+                            <div class="text-[11px] font-bold text-green-600 uppercase tracking-wider mb-1 flex items-center gap-1">
+                                <i class="ph-fill ph-broadcast"></i> Live Demo System
+                            </div>
+                            <h5 class="text-base font-bold text-gray-900 mb-1.5">ทดลองใช้งานระบบจริง</h5>
+                            <p class="text-xs text-gray-500 mb-4 leading-relaxed">เข้าทดสอบระบบตัวเต็มได้ทันที พร้อมข้อมูลจำลองเพื่อประเมินความเหมาะสมกับธุรกิจ</p>
+                        </div>
+                        <div class="space-y-2.5 pt-2">
+                            <a id="qv-link" href="#" target="_blank" class="block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all shadow-md hover:shadow-lg shadow-green-600/20 text-sm">
+                                เปิดทดลองใช้งานทันที &rarr;
+                            </a>
+                            <button id="qv-contact-btn" type="button" class="block w-full text-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2.5 rounded-xl transition-colors border border-gray-200 text-xs">
+                                ขอคำปรึกษา / นัดหมาย Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Lead Generation & Contact Modal -->
     <div id="lead-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300">
