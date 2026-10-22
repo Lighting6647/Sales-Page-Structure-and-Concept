@@ -47,13 +47,48 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NexusCore">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
+    <style>
         body { font-family: 'Prompt', sans-serif; font-size: 16px; }
         h1 { font-size: clamp(2.25rem, 5vw, 4rem) !important; line-height: 1.15; }
         h2 { font-size: clamp(1.65rem, 3.5vw, 2.5rem) !important; line-height: 1.25; }
         h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem) !important; line-height: 1.35; }
         h4 { font-size: 1.125rem !important; }
+
+        @media print {
+            body > *:not(#catalog-modal) {
+                display: none !important;
+            }
+            #catalog-modal {
+                display: block !important;
+                position: static !important;
+                background: white !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            #catalog-modal > div {
+                max-width: 100% !important;
+                border: none !important;
+                box-shadow: none !important;
+                max-height: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            #printable-catalog-content {
+                padding: 10px 0 !important;
+                overflow: visible !important;
+            }
+            .print\:hidden {
+                display: none !important;
+            }
+        }
     </style>
     <!-- Phosphor Icons for modern icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -90,11 +125,17 @@
                     <i class="ph-fill ph-diamonds-four text-blue-600 text-4xl"></i>
                     <span class="font-bold text-2xl tracking-tight text-gray-900">Nexus<span class="text-blue-600">Core</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#features" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Features</a>
                     <a href="#products" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Products</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Pricing</a>
                     <a href="#stats" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Community</a>
-                    <a href="#" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Blog</a>
+                    <button type="button" id="nav-catalog-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1.5 shadow-sm">
+                        <i class="ph-bold ph-file-pdf text-rose-500"></i> Catalog
+                    </button>
+                    <button type="button" id="nav-install-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition-all flex items-center gap-1.5 shadow-sm">
+                        <i class="ph-bold ph-download-simple"></i> ติดตั้งแอป
+                    </button>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-green-500 focus:outline-none p-2 rounded-md bg-gray-50 border border-gray-100">
@@ -111,6 +152,14 @@
                 <a href="#products" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Products</a>
                 <a href="#testimonials" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Testimonials</a>
                 <a href="#pricing" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Pricing</a>
+                <div class="pt-2 border-t border-gray-100 space-y-2">
+                    <button type="button" id="mobile-catalog-btn" class="w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                        <i class="ph-bold ph-file-pdf text-rose-500"></i> ดาวน์โหลด Solution Catalog (PDF)
+                    </button>
+                    <button type="button" id="mobile-install-btn" class="w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 flex items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i> ติดตั้งแอป NexusCore (PWA)
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -228,6 +277,16 @@
                     </button>
                 </div>
                 <div id="search-feedback" class="text-xs text-gray-500 mt-2 min-h-[18px] transition-all"></div>
+                <div class="flex items-center justify-center gap-2.5 mt-2 flex-wrap">
+                    <button type="button" id="open-catalog-modal-btn" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all shadow-sm hover:shadow border border-slate-700">
+                        <i class="ph-bold ph-file-pdf text-rose-400"></i>
+                        <span>ดาวน์โหลด Catalog (PDF)</span>
+                    </button>
+                    <a href="#roi-calculator" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold transition-all border border-blue-200">
+                        <i class="ph-bold ph-calculator text-blue-600"></i>
+                        <span>คำนวณความคุ้มค่า (ROI)</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Category Filter Tabs (Feature 3: Data & Operations) -->
@@ -1002,9 +1061,87 @@
     <!-- 8. Pricing Section -->
     <section id="pricing" class="py-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">แพ็กเกจที่เหมาะกับธุรกิจคุณ</h2>
                 <p class="text-gray-500 text-lg max-w-2xl mx-auto">เลือกแผนที่ตรงกับขนาดองค์กร จ่ายเท่าที่ใช้ ไม่มีสัญญาผูกมัด</p>
+            </div>
+
+            <!-- Interactive Pricing & ROI Calculator (Feature 1: UX & Engagement) -->
+            <div id="roi-calculator" class="max-w-4xl mx-auto mb-16 bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <!-- Background Accent Glow -->
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 text-left">
+                    <div class="text-center mb-8">
+                        <span class="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-wider mb-2">
+                            <i class="ph-bold ph-calculator text-sm"></i> ROI & Savings Calculator
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">คำนวณความคุ้มค่าและเวลาที่ประหยัดได้สำหรับองค์กร</h3>
+                        <p class="text-gray-400 text-sm sm:text-base mt-2 max-w-xl mx-auto">เลื่อนสไลเดอร์เพื่อดูผลลัพธ์ว่า NexusCore ช่วยคืนเวลาทำงานและลดต้นทุนแฝงต่อปีได้เท่าใด</p>
+                    </div>
+
+                    <!-- Sliders Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-slate-950/60 p-5 sm:p-6 rounded-2xl border border-slate-800/80">
+                        <!-- Slider 1: Team Size -->
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-sm">
+                                <label for="roi-team-size" class="font-semibold text-gray-200 flex items-center gap-2">
+                                    <i class="ph-bold ph-users text-blue-400"></i> จำนวนบุคลากรในทีม/องค์กร
+                                </label>
+                                <span id="roi-team-display" class="px-3 py-1 rounded-full bg-blue-600/30 text-blue-300 font-bold text-xs border border-blue-500/40">20 คน</span>
+                            </div>
+                            <input type="range" id="roi-team-size" min="3" max="150" step="1" value="20" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                            <div class="flex justify-between text-[11px] text-gray-500">
+                                <span>3 คน (Startup)</span>
+                                <span>50 คน (SME)</span>
+                                <span>150+ คน (Enterprise)</span>
+                            </div>
+                        </div>
+
+                        <!-- Slider 2: Average Salary -->
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-sm">
+                                <label for="roi-salary" class="font-semibold text-gray-200 flex items-center gap-2">
+                                    <i class="ph-bold ph-currency-circle-dollar text-emerald-400"></i> ฐานเงินเดือนเฉลี่ยต่อคน
+                                </label>
+                                <span id="roi-salary-display" class="px-3 py-1 rounded-full bg-emerald-600/30 text-emerald-300 font-bold text-xs border border-emerald-500/40">฿28,000 / เดือน</span>
+                            </div>
+                            <input type="range" id="roi-salary" min="15000" max="80000" step="1000" value="28000" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                            <div class="flex justify-between text-[11px] text-gray-500">
+                                <span>฿15,000</span>
+                                <span>฿45,000</span>
+                                <span>฿80,000+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculated Results Output Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                        <!-- Metric 1: Hours Saved -->
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                            <div class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">เวลาทำงานที่ประหยัดได้</div>
+                            <div id="roi-hours-saved" class="text-2xl sm:text-3xl font-extrabold text-blue-400 my-1">3,360 ชม./ปี</div>
+                            <p class="text-[11px] text-gray-400">ลดเวลาทำ Report, ตามงาน & จัดการสต๊อกซ้ำซ้อน</p>
+                        </div>
+
+                        <!-- Metric 2: Estimated Cost Savings -->
+                        <div class="bg-gradient-to-b from-emerald-950/40 to-slate-950 p-5 rounded-2xl border border-emerald-500/30 flex flex-col justify-between">
+                            <div class="text-xs text-emerald-300 uppercase font-semibold tracking-wider mb-1">มูลค่าความคุ้มค่าที่ได้คืน</div>
+                            <div id="roi-money-saved" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 my-1">฿411,600 / ปี</div>
+                            <p class="text-[11px] text-gray-400">ประเมินจากประสิทธิภาพการทำงานที่เพิ่มขึ้น 70%</p>
+                        </div>
+
+                        <!-- Metric 3: Recommended Plan -->
+                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                            <div class="text-xs text-amber-300 uppercase font-semibold tracking-wider mb-1">แพ็กเกจที่เหมาะสม</div>
+                            <div id="roi-plan-name" class="text-xl sm:text-2xl font-bold text-white my-1">Professional</div>
+                            <button type="button" id="roi-select-plan-btn" class="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow mt-1">
+                                เลือกแพ็กเกจนี้ &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
@@ -1739,6 +1876,233 @@
                         console.warn('ServiceWorker registration error:', err);
                     });
             }
+
+            // ==========================================
+            // SYSTEM TOAST NOTIFICATION UTILITY
+            // ==========================================
+            window.showToast = (message, type = 'success') => {
+                const container = document.getElementById('nexus-toast-container');
+                if (!container) return;
+
+                const toast = document.createElement('div');
+                toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-semibold transition-all duration-300 transform translate-x-8 opacity-0 ${
+                    type === 'success' 
+                        ? 'bg-slate-950 text-white border border-green-500/40 shadow-green-950/20' 
+                        : 'bg-slate-950 text-white border border-rose-500/40 shadow-rose-950/20'
+                }`;
+
+                const icon = type === 'success' 
+                    ? '<i class="ph-fill ph-check-circle text-green-400 text-lg flex-shrink-0"></i>' 
+                    : '<i class="ph-fill ph-info text-amber-400 text-lg flex-shrink-0"></i>';
+
+                toast.innerHTML = `${icon}<span>${message}</span>`;
+                container.appendChild(toast);
+
+                requestAnimationFrame(() => {
+                    toast.classList.remove('translate-x-8', 'opacity-0');
+                    toast.classList.add('translate-x-0', 'opacity-100');
+                });
+
+                setTimeout(() => {
+                    toast.classList.add('translate-x-8', 'opacity-0');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3500);
+            };
+
+            // ==========================================
+            // FEATURE 1: INTERACTIVE PRICING & ROI CALCULATOR
+            // ==========================================
+            const roiTeamSlider = document.getElementById('roi-team-size');
+            const roiSalarySlider = document.getElementById('roi-salary');
+            const roiTeamDisplay = document.getElementById('roi-team-display');
+            const roiSalaryDisplay = document.getElementById('roi-salary-display');
+            const roiHoursSavedEl = document.getElementById('roi-hours-saved');
+            const roiMoneySavedEl = document.getElementById('roi-money-saved');
+            const roiPlanNameEl = document.getElementById('roi-plan-name');
+            const roiSelectPlanBtn = document.getElementById('roi-select-plan-btn');
+
+            let recommendedPlanKey = 'all';
+
+            const calculateROI = () => {
+                if (!roiTeamSlider || !roiSalarySlider) return;
+                const teamSize = parseInt(roiTeamSlider.value, 10) || 20;
+                const avgSalary = parseInt(roiSalarySlider.value, 10) || 28000;
+
+                if (roiTeamDisplay) roiTeamDisplay.textContent = `${teamSize} คน`;
+                if (roiSalaryDisplay) roiSalaryDisplay.textContent = `฿${avgSalary.toLocaleString()} / เดือน`;
+
+                // Logic: 3.5 hrs saved per person per week -> 14 hrs/month -> 168 hrs/year
+                const hoursSavedPerYear = teamSize * 168;
+                // Hourly rate: salary / 160 hrs
+                const hourlyRate = avgSalary / 160;
+                // Conservative annual savings (70% realized efficiency)
+                const annualSavings = Math.round(hoursSavedPerYear * hourlyRate * 0.7);
+
+                if (roiHoursSavedEl) {
+                    roiHoursSavedEl.textContent = `${hoursSavedPerYear.toLocaleString()} ชม./ปี`;
+                }
+                if (roiMoneySavedEl) {
+                    roiMoneySavedEl.textContent = `฿${annualSavings.toLocaleString()} / ปี`;
+                }
+
+                // Plan recommendation
+                let planName = 'Professional';
+                if (teamSize <= 5) {
+                    planName = 'Starter (฿990/ด.)';
+                    recommendedPlanKey = 'starter';
+                } else if (teamSize <= 25) {
+                    planName = 'Professional (฿2,490/ด.)';
+                    recommendedPlanKey = 'professional';
+                } else {
+                    planName = 'Enterprise (Custom)';
+                    recommendedPlanKey = 'enterprise';
+                }
+
+                if (roiPlanNameEl) {
+                    roiPlanNameEl.textContent = planName;
+                }
+            };
+
+            if (roiTeamSlider && roiSalarySlider) {
+                roiTeamSlider.addEventListener('input', calculateROI);
+                roiSalarySlider.addEventListener('input', calculateROI);
+                calculateROI();
+            }
+
+            if (roiSelectPlanBtn) {
+                roiSelectPlanBtn.addEventListener('click', () => {
+                    openLeadModal('all');
+                    showToast(`เลือกแพ็กเกจ ${roiPlanNameEl ? roiPlanNameEl.textContent : 'Professional'} เรียบร้อยแล้ว`);
+                });
+            }
+
+            // ==========================================
+            // FEATURE 3: INSTANT SOLUTION CATALOG (PRINT/PDF)
+            // ==========================================
+            const catalogModal = document.getElementById('catalog-modal');
+            const catalogOpenBtns = [
+                document.getElementById('open-catalog-modal-btn'),
+                document.getElementById('nav-catalog-btn'),
+                document.getElementById('mobile-catalog-btn'),
+                document.getElementById('dock-catalog-btn')
+            ];
+            const closeCatalogBtn = document.getElementById('close-catalog-btn');
+            const catalogPrintBtn = document.getElementById('catalog-print-btn');
+            const catalogCopyBtn = document.getElementById('catalog-copy-btn');
+
+            const openCatalog = () => {
+                if (!catalogModal) return;
+                catalogModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeCatalog = () => {
+                if (!catalogModal) return;
+                catalogModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+
+            catalogOpenBtns.forEach(btn => {
+                if (btn) btn.addEventListener('click', openCatalog);
+            });
+
+            if (closeCatalogBtn) closeCatalogBtn.addEventListener('click', closeCatalog);
+            if (catalogModal) {
+                catalogModal.addEventListener('click', (e) => {
+                    if (e.target === catalogModal) closeCatalog();
+                });
+            }
+
+            if (catalogPrintBtn) {
+                catalogPrintBtn.addEventListener('click', () => {
+                    window.print();
+                });
+            }
+
+            if (catalogCopyBtn) {
+                catalogCopyBtn.addEventListener('click', () => {
+                    const textSummary = `📋 NexusCore Enterprise Solutions Suite 2026\nสรุปภาพรวม 8 โซลูชันบริหารธุรกิจสำหรับองค์กร:\n1. IT Monthly Dashboard (ระบบสรุปสถานะ IT & SLA)\n2. Pass App Vault (ระบบตู้เซฟรหัสผ่าน Zero-Knowledge)\n3. iOS Device Monitor (MDM บริหารจัดการอุปกรณ์ Apple)\n4. Team Task Tracking (ระบบติดตามงาน Kanban & Timeline)\n5. Thai Accounting App (ระบบบัญชีภาษี VAT 7% & หัก ณ ที่จ่าย)\n6. Inventory App POS (ระบบขายหน้าร้าน & สต๊อกสินค้า)\n7. FitPulse Pro Gym OS (ระบบจัดการฟิตเนส & QR Check-in)\n8. TikketHub Stage Pass (ระบบจองตั๋วคอนเสิร์ต & ผังที่นั่งสด)\n\nทดลองใช้งานฟรี: https://it-monthly-dashboard-hb21.onrender.com/#/`;
+                    
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(textSummary)
+                            .then(() => showToast('คัดลอกข้อมูลสรุป Solution Catalog สำเร็จแล้ว!'))
+                            .catch(() => showToast('ไม่สามารถคัดลอกได้อัตโนมัติ', 'warn'));
+                    } else {
+                        showToast('คัดลอกข้อมูลสำเร็จ');
+                    }
+                });
+            }
+
+            // ==========================================
+            // FEATURE 2: PWA ONE-CLICK APP INSTALL
+            // ==========================================
+            let deferredInstallPrompt = null;
+            const pwaInstallBanner = document.getElementById('pwa-install-banner');
+            const pwaInstallConfirmBtn = document.getElementById('pwa-install-confirm-btn');
+            const pwaInstallDismissBtn = document.getElementById('pwa-install-dismiss-btn');
+            const pwaInstallLaterBtn = document.getElementById('pwa-install-later-btn');
+            const navInstallBtn = document.getElementById('nav-install-btn');
+            const mobileInstallBtn = document.getElementById('mobile-install-btn');
+            const dockInstallBtn = document.getElementById('dock-install-btn');
+            const iosInstallModal = document.getElementById('ios-install-modal');
+            const closeIosModalBtn = document.getElementById('close-ios-modal-btn');
+
+            const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /iphone|ipad|ipod/.test(userAgent);
+            };
+
+            const isInStandaloneMode = () => {
+                return (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone === true);
+            };
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredInstallPrompt = e;
+
+                // Show install triggers
+                if (!isInStandaloneMode()) {
+                    if (pwaInstallBanner) pwaInstallBanner.classList.remove('hidden');
+                }
+            });
+
+            const triggerInstall = () => {
+                if (deferredInstallPrompt) {
+                    deferredInstallPrompt.prompt();
+                    deferredInstallPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            showToast('กำลังติดตั้งแอป NexusCore ลงบนอุปกรณ์...');
+                            if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
+                        }
+                        deferredInstallPrompt = null;
+                    });
+                } else if (isIos()) {
+                    if (iosInstallModal) iosInstallModal.classList.remove('hidden');
+                } else {
+                    showToast('ระบบพร้อมทำงานแบบ Offline ผ่าน Service Worker แล้ว!', 'success');
+                }
+            };
+
+            [pwaInstallConfirmBtn, navInstallBtn, mobileInstallBtn, dockInstallBtn].forEach(btn => {
+                if (btn) btn.addEventListener('click', triggerInstall);
+            });
+
+            const dismissBanner = () => {
+                if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
+            };
+            if (pwaInstallDismissBtn) pwaInstallDismissBtn.addEventListener('click', dismissBanner);
+            if (pwaInstallLaterBtn) pwaInstallLaterBtn.addEventListener('click', dismissBanner);
+
+            if (closeIosModalBtn && iosInstallModal) {
+                closeIosModalBtn.addEventListener('click', () => {
+                    iosInstallModal.classList.add('hidden');
+                });
+            }
+
+            window.addEventListener('appinstalled', () => {
+                showToast('🎉 ติดตั้งแอป NexusCore เรียบร้อยแล้ว!');
+                if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
+            });
         });
     </script>
 
@@ -1933,27 +2297,39 @@
     <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none">
         <div class="bg-slate-950/90 backdrop-blur-xl border border-white/10 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center gap-1 sm:gap-2 pointer-events-auto">
             <!-- Jump to Products -->
-            <a href="#features" class="dock-link px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
+            <a href="#features" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
                 <i class="ph-bold ph-grid-four text-base text-green-400"></i>
                 <span class="hidden sm:inline">ระบบทั้งหมด</span>
             </a>
 
             <!-- Jump to Pricing -->
-            <a href="#pricing" class="dock-link px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
+            <a href="#pricing" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
                 <i class="ph-bold ph-tag text-base text-emerald-400"></i>
                 <span class="hidden sm:inline">แพ็กเกจ</span>
             </a>
 
+            <!-- Catalog Quick Button -->
+            <button type="button" id="dock-catalog-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1" title="เปิด Solution Catalog (PDF)">
+                <i class="ph-bold ph-file-pdf text-rose-400 text-base"></i>
+                <span class="hidden md:inline">Catalog</span>
+            </button>
+
+            <!-- PWA Install Button -->
+            <button type="button" id="dock-install-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-blue-300 hover:text-white transition-all flex items-center gap-1" title="ติดตั้งแอป NexusCore">
+                <i class="ph-bold ph-download-simple text-blue-400 text-base"></i>
+                <span class="hidden md:inline">ติดตั้ง</span>
+            </button>
+
             <!-- Free Trial Trigger -->
-            <button type="button" id="dock-trial-btn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 hover:bg-green-400 text-slate-950 transition-all shadow-md flex items-center gap-1.5">
+            <button type="button" id="dock-trial-btn" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 hover:bg-green-400 text-slate-950 transition-all shadow-md flex items-center gap-1.5">
                 <i class="ph-bold ph-rocket-launch text-base"></i>
                 <span>ทดลองใช้ฟรี</span>
             </button>
 
             <!-- LINE Official Button -->
-            <a href="https://line.me" target="_blank" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm" title="แชทปรึกษาทาง LINE">
+            <a href="https://line.me" target="_blank" class="px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm" title="แชทปรึกษาทาง LINE">
                 <i class="ph-fill ph-chat-circle-dots text-base"></i>
-                <span class="hidden md:inline">LINE</span>
+                <span class="hidden lg:inline">LINE</span>
             </a>
 
             <!-- Separator -->
@@ -1965,6 +2341,223 @@
             </button>
         </div>
     </nav>
+
+    <!-- One-Page Solution Catalog Modal (Feature 3: Data & Operations - Print/PDF Ready) -->
+    <div id="catalog-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+        <div class="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative border border-gray-200 overflow-hidden my-auto flex flex-col max-h-[95vh]">
+            <!-- Modal Header (Non-printable controls) -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50 flex-shrink-0 print:hidden">
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 flex items-center gap-1">
+                        <i class="ph-bold ph-file-pdf"></i> PDF CATALOG
+                    </span>
+                    <h3 id="catalog-title" class="text-lg font-bold text-gray-900">NexusCore Solutions Catalog & Overview</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="catalog-copy-btn" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center gap-1.5 transition-colors">
+                        <i class="ph-bold ph-copy"></i> <span>คัดลอกสรุป</span>
+                    </button>
+                    <button type="button" id="catalog-print-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-sm transition-all">
+                        <i class="ph-bold ph-printer"></i> <span>พิมพ์ / เซฟเป็น PDF</span>
+                    </button>
+                    <button type="button" id="close-catalog-btn" aria-label="Close catalog" class="text-gray-400 hover:text-gray-700 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                        <i class="ph-bold ph-x"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Printable Body -->
+            <div id="printable-catalog-content" class="overflow-y-auto p-6 sm:p-8 space-y-6 text-left bg-white text-gray-800">
+                <!-- Header Banner -->
+                <div class="border-b-2 border-slate-900 pb-4 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="ph-fill ph-diamonds-four text-blue-600 text-3xl"></i>
+                            <span class="font-extrabold text-2xl tracking-tight text-gray-900">Nexus<span class="text-blue-600">Core</span></span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-slate-900 text-white font-semibold ml-2">Enterprise Suite 2026</span>
+                        </div>
+                        <p class="text-xs text-gray-500">เอกสารสรุปภาพรวมโซลูชัน 8 แอปพลิเคชัน สำหรับฝ่ายบริหารและฝ่ายจัดซื้อ</p>
+                    </div>
+                    <div class="text-xs text-gray-500 sm:text-right">
+                        <div><strong>ผู้ให้บริการ:</strong> NexusCore Platform</div>
+                        <div><strong>มาตรฐาน:</strong> ISO/IEC 27001 & Thai PDPA</div>
+                        <div><strong>วันที่ออกเอกสาร:</strong> ตุลาคม 2026</div>
+                    </div>
+                </div>
+
+                <!-- 8 Apps Grid / Matrix -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-1.5">
+                        <i class="ph-bold ph-squares-four text-blue-600"></i> ตารางสรุป 8 แอปพลิเคชันพร้อมใช้งาน (All Solutions Summary)
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <!-- App 1 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">1. IT Monthly Dashboard</strong>
+                                <span class="text-[10px] bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded">SME & Ent</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">รวบรวมสถานะเซิร์ฟเวอร์ SLA การให้บริการ และสรุปผลรายงานส่งผู้บริหารอัตโนมัติ</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: it-monthly-dashboard-hb21.onrender.com</span>
+                        </div>
+
+                        <!-- App 2 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">2. Pass App (Security Vault)</strong>
+                                <span class="text-[10px] bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ตู้เซฟดิจิทัลเก็บรหัสผ่านองค์กร เข้ารหัส Zero-Knowledge พร้อมแบ่งสิทธิ์ทีม</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: pass-app-9isy.onrender.com</span>
+                        </div>
+
+                        <!-- App 3 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">3. iOS Device Monitor (MDM)</strong>
+                                <span class="text-[10px] bg-purple-100 text-purple-700 font-semibold px-2 py-0.5 rounded">SME & Ent</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">บริหารจัดการอุปกรณ์ iPhone/iPad บริษัท สั่งล็อค/ล้างข้อมูลระยะไกลทันที</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: ios-device-monitor-lkxv.onrender.com</span>
+                        </div>
+
+                        <!-- App 4 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">4. Team Task Tracking</strong>
+                                <span class="text-[10px] bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ติดตามงาน มอบหมายงานสไตล์ Kanban & Timeline วิเคราะห์ภาระงานทีม</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: team-task-tracking.onrender.com</span>
+                        </div>
+
+                        <!-- App 5 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">5. Thai Accounting App</strong>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">บันทึกรายจ่าย บัญชีภาษี VAT 7% ภาษีหัก ณ ที่จ่าย และงบกำไรขาดทุน Real-time</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: thai-accounting-app.onrender.com</span>
+                        </div>
+
+                        <!-- App 6 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">6. Inventory App (POS)</strong>
+                                <span class="text-[10px] bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded">Startup & SME</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ระบบขายหน้าร้านยิงบาร์โค้ด ตัดสต๊อกอัตโนมัติ แจ้งเตือนจุดสั่งซื้อซ้ำ</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: inventory-app-dvlk.onrender.com</span>
+                        </div>
+
+                        <!-- App 7 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">7. FitPulse Pro (Gym OS)</strong>
+                                <span class="text-[10px] bg-lime-100 text-lime-800 font-semibold px-2 py-0.5 rounded">Startup & SME</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">สแกน QR เช็คอินสมาชิก จัดการสัญญาคอร์ส PT และวิเคราะห์ Peak Hours</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: fitness-zo64.onrender.com</span>
+                        </div>
+
+                        <!-- App 8 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">8. TikketHub (Stage Pass)</strong>
+                                <span class="text-[10px] bg-rose-100 text-rose-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ระบบจองบัตรคอนเสิร์ต ผังที่นั่งสด เลือกรอบแสดง และรายงานยอดจำหน่าย Real-time</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: tikkethub.vercel.app</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security & Architecture Specs -->
+                <div class="border-t border-gray-200 pt-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">มาตรฐานความปลอดภัย & ข้อกำหนดทางเทคนิค (Specifications)</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+                        <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                            <span class="font-bold text-gray-800 block mb-0.5">Cloud Uptime</span>
+                            <span class="text-gray-500">99.9% High Availability</span>
+                        </div>
+                        <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                            <span class="font-bold text-gray-800 block mb-0.5">Data Encryption</span>
+                            <span class="text-gray-500">AES-256 & TLS 1.3</span>
+                        </div>
+                        <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                            <span class="font-bold text-gray-800 block mb-0.5">Backup Policy</span>
+                            <span class="text-gray-500">Daily Automated Snapshot</span>
+                        </div>
+                        <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                            <span class="font-bold text-gray-800 block mb-0.5">Data Privacy</span>
+                            <span class="text-gray-500">Thai PDPA Compliant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Sign-off -->
+                <div class="border-t border-gray-200 pt-4 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-2">
+                    <div>ต้องการนัดหมาย Demo หรือขอใบเสนอราคาทางการ: <span class="font-semibold text-gray-800">sales@nexuscore.cloud</span></div>
+                    <div class="text-[11px]">ทดลองใช้ฟรี 30 วัน ไม่มีสัญญาผูกมัด</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PWA Install Prompt Floating Toast (Feature 2: Security & Performance) -->
+    <div id="pwa-install-banner" class="fixed bottom-24 right-4 sm:right-6 z-50 max-w-sm bg-slate-950 text-white p-4 rounded-2xl shadow-2xl border border-slate-800 hidden flex items-start gap-3 transition-all duration-300 transform translate-y-4">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 text-xl shadow">
+            <i class="ph-fill ph-diamonds-four"></i>
+        </div>
+        <div class="flex-grow text-left">
+            <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-white">ติดตั้งแอป NexusCore</h4>
+                <button type="button" id="pwa-install-dismiss-btn" class="text-gray-400 hover:text-white text-xs">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            <p class="text-[11px] text-gray-400 mt-0.5 mb-2.5 leading-relaxed">เข้าถึง 8 ระบบได้รวดเร็วกว่า พร้อมเปิดใช้งานแบบออฟไลน์บนหน้าจอหลัก</p>
+            <div class="flex items-center gap-2">
+                <button type="button" id="pwa-install-confirm-btn" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow">
+                    ติดตั้งทันที
+                </button>
+                <button type="button" id="pwa-install-later-btn" class="px-2.5 py-1.5 rounded-lg text-gray-400 hover:text-gray-200 text-xs transition-colors">
+                    ไว้คราวหลัง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS Safari Install Guide Modal -->
+    <div id="ios-install-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center text-gray-800 space-y-4 shadow-2xl">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto text-2xl">
+                <i class="ph-bold ph-apple-logo"></i>
+            </div>
+            <h3 class="text-base font-bold text-gray-900">วิธีติดตั้ง NexusCore บน iPhone/iPad</h3>
+            <div class="text-left space-y-2 text-xs text-gray-600 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-[10px] flex-shrink-0">1</span>
+                    <span>กดปุ่ม <strong>แชร์ (Share)</strong> <i class="ph-bold ph-export text-sm"></i> ที่แถบด้านล่างของ Safari</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-[10px] flex-shrink-0">2</span>
+                    <span>เลื่อนลงมาแล้วกด <strong>"เพิ่มไปยังหน้าจอโฮม" (Add to Home Screen)</strong></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-[10px] flex-shrink-0">3</span>
+                    <span>กด <strong>"เพิ่ม" (Add)</strong> เพื่อเสร็จสิ้น</span>
+                </div>
+            </div>
+            <button type="button" id="close-ios-modal-btn" class="w-full py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl text-xs transition-colors">
+                เข้าใจแล้ว
+            </button>
+        </div>
+    </div>
+
+    <!-- Modern Toast Notification Container -->
+    <div id="nexus-toast-container" class="fixed top-6 right-6 z-50 space-y-2 pointer-events-none"></div>
 
 </body>
 </html>
