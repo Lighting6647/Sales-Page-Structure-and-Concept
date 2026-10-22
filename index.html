@@ -341,7 +341,7 @@
             
             <div id="solution-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- App 1: IT Dashboard -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(37,99,235,0.15)] hover:border-blue-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="it"
                      data-scale="sme enterprise"
                      data-title="IT Monthly Dashboard"
@@ -350,12 +350,24 @@
                      data-img="images/it_dashboard.png"
                      data-link="https://it-monthly-dashboard-hb21.onrender.com/#/"
                      data-highlights='["มอนิเตอร์สถานะเซิร์ฟเวอร์และ Service สำคัญ 24/7 พร้อมแจ้งเตือน", "สรุป SLA และประสิทธิภาพการทำงานของทีมซัพพอร์ตอัตโนมัติ", "Export กราฟและข้อมูลเป็นรายงานสรุปส่งผู้บริหารในคลิกเดียว"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
-                        <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">it-monthly.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -367,15 +379,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">IT Monthly Dashboard</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time</p>
-                    <a href="https://it-monthly-dashboard-hb21.onrender.com/#/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors text-left">IT Monthly Dashboard</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">⚡ 24/7 SLA</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📊 Auto Report</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🔔 Real-time Alert</span>
+                    </div>
+                    <a href="https://it-monthly-dashboard-hb21.onrender.com/#/" target="_blank" class="block w-full text-center bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 font-semibold py-3 rounded-xl transition-all border border-blue-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
                 
                 <!-- App 2: Pass App -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(16,185,129,0.15)] hover:border-emerald-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="ops"
                      data-scale="startup sme enterprise"
                      data-title="Pass App (Vault)"
@@ -384,12 +402,24 @@
                      data-img="images/pass_app.png"
                      data-link="https://pass-app-9isy.onrender.com/#dashboard"
                      data-highlights='["เข้ารหัสแบบ Zero-Knowledge ปลอดภัยสูงสุด", "แบ่งกลุ่มสิทธิ์การเข้าถึงรหัสผ่านตามบทบาทหน้าที่ของพนักงาน", "ระบบ Auto-fill และ Copy รหัสผ่านพร้อมล้างคลิปบอร์ดอัตโนมัติ"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
-                        <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">vault.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -401,15 +431,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Pass App (Vault)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัล ลืมคำว่า "ลืมรหัสผ่าน" พร้อมแชร์ให้ทีมได้อย่างปลอดภัย</p>
-                    <a href="https://pass-app-9isy.onrender.com/#dashboard" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-green-600 transition-colors text-left">Pass App (Vault)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัล ลืมคำว่า "ลืมรหัสผ่าน" พร้อมแชร์ให้ทีมได้อย่างปลอดภัย</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🔐 Zero-Knowledge</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">👥 Role Access</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📋 Auto-Clipboard</span>
+                    </div>
+                    <a href="https://pass-app-9isy.onrender.com/#dashboard" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-600 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
                 
                 <!-- App 3: iOS Monitor -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(147,51,234,0.15)] hover:border-purple-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="it"
                      data-scale="sme enterprise"
                      data-title="iOS Device Monitor"
@@ -418,12 +454,24 @@
                      data-img="images/asset_monitor.png"
                      data-link="https://ios-device-monitor-lkxv.onrender.com/"
                      data-highlights='["ตรวจสอบสถานะเครื่อง แบตเตอรี่ และเวอร์ชัน OS จากศูนย์กลาง", "สั่งล็อคหรือล้างข้อมูลเครื่อง (Remote Wipe) กรณีสูญหาย", "ควบคุมการติดตั้งแอปพลิเคชันให้อยู่ในนโยบายความปลอดภัย"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 cursor-pointer group/img relative">
-                        <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">mdm.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -435,15 +483,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">iOS Device Monitor</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ควบคุมอุปกรณ์บริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที</p>
-                    <a href="https://ios-device-monitor-lkxv.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600 transition-colors text-left">iOS Device Monitor</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ควบคุมอุปกรณ์บริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📱 Apple MDM</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🔒 Remote Wipe</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🛡️ Policy Guard</span>
+                    </div>
+                    <a href="https://ios-device-monitor-lkxv.onrender.com/" target="_blank" class="block w-full text-center bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-600 font-semibold py-3 rounded-xl transition-all border border-purple-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 4: Team Task Tracking -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(99,102,241,0.15)] hover:border-indigo-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="ops"
                      data-scale="startup sme enterprise"
                      data-title="Team Task Tracking"
@@ -452,12 +506,24 @@
                      data-img="images/task_tracking.png"
                      data-link="https://team-task-tracking.onrender.com/"
                      data-highlights='["มุมมอง Kanban Board และ Timeline ติดตามความคืบหน้าโปรเจกต์", "ระบบมอบหมายงาน แจ้งเตือน และแนบเอกสารที่เกี่ยวข้องในที่เดียว", "วิเคราะห์ Workload ของทีมงานเพื่อกระจายงานได้อย่างสมดุล"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
-                        <img src="images/task_tracking.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">tasks.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/task_tracking.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -469,15 +535,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Team Task Tracking</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time</p>
-                    <a href="https://team-task-tracking.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-indigo-600 transition-colors text-left">Team Task Tracking</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📋 Kanban View</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">⏱️ Timeline Gantt</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">⚖️ Workload Balance</span>
+                    </div>
+                    <a href="https://team-task-tracking.onrender.com/" target="_blank" class="block w-full text-center bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold py-3 rounded-xl transition-all border border-indigo-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 5: Thai Accounting -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(16,185,129,0.15)] hover:border-emerald-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="finance"
                      data-scale="startup sme enterprise"
                      data-title="Thai Accounting App"
@@ -486,12 +558,24 @@
                      data-img="images/accounting.png"
                      data-link="https://thai-accounting-app.onrender.com/"
                      data-highlights='["รองรับภาษีมูลค่าเพิ่ม (VAT 7%) และภาษีหัก ณ ที่จ่าย (Withholding Tax)", "ออกเอกสารใบเสร็จ ใบกำกับภาษี และใบแจ้งหนี้มาตรฐานสรรพากร", "สรุปงบกำไรขาดทุน (P&L) และกระแสเงินสดแบบ Real-time"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
-                        <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">accounting.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -503,15 +587,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Thai Accounting App</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
-                    <a href="https://thai-accounting-app.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-emerald-600 transition-colors text-left">Thai Accounting App</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🧾 VAT 7%</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">💼 หัก ณ ที่จ่าย</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📈 งบ P&L สด</span>
+                    </div>
+                    <a href="https://thai-accounting-app.onrender.com/" target="_blank" class="block w-full text-center bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 font-semibold py-3 rounded-xl transition-all border border-emerald-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 6: Inventory App -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(245,158,11,0.15)] hover:border-amber-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="finance"
                      data-scale="startup sme"
                      data-title="Inventory App (POS)"
@@ -520,12 +610,24 @@
                      data-img="images/inventory.png"
                      data-link="https://inventory-app-dvlk.onrender.com/pos"
                      data-highlights='["ระบบขายหน้าร้าน (POS) ยิงบาร์โค้ด ตัดสต๊อกอัตโนมัติทันที", "แจ้งเตือนจุดสั่งซื้อซ้ำ (Reorder Point) เมื่อสินค้าใกล้หมดสต๊อก", "ระบุพิกัดตำแหน่งจัดเก็บสินค้า (Shelf / Zone) เพื่อหยิบของได้เร็ว"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center cursor-pointer group/img relative">
-                        <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">pos-stock.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -537,15 +639,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">Inventory App (POS)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน</p>
-                    <a href="https://inventory-app-dvlk.onrender.com/pos" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-amber-600 transition-colors text-left">Inventory App (POS)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🏷️ Barcode POS</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📦 Reorder Alert</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📍 Shelf Locator</span>
+                    </div>
+                    <a href="https://inventory-app-dvlk.onrender.com/pos" target="_blank" class="block w-full text-center bg-amber-50 hover:bg-amber-600 hover:text-white text-amber-600 font-semibold py-3 rounded-xl transition-all border border-amber-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 7: FitPulse Pro (Fitness & Gym Management) -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(132,204,22,0.18)] hover:border-lime-300 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="special"
                      data-scale="startup sme"
                      data-title="FitPulse Pro (Gym OS)"
@@ -554,13 +662,25 @@
                      data-img="images/fitpulse.png"
                      data-link="https://fitness-zo64.onrender.com/"
                      data-highlights='["สแกน QR Code เช็คอินหน้าร้าน ตรวจสอบสิทธิ์สมาชิกทันที", "จัดการสัญญาซื้อขายคอร์ส PT และระบบตัดจำนวนครั้งคงเหลือ", "วิเคราะห์ช่วงเวลาคนเข้ายิมหนาแน่น (Peak Hours) เพื่อจัดเวรเทรนเนอร์"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-slate-950 flex items-center justify-center relative cursor-pointer group/img">
-                        <span class="absolute top-2 right-2 bg-lime-400 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">NEW</span>
-                        <img src="images/fitpulse.png" alt="FitPulse Pro" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <span class="absolute top-8 right-2 bg-lime-400 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">NEW</span>
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">fitpulse.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/fitpulse.png" alt="FitPulse Pro" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -572,15 +692,21 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">FitPulse Pro (Gym OS)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time</p>
-                    <a href="https://fitness-zo64.onrender.com/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-lime-600 transition-colors text-left">FitPulse Pro (Gym OS)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📲 QR Check-in</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🏋️ สัญญาคอร์ส PT</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📊 Peak Hours</span>
+                    </div>
+                    <a href="https://fitness-zo64.onrender.com/" target="_blank" class="block w-full text-center bg-lime-50 hover:bg-lime-600 hover:text-white text-lime-700 font-semibold py-3 rounded-xl transition-all border border-lime-200 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
 
                 <!-- App 8: TikketHub (Stage Pass - Ticket Booking Platform) -->
-                <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(244,63,94,0.18)] hover:border-rose-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="special"
                      data-scale="startup sme enterprise"
                      data-title="TikketHub (Stage Pass)"
@@ -589,13 +715,25 @@
                      data-img="images/tikkethub.png"
                      data-link="https://tikkethub.vercel.app/"
                      data-highlights='["ระบบจองบัตรคอนเสิร์ตและอีเวนต์แบบ Real-time พร้อมแสดงจำนวนบัตรคงเหลือ", "รองรับผังการแสดง เลือกรอบการแสดง และแยกโซนราคาได้อย่างแม่นยำ", "ระบบหลังบ้านแอดมิน ตรวจสอบยอดจำหน่าย รายงานสถิติ และเช็คอินหน้างาน"]'>
-                    <div class="quickview-trigger w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-6 shadow-sm border border-gray-100 bg-slate-950 flex items-center justify-center relative cursor-pointer group/img">
-                        <span class="absolute top-2 right-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">HOT</span>
-                        <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
-                                <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
-                            </span>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <span class="absolute top-8 right-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">HOT</span>
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">tickets.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
+                            <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
@@ -607,9 +745,15 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-600 transition-colors text-left">TikketHub (Stage Pass)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow text-left">ระบบจองบัตรคอนเสิร์ตและอีเวนต์ครบวงจร จัดการผังที่นั่ง เลือกรอบแสดง และรายงานสถิติยอดขายแบบ Real-time</p>
-                    <a href="https://tikkethub.vercel.app/" target="_blank" class="block w-full text-center bg-green-50 hover:bg-green-500 hover:text-white text-green-600 font-semibold py-3 rounded-xl transition-all border border-green-100 shadow-sm hover:shadow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-rose-600 transition-colors text-left">TikketHub (Stage Pass)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ระบบจองบัตรคอนเสิร์ตและอีเวนต์ครบวงจร จัดการผังที่นั่ง เลือกรอบแสดง และรายงานสถิติยอดขายแบบ Real-time</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🎟️ ผังที่นั่งสด</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🎪 แยกโซนราคา</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📱 QR สแกนเข้างาน</span>
+                    </div>
+                    <a href="https://tikkethub.vercel.app/" target="_blank" class="block w-full text-center bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 font-semibold py-3 rounded-xl transition-all border border-rose-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -852,28 +996,28 @@
                     <div class="flex items-center gap-4">
                         <i class="ph-fill ph-users text-4xl text-green-500"></i>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">2,245,341</h3>
+                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="2245341">0</h3>
                             <p class="text-gray-500 text-sm">ผู้ใช้งานระบบ (Members)</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <i class="ph-fill ph-buildings text-4xl text-green-500"></i>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">46,328</h3>
+                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="46328">0</h3>
                             <p class="text-gray-500 text-sm">องค์กรที่ไว้วางใจ</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <i class="ph-fill ph-hand-coins text-4xl text-green-500"></i>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">828,867</h3>
+                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="828867">0</h3>
                             <p class="text-gray-500 text-sm">รายการเบิกจ่าย</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <i class="ph-fill ph-credit-card text-4xl text-green-500"></i>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">1,926,436</h3>
+                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="1926436">0</h3>
                             <p class="text-gray-500 text-sm">การทำธุรกรรม</p>
                         </div>
                     </div>
@@ -1755,6 +1899,20 @@
                 }
                 if (qvLink) qvLink.href = link;
 
+                // Dynamic URL chip
+                const qvUrlChip = document.getElementById('qv-url-chip');
+                if (qvUrlChip) {
+                    try {
+                        const parsed = new URL(link);
+                        qvUrlChip.textContent = parsed.hostname + (parsed.pathname !== '/' ? parsed.pathname : '');
+                    } catch (e) {
+                        qvUrlChip.textContent = 'app.nexuscore.cloud';
+                    }
+                }
+
+                // Reset viewport to desktop on modal open
+                setQvViewMode('desktop');
+
                 if (qvHighlights) {
                     qvHighlights.innerHTML = highlights.map(hl => `
                         <li class="flex items-start gap-2.5">
@@ -1784,6 +1942,44 @@
                 document.body.style.overflow = '';
             };
 
+            // Viewport Switcher (Desktop vs Mobile Preview)
+            const qvViewDesktopBtn = document.getElementById('qv-view-desktop-btn');
+            const qvViewMobileBtn = document.getElementById('qv-view-mobile-btn');
+            const qvPreviewFrame = document.getElementById('qv-preview-frame');
+            const qvMobileNotch = document.getElementById('qv-mobile-notch');
+
+            const setQvViewMode = (mode) => {
+                if (!qvPreviewFrame) return;
+                if (mode === 'mobile') {
+                    qvPreviewFrame.classList.remove('w-full');
+                    qvPreviewFrame.classList.add('max-w-[310px]', 'mx-auto', 'rounded-[32px]', 'p-2.5', 'bg-slate-900', 'border-4', 'border-slate-700', 'shadow-2xl');
+                    if (qvMobileNotch) qvMobileNotch.classList.remove('hidden');
+                    if (qvViewMobileBtn) {
+                        qvViewMobileBtn.classList.add('bg-slate-800', 'text-white');
+                        qvViewMobileBtn.classList.remove('text-slate-400');
+                    }
+                    if (qvViewDesktopBtn) {
+                        qvViewDesktopBtn.classList.remove('bg-slate-800', 'text-white');
+                        qvViewDesktopBtn.classList.add('text-slate-400');
+                    }
+                } else {
+                    qvPreviewFrame.classList.add('w-full');
+                    qvPreviewFrame.classList.remove('max-w-[310px]', 'mx-auto', 'rounded-[32px]', 'p-2.5', 'bg-slate-900', 'border-4', 'border-slate-700', 'shadow-2xl');
+                    if (qvMobileNotch) qvMobileNotch.classList.add('hidden');
+                    if (qvViewDesktopBtn) {
+                        qvViewDesktopBtn.classList.add('bg-slate-800', 'text-white');
+                        qvViewDesktopBtn.classList.remove('text-slate-400');
+                    }
+                    if (qvViewMobileBtn) {
+                        qvViewMobileBtn.classList.remove('bg-slate-800', 'text-white');
+                        qvViewMobileBtn.classList.add('text-slate-400');
+                    }
+                }
+            };
+
+            if (qvViewDesktopBtn) qvViewDesktopBtn.addEventListener('click', () => setQvViewMode('desktop'));
+            if (qvViewMobileBtn) qvViewMobileBtn.addEventListener('click', () => setQvViewMode('mobile'));
+
             // Attach Quick View trigger to all cards
             document.querySelectorAll('.solution-card').forEach(card => {
                 const trigger = card.querySelector('.quickview-trigger');
@@ -1810,6 +2006,44 @@
                     closeQuickView();
                     openLeadModal(currentSolutionKey);
                 });
+            }
+
+            // Scroll-triggered Animated Count-Up Numbers for Stats
+            const statCounters = document.querySelectorAll('.counter-val');
+            if (statCounters.length > 0 && 'IntersectionObserver' in window) {
+                const animateCount = (el) => {
+                    const target = parseInt(el.getAttribute('data-target') || '0', 10);
+                    const duration = 1800; // ms
+                    const startTime = performance.now();
+                    const startVal = 0;
+
+                    const step = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // easeOutExpo
+                        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                        const current = Math.floor(ease * (target - startVal) + startVal);
+                        el.textContent = current.toLocaleString('en-US');
+
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            el.textContent = target.toLocaleString('en-US');
+                        }
+                    };
+                    requestAnimationFrame(step);
+                };
+
+                const statsObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCount(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.25 });
+
+                statCounters.forEach(counter => statsObserver.observe(counter));
             }
 
             // --- Feature 2: Floating Quick Navigation Dock Logic ---
@@ -2122,9 +2356,47 @@
             
             <!-- Modal Body (Scrollable) -->
             <div class="overflow-y-auto p-6 sm:p-8 space-y-6">
-                <!-- Full Preview Image -->
-                <div class="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-slate-900 flex items-center justify-center">
-                    <img id="qv-image" src="" alt="App Preview" class="w-full h-auto max-h-[50vh] object-contain">
+                <!-- Browser Mockup Window & Device Viewport Switcher -->
+                <div class="w-full rounded-2xl overflow-hidden border border-slate-700/80 shadow-xl bg-slate-950 flex flex-col">
+                    <!-- Window Top Chrome / Toolbar -->
+                    <div class="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between gap-3 flex-wrap">
+                        <!-- Traffic Dots -->
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/90 inline-block shadow-sm"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/90 inline-block shadow-sm"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/90 inline-block shadow-sm"></span>
+                        </div>
+
+                        <!-- Address Bar Chip -->
+                        <div class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-xs text-slate-300 font-mono shadow-inner max-w-xs sm:max-w-sm truncate">
+                            <i class="ph-bold ph-lock-key text-emerald-400 text-xs flex-shrink-0"></i>
+                            <span id="qv-url-chip" class="truncate">app.nexuscore.cloud</span>
+                        </div>
+
+                        <!-- Desktop vs Mobile Viewport Switcher -->
+                        <div class="flex items-center bg-slate-950/90 p-0.5 rounded-lg border border-slate-800 text-xs">
+                            <button type="button" id="qv-view-desktop-btn" class="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-800 text-white transition-all shadow-sm" title="Desktop View">
+                                <i class="ph-bold ph-desktop text-sm"></i>
+                                <span class="hidden sm:inline">Desktop</span>
+                            </button>
+                            <button type="button" id="qv-view-mobile-btn" class="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-all" title="Mobile Frame">
+                                <i class="ph-bold ph-device-mobile text-sm"></i>
+                                <span class="hidden sm:inline">Mobile</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Screen Canvas -->
+                    <div id="qv-canvas-area" class="p-3 sm:p-5 bg-gradient-to-b from-slate-950 to-slate-900 flex items-center justify-center min-h-[300px] transition-all duration-300">
+                        <div id="qv-preview-frame" class="w-full transition-all duration-300 flex flex-col items-center justify-center">
+                            <!-- Mobile Notch (hidden in desktop view) -->
+                            <div id="qv-mobile-notch" class="hidden w-28 h-4 bg-slate-800 rounded-b-xl mx-auto mb-2 flex items-center justify-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-slate-950 inline-block"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500/40 inline-block"></span>
+                            </div>
+                            <img id="qv-image" src="" alt="App Preview" class="w-full h-auto max-h-[50vh] object-contain rounded-lg transition-all duration-300">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- TikketHub Interactive Live Seat Map Demo (Feature 1: UX & Engagement) -->
