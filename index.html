@@ -64,6 +64,26 @@
 
     <!-- 1. Header & Navigation -->
     <nav class="bg-white fixed w-full z-50 top-0 transition-all duration-300 shadow-sm">
+        <!-- Top Promotional Announcement Banner (Feature 3: Conversion & Urgency) -->
+        <div id="top-announcement-banner" class="bg-slate-950 text-white py-2 px-4 border-b border-slate-800 transition-all duration-300">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs sm:text-sm">
+                <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span class="inline-flex items-center gap-1 bg-amber-500/20 text-amber-400 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">
+                        <i class="ph-fill ph-lightning"></i> สิทธิ์พิเศษ
+                    </span>
+                    <span class="text-gray-300">สิทธิ์ทดลองใช้ฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-400 font-bold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
+                </div>
+                <div class="flex items-center gap-3 flex-shrink-0">
+                    <button type="button" id="top-claim-btn" class="bg-green-500 hover:bg-green-400 text-slate-950 font-bold px-3 py-1 rounded-full text-xs transition-all shadow-sm flex items-center gap-1">
+                        <span>รับสิทธิ์ทันที</span> &rarr;
+                    </button>
+                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="ph-bold ph-x text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
@@ -211,7 +231,7 @@
             </div>
 
             <!-- Category Filter Tabs (Feature 3: Data & Operations) -->
-            <div class="flex flex-wrap justify-center items-center gap-2 mb-12" id="solution-filter-tabs" role="tablist" aria-label="หมวดหมู่โซลูชัน">
+            <div class="flex flex-wrap justify-center items-center gap-2 mb-4" id="solution-filter-tabs" role="tablist" aria-label="หมวดหมู่โซลูชัน">
                 <button type="button" data-filter="all" class="filter-tab active px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-slate-900 text-white shadow-sm flex items-center gap-2">
                     <span>ทั้งหมด</span>
                     <span class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white font-medium filter-count">8</span>
@@ -237,11 +257,34 @@
                     <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">2</span>
                 </button>
             </div>
+
+            <!-- Business Scale Filter Tabs (Feature 2: Data & Operations) -->
+            <div class="flex flex-wrap justify-center items-center gap-2 mb-12 text-xs sm:text-sm" id="scale-filter-tabs" role="tablist" aria-label="ขนาดธุรกิจ">
+                <span class="text-xs font-semibold text-gray-400 mr-1 flex items-center gap-1">
+                    <i class="ph-bold ph-funnel"></i> ขนาดธุรกิจ:
+                </span>
+                <button type="button" data-scale="all" class="scale-tab active px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 bg-slate-800 text-white shadow-sm flex items-center gap-1.5">
+                    <span>ทุกขนาดธุรกิจ</span>
+                </button>
+                <button type="button" data-scale="startup" class="scale-tab px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-rocket-launch text-xs"></i>
+                    <span>Startup / เริ่มต้น</span>
+                </button>
+                <button type="button" data-scale="sme" class="scale-tab px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-storefront text-xs"></i>
+                    <span>SME ธุรกิจเติบโต</span>
+                </button>
+                <button type="button" data-scale="enterprise" class="scale-tab px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-buildings text-xs"></i>
+                    <span>Enterprise องค์กรใหญ่</span>
+                </button>
+            </div>
             
             <div id="solution-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- App 1: IT Dashboard -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="it"
+                     data-scale="sme enterprise"
                      data-title="IT Monthly Dashboard"
                      data-badge="IT INFRASTRUCTURE"
                      data-desc="รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time ไม่ต้องเปิดหลายโปรแกรมให้วุ่นวาย"
@@ -257,7 +300,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full">IT Dashboard</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full">IT Dashboard</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-buildings text-xs"></i> SME / Ent</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -272,6 +318,7 @@
                 <!-- App 2: Pass App -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="ops"
+                     data-scale="startup sme enterprise"
                      data-title="Pass App (Vault)"
                      data-badge="SECURITY VAULT"
                      data-desc="เก็บข้อมูลรหัสผ่านในตู้เซฟดิจิทัลที่มีการเข้ารหัสระดับสูง ลืมคำว่า 'ลืมรหัสผ่าน' พร้อมแชร์ให้ทีมได้อย่างปลอดภัย"
@@ -287,7 +334,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full">Security</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full">Security</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-sparkle text-xs"></i> ทุกระดับ</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -302,6 +352,7 @@
                 <!-- App 3: iOS Monitor -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="it"
+                     data-scale="sme enterprise"
                      data-title="iOS Device Monitor"
                      data-badge="MOBILE DEVICE MGMT"
                      data-desc="ควบคุมอุปกรณ์ iPhone/iPad ของบริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที"
@@ -317,7 +368,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">MDM System</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">MDM System</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-buildings text-xs"></i> SME / Ent</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -332,6 +386,7 @@
                 <!-- App 4: Team Task Tracking -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="ops"
+                     data-scale="startup sme enterprise"
                      data-title="Team Task Tracking"
                      data-badge="TASK & PRODUCTIVITY"
                      data-desc="ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time ไม่พลาดทุก Deadline"
@@ -347,7 +402,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-full">Task Management</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-full">Task Management</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-sparkle text-xs"></i> ทุกระดับ</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -362,6 +420,7 @@
                 <!-- App 5: Thai Accounting -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="finance"
+                     data-scale="startup sme enterprise"
                      data-title="Thai Accounting App"
                      data-badge="THAI ACCOUNTING & TAX"
                      data-desc="บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น"
@@ -377,7 +436,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">Accounting & Tax</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">Accounting & Tax</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-sparkle text-xs"></i> ทุกระดับ</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -392,6 +454,7 @@
                 <!-- App 6: Inventory App -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="finance"
+                     data-scale="startup sme"
                      data-title="Inventory App (POS)"
                      data-badge="POS & INVENTORY"
                      data-desc="ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน"
@@ -407,7 +470,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full">POS & Warehouse</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full">POS & Warehouse</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-rocket-launch text-xs"></i> Startup / SME</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -422,6 +488,7 @@
                 <!-- App 7: FitPulse Pro (Fitness & Gym Management) -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="special"
+                     data-scale="startup sme"
                      data-title="FitPulse Pro (Gym OS)"
                      data-badge="GYM & FITNESS OS"
                      data-desc="ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time"
@@ -438,7 +505,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-lime-700 bg-lime-100 px-2.5 py-0.5 rounded-full">Fitness Platform</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-lime-700 bg-lime-100 px-2.5 py-0.5 rounded-full">Fitness Platform</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-rocket-launch text-xs"></i> Startup / SME</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -453,6 +523,7 @@
                 <!-- App 8: TikketHub (Stage Pass - Ticket Booking Platform) -->
                 <div class="solution-card p-7 sm:p-8 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
                      data-category="special"
+                     data-scale="startup sme enterprise"
                      data-title="TikketHub (Stage Pass)"
                      data-badge="TICKET & EVENT OS"
                      data-desc="ระบบจำหน่ายและจองบัตรคอนเสิร์ต การแสดง และอีเวนต์ครบวงจร จัดการผังที่นั่ง เลือกรอบแสดง พร้อมระบบแอดมินตรวจนับบัตรแบบ Real-time"
@@ -469,7 +540,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full">Ticketing Platform</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full">Ticketing Platform</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-sparkle text-xs"></i> ทุกระดับ</span>
+                        </div>
                         <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
@@ -1339,11 +1413,13 @@
 
             // --- Feature 3: Category Filter Tabs & Real-time Search Logic ---
             const filterTabs = document.querySelectorAll('#solution-filter-tabs .filter-tab');
+            const scaleTabs = document.querySelectorAll('#scale-filter-tabs .scale-tab');
             const solutionCards = document.querySelectorAll('#solution-cards-grid .solution-card');
             const searchInput = document.getElementById('solution-search-input');
             const searchClearBtn = document.getElementById('solution-search-clear');
             const searchFeedback = document.getElementById('search-feedback');
             let currentFilter = 'all';
+            let currentScale = 'all';
 
             const filterAndSearchCards = () => {
                 const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
@@ -1359,19 +1435,21 @@
 
                 solutionCards.forEach(card => {
                     const cardCategory = card.getAttribute('data-category') || '';
+                    const cardScale = card.getAttribute('data-scale') || '';
                     const title = (card.getAttribute('data-title') || '').toLowerCase();
                     const badge = (card.getAttribute('data-badge') || '').toLowerCase();
                     const desc = (card.getAttribute('data-desc') || '').toLowerCase();
                     const highlights = (card.getAttribute('data-highlights') || '').toLowerCase();
                     
                     const matchesCategory = (currentFilter === 'all' || cardCategory === currentFilter);
+                    const matchesScale = (currentScale === 'all' || cardScale.includes(currentScale));
                     const matchesQuery = query === '' || 
                         title.includes(query) || 
                         badge.includes(query) || 
                         desc.includes(query) || 
                         highlights.includes(query);
 
-                    if (matchesCategory && matchesQuery) {
+                    if (matchesCategory && matchesScale && matchesQuery) {
                         matchedCount++;
                         card.style.display = 'flex';
                         setTimeout(() => {
@@ -1434,6 +1512,22 @@
                 });
             });
 
+            // Business Scale filter tab events
+            scaleTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentScale = tab.getAttribute('data-scale') || 'all';
+
+                    scaleTabs.forEach(t => {
+                        t.classList.remove('active', 'bg-slate-800', 'text-white', 'shadow-sm');
+                        t.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                    });
+                    tab.classList.add('active', 'bg-slate-800', 'text-white', 'shadow-sm');
+                    tab.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+
+                    filterAndSearchCards();
+                });
+            });
+
             if (searchInput) {
                 searchInput.addEventListener('input', filterAndSearchCards);
             }
@@ -1447,7 +1541,7 @@
                 });
             }
 
-            // --- Feature 1: Quick View Modal Logic ---
+            // --- Feature 1: Quick View Modal Logic & TikketHub Seat Map Demo ---
             const qvModal = document.getElementById('quickview-modal');
             const qvCloseBtn = document.getElementById('close-quickview-btn');
             const qvImage = document.getElementById('qv-image');
@@ -1457,7 +1551,50 @@
             const qvHighlights = document.getElementById('qv-highlights');
             const qvLink = document.getElementById('qv-link');
             const qvContactBtn = document.getElementById('qv-contact-btn');
+            const qvSeatMap = document.getElementById('qv-seatmap-container');
+            const qvSeatButtons = document.querySelectorAll('.qv-seat-btn');
+            const qvSelectedListEl = document.getElementById('qv-seat-selected-list');
+            const qvTotalPriceEl = document.getElementById('qv-seat-total-price');
+
             let currentSolutionKey = 'all';
+            let selectedSeats = [];
+
+            const updateSeatSummary = () => {
+                if (!qvSelectedListEl || !qvTotalPriceEl) return;
+                if (selectedSeats.length === 0) {
+                    qvSelectedListEl.textContent = 'ยังไม่ได้เลือก';
+                    qvTotalPriceEl.textContent = '฿0';
+                } else {
+                    qvSelectedListEl.textContent = selectedSeats.map(s => s.id).join(', ');
+                    const total = selectedSeats.reduce((sum, s) => sum + s.price, 0);
+                    qvTotalPriceEl.textContent = '฿' + total.toLocaleString();
+                }
+            };
+
+            const resetSeatSelection = () => {
+                selectedSeats = [];
+                qvSeatButtons.forEach(btn => {
+                    btn.classList.remove('bg-rose-500', 'text-white', 'border-rose-400', 'shadow-md');
+                });
+                updateSeatSummary();
+            };
+
+            qvSeatButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const seatId = btn.getAttribute('data-seat-id');
+                    const price = parseInt(btn.getAttribute('data-price') || '0', 10);
+                    const existingIdx = selectedSeats.findIndex(s => s.id === seatId);
+
+                    if (existingIdx >= 0) {
+                        selectedSeats.splice(existingIdx, 1);
+                        btn.classList.remove('bg-rose-500', 'text-white', 'border-rose-400', 'shadow-md');
+                    } else {
+                        selectedSeats.push({ id: seatId, price });
+                        btn.classList.add('bg-rose-500', 'text-white', 'border-rose-400', 'shadow-md');
+                    }
+                    updateSeatSummary();
+                });
+            });
 
             const openQuickView = (card) => {
                 if (!qvModal || !card) return;
@@ -1491,6 +1628,16 @@
                             <span>${hl}</span>
                         </li>
                     `).join('');
+                }
+
+                // Interactive Seat Map toggle for TikketHub
+                if (qvSeatMap) {
+                    if (title.toLowerCase().includes('tikkethub')) {
+                        qvSeatMap.classList.remove('hidden');
+                        resetSeatSelection();
+                    } else {
+                        qvSeatMap.classList.add('hidden');
+                    }
                 }
 
                 qvModal.classList.remove('hidden');
@@ -1561,6 +1708,30 @@
                 });
             }
 
+            // --- Feature 3: Top Announcement Promotional Banner Handlers ---
+            const topClaimBtn = document.getElementById('top-claim-btn');
+            const topBannerClose = document.getElementById('top-banner-close');
+            const topBanner = document.getElementById('top-announcement-banner');
+
+            if (topClaimBtn) {
+                topClaimBtn.addEventListener('click', () => {
+                    openLeadModal('all');
+                });
+            }
+
+            if (topBannerClose && topBanner) {
+                topBannerClose.addEventListener('click', () => {
+                    topBanner.style.maxHeight = '0px';
+                    topBanner.style.overflow = 'hidden';
+                    topBanner.style.paddingTop = '0px';
+                    topBanner.style.paddingBottom = '0px';
+                    topBanner.style.opacity = '0';
+                    setTimeout(() => {
+                        topBanner.style.display = 'none';
+                    }, 300);
+                });
+            }
+
             // --- Feature 1: Register Service Worker for PWA Offline Caching ---
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./sw.js')
@@ -1593,6 +1764,79 @@
                 <!-- Full Preview Image -->
                 <div class="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-slate-900 flex items-center justify-center">
                     <img id="qv-image" src="" alt="App Preview" class="w-full h-auto max-h-[50vh] object-contain">
+                </div>
+
+                <!-- TikketHub Interactive Live Seat Map Demo (Feature 1: UX & Engagement) -->
+                <div id="qv-seatmap-container" class="hidden bg-slate-950 text-white rounded-2xl p-5 border border-slate-800 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 flex-wrap gap-2">
+                        <div>
+                            <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/30">
+                                <i class="ph-fill ph-cursor-click"></i> Interactive Feature Preview
+                            </span>
+                            <h4 class="text-sm font-bold text-white mt-1">ทดลองเลือกผังที่นั่ง & คำนวณยอดบัตรสด</h4>
+                        </div>
+                        <div class="text-[11px] text-gray-400">
+                            คลิกที่เก้าอี้เพื่อทดสอบระบบจำหน่าย
+                        </div>
+                    </div>
+
+                    <!-- Stage Arc Indicator -->
+                    <div class="w-full text-center">
+                        <div class="mx-auto max-w-xs py-1.5 px-4 rounded-b-2xl bg-gradient-to-r from-rose-950/40 via-rose-500/30 to-rose-950/40 border-b-2 border-rose-500 text-[11px] font-bold uppercase tracking-widest text-rose-300 shadow-[0_4px_20px_rgba(244,63,94,0.2)]">
+                            STAGE / เวทีการแสดง
+                        </div>
+                    </div>
+
+                    <!-- Seats Grid -->
+                    <div class="space-y-2.5 max-w-sm mx-auto pt-2">
+                        <!-- VIP Row -->
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-[10px] font-bold text-amber-400 w-16 sm:w-20 flex-shrink-0">VIP ฿3,500</span>
+                            <div class="flex items-center justify-center gap-2 flex-grow">
+                                <button type="button" data-seat-id="VIP-1" data-seat-zone="VIP" data-price="3500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 border border-amber-500/40 text-xs font-bold text-amber-300 transition-all">V1</button>
+                                <button type="button" data-seat-id="VIP-2" data-seat-zone="VIP" data-price="3500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 border border-amber-500/40 text-xs font-bold text-amber-300 transition-all">V2</button>
+                                <button type="button" data-seat-id="VIP-3" data-seat-zone="VIP" data-price="3500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 border border-amber-500/40 text-xs font-bold text-amber-300 transition-all">V3</button>
+                            </div>
+                        </div>
+
+                        <!-- Zone A Row -->
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-[10px] font-bold text-sky-400 w-16 sm:w-20 flex-shrink-0">Zone A ฿2,500</span>
+                            <div class="flex items-center justify-center gap-2 flex-grow">
+                                <button type="button" data-seat-id="A-01" data-seat-zone="Zone A" data-price="2500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 border border-sky-500/40 text-xs font-bold text-sky-300 transition-all">A1</button>
+                                <button type="button" data-seat-id="A-02" data-seat-zone="Zone A" data-price="2500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 border border-sky-500/40 text-xs font-bold text-sky-300 transition-all">A2</button>
+                                <button type="button" data-seat-id="A-03" data-seat-zone="Zone A" data-price="2500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 border border-sky-500/40 text-xs font-bold text-sky-300 transition-all">A3</button>
+                                <button type="button" data-seat-id="A-04" data-seat-zone="Zone A" data-price="2500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 border border-sky-500/40 text-xs font-bold text-sky-300 transition-all">A4</button>
+                            </div>
+                        </div>
+
+                        <!-- Zone B Row -->
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-[10px] font-bold text-emerald-400 w-16 sm:w-20 flex-shrink-0">Zone B ฿1,500</span>
+                            <div class="flex items-center justify-center gap-2 flex-grow">
+                                <button type="button" data-seat-id="B-01" data-seat-zone="Zone B" data-price="1500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 border border-emerald-500/40 text-xs font-bold text-emerald-300 transition-all">B1</button>
+                                <button type="button" disabled class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 text-xs font-bold text-gray-600 cursor-not-allowed line-through flex items-center justify-center" title="ที่นั่งถูกจองแล้ว">B2</button>
+                                <button type="button" data-seat-id="B-03" data-seat-zone="Zone B" data-price="1500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 border border-emerald-500/40 text-xs font-bold text-emerald-300 transition-all">B3</button>
+                                <button type="button" data-seat-id="B-04" data-seat-zone="Zone B" data-price="1500" class="qv-seat-btn w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 border border-emerald-500/40 text-xs font-bold text-emerald-300 transition-all">B4</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Calculation & Legend Bar -->
+                    <div class="pt-2 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+                        <div class="flex items-center gap-3 text-gray-400 text-[11px]">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-slate-800 border border-slate-700"></span> ว่าง</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-rose-500"></span> เลือกอยู่</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-slate-900 border border-slate-800 text-gray-600">✕</span> จองแล้ว</span>
+                        </div>
+                        <div class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                            <span class="text-gray-400">ที่นั่งที่เลือก:</span>
+                            <strong id="qv-seat-selected-list" class="text-rose-400 font-bold">ยังไม่ได้เลือก</strong>
+                            <span class="text-gray-500">|</span>
+                            <span class="text-gray-400">ยอดรวม:</span>
+                            <strong id="qv-seat-total-price" class="text-emerald-400 font-bold">฿0</strong>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- App Details & Highlights -->
