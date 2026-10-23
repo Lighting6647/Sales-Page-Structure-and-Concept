@@ -46,8 +46,20 @@
     }
     </script>
 
+    <!-- Security & Privacy Directives -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Performance & Resource Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//unpkg.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -277,25 +289,25 @@
             <!-- Centered Image Showcase (3D Coverflow Slider - 7 Apps) -->
             <div class="relative w-full max-w-[1400px] mx-auto h-[240px] sm:h-[340px] md:h-[460px] lg:h-[540px] mt-2 sm:mt-6 md:mt-8 perspective-[1000px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
-                <img src="images/inventory.png" alt="Inventory" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
                 
                 <!-- App 2: Accounting -->
-                <img src="images/accounting.png" alt="Accounting Dashboard" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
 
                 <!-- App 3: Team Task Tracking -->
-                <img src="images/task_tracking.png" alt="Team Task Tracking" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
 
                 <!-- App 4: IT Dashboard (Default Center - Index 3) -->
-                <img src="images/it_dashboard.png" alt="IT Dashboard" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
                 
                 <!-- App 5: FitPulse Pro -->
-                <img src="images/fitpulse.png" alt="FitPulse Pro" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
 
                 <!-- App 6: Pass Vault -->
-                <img src="images/pass_app.png" alt="Pass Vault" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
                 
                 <!-- App 7: Asset Monitor -->
-                <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
 
                 <!-- Pedestal Light Reflection Under Carousel -->
                 <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-14 bg-gradient-to-r from-transparent via-blue-500/25 to-transparent blur-2xl pointer-events-none"></div>
@@ -1832,12 +1844,151 @@
         });
 
         if (leadForm) {
-            leadForm.addEventListener('submit', (e) => {
+            leadForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                
+                const submitBtn = document.getElementById('lead-submit-btn');
+                const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="ph-bold ph-spinner animate-spin text-xl"></i> <span>กำลังจัดสรรสิทธิ์และส่งข้อมูล...</span>';
+                }
+
+                // Collect & Sanitize Fields
+                const sanitize = (str) => (str || '').replace(/[<>]/g, '').trim();
+                const name = sanitize(document.getElementById('lead-name')?.value);
+                const company = sanitize(document.getElementById('lead-company')?.value);
+                const contact = sanitize(document.getElementById('lead-contact')?.value);
+                const email = sanitize(document.getElementById('lead-email')?.value);
+                const teamSize = sanitize(document.getElementById('lead-team-size')?.value);
+                const solution = sanitize(document.getElementById('lead-solution')?.value);
+                const notes = sanitize(document.getElementById('lead-notes')?.value);
+
+                // Generate Unique Lead ID
+                const leadId = 'NX-' + Math.floor(100000 + Math.random() * 900000);
+
+                const leadPayload = {
+                    leadId,
+                    timestamp: new Date().toISOString(),
+                    formattedTime: new Date().toLocaleString('th-TH'),
+                    name,
+                    company,
+                    contact,
+                    email,
+                    teamSize,
+                    solution,
+                    notes: notes || '-',
+                    source: 'NexusCore Sales Page (Enterprise Request)',
+                    url: window.location.href
+                };
+
+                // 1. Audit Log Storage in LocalStorage
+                try {
+                    const existing = JSON.parse(localStorage.getItem('nexus_inquiries_log') || '[]');
+                    existing.unshift(leadPayload);
+                    // Keep up to 100 recent leads
+                    if (existing.length > 100) existing.pop();
+                    localStorage.setItem('nexus_inquiries_log', JSON.stringify(existing));
+                } catch (storageErr) {
+                    console.warn('LocalStorage audit logging warning:', storageErr);
+                }
+
+                // 2. Webhook Dispatch (Discord, Slack, or LINE Notify Relay compatible)
+                const webhookUrl = window.NEXUS_WEBHOOK_URL || null;
+                if (webhookUrl) {
+                    try {
+                        await fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                content: `🚀 **New NexusCore Enterprise Lead: ${leadId}**`,
+                                embeds: [{
+                                    title: `Inquiry: ${company}`,
+                                    color: 0x2563EB,
+                                    fields: [
+                                        { name: "ชื่อผู้ติดต่อ", value: name, inline: true },
+                                        { name: "เบอร์/LINE", value: contact, inline: true },
+                                        { name: "อีเมล", value: email, inline: true },
+                                        { name: "ขนาดทีม", value: teamSize, inline: true },
+                                        { name: "โซลูชัน", value: solution, inline: true },
+                                        { name: "ความต้องการเพิ่มเติม", value: notes || "ไม่มี" }
+                                    ],
+                                    footer: { text: "NexusCore Enterprise Audit System" },
+                                    timestamp: new Date().toISOString()
+                                }]
+                            })
+                        }).catch(err => console.info('Webhook queued or non-blocking:', err));
+                    } catch (netErr) {
+                        console.info('Webhook dispatched offline:', netErr);
+                    }
+                }
+
+                // 3. Dispatch Custom Event for Analytics/Tag Managers
+                window.dispatchEvent(new CustomEvent('nexus:lead_submitted', { detail: leadPayload }));
+
+                // 4. Update UI to Success State
+                const refDisplay = document.getElementById('lead-ref-display');
+                if (refDisplay) refDisplay.textContent = leadId;
+
                 leadForm.classList.add('hidden');
                 leadSuccess.classList.remove('hidden');
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+
+                if (typeof window.showToast === 'function') {
+                    window.showToast(`บันทึกข้อมูลเรียบร้อย! รหัสคำขอ ${leadId} เจ้าหน้าที่จะติดต่อกลับภายใน 15 นาที`, 'success');
+                }
             });
         }
+
+        // Global Operations Tool: Lead Exporter
+        window.NexusExportLeads = (format = 'json') => {
+            try {
+                const data = JSON.parse(localStorage.getItem('nexus_inquiries_log') || '[]');
+                if (data.length === 0) {
+                    alert('ยังไม่มีข้อมูลการติดต่อที่บันทึกไว้ในระบบ');
+                    return;
+                }
+                if (format === 'csv') {
+                    const headers = ["Lead ID", "Timestamp", "Name", "Company", "Contact", "Email", "Team Size", "Solution", "Notes"];
+                    const rows = data.map(d => [
+                        d.leadId,
+                        d.formattedTime || d.timestamp,
+                        `"${d.name.replace(/"/g, '""')}"`,
+                        `"${d.company.replace(/"/g, '""')}"`,
+                        `"${d.contact.replace(/"/g, '""')}"`,
+                        `"${d.email.replace(/"/g, '""')}"`,
+                        `"${d.teamSize.replace(/"/g, '""')}"`,
+                        `"${d.solution.replace(/"/g, '""')}"`,
+                        `"${(d.notes || '').replace(/"/g, '""')}"`
+                    ].join(','));
+                    const csvContent = "\uFEFF" + [headers.join(','), ...rows].join('\n');
+                    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", `nexus_leads_${Date.now()}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                } else {
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", `nexus_leads_${Date.now()}.json`);
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                }
+                console.log(`✅ NexusCore Leads Exported: ${data.length} records.`);
+            } catch (err) {
+                console.error('Export failed:', err);
+            }
+        };
 
         // --- Performance & Battery: Intersection Observer for GSAP Hero Float ---
         if ('IntersectionObserver' in window && gallery) {
@@ -2728,62 +2879,110 @@
         </div>
     </div>
 
-    <!-- Lead Generation & Contact Modal -->
-    <div id="lead-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-gray-100 max-h-[90vh] overflow-y-auto">
-            <button id="close-modal-btn" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 text-2xl w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center transition-colors">
+    <!-- Lead Generation & Enterprise Inquiry Modal -->
+    <div id="lead-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+        <div class="bg-[#0B0F19] text-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative border border-slate-800 max-h-[92vh] overflow-y-auto">
+            <button id="close-modal-btn" type="button" aria-label="Close modal" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center transition-colors">
                 <i class="ph-bold ph-x"></i>
             </button>
             <div class="text-center mb-6">
-                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
-                    <i class="ph-fill ph-rocket-launch"></i>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[11px] font-bold uppercase tracking-wider mb-3">
+                    <i class="ph-bold ph-shield-check"></i> Enterprise Privilege Onboarding
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900">เริ่มต้นทดลองใช้ฟรี 14 วัน</h3>
-                <p class="text-gray-500 text-sm mt-1">กรอกข้อมูลเพื่อให้เจ้าหน้าที่จัดเตรียมระบบและส่งลิงก์เข้าใช้งานให้ทันที</p>
+                <h3 id="lead-modal-title" class="text-2xl sm:text-3xl font-black text-white font-heading tracking-tight">ลงทะเบียนรับสิทธิ์ &amp; นัดเดโมระบบ</h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1.5">ทีมวิศวกรซอฟต์แวร์จะจัดสรร Environment และส่งต่อให้เจ้าหน้าที่ประสานงานภายใน 15 นาที</p>
             </div>
+            
             <form id="lead-form" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">ชื่อผู้ติดต่อ / องค์กร *</label>
-                    <input type="text" id="lead-name" required placeholder="เช่น คุณสมชาย (บจก. ไทยเทรดดิ้ง)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="lead-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">ชื่อผู้ติดต่อ *</label>
+                        <input type="text" id="lead-name" required placeholder="เช่น คุณพงศกร วิเศษ" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                    </div>
+                    <div>
+                        <label for="lead-company" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">ชื่อองค์กร / บริษัท *</label>
+                        <input type="text" id="lead-company" required placeholder="เช่น บจก. อินโนเวทเอ็กซ์" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">เบอร์โทรศัพท์ หรือ LINE ID *</label>
-                    <input type="text" id="lead-contact" required placeholder="081-234-5678 หรือ @lineid" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="lead-contact" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">เบอร์โทรศัพท์ หรือ LINE ID *</label>
+                        <input type="text" id="lead-contact" required placeholder="081-234-5678 หรือ @lineid" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                    </div>
+                    <div>
+                        <label for="lead-email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">อีเมลองค์กร (Business Email) *</label>
+                        <input type="email" id="lead-email" required placeholder="contact@yourcompany.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">โซลูชันที่สนใจทดลองใช้</label>
-                    <select id="lead-solution" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm bg-white">
-                        <option value="all">แพ็กเกจรวม (All Solution Suite)</option>
-                        <option value="it">IT Monthly Dashboard</option>
-                        <option value="pass">Pass App (Vault)</option>
-                        <option value="accounting">Thai Accounting App</option>
-                        <option value="pos">Inventory App (POS)</option>
-                        <option value="tracking">Team Task Tracking</option>
-                        <option value="asset">iOS Device Monitor</option>
-                        <option value="gym">FitPulse Pro (Gym OS)</option>
-                        <option value="ticket">TikketHub (Stage Pass - จองบัตรอีเวนต์)</option>
-                    </select>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="lead-team-size" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">ขนาดทีม / ผู้ใช้งาน</label>
+                        <select id="lead-team-size" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            <option value="1-10">1 - 10 คน (Starter / SME)</option>
+                            <option value="11-50" selected>11 - 50 คน (Professional)</option>
+                            <option value="51-200">51 - 200 คน (Corporate)</option>
+                            <option value="200+">200+ คน (Enterprise Bespoke)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="lead-solution" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">โซลูชันหลักที่สนใจ</label>
+                        <select id="lead-solution" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            <option value="all">แพ็กเกจรวม (All Solution Suite)</option>
+                            <option value="it">IT Monthly Dashboard</option>
+                            <option value="pass">Pass App (Vault)</option>
+                            <option value="accounting">Thai Accounting App</option>
+                            <option value="pos">Inventory App (POS)</option>
+                            <option value="tracking">Team Task Tracking</option>
+                            <option value="asset">iOS Device Monitor</option>
+                            <option value="gym">FitPulse Pro (Gym OS)</option>
+                            <option value="ticket">TikketHub (Stage Pass - จองบัตรอีเวนต์)</option>
+                        </select>
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-600/30 text-base mt-2">
-                    ยืนยันขอรับสิทธิ์ทดลองใช้ฟรี
+
+                <div>
+                    <label for="lead-notes" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">ความต้องการเพิ่มเติม หรือคำถามเฉพาะ (ไม่บังคับ)</label>
+                    <textarea id="lead-notes" rows="2" placeholder="เช่น ต้องการสอบถามการเชื่อมต่อระบบเดิม หรือการย้ายข้อมูล" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm resize-none"></textarea>
+                </div>
+
+                <div class="flex items-center gap-2 text-[11px] text-slate-400 bg-slate-900/80 px-3.5 py-2 rounded-xl border border-slate-800/80">
+                    <i class="ph-fill ph-lock-key text-blue-400"></i>
+                    <span>ข้อมูลของท่านได้รับการคุ้มครองตามมาตรฐาน Thai PDPA &amp; Zero-Spam Policy</span>
+                </div>
+
+                <button type="submit" id="lead-submit-btn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-[0_10px_25px_rgba(37,99,235,0.35)] hover:shadow-[0_15px_35px_rgba(37,99,235,0.5)] text-base mt-2 flex items-center justify-center gap-2 hover:-translate-y-0.5">
+                    <span>ยืนยันขอรับสิทธิ์และเริ่มใช้งาน 14 วัน</span> &rarr;
                 </button>
             </form>
+
             <div id="lead-success" class="hidden text-center py-6">
-                <i class="ph-fill ph-check-circle text-5xl text-green-500 mb-2"></i>
-                <h3 class="text-xl font-bold text-gray-900">รับข้อมูลเรียบร้อยแล้ว</h3>
-                <p class="text-gray-500 text-sm mt-1">ทีมงานจะติดต่อกลับและจัดส่งสิทธิ์การใช้งานให้ภายใน 15 นาที</p>
-                <button id="modal-done-btn" class="mt-5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors">
-                    ปิดหน้าต่าง
-                </button>
+                <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg shadow-emerald-950/40">
+                    <i class="ph-fill ph-check-circle"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white font-heading">รับข้อมูลเรียบร้อยแล้ว</h3>
+                <p class="text-slate-300 text-sm mt-1.5 max-w-sm mx-auto">รหัสคำขอของคุณ: <span id="lead-ref-display" class="font-mono font-bold text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded border border-blue-500/40">NEXUS-REQ</span></p>
+                <p class="text-slate-400 text-xs mt-2">ทีมวิศวกรและผู้เชี่ยวชาญจะจัดสรรสิทธิ์และติดต่อกลับภายใน 15 นาที</p>
+                
+                <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#06C755] hover:bg-[#05b34c] text-white font-bold text-sm shadow-lg shadow-emerald-500/25 transition-all">
+                        <i class="ph-fill ph-chat-circle-dots text-lg"></i> แอด LINE เพื่อรับสิทธิ์ทันที
+                    </a>
+                    <button id="modal-done-btn" type="button" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3 rounded-xl text-sm transition-colors border border-slate-700">
+                        ปิดหน้าต่าง
+                    </button>
+                </div>
             </div>
-            <div class="mt-6 pt-4 border-t border-gray-100 text-center bg-emerald-50/60 rounded-2xl p-4 border border-emerald-100/80">
-                <p class="text-xs font-semibold text-emerald-900 mb-2.5">หรือสแกน QR Code เพื่อคุยกับเจ้าหน้าที่ทันที</p>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 text-center bg-slate-900/60 rounded-2xl p-4 border border-slate-800/60">
+                <p class="text-xs font-semibold text-slate-300 mb-2.5">หรือสแกน QR Code เพื่อปรึกษาวิศวกรระบบทาง LINE ได้ตลอด 24 ชม.</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                    <div class="bg-white p-2 rounded-xl shadow-sm border border-emerald-200">
-                        <img src="images/line_qr.png" alt="LINE Official QR Code" class="w-24 h-24 object-contain rounded-lg" loading="lazy">
+                    <div class="bg-white p-2 rounded-xl shadow-sm border border-emerald-500/40">
+                        <img src="images/line_qr.png" alt="LINE Official QR Code" class="w-20 h-20 object-contain rounded-lg" loading="lazy">
                     </div>
                     <div class="text-center sm:text-left">
-                        <span class="text-xs text-gray-600 block mb-1">สแกนด้วยกล้องมือถือ หรือคลิกปุ่มแอด LINE</span>
+                        <span class="text-xs text-slate-400 block mb-1">สแกนด้วยกล้องมือถือ หรือคลิกปุ่มคุยผ่าน LINE</span>
                         <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white font-bold text-xs px-4 py-2 rounded-xl shadow-sm hover:shadow transition-all">
                             <i class="ph-fill ph-chat-circle-dots text-base"></i> ปรึกษาผ่าน LINE Official
                         </a>
