@@ -1619,12 +1619,17 @@
             <p class="text-slate-500 text-sm">
                 Copyright © 2026 NexusCore Solution. All rights reserved.
             </p>
-            <div class="flex gap-4 text-sm text-slate-500">
+            <div class="flex items-center gap-3 sm:gap-4 text-sm text-slate-500 flex-wrap">
                 <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                 <span>|</span>
                 <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
                 <span>|</span>
                 <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                <span>|</span>
+                <button type="button" id="open-admin-inquiry-btn" class="hover:text-blue-400 transition-colors flex items-center gap-1.5 text-slate-400 hover:text-white font-medium bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800 text-xs shadow-sm" title="เปิดหน้าต่างจัดการคำขอ (Ctrl+Shift+L)">
+                    <i class="ph-fill ph-chart-polar text-blue-400"></i>
+                    <span>Inquiry Console</span>
+                </button>
             </div>
         </div>
     </footer>
@@ -1846,13 +1851,35 @@
         if (leadForm) {
             leadForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
+                // 1. Anti-Bot Honeypot Check
+                const botTrap = document.getElementById('lead-bot-trap')?.value;
+                if (botTrap) {
+                    console.warn('Bot detected and dropped silently via honeypot trap.');
+                    leadForm.classList.add('hidden');
+                    leadSuccess.classList.remove('hidden');
+                    return;
+                }
+
+                // 2. Client-side Rate Limiting (1 request per 30 seconds)
+                const lastSub = parseInt(sessionStorage.getItem('last_nexus_lead_sub') || '0', 10);
+                const now = Date.now();
+                if (now - lastSub < 30000) {
+                    const waitSec = Math.ceil((30000 - (now - lastSub)) / 1000);
+                    if (typeof window.showToast === 'function') {
+                        window.showToast(`กรุณารอสักครู่ (${waitSec} วินาที) ก่อนส่งคำขอใหม่อีกครั้ง เพื่อความปลอดภัย`, 'error');
+                    }
+                    return;
+                }
+
                 const submitBtn = document.getElementById('lead-submit-btn');
                 const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
                 if (submitBtn) {
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<i class="ph-bold ph-spinner animate-spin text-xl"></i> <span>กำลังจัดสรรสิทธิ์และส่งข้อมูล...</span>';
                 }
+
+                sessionStorage.setItem('last_nexus_lead_sub', String(now));
 
                 // Collect & Sanitize Fields
                 const sanitize = (str) => (str || '').replace(/[<>]/g, '').trim();
@@ -1878,22 +1905,22 @@
                     teamSize,
                     solution,
                     notes: notes || '-',
+                    status: 'New',
                     source: 'NexusCore Sales Page (Enterprise Request)',
                     url: window.location.href
                 };
 
-                // 1. Audit Log Storage in LocalStorage
+                // Audit Log Storage in LocalStorage
                 try {
                     const existing = JSON.parse(localStorage.getItem('nexus_inquiries_log') || '[]');
                     existing.unshift(leadPayload);
-                    // Keep up to 100 recent leads
                     if (existing.length > 100) existing.pop();
                     localStorage.setItem('nexus_inquiries_log', JSON.stringify(existing));
                 } catch (storageErr) {
                     console.warn('LocalStorage audit logging warning:', storageErr);
                 }
 
-                // 2. Webhook Dispatch (Discord, Slack, or LINE Notify Relay compatible)
+                // Webhook Dispatch (Discord, Slack, or LINE Relay)
                 const webhookUrl = window.NEXUS_WEBHOOK_URL || null;
                 if (webhookUrl) {
                     try {
@@ -1923,10 +1950,15 @@
                     }
                 }
 
-                // 3. Dispatch Custom Event for Analytics/Tag Managers
+                // Dispatch Custom Event
                 window.dispatchEvent(new CustomEvent('nexus:lead_submitted', { detail: leadPayload }));
 
-                // 4. Update UI to Success State
+                // Refresh Admin Dashboard if open
+                if (typeof window.refreshAdminInquiries === 'function') {
+                    window.refreshAdminInquiries();
+                }
+
+                // Update UI to Success State
                 const refDisplay = document.getElementById('lead-ref-display');
                 if (refDisplay) refDisplay.textContent = leadId;
 
@@ -1944,6 +1976,163 @@
             });
         }
 
+        // ==========================================
+        // FEATURE 3: ADMIN INQUIRIES & LEADS CONSOLE
+        // ==========================================
+        const adminModal = document.getElementById('admin-inquiries-modal');
+        const adminOpenBtn = document.getElementById('open-admin-inquiry-btn');
+        const adminCloseBtn = document.getElementById('close-admin-modal-btn');
+        const adminExportCsvBtn = document.getElementById('admin-export-csv-btn');
+        const adminExportJsonBtn = document.getElementById('admin-export-json-btn');
+        const adminClearBtn = document.getElementById('admin-clear-log-btn');
+        const adminSearchInput = document.getElementById('admin-search-input');
+        const adminFilterSolution = document.getElementById('admin-filter-solution');
+        const adminLeadsTbody = document.getElementById('admin-leads-tbody');
+        const adminEmptyState = document.getElementById('admin-empty-state');
+        const adminKpiTotal = document.getElementById('admin-kpi-total');
+        const adminKpiToday = document.getElementById('admin-kpi-today');
+
+        window.openNexusAdmin = () => {
+            if (!adminModal) return;
+            adminModal.classList.remove('hidden');
+            window.refreshAdminInquiries();
+        };
+
+        window.closeNexusAdmin = () => {
+            if (!adminModal) return;
+            adminModal.classList.add('hidden');
+        };
+
+        if (adminOpenBtn) adminOpenBtn.addEventListener('click', window.openNexusAdmin);
+        if (adminCloseBtn) adminCloseBtn.addEventListener('click', window.closeNexusAdmin);
+        if (adminModal) {
+            adminModal.addEventListener('click', (e) => {
+                if (e.target === adminModal) window.closeNexusAdmin();
+            });
+        }
+
+        // Global Keyboard Shortcut: Ctrl + Shift + L
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
+                e.preventDefault();
+                if (adminModal && !adminModal.classList.contains('hidden')) {
+                    window.closeNexusAdmin();
+                } else {
+                    window.openNexusAdmin();
+                }
+            }
+        });
+
+        window.refreshAdminInquiries = () => {
+            if (!adminLeadsTbody) return;
+            let leads = [];
+            try {
+                leads = JSON.parse(localStorage.getItem('nexus_inquiries_log') || '[]');
+            } catch (e) {
+                leads = [];
+            }
+
+            // Update KPIs
+            if (adminKpiTotal) adminKpiTotal.textContent = leads.length;
+            const todayStr = new Date().toDateString();
+            const todayCount = leads.filter(l => new Date(l.timestamp).toDateString() === todayStr).length;
+            if (adminKpiToday) adminKpiToday.textContent = todayCount;
+
+            // Apply Filters
+            const query = (adminSearchInput?.value || '').toLowerCase().trim();
+            const filterSol = adminFilterSolution?.value || 'all';
+
+            const filtered = leads.filter(l => {
+                const matchQuery = !query || 
+                    (l.name && l.name.toLowerCase().includes(query)) ||
+                    (l.company && l.company.toLowerCase().includes(query)) ||
+                    (l.contact && l.contact.toLowerCase().includes(query)) ||
+                    (l.email && l.email.toLowerCase().includes(query)) ||
+                    (l.leadId && l.leadId.toLowerCase().includes(query));
+                const matchSol = filterSol === 'all' || (l.solution && l.solution.toLowerCase() === filterSol.toLowerCase());
+                return matchQuery && matchSol;
+            });
+
+            if (filtered.length === 0) {
+                adminLeadsTbody.innerHTML = '';
+                if (adminEmptyState) adminEmptyState.classList.remove('hidden');
+                return;
+            }
+
+            if (adminEmptyState) adminEmptyState.classList.add('hidden');
+
+            adminLeadsTbody.innerHTML = filtered.map((l, idx) => {
+                const statusColor = l.status === 'Closed' 
+                    ? 'bg-slate-800 text-slate-400 border-slate-700' 
+                    : l.status === 'Contacted' 
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
+                        : 'bg-blue-500/10 text-blue-400 border-blue-500/30';
+
+                return `
+                    <tr class="hover:bg-slate-900/50 transition-colors">
+                        <td class="p-3.5 align-top">
+                            <div class="font-bold text-white text-xs">${l.leadId}</div>
+                            <div class="text-[10px] text-slate-500">${l.formattedTime || l.timestamp}</div>
+                        </td>
+                        <td class="p-3.5 align-top">
+                            <div class="font-semibold text-white font-sans">${l.name}</div>
+                            <div class="text-[11px] text-slate-400 font-sans">${l.company}</div>
+                        </td>
+                        <td class="p-3.5 align-top font-sans">
+                            <div class="text-xs text-slate-200">${l.contact}</div>
+                            <div class="text-[11px] text-blue-400">${l.email}</div>
+                        </td>
+                        <td class="p-3.5 align-top font-sans">
+                            <div class="text-xs text-slate-300 font-medium">${l.solution || 'All Suite'}</div>
+                            <div class="text-[10px] text-slate-500">${l.teamSize || '11-50'} คน</div>
+                        </td>
+                        <td class="p-3.5 align-top font-sans max-w-xs">
+                            <div class="text-[11px] text-slate-400 truncate" title="${l.notes}">${l.notes || '-'}</div>
+                        </td>
+                        <td class="p-3.5 align-top text-right space-x-1 whitespace-nowrap">
+                            <button type="button" onclick="window.toggleNexusLeadStatus('${l.leadId}')" class="px-2 py-0.5 rounded-full border text-[10px] font-bold ${statusColor} transition-all hover:scale-105" title="คลิกเพื่อเปลี่ยนสถานะ">
+                                ${l.status || 'New'}
+                            </button>
+                            <a href="tel:${l.contact.replace(/[^0-9+]/g, '')}" class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-300 transition-colors" title="โทรออก">
+                                <i class="ph-bold ph-phone text-xs"></i>
+                            </a>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        };
+
+        window.toggleNexusLeadStatus = (id) => {
+            try {
+                const leads = JSON.parse(localStorage.getItem('nexus_inquiries_log') || '[]');
+                const target = leads.find(l => l.leadId === id);
+                if (target) {
+                    if (target.status === 'New') target.status = 'Contacted';
+                    else if (target.status === 'Contacted') target.status = 'Closed';
+                    else target.status = 'New';
+                    localStorage.setItem('nexus_inquiries_log', JSON.stringify(leads));
+                    window.refreshAdminInquiries();
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        if (adminSearchInput) adminSearchInput.addEventListener('input', window.refreshAdminInquiries);
+        if (adminFilterSolution) adminFilterSolution.addEventListener('change', window.refreshAdminInquiries);
+
+        if (adminClearBtn) {
+            adminClearBtn.addEventListener('click', () => {
+                if (confirm('คุณแน่ใจหรือไม่ว่าต้องการล้างประวัติคำขอทั้งหมดในระบบ?')) {
+                    localStorage.removeItem('nexus_inquiries_log');
+                    window.refreshAdminInquiries();
+                    if (typeof window.showToast === 'function') {
+                        window.showToast('ล้างประวัติคำขอเรียบร้อยแล้ว', 'success');
+                    }
+                }
+            });
+        }
+
         // Global Operations Tool: Lead Exporter
         window.NexusExportLeads = (format = 'json') => {
             try {
@@ -1953,9 +2142,10 @@
                     return;
                 }
                 if (format === 'csv') {
-                    const headers = ["Lead ID", "Timestamp", "Name", "Company", "Contact", "Email", "Team Size", "Solution", "Notes"];
+                    const headers = ["Lead ID", "Status", "Timestamp", "Name", "Company", "Contact", "Email", "Team Size", "Solution", "Notes"];
                     const rows = data.map(d => [
                         d.leadId,
+                        d.status || 'New',
                         d.formattedTime || d.timestamp,
                         `"${d.name.replace(/"/g, '""')}"`,
                         `"${d.company.replace(/"/g, '""')}"`,
@@ -1984,11 +2174,16 @@
                     link.click();
                     link.remove();
                 }
-                console.log(`✅ NexusCore Leads Exported: ${data.length} records.`);
+                if (typeof window.showToast === 'function') {
+                    window.showToast(`Export ข้อมูล ${data.length} รายการสำเร็จ!`, 'success');
+                }
             } catch (err) {
                 console.error('Export failed:', err);
             }
         };
+
+        if (adminExportCsvBtn) adminExportCsvBtn.addEventListener('click', () => window.NexusExportLeads('csv'));
+        if (adminExportJsonBtn) adminExportJsonBtn.addEventListener('click', () => window.NexusExportLeads('json'));
 
         // --- Performance & Battery: Intersection Observer for GSAP Hero Float ---
         if ('IntersectionObserver' in window && gallery) {
@@ -2894,6 +3089,11 @@
             </div>
             
             <form id="lead-form" class="space-y-4">
+                <!-- Anti-Bot Invisible Honeypot (Do NOT fill) -->
+                <div class="opacity-0 absolute -left-[9999px] pointer-events-none" aria-hidden="true" style="display:none !important;">
+                    <label for="lead-bot-trap">Security Verification</label>
+                    <input type="text" id="lead-bot-trap" name="nexus_verification_fax" tabindex="-1" autocomplete="off">
+                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label for="lead-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">ชื่อผู้ติดต่อ *</label>
@@ -3295,6 +3495,123 @@
             <button type="button" id="close-ios-modal-btn" class="w-full py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl text-xs transition-colors">
                 เข้าใจแล้ว
             </button>
+        </div>
+    </div>
+
+    <!-- Admin Inquiries & Leads Dashboard Modal (Feature 3: Data & Operations) -->
+    <div id="admin-inquiries-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-300 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="admin-inquiries-title">
+        <div class="bg-[#0B0F19] text-white rounded-3xl max-w-5xl w-full shadow-[0_30px_90px_rgba(0,0,0,0.85)] relative border border-slate-800 my-auto flex flex-col max-h-[92vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-slate-800 bg-slate-900/70 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xl">
+                        <i class="ph-fill ph-chart-polar"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 id="admin-inquiries-title" class="text-lg font-bold text-white font-heading">Executive Lead &amp; Inquiry Console</h3>
+                            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live Sync</span>
+                        </div>
+                        <p class="text-xs text-slate-400">ระบบบันทึกและจัดการข้อมูลคำขอทดลองใช้งานระดับองค์กร (Audit Store ใน Browser)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="admin-export-csv-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white flex items-center gap-1.5 transition-all shadow-sm">
+                        <i class="ph-bold ph-file-csv text-sm"></i> <span>Export CSV</span>
+                    </button>
+                    <button type="button" id="admin-export-json-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 transition-colors border border-slate-700">
+                        <i class="ph-bold ph-code text-sm"></i> <span>JSON</span>
+                    </button>
+                    <button type="button" id="close-admin-modal-btn" aria-label="Close Admin Modal" class="text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors ml-1">
+                        <i class="ph-bold ph-x text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Body -->
+            <div class="p-6 space-y-6 overflow-y-auto">
+                <!-- KPI Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">คำขอทั้งหมด (Total Leads)</span>
+                            <div id="admin-kpi-total" class="text-2xl font-black text-white mt-0.5">0</div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl">
+                            <i class="ph-bold ph-users-three"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">วันนี้ (Today)</span>
+                            <div id="admin-kpi-today" class="text-2xl font-black text-emerald-400 mt-0.5">0</div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                            <i class="ph-bold ph-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">สถานะ Webhook Relay</span>
+                            <div class="text-xs font-bold text-sky-400 mt-1 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span>Active &amp; Ready</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                            <i class="ph-bold ph-broadcast"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search & Filter Controls -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-2xl border border-slate-800/80">
+                    <div class="relative w-full sm:w-72">
+                        <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="admin-search-input" placeholder="ค้นหาชื่อ, บริษัท, เบอร์โทร..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <select id="admin-filter-solution" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 focus:outline-none focus:border-blue-500">
+                            <option value="all">ทุกโซลูชัน (All Solutions)</option>
+                            <option value="it">IT Dashboard</option>
+                            <option value="pass">Pass Vault</option>
+                            <option value="accounting">Accounting App</option>
+                            <option value="pos">Inventory POS</option>
+                            <option value="tracking">Task Tracking</option>
+                            <option value="asset">Device Monitor</option>
+                            <option value="gym">FitPulse Pro</option>
+                            <option value="ticket">TikketHub</option>
+                        </select>
+                        <button type="button" id="admin-clear-log-btn" class="px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition-colors flex items-center gap-1">
+                            <i class="ph-bold ph-trash"></i> <span>ล้างประวัติ</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inquiries List / Table Area -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/60 max-h-[380px]">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800 sticky top-0 z-10">
+                            <tr>
+                                <th class="p-3.5">Lead ID / เวลา</th>
+                                <th class="p-3.5">ผู้ติดต่อ &amp; บริษัท</th>
+                                <th class="p-3.5">ช่องทางติดต่อ</th>
+                                <th class="p-3.5">ขนาดทีม / โซลูชัน</th>
+                                <th class="p-3.5">ความต้องการ</th>
+                                <th class="p-3.5 text-right">ดำเนินการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-leads-tbody" class="divide-y divide-slate-800/80">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                    <div id="admin-empty-state" class="hidden py-12 text-center text-slate-500">
+                        <i class="ph-bold ph-tray text-4xl mb-2 text-slate-600 block"></i>
+                        <p class="text-sm font-sans font-semibold text-slate-400">ยังไม่มีข้อมูลคำขอในระบบ</p>
+                        <p class="text-xs font-sans text-slate-500 mt-1">เมื่อมีลูกค้าส่งข้อมูลผ่านหน้าเว็บ รายการจะปรากฏที่นี่ทันที</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
