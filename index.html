@@ -46,19 +46,75 @@
     }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Prompt"', 'system-ui', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', '"Prompt"', 'sans-serif']
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#06080E',
+                            900: '#0B0F19',
+                            850: '#0F1523',
+                            800: '#141B2D',
+                            700: '#1F293D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#2563EB">
+    <meta name="theme-color" content="#0B0F19">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NexusCore">
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Prompt', sans-serif; font-size: 16px; }
-        h1 { font-size: clamp(2.25rem, 5vw, 4rem) !important; line-height: 1.15; }
-        h2 { font-size: clamp(1.65rem, 3.5vw, 2.5rem) !important; line-height: 1.25; }
-        h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem) !important; line-height: 1.35; }
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif; 
+            font-size: 16px; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: -0.015em;
+        }
+        h1, h2, h3, h4 { 
+            letter-spacing: -0.025em; 
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11"; 
+        }
+        h1 { font-size: clamp(2.35rem, 5.2vw, 4.25rem) !important; line-height: 1.15; font-weight: 800; }
+        h2 { font-size: clamp(1.75rem, 3.6vw, 2.65rem) !important; line-height: 1.25; font-weight: 700; }
+        h3 { font-size: clamp(1.2rem, 2.2vw, 1.55rem) !important; line-height: 1.35; font-weight: 700; }
         h4 { font-size: 1.125rem !important; }
+
+        /* Luxury Custom Selection */
+        ::selection {
+            background: rgba(37, 99, 235, 0.22);
+            color: #1e40af;
+        }
+
+        /* Sleek Slim Scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+            height: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+            border: 2px solid #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
 
         @media print {
             body > *:not(#catalog-modal) {
@@ -98,21 +154,21 @@
 <body class="text-gray-800 antialiased overflow-x-hidden">
 
     <!-- 1. Header & Navigation -->
-    <nav class="bg-white fixed w-full z-50 top-0 transition-all duration-300 shadow-sm">
+    <nav class="bg-white/85 backdrop-blur-xl fixed w-full z-50 top-0 transition-all duration-300 border-b border-slate-200/80 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
         <!-- Top Promotional Announcement Banner (Feature 3: Conversion & Urgency) -->
-        <div id="top-announcement-banner" class="bg-slate-950 text-white py-2 px-4 border-b border-slate-800 transition-all duration-300">
-            <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs sm:text-sm">
-                <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
-                    <span class="inline-flex items-center gap-1 bg-amber-500/20 text-amber-400 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">
-                        <i class="ph-fill ph-lightning"></i> สิทธิ์พิเศษ
+        <div id="top-announcement-banner" class="bg-[#07090E] text-white py-2 px-4 border-b border-slate-800/80 transition-all duration-300">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs">
+                <div class="flex items-center gap-2.5 overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span class="inline-flex items-center gap-1.5 bg-amber-500/15 text-amber-300 text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-500/30 tracking-wider">
+                        <i class="ph-fill ph-crown"></i> EXECUTIVE PRIVILEGE
                     </span>
-                    <span class="text-gray-300">สิทธิ์ทดลองใช้ฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-400 font-bold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
+                    <span class="text-slate-300 text-xs">สิทธิ์ทดลองใช้ระบบฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-400 font-bold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
                 </div>
                 <div class="flex items-center gap-3 flex-shrink-0">
-                    <button type="button" id="top-claim-btn" class="bg-green-500 hover:bg-green-400 text-slate-950 font-bold px-3 py-1 rounded-full text-xs transition-all shadow-sm flex items-center gap-1">
+                    <button type="button" id="top-claim-btn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-3.5 py-1 rounded-full text-xs transition-all shadow-sm flex items-center gap-1 border border-blue-400/30">
                         <span>รับสิทธิ์ทันที</span> &rarr;
                     </button>
-                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-gray-400 hover:text-white transition-colors">
+                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-slate-400 hover:text-white transition-colors">
                         <i class="ph-bold ph-x text-sm"></i>
                     </button>
                 </div>
@@ -121,27 +177,32 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                    <i class="ph-fill ph-diamonds-four text-blue-600 text-4xl"></i>
-                    <span class="font-bold text-2xl tracking-tight text-gray-900">Nexus<span class="text-blue-600">Core</span></span>
+                <div class="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-md shadow-blue-500/20 border border-blue-400/30 group-hover:scale-105 transition-transform">
+                        <i class="ph-fill ph-diamonds-four text-white text-xl"></i>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-extrabold text-2xl tracking-tight text-slate-900">Nexus<span class="text-blue-600">Core</span></span>
+                        <span class="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md uppercase tracking-wider hidden sm:inline">Suite</span>
+                    </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-5">
-                    <a href="#features" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Features</a>
-                    <a href="#products" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Products</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Pricing</a>
-                    <a href="#stats" class="text-gray-600 hover:text-green-500 font-medium transition-colors">Community</a>
-                    <button type="button" id="nav-catalog-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1.5 shadow-sm">
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#features" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Features</a>
+                    <a href="#products" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Products</a>
+                    <a href="#pricing" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Pricing</a>
+                    <a href="#stats" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Enterprise Proof</a>
+                    <button type="button" id="nav-catalog-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-1.5 shadow-sm bg-white/60">
                         <i class="ph-bold ph-file-pdf text-rose-500"></i> Catalog
                     </button>
-                    <button type="button" id="nav-install-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition-all flex items-center gap-1.5 shadow-sm">
+                    <button type="button" id="nav-install-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white transition-all flex items-center gap-1.5 shadow-sm">
                         <i class="ph-bold ph-download-simple"></i> ติดตั้งแอป
                     </button>
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm hover:shadow" title="ปรึกษาผ่าน LINE">
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger text-xs font-bold px-4 py-1.5 rounded-full bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-[0_2px_12px_rgba(6,199,85,0.25)] hover:shadow-[0_4px_18px_rgba(6,199,85,0.35)]" title="ปรึกษาผ่าน LINE">
                         <i class="ph-fill ph-chat-circle-dots text-base"></i> LINE ปรึกษาฟรี
                     </a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-green-500 focus:outline-none p-2 rounded-md bg-gray-50 border border-gray-100">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-blue-600 focus:outline-none p-2 rounded-xl bg-slate-50 border border-slate-200">
                         <i class="ph-bold ph-list text-2xl"></i>
                     </button>
                 </div>
@@ -171,31 +232,41 @@
     </nav>
 
     <!-- 2. Hero Section (Modern Editorial Titanium Craft - Zero AI Slop) -->
-    <section class="pt-28 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-36 bg-[#0B0F19] text-white relative overflow-hidden border-b border-slate-800/80">
-        <!-- Subtle Architectural Grid Pattern (Clean Tech Texture, Zero AI Slop Blobs) -->
-        <div class="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[360px] bg-blue-600/10 blur-[100px] pointer-events-none rounded-full"></div>
+    <section class="pt-28 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-36 bg-[#07090E] text-white relative overflow-hidden border-b border-slate-800/80">
+        <!-- Subtle Dual Ambient Lighting & Architectural Grid (Ultra-Luxury Atmosphere) -->
+        <div class="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:36px_36px] opacity-35 pointer-events-none"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[480px] bg-gradient-to-b from-blue-600/15 via-indigo-600/10 to-transparent blur-[130px] pointer-events-none rounded-full"></div>
+        <div class="absolute -top-32 left-1/4 w-[450px] h-[350px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6">
-                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                <span>NEXUSCORE ENTERPRISE PLATFORM</span>
+            <!-- Executive Status Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-slate-700/80 bg-slate-900/90 backdrop-blur-md text-slate-300 text-xs font-semibold tracking-wider uppercase mb-7 shadow-inner">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-slate-300 font-semibold tracking-widest text-[11px]">ENTERPRISE SUITE 2026</span>
+                <span class="w-px h-3 bg-slate-700"></span>
+                <span class="text-amber-400 font-medium text-[11px] flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight text-white mb-6 tracking-tight">
+            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.12] text-white mb-6 tracking-tight">
                 โครงสร้างพื้นฐานดิจิทัล<br>
-                <span class="text-blue-500">สำหรับธุรกิจยุคใหม่</span>
+                <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">ระดับองค์กรเพื่อธุรกิจไทย</span>
             </h1>
-            <p class="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                เชื่อมต่อระบบบัญชีไทย, สต๊อกสินค้า POS, ฟิตเนส FitPulse Pro, บริหารงาน Task Tracking และ IT Operations SLA เข้าด้วยกันบนสถาปัตยกรรม High-Availability ระดับองค์กร
+            <p class="text-base sm:text-lg md:text-xl text-slate-300/90 mb-9 max-w-3xl mx-auto leading-relaxed font-normal">
+                ยกระดับการบริหารด้วยโซลูชันรวมศูนย์: ระบบบัญชีและภาษีไทย, สต๊อกสินค้า POS, ฟิตเนส FitPulse Pro, จองบัตร TikketHub และ IT Operations ภายใต้มาตรฐานความปลอดภัยระดับสากล
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-3.5 mb-12">
-                <a href="#cta" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all shadow-md hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                <a href="#cta" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all shadow-[0_12px_32px_rgba(37,99,235,0.35)] hover:shadow-[0_16px_40px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 border border-blue-400/30">
                     <span>เริ่มต้นทดลองใช้ฟรี 14 วัน</span>
                     <i class="ph-bold ph-arrow-right text-lg"></i>
                 </a>
-                <a href="#products" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700/80 px-8 py-3.5 rounded-xl font-semibold text-base transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                <a href="#products" class="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 px-8 py-3.5 rounded-xl font-semibold text-base transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md shadow-sm">
                     <i class="ph-fill ph-play-circle text-xl text-blue-400"></i> ดูการทำงานตัวอย่าง
+                </a>
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-500/30 px-6 py-3.5 rounded-xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md">
+                    <i class="ph-fill ph-chat-circle-dots text-emerald-400 text-lg"></i> ปรึกษาทีมงานทันที
                 </a>
             </div>
         </div> <!-- Close text container -->
@@ -225,11 +296,14 @@
                 
                 <!-- App 7: Asset Monitor -->
                 <img src="images/asset_monitor.png" alt="Asset Monitor" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+
+                <!-- Pedestal Light Reflection Under Carousel -->
+                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-14 bg-gradient-to-r from-transparent via-blue-500/25 to-transparent blur-2xl pointer-events-none"></div>
             </div>
 
             <!-- Coverflow Controls -->
             <div class="flex justify-center items-center gap-4 mt-3 sm:mt-6 relative z-40">
-                <button id="prev-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95">
+                <button id="prev-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95 shadow-lg">
                     <i class="ph-bold ph-caret-left text-2xl"></i>
                 </button>
                 <div class="flex gap-2 mx-4" id="slide-dots">
@@ -242,53 +316,81 @@
                     <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
                     <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
                 </div>
-                <button id="next-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95">
+                <button id="next-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95 shadow-lg">
                     <i class="ph-bold ph-caret-right text-2xl"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 3. Clients Section -->
-    <section class="py-10 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Our Clients</h2>
-            <p class="text-gray-500 mb-8">We have been working with some Fortune 500+ clients</p>
-            <div class="flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <i class="ph ph-apple-logo text-4xl"></i>
-                <i class="ph ph-stripe-logo text-4xl"></i>
-                <i class="ph ph-slack-logo text-4xl"></i>
-                <i class="ph ph-microsoft-logo text-4xl"></i>
-                <i class="ph ph-amazon-logo text-4xl"></i>
-                <i class="ph ph-google-logo text-4xl"></i>
+    <!-- 3. Enterprise Standards & Security Architecture Bar (Replaced generic client logos) -->
+    <section class="py-8 bg-[#0B0F19] border-b border-slate-800/90 text-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                        <i class="ph-bold ph-shield-check text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider block">Enterprise Grade Architecture</span>
+                        <span class="text-[11px] text-slate-400">มาตรฐานความปลอดภัยและการเชื่อมต่อระบบระดับสากล</span>
+                    </div>
+                </div>
+                <!-- 4 Trust Badges -->
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs">
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
+                        <i class="ph-fill ph-lock-key text-blue-400 text-sm"></i>
+                        <span class="font-semibold">Zero-Knowledge Security</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
+                        <i class="ph-fill ph-check-circle text-emerald-400 text-sm"></i>
+                        <span class="font-semibold">Thai PDPA Compliant</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
+                        <i class="ph-fill ph-cloud-check text-sky-400 text-sm"></i>
+                        <span class="font-semibold">99.9% High Availability SLA</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
+                        <i class="ph-fill ph-clock-afternoon text-amber-400 text-sm"></i>
+                        <span class="font-semibold">24/7 Dedicated Support</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 4. Core Values (Our Products Overview) -->
-    <section id="features" class="py-20 bg-white text-center">
+    <section id="features" class="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white text-center relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4 max-w-lg mx-auto leading-snug">จัดการทุกระบบขององค์กร<br>ในระบบเดียว</h2>
-            <p class="text-gray-500 mb-6">แอปพลิเคชันไหนใน NexusCore ที่เหมาะสมกับคุณ?</p>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50/80 border border-blue-200/60 text-blue-700 text-xs font-bold uppercase tracking-widest mb-3.5 shadow-sm">
+                <i class="ph-bold ph-squares-four text-sm"></i> ENTERPRISE SOLUTION PORTFOLIO
+            </div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+                บริหารจัดการทุกระบบธุรกิจ<br>
+                <span class="text-slate-500 font-semibold text-2xl md:text-4xl">บนโครงสร้างที่มั่นคงและเชื่อมต่อถึงกัน</span>
+            </h2>
+            <p class="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto mb-9 leading-relaxed">
+                เลือกสำรวจโซลูชันที่เหมาะสมกับขนาดองค์กรของคุณ ค้นหาฟังก์ชันที่ต้องการ หรือคลิกเพื่อทดลองใช้งานระบบจริงได้ทันที
+            </p>
 
             <!-- Real-time Instant Search Bar (Feature 3: Data & Operations) -->
-            <div class="max-w-md mx-auto mb-6 relative px-4">
-                <div class="relative flex items-center">
-                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-gray-400 text-lg pointer-events-none"></i>
+            <div class="max-w-xl mx-auto mb-7 relative px-4">
+                <div class="relative flex items-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-full">
+                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-slate-400 text-lg pointer-events-none"></i>
                     <input type="text" id="solution-search-input" 
                            placeholder="ค้นหาฟังก์ชันหรือชื่อระบบ (เช่น บัญชี, สต๊อก, POS, MDM, IT, ฟิตเนส)..." 
-                           class="w-full pl-11 pr-10 py-3 rounded-full bg-gray-50 hover:bg-gray-100/80 focus:bg-white border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm">
-                    <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-gray-400 hover:text-gray-600 transition-colors">
+                           class="w-full pl-11 pr-10 py-3.5 rounded-full bg-white hover:bg-slate-50/50 focus:bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all">
+                    <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-slate-400 hover:text-slate-600 transition-colors">
                         <i class="ph-fill ph-x-circle text-lg"></i>
                     </button>
                 </div>
-                <div id="search-feedback" class="text-xs text-gray-500 mt-2 min-h-[18px] transition-all"></div>
-                <div class="flex items-center justify-center gap-2.5 mt-2 flex-wrap">
-                    <button type="button" id="open-catalog-modal-btn" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all shadow-sm hover:shadow border border-slate-700">
+                <div id="search-feedback" class="text-xs text-slate-500 mt-2 min-h-[18px] transition-all"></div>
+                <div class="flex items-center justify-center gap-2.5 mt-2.5 flex-wrap">
+                    <button type="button" id="open-catalog-modal-btn" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all shadow-sm hover:shadow border border-slate-700">
                         <i class="ph-bold ph-file-pdf text-rose-400"></i>
                         <span>ดาวน์โหลด Catalog (PDF)</span>
                     </button>
-                    <a href="#roi-calculator" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold transition-all border border-blue-200">
+                    <a href="#roi-calculator" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold transition-all border border-blue-200">
                         <i class="ph-bold ph-calculator text-blue-600"></i>
                         <span>คำนวณความคุ้มค่า (ROI)</span>
                     </a>
@@ -990,41 +1092,71 @@
         </div>
     </section>
 
-    <!-- 6. Proof in Numbers (Stats) -->
-    <section id="stats" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 6. Proof in Numbers (Stats - Luxury Executive Benchmark) -->
+    <section id="stats" class="py-24 bg-[#090D16] text-white relative overflow-hidden border-y border-slate-800/80">
+        <!-- Subtle Ambient Lighting Blobs -->
+        <div class="absolute -top-32 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="w-full lg:w-1/3">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">ช่วยให้ธุรกิจท้องถิ่น<br><span class="text-green-500">ปรับตัวเข้าสู่ยุคดิจิทัล</span></h2>
-                    <p class="text-gray-600">เราเริ่มต้นจากการทำงานหนักและมุ่งมั่นที่จะแก้ปัญหาให้ SME ไทย</p>
+                <div class="w-full lg:w-1/3 text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest mb-3.5 shadow-sm">
+                        <i class="ph-bold ph-chart-line-up text-sm"></i> PROVEN ENTERPRISE BENCHMARKS
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                        ขับเคลื่อนการเติบโต<br>
+                        <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">ด้วยข้อมูลสถิติที่พิสูจน์แล้ว</span>
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        แพลตฟอร์มที่ได้รับความไว้วางใจจากธุรกิจและองค์กรทั่วประเทศ ประมวลผลธุรกรรมที่ปลอดภัยนับล้านรายการในแต่ละเดือน
+                    </p>
+                    <div class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3.5 py-1.5 rounded-full">
+                        <i class="ph-fill ph-check-circle text-base"></i> อัปเดตสถิติแบบ Real-time ทุก 24 ชม.
+                    </div>
                 </div>
-                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-2 gap-8">
-                    <div class="flex items-center gap-4">
-                        <i class="ph-fill ph-users text-4xl text-green-500"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="2245341">0</h3>
-                            <p class="text-gray-500 text-sm">ผู้ใช้งานระบบ (Members)</p>
+                <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-blue-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 text-3xl flex-shrink-0 shadow-sm">
+                            <i class="ph-fill ph-users"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="2245341">0</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">ผู้ใช้งานระบบทั้งหมด (Active Members)</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="ph-fill ph-buildings text-4xl text-green-500"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="46328">0</h3>
-                            <p class="text-gray-500 text-sm">องค์กรที่ไว้วางใจ</p>
+
+                    <!-- Stat Card 2 -->
+                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-emerald-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-3xl flex-shrink-0 shadow-sm">
+                            <i class="ph-fill ph-buildings"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="46328">0</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">องค์กรและธุรกิจที่ไว้วางใจ</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="ph-fill ph-hand-coins text-4xl text-green-500"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="828867">0</h3>
-                            <p class="text-gray-500 text-sm">รายการเบิกจ่าย</p>
+
+                    <!-- Stat Card 3 -->
+                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-amber-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-3xl flex-shrink-0 shadow-sm">
+                            <i class="ph-fill ph-hand-coins"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="828867">0</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">รายการเบิกจ่ายและเอกสารภาษี</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="ph-fill ph-credit-card text-4xl text-green-500"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 counter-val" data-target="1926436">0</h3>
-                            <p class="text-gray-500 text-sm">การทำธุรกรรม</p>
+
+                    <!-- Stat Card 4 -->
+                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-indigo-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-3xl flex-shrink-0 shadow-sm">
+                            <i class="ph-fill ph-credit-card"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="1926436">0</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">ยอดธุรกรรมที่ประมวลผลสำเร็จ</p>
                         </div>
                     </div>
                 </div>
@@ -1296,107 +1428,126 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                 <!-- Starter Plan -->
-                <div class="bg-slate-50/70 rounded-3xl p-8 shadow-md border border-slate-200 hover:shadow-xl transition-shadow flex flex-col mt-4 mb-4">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Starter</h3>
-                    <p class="text-gray-500 text-sm mb-6">สำหรับธุรกิจขนาดเล็ก หรือเริ่มต้นใช้งาน</p>
-                    <div class="mb-6">
-                        <span class="text-4xl font-bold text-gray-900">฿990</span>
-                        <span class="text-gray-500">/ เดือน</span>
+                <div class="bg-white/80 rounded-3xl p-8 shadow-sm hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex flex-col mt-4 mb-4 hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 font-heading">Starter</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold">Standard</span>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>ผู้ใช้งานสูงสุด 5 คน (3 แอปพลิเคชัน)</li>
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>ทรัพยากร: 0.5 vCPU / 512MB RAM</li>
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>พื้นที่เก็บข้อมูล (Storage) 50 GB</li>
-                        <li class="flex items-center text-gray-400"><i class="ph-bold ph-x mr-3"></i>Shared Database</li>
+                    <p class="text-slate-500 text-sm mb-6">สำหรับธุรกิจขนาดเล็ก หรือเริ่มต้นใช้งานระบบ</p>
+                    <div class="mb-6 flex items-baseline gap-1">
+                        <span class="text-4xl font-extrabold text-slate-900 font-heading tracking-tight">฿990</span>
+                        <span class="text-slate-500 text-sm">/ เดือน</span>
+                    </div>
+                    <ul class="space-y-3.5 mb-8 flex-grow text-sm">
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 5 คน (3 แอปพลิเคชัน)</li>
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 0.5 vCPU / 512MB RAM</li>
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 50 GB</li>
+                        <li class="flex items-center text-slate-400"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-x"></i></span>Shared Database</li>
                     </ul>
-                    <a href="#cta" class="block w-full text-center bg-white hover:bg-gray-100 text-blue-700 font-bold py-3.5 rounded-xl transition-colors border-2 border-blue-200 shadow-sm mt-auto">ทดลองใช้ฟรี 14 วัน</a>
+                    <a href="#cta" class="block w-full text-center bg-white hover:bg-slate-50 text-slate-900 font-bold py-3.5 rounded-xl transition-all border border-slate-300 shadow-sm mt-auto hover:border-slate-400">ทดลองใช้ฟรี 14 วัน</a>
                 </div>
 
-                <!-- Professional Plan (Highlighted) -->
-                <div class="bg-gradient-to-b from-slate-900 to-blue-950 rounded-3xl p-8 shadow-2xl border border-blue-700 relative flex flex-col z-10">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-pink-500 to-orange-400 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
-                        Most Popular
+                <!-- Professional Plan (Highlighted Flagship) -->
+                <div class="bg-gradient-to-b from-[#090D16] via-[#0E1526] to-[#070A12] rounded-3xl p-8 sm:p-9 shadow-[0_20px_50px_-10px_rgba(37,99,235,0.3)] border-2 border-blue-500/80 relative flex flex-col z-10 md:-translate-y-2 ring-1 ring-blue-400/30">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-[0_4px_15px_rgba(37,99,235,0.4)] border border-blue-300/30 flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="ph-fill ph-crown text-amber-300"></i> RECOMMENDED BY ENTERPRISE
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Professional</h3>
-                    <p class="text-blue-200 text-sm mb-6">สำหรับธุรกิจที่ต้องการประสิทธิภาพสูง</p>
-                    <div class="mb-6">
-                        <span class="text-5xl font-bold text-white">฿2,490</span>
-                        <span class="text-blue-200">/ เดือน</span>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-2xl font-bold text-white font-heading">Professional</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold border border-blue-500/30">Flagship</span>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center text-white"><i class="ph-bold ph-check text-pink-400 mr-3"></i>ผู้ใช้งานสูงสุด 20 คน (ใช้งานได้ทุกแอป)</li>
-                        <li class="flex items-center text-white"><i class="ph-bold ph-check text-pink-400 mr-3"></i>ทรัพยากร: 1 vCPU / 2GB RAM</li>
-                        <li class="flex items-center text-white"><i class="ph-bold ph-check text-pink-400 mr-3"></i>พื้นที่เก็บข้อมูล (Storage) 500 GB</li>
-                        <li class="flex items-center text-white"><i class="ph-bold ph-check text-pink-400 mr-3"></i>Private Database & API Access</li>
+                    <p class="text-slate-300 text-sm mb-6">สำหรับธุรกิจที่ต้องการประสิทธิภาพและความเสถียรสูงสุด</p>
+                    <div class="mb-6 flex items-baseline gap-1">
+                        <span class="text-5xl font-extrabold text-white font-heading tracking-tight">฿2,490</span>
+                        <span class="text-slate-400 text-sm">/ เดือน</span>
+                    </div>
+                    <ul class="space-y-3.5 mb-8 flex-grow text-sm">
+                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 20 คน (ใช้งานได้ทุกแอป)</li>
+                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 1 vCPU / 2GB RAM</li>
+                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 500 GB</li>
+                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>Private Database & API Access</li>
                     </ul>
-                    <a href="#cta" class="block w-full text-center bg-white hover:bg-gray-100 text-blue-900 font-bold py-3.5 rounded-xl transition-colors shadow-lg mt-auto text-lg">เลือกแพ็กเกจนี้</a>
+                    <a href="#cta" class="block w-full text-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-[0_10px_25px_rgba(37,99,235,0.35)] hover:shadow-[0_14px_35px_rgba(37,99,235,0.5)] mt-auto text-base hover:-translate-y-0.5">เลือกแพ็กเกจนี้ &rarr;</a>
                 </div>
 
                 <!-- Enterprise Plan -->
-                <div class="bg-slate-50/70 rounded-3xl p-8 shadow-md border border-slate-200 hover:shadow-xl transition-shadow flex flex-col mt-4 mb-4">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise</h3>
-                    <p class="text-gray-500 text-sm mb-6">สำหรับองค์กรขนาดใหญ่ ออกแบบเฉพาะคุณ</p>
-                    <div class="mb-6">
-                        <span class="text-4xl font-bold text-gray-900">Custom</span>
+                <div class="bg-white/80 rounded-3xl p-8 shadow-sm hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex flex-col mt-4 mb-4 hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 font-heading">Enterprise</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200/60">Bespoke</span>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>ผู้ใช้งานไม่จำกัด (Unlimited)</li>
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>ทรัพยากร: Dedicated Server (เลือกสเปกได้)</li>
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>ไม่จำกัดพื้นที่เก็บข้อมูล (Unlimited Storage)</li>
-                        <li class="flex items-center text-gray-700"><i class="ph-bold ph-check text-green-500 mr-3"></i>มีทีมงานช่วยดูแลระบบ 24 ชั่วโมง</li>
+                    <p class="text-slate-500 text-sm mb-6">สำหรับองค์กรขนาดใหญ่ สถาปัตยกรรมเฉพาะคุณ</p>
+                    <div class="mb-6 flex items-baseline gap-1">
+                        <span class="text-4xl font-extrabold text-slate-900 font-heading tracking-tight">Custom</span>
+                        <span class="text-slate-500 text-sm">/ ออกแบบเฉพาะ</span>
+                    </div>
+                    <ul class="space-y-3.5 mb-8 flex-grow text-sm">
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานไม่จำกัด (Unlimited Users)</li>
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: Dedicated Server (เลือกสเปกได้)</li>
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ไม่จำกัดพื้นที่จัดเก็บ (Unlimited Storage)</li>
+                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>วิศวกรและทีมงานดูแลระดับ Dedicated 24/7</li>
                     </ul>
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger block w-full text-center bg-emerald-50 hover:bg-[#06C755] hover:text-white text-emerald-700 font-bold py-3.5 rounded-xl transition-all border-2 border-emerald-200 shadow-sm mt-auto flex items-center justify-center gap-2">
-                        <i class="ph-fill ph-chat-circle-dots text-lg"></i> ติดต่อฝ่ายขายผ่าน LINE
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger block w-full text-center bg-emerald-50 hover:bg-[#06C755] hover:text-white text-emerald-700 font-bold py-3.5 rounded-xl transition-all border border-emerald-200/80 shadow-sm mt-auto flex items-center justify-center gap-2">
+                        <i class="ph-fill ph-chat-circle-dots text-lg"></i> ปรึกษาสเปกองค์กรผ่าน LINE
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. Final Call to Action (Design 3: Vibrant Full Gradient + Glassmorphism) -->
-    <section id="cta" class="py-24 bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 relative overflow-hidden text-center">
-        <!-- Background Blur Blobs for CTA -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] opacity-50 pointer-events-none z-0 flex justify-center items-center">
-            <div class="absolute w-[300px] h-[300px] bg-yellow-400 rounded-full mix-blend-screen filter blur-[100px] -ml-32 animate-pulse"></div>
-            <div class="absolute w-[300px] h-[300px] bg-blue-400 rounded-full mix-blend-screen filter blur-[100px] ml-32 animate-pulse" style="animation-delay: 1.5s;"></div>
+    <!-- 9. Final Call to Action (Executive Suite Obsidian & Sapphire Accent) -->
+    <section id="cta" class="py-24 sm:py-28 bg-[#07090E] relative overflow-hidden text-center border-t border-slate-800/80">
+        <!-- Dual Subtle Ambient Lighting -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[450px] opacity-40 pointer-events-none z-0 flex justify-center items-center">
+            <div class="absolute w-[420px] h-[420px] bg-blue-600/20 rounded-full filter blur-[120px] -ml-40"></div>
+            <div class="absolute w-[360px] h-[360px] bg-indigo-600/20 rounded-full filter blur-[120px] ml-40"></div>
         </div>
 
-        <div class="max-w-3xl mx-auto px-4 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-md">
-                พร้อมที่จะเปลี่ยนวิธีทำงาน <br>
-                <span class="text-amber-300">ของคุณหรือยัง?</span>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>EXECUTIVE ONBOARDING &amp; ENTERPRISE SETUP</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight font-heading tracking-tight">
+                พร้อมยกระดับโครงสร้างธุรกิจ <br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">สู่มาตรฐานระดับองค์กรสากลแล้วหรือยัง?</span>
             </h2>
-            <p class="text-xl text-slate-200 mb-10 drop-shadow">เริ่มต้นใช้งานแอปพลิเคชันทั้งหมดของเราได้ฟรี 14 วัน (ไม่ต้องใช้บัตรเครดิต)</p>
+            <p class="text-base sm:text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                เริ่มต้นทดลองใช้งานแพลตฟอร์มระดับ Enterprise ฟรี 14 วัน พร้อมบริการ Onboarding และทีมวิศวกรดูแลความปลอดภัยตลอด 24 ชั่วโมง
+            </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#features" class="inline-block bg-white hover:bg-gray-100 text-slate-950 px-10 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:-translate-y-1 transform duration-300">
-                    เลือกแอปพลิเคชันเพื่อใช้งาน &rarr;
+                <a href="#features" class="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-[0_10px_35px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_45px_rgba(37,99,235,0.6)] hover:-translate-y-0.5">
+                    <i class="ph-bold ph-squares-four text-lg"></i> เลือกแอปพลิเคชันเพื่อทดลองใช้ &rarr;
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-full font-bold text-base transition-all shadow-lg shadow-emerald-500/30 hover:-translate-y-1 transform duration-300">
-                    <i class="ph-fill ph-chat-circle-dots text-xl"></i> ปรึกษาทีมงานผ่าน LINE
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5">
+                    <i class="ph-fill ph-chat-circle-dots text-xl"></i> ปรึกษาทีมวิศวกรผ่าน LINE
                 </a>
             </div>
         </div>
     </section>
 
     <!-- 10. Footer -->
-    <footer class="bg-gray-900 text-white py-16 border-t border-gray-800">
+    <footer class="bg-[#05070C] text-white py-16 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand & Socials -->
             <div class="col-span-1 md:col-span-1">
-                <div class="flex items-center gap-2 mb-4">
-                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <i class="ph-bold ph-diamonds-four text-white text-xl"></i>
+                <div class="flex items-center gap-2.5 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400 p-[1px] shadow-lg shadow-blue-500/20">
+                        <div class="w-full h-full bg-[#07090E] rounded-[11px] flex items-center justify-center">
+                            <i class="ph-fill ph-diamonds-four text-blue-400 text-xl"></i>
+                        </div>
                     </div>
-                    <span class="font-bold text-2xl tracking-tight">Nexus<span class="text-blue-500">Core</span></span>
+                    <span class="font-extrabold text-2xl tracking-tight text-white font-heading">Nexus<span class="text-blue-500">Core</span></span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 bg-slate-800/80 border border-slate-700/80 px-2 py-0.5 rounded-md ml-1">Suite</span>
                 </div>
-                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                    ระบบบริหารจัดการองค์กรที่ครบวงจรที่สุด ใช้งานง่าย ปลอดภัย พร้อมซัพพอร์ตตลอด 24 ชั่วโมง
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    ระบบบริหารจัดการองค์กรที่ครบวงจรที่สุด สถาปัตยกรรมระดับ Enterprise ปลอดภัย พร้อมวิศวกรซัพพอร์ตตลอด 24 ชั่วโมง
                 </p>
                 <div class="flex space-x-3">
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-10 h-10 rounded-full bg-[#06C755] flex items-center justify-center hover:scale-110 transition-all text-white shadow-md shadow-emerald-500/20" title="LINE Official Account"><i class="ph-fill ph-chat-circle-dots text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:scale-110 transition-all text-gray-300 hover:text-white" title="Facebook"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 hover:scale-110 transition-all text-gray-300 hover:text-white" title="YouTube"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 hover:scale-110 transition-all text-gray-300 hover:text-white" title="Instagram"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-10 h-10 rounded-xl bg-[#06C755]/15 border border-[#06C755]/40 flex items-center justify-center hover:bg-[#06C755] hover:border-[#06C755] hover:scale-105 transition-all text-[#06C755] hover:text-white shadow-sm" title="LINE Official Account"><i class="ph-fill ph-chat-circle-dots text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="Facebook"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-red-600 hover:border-red-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="YouTube"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="Instagram"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
                 </div>
             </div>
             
@@ -1428,35 +1579,35 @@
 
             <!-- LINE Official QR Card -->
             <div>
-                <h3 class="font-bold text-lg mb-4 text-gray-200 flex items-center gap-2">
+                <h3 class="font-bold text-lg mb-4 text-slate-200 flex items-center gap-2">
                     <i class="ph-fill ph-chat-circle-dots text-[#06C755]"></i> ติดต่อผ่าน LINE Official
                 </h3>
-                <div class="bg-gray-800/90 p-4 rounded-2xl border border-gray-700/80 flex items-center gap-4 mb-4 shadow-lg">
+                <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-4 mb-4 shadow-xl backdrop-blur-md">
                     <div class="bg-white p-2 rounded-xl flex-shrink-0 shadow-md border border-emerald-500/30">
                         <img src="images/line_qr.png" alt="LINE Official QR Code" class="w-20 h-20 object-contain rounded-lg" loading="lazy">
                     </div>
                     <div>
                         <span class="text-xs text-white font-bold block mb-0.5">สแกน QR Code</span>
-                        <span class="text-[11px] text-gray-400 block mb-2 leading-tight">คุยกับทีมงาน ปรึกษาฟรี ตอบไวตลอด 24 ชม.</span>
+                        <span class="text-[11px] text-slate-400 block mb-2 leading-tight">คุยกับทีมงาน ปรึกษาฟรี ตอบไวตลอด 24 ชม.</span>
                         <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#06C755] hover:bg-[#05b34c] text-white text-[11px] font-bold shadow-sm transition-all">
                             <span>เปิดแชท LINE</span> &rarr;
                         </a>
                     </div>
                 </div>
-                <p class="text-gray-400 text-xs mb-2">หรือสมัครรับข่าวสารและโปรโมชั่นพิเศษ:</p>
-                <div class="flex bg-gray-800 rounded-xl overflow-hidden border border-gray-700 focus-within:border-blue-500 transition-colors">
-                    <input type="email" placeholder="กรอกอีเมลของคุณ" class="bg-transparent text-sm px-4 py-2.5 w-full focus:outline-none text-white">
+                <p class="text-slate-400 text-xs mb-2">หรือสมัครรับข่าวสารและโปรโมชั่นพิเศษ:</p>
+                <div class="flex bg-slate-900/90 rounded-xl overflow-hidden border border-slate-800 focus-within:border-blue-500 transition-colors">
+                    <input type="email" placeholder="กรอกอีเมลของคุณ" class="bg-transparent text-sm px-4 py-2.5 w-full focus:outline-none text-white placeholder-slate-500">
                     <button class="bg-blue-600 px-4 hover:bg-blue-500 transition-colors"><i class="ph-bold ph-paper-plane-tilt text-white"></i></button>
                 </div>
             </div>
         </div>
         
         <!-- Bottom Bar -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">
                 Copyright © 2026 NexusCore Solution. All rights reserved.
             </p>
-            <div class="flex gap-4 text-sm text-gray-500">
+            <div class="flex gap-4 text-sm text-slate-500">
                 <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                 <span>|</span>
                 <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
