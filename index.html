@@ -1033,7 +1033,64 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <img src="images/pass_app.png" alt="Pass App" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.1)] border border-gray-100" loading="lazy" decoding="async">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/pass_app.webp" type="image/webp">
+                            <img src="images/pass_app.png" alt="Pass App" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-emerald-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Master Vault & AES-256 -->
+                        <div class="hotspot-pin absolute top-[24%] left-[25%] z-20" data-hotspot="pass-aes" data-hotspot-title="PassVault: AES-256">
+                            <button type="button" aria-label="AES-256 Vault Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-600 text-white shadow-[0_0_16px_rgba(16,185,129,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-lock-key text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> AES-256 Vault</span>
+                                    <span class="text-[9px] font-mono bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">Military Grade</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">รหัสผ่านทั้งหมดถูกเข้ารหัสระดับเดียวกับธนาคาร ปลอดภัย 100% ไม่มีใครแอบดูได้</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Team Secure Sharing -->
+                        <div class="hotspot-pin absolute top-[24%] left-[55%] z-20" data-hotspot="pass-share" data-hotspot-title="PassVault: Team Sharing">
+                            <button type="button" aria-label="Team Sharing Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-teal-600 text-white shadow-[0_0_16px_rgba(20,184,166,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-teal-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-users-three text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-teal-400 flex items-center gap-1"><i class="ph-fill ph-share-network"></i> Team Sharing</span>
+                                    <span class="text-[9px] font-mono bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded border border-teal-500/30">Zero-Knowledge</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">แชร์สิทธิ์การเข้าใช้งานระบบให้ทีมงานได้ทันทีโดยไม่ต้องเปิดเผยรหัสผ่านจริง</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Quick Auto-Fill & Copy -->
+                        <div class="hotspot-pin absolute top-[65%] left-[78%] z-20" data-hotspot="pass-autofill" data-hotspot-title="PassVault: Auto-Fill">
+                            <button type="button" aria-label="Auto Fill Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-green-600 text-white shadow-[0_0_16px_rgba(34,197,94,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-copy text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-green-400 flex items-center gap-1"><i class="ph-fill ph-lightning"></i> 1-Click Copy &amp; Fill</span>
+                                    <span class="text-[9px] font-mono bg-green-500/20 text-green-300 px-1.5 py-0.5 rounded border border-green-500/30">1 วินาที</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">คัดลอกรหัสและเปิดลิงก์เข้าระบบปลายทางได้ทันทีใน 1 วินาที ลดเวลาล็อกอิน</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1044,7 +1101,64 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.1)] border border-gray-100" loading="lazy" decoding="async">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/asset_monitor.webp" type="image/webp">
+                            <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-purple-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Real-time Device Fleet -->
+                        <div class="hotspot-pin absolute top-[26%] left-[24%] z-20" data-hotspot="ios-fleet" data-hotspot-title="iOS MDM: Device Fleet">
+                            <button type="button" aria-label="Device Fleet Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-purple-600 text-white shadow-[0_0_16px_rgba(147,51,234,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-device-mobile text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-purple-400 flex items-center gap-1"><i class="ph-fill ph-device-mobile"></i> Device Fleet</span>
+                                    <span class="text-[9px] font-mono bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">MDM Active</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ตรวจเช็คสถานะ iPhone / iPad ของบริษัททุกเครื่อง (Online, Battery, OS Version)</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Remote Lock & Data Wipe -->
+                        <div class="hotspot-pin absolute top-[26%] left-[60%] z-20" data-hotspot="ios-remotelock" data-hotspot-title="iOS MDM: Remote Lock">
+                            <button type="button" aria-label="Remote Lock Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-indigo-600 text-white shadow-[0_0_16px_rgba(99,102,241,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-indigo-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-shield-warning text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-indigo-400 flex items-center gap-1"><i class="ph-fill ph-lock-key"></i> Remote Controls</span>
+                                    <span class="text-[9px] font-mono bg-indigo-500/20 text-indigo-300 px-1.5 py-0.5 rounded border border-indigo-500/30">Zero-Leak</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">สั่งล็อคหน้าจอหรือล้างข้อมูลเครื่องระยะไกลทันทีเมื่ออุปกรณ์สูญหายหรือถูกขโมย</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Policy & App Distribution -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="ios-apps" data-hotspot-title="iOS MDM: App Store Policy">
+                            <button type="button" aria-label="App Distribution Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-violet-600 text-white shadow-[0_0_16px_rgba(124,58,237,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-violet-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-app-window text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-violet-400 flex items-center gap-1"><i class="ph-fill ph-app-store-logo"></i> Corporate Apps</span>
+                                    <span class="text-[9px] font-mono bg-violet-500/20 text-violet-300 px-1.5 py-0.5 rounded border border-violet-500/30">Whitelist</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ควบคุมให้ลงเฉพาะแอปที่ใช้ทำงาน ป้องกันพนักงานนำเครื่องไปเล่นเกมนอกลู่</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จัดการอุปกรณ์เบ็ดเสร็จด้วย <br><span class="text-purple-600">iOS Device Monitor</span></h2>
@@ -1086,8 +1200,65 @@
                         </li>
                     </ul>
                 </div>
-                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
-                    <img src="images/task_tracking.png" alt="Task Tracking" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.1)] border border-gray-100" loading="lazy" decoding="async">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/task_tracking.webp" type="image/webp">
+                            <img src="images/task_tracking.png" alt="Task Tracking" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-pink-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Visual Kanban Workflow -->
+                        <div class="hotspot-pin absolute top-[28%] left-[25%] z-20" data-hotspot="task-kanban" data-hotspot-title="Task Tracking: Kanban Board">
+                            <button type="button" aria-label="Kanban Board Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-pink-600 text-white shadow-[0_0_16px_rgba(219,39,119,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-pink-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-kanban text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-pink-400 flex items-center gap-1"><i class="ph-fill ph-kanban"></i> Visual Kanban</span>
+                                    <span class="text-[9px] font-mono bg-pink-500/20 text-pink-300 px-1.5 py-0.5 rounded border border-pink-500/30">Drag &amp; Drop</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ลากวางเปลี่ยนสถานะงาน To-Do, In Progress, Done ง่ายดาย เห็นความคืบหน้าตรงกัน</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Who / What / When SLA -->
+                        <div class="hotspot-pin absolute top-[28%] left-[62%] z-20" data-hotspot="task-owner" data-hotspot-title="Task Tracking: Ownership & SLA">
+                            <button type="button" aria-label="Task Owner Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-600 text-white shadow-[0_0_16px_rgba(225,29,72,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-rose-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-user-check text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-rose-400 flex items-center gap-1"><i class="ph-fill ph-user-circle-check"></i> Task Owner &amp; SLA</span>
+                                    <span class="text-[9px] font-mono bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded border border-rose-500/30">Deadline Alert</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">มอบหมายผู้รับผิดชอบชัดเจน พร้อมแจ้งเตือนกำหนดส่งอัตโนมัติ ไม่ตกหล่น</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Centralized Discussion & Files -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="task-chat" data-hotspot-title="Task Tracking: Discussion & Files">
+                            <button type="button" aria-label="Task Discussion Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-fuchsia-600 text-white shadow-[0_0_16px_rgba(192,38,211,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-fuchsia-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-chats-circle text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-fuchsia-400 flex items-center gap-1"><i class="ph-fill ph-paperclip"></i> Activity &amp; Files</span>
+                                    <span class="text-[9px] font-mono bg-fuchsia-500/20 text-fuchsia-300 px-1.5 py-0.5 rounded border border-fuchsia-500/30">All in One</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">พูดคุยและแนบไฟล์จบในงานนั้นๆ ไม่ต้องรื้อหาประวัติในไลน์กลุ่ม</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1097,8 +1268,65 @@
     <section class="py-20 bg-gray-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="w-full lg:w-1/2 p-2 lg:p-6 bg-white rounded-2xl flex justify-center">
-                    <img src="images/accounting.png" alt="Thai Accounting" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.1)] border border-gray-100" loading="lazy" decoding="async">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/accounting.webp" type="image/webp">
+                            <img src="images/accounting.png" alt="Thai Accounting" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-amber-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Real-time P&L Cashflow -->
+                        <div class="hotspot-pin absolute top-[26%] left-[25%] z-20" data-hotspot="acc-cashflow" data-hotspot-title="Accounting: P&L Cashflow">
+                            <button type="button" aria-label="Cashflow Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-amber-600 text-white shadow-[0_0_16px_rgba(217,119,6,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-chart-line-up text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-amber-400 flex items-center gap-1"><i class="ph-fill ph-trend-up"></i> Real-time P&amp;L</span>
+                                    <span class="text-[9px] font-mono bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">24 ชม.</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">เห็นยอดขาย รายจ่าย กำไรสุทธิ และเงินสดหมุนเวียนแบบ Real-time ตลอด 24 ชม.</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Thai Tax & WHT Calculator -->
+                        <div class="hotspot-pin absolute top-[26%] left-[60%] z-20" data-hotspot="acc-tax" data-hotspot-title="Accounting: Thai Tax & WHT">
+                            <button type="button" aria-label="Thai Tax Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-yellow-600 text-white shadow-[0_0_16px_rgba(202,138,4,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-yellow-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-receipt text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-yellow-400 flex items-center gap-1"><i class="ph-fill ph-receipt"></i> ภาษี VAT &amp; WHT</span>
+                                    <span class="text-[9px] font-mono bg-yellow-500/20 text-yellow-300 px-1.5 py-0.5 rounded border border-yellow-500/30">สรรพากร</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">คำนวณภาษีมูลค่าเพิ่มและหัก ณ ที่จ่ายอัตโนมัติ ออกใบกำกับภาษีถูกต้องตามกฎหมาย</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: 1-Click PDF & Excel Export -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="acc-export" data-hotspot-title="Accounting: Reports & E-Tax">
+                            <button type="button" aria-label="Export Reports Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-orange-600 text-white shadow-[0_0_16px_rgba(234,88,12,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-file-arrow-down text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-orange-400 flex items-center gap-1"><i class="ph-fill ph-file-pdf"></i> PDF &amp; Excel Export</span>
+                                    <span class="text-[9px] font-mono bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded border border-orange-500/30">1 คลิก</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">Export รายงานภาษีซื้อ-ขายและงบการเงินส่งสำนักงานบัญชีหรือสรรพากรในคลิกเดียว</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จบเรื่องปวดหัวด้านบัญชี กับ <br><span class="text-yellow-600">Thai Accounting App</span></h2>
@@ -1140,8 +1368,65 @@
                         </li>
                     </ul>
                 </div>
-                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center bg-gray-50 rounded-2xl">
-                    <img src="images/inventory.png" alt="Inventory POS" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.1)] border border-gray-100" loading="lazy" decoding="async">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/inventory.webp" type="image/webp">
+                            <img src="images/inventory.png" alt="Inventory POS" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-orange-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Real-time Multi-Warehouse Stock -->
+                        <div class="hotspot-pin absolute top-[26%] left-[24%] z-20" data-hotspot="inv-stock" data-hotspot-title="Inventory: Live Multi-Warehouse Stock">
+                            <button type="button" aria-label="Stock Level Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-orange-600 text-white shadow-[0_0_16px_rgba(234,88,12,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-warehouse text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-orange-400 flex items-center gap-1"><i class="ph-fill ph-warehouse"></i> Live Stock Level</span>
+                                    <span class="text-[9px] font-mono bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded border border-orange-500/30">ตัดสต๊อกทันที</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">เช็คสต๊อกสินค้าคงเหลือแบบ Real-time ตัดยอดทันทีที่ขาย ป้องกันของขาด/ล้น</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Barcode & QR Scanner POS -->
+                        <div class="hotspot-pin absolute top-[26%] left-[60%] z-20" data-hotspot="inv-pos" data-hotspot-title="Inventory: Fast Barcode POS">
+                            <button type="button" aria-label="POS Checkout Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-amber-600 text-white shadow-[0_0_16px_rgba(217,119,6,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-barcode text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-amber-400 flex items-center gap-1"><i class="ph-fill ph-barcode"></i> Fast POS Checkout</span>
+                                    <span class="text-[9px] font-mono bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">บาร์โค้ด</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">สแกนบาร์โค้ดคิดเงินรวดเร็ว ออกใบเสร็จอย่างย่อ พร้อมบันทึกวิธีชำระเงินทุกช่องทาง</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Low-Stock Threshold Alert -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="inv-alert" data-hotspot-title="Inventory: Low-Stock Alerts">
+                            <button type="button" aria-label="Stock Alert Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-600 text-white shadow-[0_0_16px_rgba(225,29,72,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-rose-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-bell-ringing text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-rose-400 flex items-center gap-1"><i class="ph-fill ph-bell-ringing"></i> Re-order Alert</span>
+                                    <span class="text-[9px] font-mono bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded border border-rose-500/30">เตือนของใกล้หมด</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ระบบแจ้งเตือนอัตโนมัติเมื่อสินค้าถึงจุดสั่งซื้อซ้ำ ไม่พลาดโอกาสทำเงิน</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1152,7 +1437,64 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
-                    <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(132,_204,_22,_0.15)] border border-gray-200 hover:shadow-2xl transition-all duration-300" loading="lazy" decoding="async">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(132,_204,_22,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/fitpulse.webp" type="image/webp">
+                            <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-lime-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-lime-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: QR Member Check-in & Peak Hours -->
+                        <div class="hotspot-pin absolute top-[26%] left-[25%] z-20" data-hotspot="gym-checkin" data-hotspot-title="FitPulse: QR Check-in & Peak Hours">
+                            <button type="button" aria-label="QR Checkin Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-lime-600 text-white shadow-[0_0_16px_rgba(101,163,13,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-lime-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-qr-code text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-lime-400 flex items-center gap-1"><i class="ph-fill ph-qr-code"></i> QR Check-in &amp; Peak</span>
+                                    <span class="text-[9px] font-mono bg-lime-500/20 text-lime-300 px-1.5 py-0.5 rounded border border-lime-500/30">Real-time</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">สแกน QR เช็คอินเข้ายิมทันที พร้อมกราฟวิเคราะห์ช่วงเวลาหนาแน่นเพื่อจัดเวรเทรนเนอร์</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Trainer Course & PT Balance -->
+                        <div class="hotspot-pin absolute top-[26%] left-[60%] z-20" data-hotspot="gym-pt" data-hotspot-title="FitPulse: Personal Trainer Balance">
+                            <button type="button" aria-label="Trainer Contract Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-600 text-white shadow-[0_0_16px_rgba(16,185,129,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-barbell text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i class="ph-fill ph-barbell"></i> คอร์สเทรนเนอร์ (PT)</span>
+                                    <span class="text-[9px] font-mono bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">ตัดครั้งแม่นยำ</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">บริหารสัญญาซื้อขายคอร์ส ตัดชั่วโมงเรียนคงเหลืออัตโนมัติ ป้องกันการโกงชั่วโมง</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Revenue & Membership Renewal -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="gym-revenue" data-hotspot-title="FitPulse: Revenue & Renewals">
+                            <button type="button" aria-label="Revenue Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-teal-600 text-white shadow-[0_0_16px_rgba(20,184,166,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-teal-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-currency-circle-dollar text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-teal-400 flex items-center gap-1"><i class="ph-fill ph-chart-line-up"></i> ยอดขาย &amp; ต่อสัญญา</span>
+                                    <span class="text-[9px] font-mono bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded border border-teal-500/30">Auto Renew</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">สรุปรายรับรายวัน/รายเดือน และแจ้งเตือนสมาชิกใกล้หมดอายุล่วงหน้าเพื่อต่อสัญญา</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="w-full lg:w-1/2">
                     <div class="inline-flex items-center gap-2 bg-lime-100 text-lime-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
@@ -1201,7 +1543,64 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 flex justify-center">
-                    <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full rounded-2xl shadow-[0_20px_50px_rgba(244,_63,_94,_0.15)] border border-gray-200 hover:shadow-2xl transition-all duration-300" loading="lazy" decoding="async">
+                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(244,_63,_94,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture>
+                            <source srcset="images/tikkethub.webp" type="image/webp">
+                            <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                        </picture>
+                        
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-rose-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Interactive Seat Map & Zones -->
+                        <div class="hotspot-pin absolute top-[26%] left-[25%] z-20" data-hotspot="ticket-seatmap" data-hotspot-title="TikketHub: Interactive Seat Map">
+                            <button type="button" aria-label="Seat Map Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-600 text-white shadow-[0_0_16px_rgba(244,63,94,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-rose-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-armchair text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-rose-400 flex items-center gap-1"><i class="ph-fill ph-armchair"></i> Dynamic Seat Map</span>
+                                    <span class="text-[9px] font-mono bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded border border-rose-500/30">ผังที่นั่งจริง</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ผังที่นั่งเสมือนจริง แยกโซน VIP / Regular ล็อคที่นั่งอัตโนมัติ ป้องกันการจองซ้ำ</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Multi-Round Showtime Management -->
+                        <div class="hotspot-pin absolute top-[26%] left-[60%] z-20" data-hotspot="ticket-rounds" data-hotspot-title="TikketHub: Showtimes & Pricing Tiers">
+                            <button type="button" aria-label="Showtime Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-red-600 text-white shadow-[0_0_16px_rgba(220,38,38,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-calendar-star text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-red-400 flex items-center gap-1"><i class="ph-fill ph-calendar-check"></i> รอบแสดง &amp; ราคา</span>
+                                    <span class="text-[9px] font-mono bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded border border-red-500/30">Event Engine</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">บริหารรอบการแสดง วันที่ และราคาบัตรแต่ละรอบได้อย่างยืดหยุ่นในคลิกเดียว</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Gate E-Ticket QR Scanner -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="ticket-scanner" data-hotspot-title="TikketHub: Gate QR Scanner">
+                            <button type="button" aria-label="QR Scanner Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-pink-600 text-white shadow-[0_0_16px_rgba(219,39,119,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-pink-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-scan text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-pink-400 flex items-center gap-1"><i class="ph-fill ph-qr-code"></i> สแกน QR หน้าประตู</span>
+                                    <span class="text-[9px] font-mono bg-pink-500/20 text-pink-300 px-1.5 py-0.5 rounded border border-pink-500/30">0.5 วินาที</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">สแกน QR Code หน้าประตูทางเข้าด้วยมือถือ ตรวจสอบบัตรแท้ใน 0.5 วินาที</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
