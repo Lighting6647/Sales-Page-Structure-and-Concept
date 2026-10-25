@@ -89,6 +89,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NexusCore">
     <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
         body { 
             font-family: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif; 
             font-size: 16px; 
@@ -157,7 +161,67 @@
                 display: none !important;
             }
         }
+
+        /* Progressive Image Blur-Up & Shimmer Placeholder */
+        .blur-up-wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: #0B0F19;
+        }
+        .blur-up-skeleton {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(15, 23, 42, 0.7) 100%);
+            background-size: 200% 100%;
+            animation: blurUpShimmer 1.8s infinite linear;
+            z-index: 1;
+            transition: opacity 0.4s ease-out;
+            pointer-events: none;
+        }
+        @keyframes blurUpShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .blur-up-lqip {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            filter: blur(20px);
+            transform: scale(1.12);
+            opacity: 0.95;
+            z-index: 2;
+            transition: opacity 0.5s ease-out;
+            pointer-events: none;
+        }
+        .blur-up-img {
+            position: relative;
+            z-index: 3;
+            opacity: 0;
+            filter: blur(10px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, filter;
+        }
+        .blur-up-img.is-loaded {
+            opacity: 1;
+            filter: blur(0);
+        }
+        .blur-up-wrapper.loaded .blur-up-skeleton,
+        .blur-up-wrapper.loaded .blur-up-lqip {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+        }
     </style>
+    <noscript>
+        <style>
+            .blur-up-img { opacity: 1 !important; filter: none !important; }
+            .blur-up-skeleton, .blur-up-lqip { display: none !important; }
+        </style>
+    </noscript>
     <!-- Phosphor Icons for modern icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- GSAP for smooth animations -->
@@ -204,7 +268,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden xl:flex items-center space-x-5">
                     <a href="#features" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Features</a>
                     <a href="#products" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Products</a>
                     <a href="#pricing" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Pricing</a>
@@ -219,7 +283,7 @@
                         <i class="ph-fill ph-chat-circle-dots text-base"></i> LINE ปรึกษาฟรี
                     </a>
                 </div>
-                <div class="md:hidden flex items-center">
+                <div class="xl:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-slate-700 hover:text-blue-600 focus:outline-none p-2 rounded-xl bg-slate-50 border border-slate-200">
                         <i class="ph-bold ph-list text-2xl"></i>
                     </button>
@@ -228,7 +292,7 @@
         </div>
         
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0 transition-all duration-300">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0 transition-all duration-300">
             <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
                 <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Features</a>
                 <a href="#products" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors">Products</a>
@@ -512,9 +576,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">it-monthly.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/it_dashboard.png" alt="IT Dashboard" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCiGGKvST2rQOohG8rhTgcHH1rMJKjkUFJG6K3NdcncTYu7bkd6cSSKj8mUclGp4GVpbmTkITmmbscf1oopMsN5x/8AXqQN8tFFCZnI/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="it_dashboard" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -564,9 +631,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">vault.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/pass_app.png" alt="Pass App" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHK47g0mKtB0Cj92p/CoZcMxIAA9BSJFS3mdQyROynuFpTbTgZMLgD/ZNa9hcxpYxqZUUjOQT71JLdxGJx5yH5T3qhmGGPrTWJooqAIzSUUUwP/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="pass_app" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -616,9 +686,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">mdm.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKYJ23fjUbe1OPToaYamxVxdpFLxSbhRQA7C4/iz9abiiimAqqpznNBAHTNFFAH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="asset_monitor" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -668,9 +741,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">tasks.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/task_tracking.png" alt="Task Tracking" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLZyqjIOT61GWOeuKQEdyabxn2qmxC7m9aXe47mnuIRGpXdu756UuIPIz8/mfpQhJ3IgRScZoopFEj+V5Y2qwbuS3FS+TD5G7L78Z9qKKumk73Jluj/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="task_tracking" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -720,9 +796,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">accounting.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/accounting.png" alt="Thai Accounting" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDdRcdKCo9P1pw70YHpQAlFOooAaDyeKAwLY7iiigBCcc806iigD//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/accounting.webp" src="images/accounting.png" alt="accounting" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -772,9 +851,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">pos-stock.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/inventory.png" alt="Inventory" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMZicDt6ZrozY2oUbo0CY5yT/jXN9xXYKoZBnnincViqunWTqCsSEeoJ/xp39mWf8AzxH5mpyyR4DEKCeO1ObPG09+eKNQOO7iuwT7g+lFFACOrNja2PwzQFcEZcEf7tFFAz//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/inventory.webp" src="images/inventory.png" alt="inventory" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -825,9 +907,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">fitpulse.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/fitpulse.png" alt="FitPulse Pro" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJUFkGZAOOlNMY5xIppAoKDCtn9KTHbac0ASvAERHEqksM4HamODg/Pmkxnopz9KGXAztI+ooQD44S0YbdgYz+o/xqX7OoJyxOP/isUUVF3cRGFUPIOwPFMZcAnNFFWM//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="fitpulse" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -878,9 +963,12 @@
                             <span class="text-[10px] text-slate-400 font-mono">tickets.nexuscore.cloud</span>
                             <span class="w-5"></span>
                         </div>
-                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950">
-                            <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDM2/IDuAppH+0KmhVjko2CPUCovK3c0AJGNz7S2B61cmsVjtjKJtx/u4qiVUHv+VBjGM/NihjJgiFclRk96XagH3RRRQIQxpj7ooKJj7ooooA//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/tikkethub.webp" src="images/tikkethub.png" alt="tikkethub" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
                                     <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
                                 </span>
@@ -918,11 +1006,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(37,_99,_235,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(37,_99,_235,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCiGGKvST2rQOohG8rhTgcHH1rMJKjkUFJG6K3NdcncTYu7bkd6cSSKj8mUclGp4GVpbmTkITmmbscf1oopMsN5x/8AXqQN8tFFCZnI/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/it_dashboard.webp" type="image/webp">
-                            <img src="images/it_dashboard.png" alt="IT Monthly Dashboard" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/it_dashboard.png" alt="IT Monthly Dashboard" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1033,11 +1124,14 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(34,_197,_94,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(34,_197,_94,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHK47g0mKtB0Cj92p/CoZcMxIAA9BSJFS3mdQyROynuFpTbTgZMLgD/ZNa9hcxpYxqZUUjOQT71JLdxGJx5yH5T3qhmGGPrTWJooqAIzSUUUwP/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/pass_app.webp" type="image/webp">
-                            <img src="images/pass_app.png" alt="Pass App" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/pass_app.png" alt="Pass App" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1101,11 +1195,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(147,_51,_234,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(147,_51,_234,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKYJ23fjUbe1OPToaYamxVxdpFLxSbhRQA7C4/iz9abiiimAqqpznNBAHTNFFAH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/asset_monitor.webp" type="image/webp">
-                            <img src="images/asset_monitor.png" alt="iOS Monitor" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/asset_monitor.png" alt="iOS Monitor" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1201,11 +1298,14 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(219,_39,_119,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(219,_39,_119,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLZyqjIOT61GWOeuKQEdyabxn2qmxC7m9aXe47mnuIRGpXdu756UuIPIz8/mfpQhJ3IgRScZoopFEj+V5Y2qwbuS3FS+TD5G7L78Z9qKKumk73Jluj/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/task_tracking.webp" type="image/webp">
-                            <img src="images/task_tracking.png" alt="Task Tracking" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/task_tracking.png" alt="Task Tracking" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1269,11 +1369,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(234,_179,_8,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(234,_179,_8,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDdRcdKCo9P1pw70YHpQAlFOooAaDyeKAwLY7iiigBCcc806iigD//Z" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/accounting.webp" type="image/webp">
-                            <img src="images/accounting.png" alt="Thai Accounting" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/accounting.png" alt="Thai Accounting" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1369,11 +1472,14 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(249,_115,_22,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(249,_115,_22,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMZicDt6ZrozY2oUbo0CY5yT/jXN9xXYKoZBnnincViqunWTqCsSEeoJ/xp39mWf8AzxH5mpyyR4DEKCeO1ObPG09+eKNQOO7iuwT7g+lFFACOrNja2PwzQFcEZcEf7tFFAz//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/inventory.webp" type="image/webp">
-                            <img src="images/inventory.png" alt="Inventory POS" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/inventory.png" alt="Inventory POS" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1437,11 +1543,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(132,_204,_22,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(132,_204,_22,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJUFkGZAOOlNMY5xIppAoKDCtn9KTHbac0ASvAERHEqksM4HamODg/Pmkxnopz9KGXAztI+ooQD44S0YbdgYz+o/xqX7OoJyxOP/isUUVF3cRGFUPIOwPFMZcAnNFFWM//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/fitpulse.webp" type="image/webp">
-                            <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/fitpulse.png" alt="FitPulse Pro Gym Management" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -1543,11 +1652,14 @@
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 flex justify-center">
-                    <div class="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(244,_63,_94,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(244,_63,_94,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDM2/IDuAppH+0KmhVjko2CPUCovK3c0AJGNz7S2B61cmsVjtjKJtx/u4qiVUHv+VBjGM/NihjJgiFclRk96XagH3RRRQIQxpj7ooKJj7ooooA//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
-                        <picture>
+                        <picture class="w-full h-full block">
                             <source srcset="images/tikkethub.webp" type="image/webp">
-                            <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="w-full block rounded-2xl" loading="lazy" decoding="async">
+                            <img src="images/tikkethub.png" alt="TikketHub Stage Pass" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                         </picture>
                         
                         <!-- Hotspot Instruction Overlay Badge -->
@@ -2162,6 +2274,26 @@
     <script>
         // --- Mobile Menu Toggle ---
         document.addEventListener("DOMContentLoaded", () => {
+            // --- Progressive Image Blur-Up & Placeholder Loader ---
+            const initProgressiveBlurUp = () => {
+                const wrappers = document.querySelectorAll('.blur-up-wrapper');
+                wrappers.forEach(wrapper => {
+                    const img = wrapper.querySelector('.blur-up-img');
+                    if (!img) return;
+                    const markLoaded = () => {
+                        img.classList.add('is-loaded');
+                        wrapper.classList.add('loaded');
+                    };
+                    if (img.complete && img.naturalWidth > 0) {
+                        markLoaded();
+                    } else {
+                        img.addEventListener('load', markLoaded, { once: true });
+                        img.addEventListener('error', markLoaded, { once: true });
+                    }
+                });
+            };
+            initProgressiveBlurUp();
+
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
