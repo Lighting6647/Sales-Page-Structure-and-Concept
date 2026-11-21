@@ -1,5 +1,5 @@
 // NexusCore Production Service Worker (Zero-Stale-HTML Auto-Updater)
-const CACHE_NAME = 'nexuscore-v7';
+const CACHE_NAME = 'nexuscore-v8';
 const STATIC_ASSETS = [
     './images/it_dashboard.png',
     './images/pass_app.png',

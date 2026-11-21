@@ -85,7 +85,7 @@
     </script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230071e3'/><path d='M32 14L42 24L32 34L22 24Z' fill='white'/><path d='M32 30L42 40L32 50L22 40Z' fill='white' opacity='0.82'/><path d='M16 32L24 24L32 32L24 40Z' fill='white' opacity='0.65'/><path d='M32 32L40 24L48 32L40 40Z' fill='white' opacity='0.65'/></svg>">
     <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NexusCore">
@@ -360,20 +360,20 @@
 
     <!-- 1. Apple Glassmorphic Header & Navigation -->
     <nav id="main-nav" class="apple-glass-nav fixed w-full z-50 top-0">
-        <!-- Top Promotional Announcement Banner -->
-        <div id="top-announcement-banner" class="bg-[#1D1D1F] text-white py-2 px-4 border-b border-white/[0.08] transition-all duration-300">
+        <!-- Top Promotional Announcement Banner (Apple Store Clean Bar) -->
+        <div id="top-announcement-banner" class="bg-[#F5F5F7] text-[#1D1D1F] py-2 px-4 border-b border-black/[0.06] transition-all duration-300">
             <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs">
                 <div class="flex items-center gap-2.5 overflow-hidden text-ellipsis whitespace-nowrap">
-                    <span class="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 rounded-full border border-white/10 tracking-wider">
+                    <span class="inline-flex items-center gap-1.5 bg-white text-[#BF4800] text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 rounded-full border border-black/[0.08] tracking-wider shadow-xs">
                         <i class="ph-fill ph-crown"></i> EXECUTIVE PRIVILEGE
                     </span>
-                    <span class="text-white/80 text-xs">สิทธิ์ทดลองใช้ระบบฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-300 font-semibold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
+                    <span class="text-[#1D1D1F]/80 text-xs">สิทธิ์ทดลองใช้ระบบฟรี 30 วัน เดือนนี้เหลือ <strong class="text-[#0071E3] font-bold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
                 </div>
                 <div class="flex items-center gap-3 flex-shrink-0">
-                    <button type="button" id="top-claim-btn" class="bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold px-3.5 py-1 rounded-full text-xs transition-all flex items-center gap-1">
+                    <button type="button" id="top-claim-btn" class="bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold px-3.5 py-1 rounded-full text-xs transition-all flex items-center gap-1 shadow-xs">
                         <span>รับสิทธิ์ทันที</span> &rarr;
                     </button>
-                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-white/60 hover:text-white transition-colors">
+                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-[#86868B] hover:text-[#1D1D1F] transition-colors">
                         <i class="ph-bold ph-x text-sm"></i>
                     </button>
                 </div>
@@ -447,40 +447,39 @@
         </div>
     </nav>
 
-    <!-- 2. Hero Section (Apple Pro Dark OLED Stage - 1-Viewport Exact Fit) -->
-    <section id="hero" class="min-h-[100svh] pt-[102px] sm:pt-[112px] pb-3 sm:pb-4 flex flex-col justify-between bg-black text-white relative overflow-hidden border-b border-white/10">
-        <!-- Studio Ambient Spotlight -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-[radial-gradient(ellipse_at_top,rgba(0,113,227,0.22),transparent_70%)] pointer-events-none"></div>
-        <div class="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+    <!-- 2. Hero Section (Apple Store Clean Editorial - Style 1 · 1-Viewport Exact Fit) -->
+    <section id="hero" class="min-h-[100svh] pt-[102px] sm:pt-[112px] pb-3 sm:pb-4 flex flex-col justify-between bg-white text-[#1D1D1F] relative overflow-hidden border-b border-black/[0.06]">
+        <!-- Subtle Apple Store Top Horizon Highlight -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[360px] bg-[radial-gradient(ellipse_at_top,rgba(0,113,227,0.06),transparent_70%)] pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
             <!-- Executive Status Badge -->
-            <div class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-md text-white/90 text-[11px] font-medium tracking-wide mb-2.5">
+            <div class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-[#F5F5F7] text-[#1D1D1F] text-[11px] font-medium tracking-wide mb-2.5">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30D158] opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-[#30D158]"></span>
                 </span>
                 <span class="font-semibold tracking-widest uppercase">Enterprise Suite 2026</span>
-                <span class="w-px h-3 bg-white/20"></span>
-                <span class="text-[#2997FF] font-medium flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
+                <span class="w-px h-3 bg-black/15"></span>
+                <span class="text-[#0071E3] font-semibold flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
             </div>
 
-            <h1 class="hero-anim text-3xl sm:text-5xl font-bold leading-[1.06] text-white mb-2 tracking-tight" style="font-size: clamp(1.8rem, 3.8vw, 3.35rem) !important;">
+            <h1 class="hero-anim text-3xl sm:text-5xl font-bold leading-[1.06] text-[#1D1D1F] mb-2 tracking-tight" style="font-size: clamp(1.8rem, 3.8vw, 3.35rem) !important;">
                 โครงสร้างพื้นฐานดิจิทัล<br>
-                <span class="bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73] bg-clip-text text-transparent">ระดับองค์กรเพื่อธุรกิจไทย</span>
+                <span class="text-[#6E6E73]">ระดับองค์กรเพื่อธุรกิจไทย</span>
             </h1>
-            <p class="hero-anim text-xs sm:text-sm md:text-base text-[#A1A1A6] mb-3.5 sm:mb-4 max-w-2xl mx-auto leading-relaxed font-normal">
+            <p class="hero-anim text-xs sm:text-sm md:text-base text-[#6E6E73] mb-3.5 sm:mb-4 max-w-2xl mx-auto leading-relaxed font-normal">
                 ยกระดับการบริหารด้วยโซลูชันรวมศูนย์: ระบบบัญชีและภาษีไทย, สต๊อกสินค้า POS, ฟิตเนส FitPulse Pro, จองบัตร TikketHub และ IT Operations ภายใต้มาตรฐานความปลอดภัยระดับสากล
             </p>
             <div class="hero-anim flex flex-col sm:flex-row justify-center items-center gap-2.5 mb-2.5">
-                <a href="#cta" class="w-full sm:w-auto bg-[#0071E3] hover:bg-[#0077ED] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-[0_8px_28px_rgba(0,113,227,0.35)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                <a href="#cta" class="w-full sm:w-auto bg-[#0071E3] hover:bg-[#0077ED] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-[0_6px_20px_rgba(0,113,227,0.28)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เริ่มต้นทดลองใช้ฟรี 14 วัน</span>
                     <i class="ph-bold ph-arrow-right text-sm"></i>
                 </a>
-                <a href="#products" class="w-full sm:w-auto bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/15 px-5 py-2.5 rounded-full font-medium text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md">
-                    <i class="ph-fill ph-play-circle text-lg text-[#2997FF]"></i> ดูการทำงานตัวอย่าง
+                <a href="#products" class="w-full sm:w-auto bg-white hover:bg-[#0071E3]/5 text-[#0071E3] border border-[#0071E3] px-5 py-2.5 rounded-full font-medium text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-play-circle text-lg text-[#0071E3]"></i> ดูการทำงานตัวอย่าง
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-sm" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
                     <i class="ph-fill ph-chat-circle-dots text-lg"></i>
                     <span>ปรึกษาทีมวิศวกรผ่าน LINE</span>
                     <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-medium">หรือสแกน QR</span>
@@ -488,20 +487,20 @@
             </div>
 
             <!-- Zero-Risk Trust & Verification Strip -->
-            <div class="hero-anim flex flex-wrap items-center justify-center gap-y-1 gap-x-4 text-[11px] text-[#86868B] mb-1.5">
-                <button type="button" class="security-verify-trigger flex items-center gap-1.5 text-white/80 hover:text-emerald-300 px-3 py-1 rounded-full bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 transition-all cursor-pointer group">
-                    <i class="ph-fill ph-shield-check text-[#30D158] text-sm group-hover:scale-110 transition-transform"></i>
+            <div class="hero-anim flex flex-wrap items-center justify-center gap-y-1 gap-x-4 text-[11px] text-[#6E6E73] mb-1.5">
+                <button type="button" class="security-verify-trigger flex items-center gap-1.5 text-[#1D1D1F] hover:text-emerald-700 px-3 py-1 rounded-full bg-[#F5F5F7] hover:bg-emerald-50 border border-black/[0.08] transition-all cursor-pointer group">
+                    <i class="ph-fill ph-shield-check text-emerald-600 text-sm group-hover:scale-110 transition-transform"></i>
                     <span>ปลอดภัย 100% ไม่ใช่ลิงก์ดูดเงิน / ไร้ไวรัส</span>
-                    <span class="text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded-full">ตรวจใบรับรอง</span>
+                    <span class="text-[10px] font-mono font-semibold bg-emerald-500/15 text-emerald-800 px-1.5 py-0.5 rounded-full">ตรวจใบรับรอง</span>
                 </button>
-                <span class="hidden sm:inline text-white/20">•</span>
-                <div class="flex items-center gap-1.5 text-white/80">
-                    <i class="ph-fill ph-credit-card text-[#2997FF] text-sm"></i>
+                <span class="hidden sm:inline text-black/20">•</span>
+                <div class="flex items-center gap-1.5 text-[#1D1D1F]/80">
+                    <i class="ph-fill ph-credit-card text-[#0071E3] text-sm"></i>
                     <span>ทดลองฟรี 14 วัน ไม่ต้องกรอกบัตรเครดิต</span>
                 </div>
-                <span class="hidden sm:inline text-white/20">•</span>
-                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] animate-ping"></span>
+                <span class="hidden sm:inline text-black/20">•</span>
+                <div class="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
                     <span class="font-medium text-[11px]">วิศวกรออนไลน์ (เวลาตอบกลับเฉลี่ย &lt; 3 นาที)</span>
                 </div>
             </div>
@@ -513,80 +512,80 @@
             <!-- Centered Image Showcase (3D Coverflow Slider - 7 Apps) -->
             <div class="relative w-full max-w-[1400px] mx-auto h-[clamp(170px,26vh,330px)] mt-1 perspective-[1200px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
-                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
                 
                 <!-- App 2: Accounting -->
-                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
 
                 <!-- App 3: Team Task Tracking -->
-                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
 
                 <!-- App 4: IT Dashboard (Default Center - Index 3) -->
-                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
                 
                 <!-- App 5: FitPulse Pro -->
-                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
 
                 <!-- App 6: Pass Vault -->
-                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
                 
                 <!-- App 7: Asset Monitor -->
-                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
+                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_60px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-black/[0.08] object-cover object-top opacity-0">
 
-                <!-- Pedestal Light Reflection Under Carousel -->
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-10 bg-gradient-to-r from-transparent via-[#0071E3]/25 to-transparent blur-2xl pointer-events-none"></div>
+                <!-- Pedestal Soft Shadow Under Carousel -->
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-10 bg-gradient-to-r from-transparent via-black/[0.07] to-transparent blur-xl pointer-events-none"></div>
             </div>
 
             <!-- Coverflow Controls (Visible completely above the fold) -->
             <div class="flex justify-center items-center gap-3 mt-1.5 sm:mt-2 relative z-40">
-                <button id="prev-slide" aria-label="Previous Slide" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                <button id="prev-slide" aria-label="Previous Slide" class="w-9 h-9 rounded-full bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#1D1D1F] flex items-center justify-center transition-all border border-black/[0.08] hover:scale-105 active:scale-95">
                     <i class="ph-bold ph-caret-left text-base"></i>
                 </button>
-                <div class="flex gap-2 mx-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl" id="slide-dots">
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
-                    <div class="w-7 h-2 rounded-full bg-white cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                <div class="flex gap-2 mx-2 px-3.5 py-1.5 rounded-full bg-[#F5F5F7] border border-black/[0.08]" id="slide-dots">
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
+                    <div class="w-7 h-2 rounded-full bg-[#0071E3] cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-black/20 cursor-pointer dot transition-all"></div>
                 </div>
-                <button id="next-slide" aria-label="Next Slide" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                <button id="next-slide" aria-label="Next Slide" class="w-9 h-9 rounded-full bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#1D1D1F] flex items-center justify-center transition-all border border-black/[0.08] hover:scale-105 active:scale-95">
                     <i class="ph-bold ph-caret-right text-base"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 3. Enterprise Standards & Security Architecture Bar -->
-    <section class="py-7 bg-[#0A0A0C] border-b border-white/10 text-white/80">
+    <!-- 3. Enterprise Standards & Security Architecture Bar (Apple Store #F5F5F7) -->
+    <section class="py-7 bg-[#F5F5F7] border-b border-black/[0.06] text-[#1D1D1F]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-[#2997FF]">
+                    <div class="w-9 h-9 rounded-xl bg-white border border-black/[0.08] flex items-center justify-center text-[#0071E3] shadow-xs">
                         <i class="ph-bold ph-shield-check text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-semibold text-white uppercase tracking-wider block">Enterprise Grade Architecture</span>
-                        <span class="text-[11px] text-[#86868B]">มาตรฐานความปลอดภัยและการเชื่อมต่อระบบระดับสากล</span>
+                        <span class="text-xs font-semibold text-[#1D1D1F] uppercase tracking-wider block">Enterprise Grade Architecture</span>
+                        <span class="text-[11px] text-[#6E6E73]">มาตรฐานความปลอดภัยและการเชื่อมต่อระบบระดับสากล</span>
                     </div>
                 </div>
                 <!-- 4 Trust Badges -->
                 <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs">
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
-                        <i class="ph-fill ph-lock-key text-[#2997FF] text-sm"></i>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-[#1D1D1F] shadow-xs">
+                        <i class="ph-fill ph-lock-key text-[#0071E3] text-sm"></i>
                         <span class="font-medium">Zero-Knowledge Security</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
-                        <i class="ph-fill ph-check-circle text-[#30D158] text-sm"></i>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-[#1D1D1F] shadow-xs">
+                        <i class="ph-fill ph-check-circle text-emerald-600 text-sm"></i>
                         <span class="font-medium">Thai PDPA Compliant</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
-                        <i class="ph-fill ph-cloud-check text-[#64D2FF] text-sm"></i>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-[#1D1D1F] shadow-xs">
+                        <i class="ph-fill ph-cloud-check text-[#0071E3] text-sm"></i>
                         <span class="font-medium">99.9% High Availability SLA</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
-                        <i class="ph-fill ph-clock-afternoon text-amber-400 text-sm"></i>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-[#1D1D1F] shadow-xs">
+                        <i class="ph-fill ph-clock-afternoon text-amber-500 text-sm"></i>
                         <span class="font-medium">24/7 Dedicated Support</span>
                     </div>
                 </div>
@@ -595,7 +594,7 @@
     </section>
 
     <!-- 4. Core Values (Apple Clean Light Bento Portfolio) -->
-    <section id="features" class="py-14 sm:py-16 bg-[#F5F5F7] text-center relative border-b border-black/[0.06]">
+    <section id="features" class="py-14 sm:py-16 bg-white text-center relative border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="apple-reveal">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[#0071E3] text-[11px] font-semibold uppercase tracking-widest mb-3 shadow-xs">
@@ -1188,7 +1187,7 @@
 
     <!-- Removed Demos Section -->
     <!-- 5. Benefit Deep Dive 1 (Left Image / Right Text) -->
-    <section id="products" class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
+    <section id="products" class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6">
@@ -1290,7 +1289,7 @@
     </section>
 
     <!-- Benefit Deep Dive 2 (Right Image) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1377,7 +1376,7 @@
     </section>
 
     <!-- Benefit Deep Dive 3 (Left Image) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1464,7 +1463,7 @@
     </section>
 
     <!-- Benefit Deep Dive 4 (Right Image) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1551,7 +1550,7 @@
     </section>
 
     <!-- Benefit Deep Dive 5 (Left Image) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1638,7 +1637,7 @@
     </section>
 
     <!-- Benefit Deep Dive 6 (Right Image) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1725,7 +1724,7 @@
     </section>
 
     <!-- Benefit Deep Dive 7 (Left Image - FitPulse Pro) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
@@ -1815,7 +1814,7 @@
     </section>
 
     <!-- Benefit Deep Dive 8 (Right Image - TikketHub) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1905,7 +1904,7 @@
     </section>
 
     <!-- Benefit Deep Dive 9 (Left Image - Tamsang POS) -->
-    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1994,66 +1993,62 @@
         </div>
     </section>
 
-    <!-- 6. Proof in Numbers (Apple Pro OLED Dark Showcase) -->
-    <section id="stats" class="py-24 sm:py-28 bg-black text-white relative overflow-hidden border-y border-white/10">
-        <!-- Subtle Apple Blue Spotlight -->
-        <div class="absolute -top-32 right-10 w-96 h-96 bg-[#0071E3]/15 rounded-full blur-[130px] pointer-events-none"></div>
-        <div class="absolute -bottom-32 left-10 w-96 h-96 bg-[#30D158]/10 rounded-full blur-[130px] pointer-events-none"></div>
-
+    <!-- 6. Proof in Numbers (Apple Store Clean Editorial Light) -->
+    <section id="stats" class="py-24 sm:py-28 bg-white text-[#1D1D1F] relative overflow-hidden border-y border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                 <div class="w-full lg:w-1/3 text-left apple-reveal">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[#2997FF] text-[11px] font-semibold uppercase tracking-widest mb-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5F5F7] border border-black/[0.08] text-[#0071E3] text-[11px] font-semibold uppercase tracking-widest mb-4">
                         <i class="ph-bold ph-chart-line-up text-sm"></i> Proven Enterprise Benchmarks
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4 tracking-tight leading-tight">
                         ขับเคลื่อนการเติบโต<br>
-                        <span class="bg-gradient-to-r from-[#2997FF] via-[#64D2FF] to-[#30D158] bg-clip-text text-transparent">ด้วยข้อมูลสถิติที่พิสูจน์แล้ว</span>
+                        <span class="text-[#0071E3]">ด้วยข้อมูลสถิติที่พิสูจน์แล้ว</span>
                     </h2>
-                    <p class="text-[#A1A1A6] text-sm sm:text-base leading-relaxed mb-6">
+                    <p class="text-[#6E6E73] text-sm sm:text-base leading-relaxed mb-6">
                         แพลตฟอร์มที่ได้รับความไว้วางใจจากธุรกิจและองค์กรทั่วประเทศ ประมวลผลธุรกรรมที่ปลอดภัยนับล้านรายการในแต่ละเดือน
                     </p>
-                    <div class="inline-flex items-center gap-2 text-xs font-medium text-[#30D158] bg-[#30D158]/10 border border-[#30D158]/20 px-3.5 py-1.5 rounded-full">
+                    <div class="inline-flex items-center gap-2 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full">
                         <i class="ph-fill ph-check-circle text-base"></i> อัปเดตสถิติแบบ Real-time ทุก 24 ชม.
                     </div>
                 </div>
                 <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <!-- Stat Card 1 -->
-                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#0071E3]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-[#0071E3]/15 border border-[#0071E3]/30 flex items-center justify-center text-[#2997FF] text-3xl flex-shrink-0">
+                    <div class="apple-bento-stat bg-[#F5F5F7] p-6 sm:p-7 rounded-[24px] border border-black/[0.06] hover:border-[#0071E3]/40 flex items-center gap-5 transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <div class="w-14 h-14 rounded-2xl bg-white border border-black/[0.08] flex items-center justify-center text-[#0071E3] text-3xl flex-shrink-0 shadow-xs">
                             <i class="ph-fill ph-users"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="2245341">0</h3>
-                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">ผู้ใช้งานระบบทั้งหมด (Active Members)</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D1D1F] tracking-tight counter-val" data-target="2245341">0</h3>
+                            <p class="text-[#6E6E73] text-xs sm:text-sm mt-0.5">ผู้ใช้งานระบบทั้งหมด (Active Members)</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 2 -->
-                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#30D158]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-[#30D158]/15 border border-[#30D158]/30 flex items-center justify-center text-[#30D158] text-3xl flex-shrink-0">
+                    <div class="apple-bento-stat bg-[#F5F5F7] p-6 sm:p-7 rounded-[24px] border border-black/[0.06] hover:border-emerald-500/40 flex items-center gap-5 transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <div class="w-14 h-14 rounded-2xl bg-white border border-black/[0.08] flex items-center justify-center text-emerald-600 text-3xl flex-shrink-0 shadow-xs">
                             <i class="ph-fill ph-buildings"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="46328">0</h3>
-                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">องค์กรและธุรกิจที่ไว้วางใจ</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D1D1F] tracking-tight counter-val" data-target="46328">0</h3>
+                            <p class="text-[#6E6E73] text-xs sm:text-sm mt-0.5">องค์กรและธุรกิจที่ไว้วางใจ</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 3 -->
-                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-amber-400/50 flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 text-3xl flex-shrink-0">
+                    <div class="apple-bento-stat bg-[#F5F5F7] p-6 sm:p-7 rounded-[24px] border border-black/[0.06] hover:border-amber-500/40 flex items-center gap-5 transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <div class="w-14 h-14 rounded-2xl bg-white border border-black/[0.08] flex items-center justify-center text-amber-500 text-3xl flex-shrink-0 shadow-xs">
                             <i class="ph-fill ph-hand-coins"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="828867">0</h3>
-                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">รายการเบิกจ่ายและเอกสารภาษี</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D1D1F] tracking-tight counter-val" data-target="828867">0</h3>
+                            <p class="text-[#6E6E73] text-xs sm:text-sm mt-0.5">รายการเบิกจ่ายและเอกสารภาษี</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 4 -->
-                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#64D2FF]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-[#64D2FF]/15 border border-[#64D2FF]/30 flex items-center justify-center text-[#64D2FF] text-3xl flex-shrink-0">
+                    <div class="apple-bento-stat bg-black p-6 sm:p-7 rounded-[24px] border border-black flex items-center gap-5 transition-all hover:-translate-y-1 hover:shadow-xl">
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#2997FF] text-3xl flex-shrink-0">
                             <i class="ph-fill ph-credit-card"></i>
                         </div>
                         <div class="text-left">
@@ -2400,28 +2395,25 @@
         </div>
     </section>
 
-    <!-- 9. Final Call to Action (Apple Pro OLED Finale) -->
-    <section id="cta" class="py-24 sm:py-32 bg-black relative overflow-hidden text-center border-t border-white/10">
-        <!-- Studio Ambient Glow -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[820px] h-[420px] bg-[radial-gradient(ellipse_at_center,rgba(0,113,227,0.22),transparent_70%)] pointer-events-none"></div>
-
+    <!-- 9. Final Call to Action (Apple Store Clean Editorial Finale) -->
+    <section id="cta" class="py-24 sm:py-28 bg-[#F5F5F7] relative overflow-hidden text-center border-t border-black/[0.06]">
         <div class="max-w-4xl mx-auto px-4 relative z-10 apple-reveal">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-[#2997FF] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-[#30D158] animate-ping"></span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-[#0071E3] text-xs font-semibold tracking-wider uppercase mb-6 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                 <span>Executive Onboarding &amp; Enterprise Setup</span>
             </div>
-            <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-[#1D1D1F] mb-6 leading-tight tracking-tight">
                 พร้อมยกระดับโครงสร้างธุรกิจ <br>
-                <span class="bg-clip-text text-transparent bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73]">สู่มาตรฐานระดับองค์กรสากลแล้วหรือยัง?</span>
+                <span class="text-[#6E6E73]">สู่มาตรฐานระดับองค์กรสากลแล้วหรือยัง?</span>
             </h2>
-            <p class="text-base sm:text-lg text-[#A1A1A6] mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-base sm:text-lg text-[#6E6E73] mb-10 max-w-2xl mx-auto leading-relaxed">
                 เริ่มต้นทดลองใช้งานแพลตฟอร์มระดับ Enterprise ฟรี 14 วัน พร้อมบริการ Onboarding และทีมวิศวกรดูแลความปลอดภัยตลอด 24 ชั่วโมง
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#features" class="inline-flex items-center justify-center gap-2.5 bg-[#0071E3] hover:bg-[#0077ED] text-white px-8 py-4 rounded-full font-semibold text-base transition-all shadow-[0_10px_35px_rgba(0,113,227,0.4)] hover:-translate-y-0.5">
+                <a href="#features" class="inline-flex items-center justify-center gap-2.5 bg-[#0071E3] hover:bg-[#0077ED] text-white px-8 py-4 rounded-full font-semibold text-base transition-all shadow-[0_8px_24px_rgba(0,113,227,0.3)] hover:-translate-y-0.5">
                     <i class="ph-bold ph-squares-four text-lg"></i> เลือกแอปพลิเคชันเพื่อทดลองใช้ &rarr;
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-full font-semibold text-base transition-all hover:-translate-y-0.5" title="คุยตรงกับทีมวิศวกรผ่าน LINE Official (ปลอดภัย 100%)">
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-full font-semibold text-base transition-all hover:-translate-y-0.5 shadow-sm" title="คุยตรงกับทีมวิศวกรผ่าน LINE Official (ปลอดภัย 100%)">
                     <i class="ph-fill ph-chat-circle-dots text-xl"></i>
                     <span>ปรึกษาทีมวิศวกรผ่าน LINE</span>
                     <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-semibold">หรือสแกน QR</span>
@@ -2429,117 +2421,115 @@
             </div>
 
             <!-- Zero-Risk Trust & Verification Strip -->
-            <div class="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-[#86868B]">
-                <div class="flex items-center gap-1.5 text-white/80">
-                    <i class="ph-fill ph-shield-check text-[#30D158] text-sm"></i>
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-[#6E6E73]">
+                <div class="flex items-center gap-1.5 text-[#1D1D1F]">
+                    <i class="ph-fill ph-shield-check text-emerald-600 text-sm"></i>
                     <span>บัญชีทางการ LINE Official ยืนยันตัวตน (Verified Shield)</span>
                 </div>
-                <span class="hidden sm:inline text-white/20">•</span>
-                <div class="flex items-center gap-1.5 text-white/80">
-                    <i class="ph-fill ph-check-circle text-[#2997FF] text-sm"></i>
+                <span class="hidden sm:inline text-black/20">•</span>
+                <div class="flex items-center gap-1.5 text-[#1D1D1F]">
+                    <i class="ph-fill ph-check-circle text-[#0071E3] text-sm"></i>
                     <span>ปลอดภัย 100% ไม่ใช่ลิงก์ดูดเงิน / ไร้ไวรัส</span>
                 </div>
-                <span class="hidden sm:inline text-white/20">•</span>
-                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] animate-ping"></span>
+                <span class="hidden sm:inline text-black/20">•</span>
+                <div class="flex items-center gap-1.5 text-emerald-700 bg-white px-3 py-1 rounded-full border border-black/[0.08]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
                     <span>วิศวกรพร้อมตอบทันที (เวลาตอบกลับเฉลี่ย &lt; 3 นาที)</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 10. Footer -->
-    <footer class="bg-[#0A0A0C] text-white py-16 border-t border-white/10">
+    <!-- 10. Footer (Apple Store Clean Structured Light Footer) -->
+    <footer class="bg-white text-[#1D1D1F] py-16 border-t border-black/[0.08]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand & Socials -->
             <div class="col-span-1 md:col-span-1">
                 <div class="flex items-center gap-2.5 mb-4">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400 p-[1px] shadow-lg shadow-blue-500/20">
-                        <div class="w-full h-full bg-[#07090E] rounded-[11px] flex items-center justify-center">
-                            <i class="ph-fill ph-diamonds-four text-blue-400 text-xl"></i>
-                        </div>
+                    <div class="w-10 h-10 rounded-xl bg-[#0071E3] flex items-center justify-center shadow-sm">
+                        <i class="ph-fill ph-diamonds-four text-white text-xl"></i>
                     </div>
-                    <span class="font-extrabold text-2xl tracking-tight text-white font-heading">Nexus<span class="text-blue-500">Core</span></span>
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 bg-slate-800/80 border border-slate-700/80 px-2 py-0.5 rounded-md ml-1">Suite</span>
+                    <span class="font-bold text-2xl tracking-tight text-[#1D1D1F]">Nexus<span class="text-[#0071E3]">Core</span></span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#6E6E73] bg-[#F5F5F7] border border-black/[0.08] px-2 py-0.5 rounded-md ml-1">Suite</span>
                 </div>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                <p class="text-[#6E6E73] text-sm mb-6 leading-relaxed">
                     ระบบบริหารจัดการองค์กรที่ครบวงจรที่สุด สถาปัตยกรรมระดับ Enterprise ปลอดภัย พร้อมวิศวกรซัพพอร์ตตลอด 24 ชั่วโมง
                 </p>
-                <div class="flex space-x-3">
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-10 h-10 rounded-xl bg-[#06C755]/15 border border-[#06C755]/40 flex items-center justify-center hover:bg-[#06C755] hover:border-[#06C755] hover:scale-105 transition-all text-[#06C755] hover:text-white shadow-sm" title="LINE Official Account"><i class="ph-fill ph-chat-circle-dots text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="Facebook"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-red-600 hover:border-red-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="YouTube"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800/70 border border-slate-700/80 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 hover:scale-105 transition-all text-slate-300 hover:text-white shadow-sm" title="Instagram"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                <div class="flex space-x-2.5">
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center hover:bg-[#06C755] hover:border-[#06C755] hover:scale-105 transition-all text-[#06C755] hover:text-white" title="LINE Official Account"><i class="ph-fill ph-chat-circle-dots text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#F5F5F7] border border-black/[0.08] flex items-center justify-center hover:bg-[#0071E3] hover:border-[#0071E3] hover:scale-105 transition-all text-[#1D1D1F] hover:text-white" title="Facebook"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#F5F5F7] border border-black/[0.08] flex items-center justify-center hover:bg-red-600 hover:border-red-600 hover:scale-105 transition-all text-[#1D1D1F] hover:text-white" title="YouTube"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#F5F5F7] border border-black/[0.08] flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 hover:scale-105 transition-all text-[#1D1D1F] hover:text-white" title="Instagram"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
                 </div>
             </div>
             
             <!-- Quick Links -->
             <div>
-                <h3 class="font-bold text-lg mb-6 text-gray-200">แอปพลิเคชัน (Apps)</h3>
-                <ul class="space-y-3 text-gray-400 text-sm">
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> IT Dashboard</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Pass App</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Device Monitor</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Task Tracking</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Accounting App (Express ERP)</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Inventory POS</a></li>
-                    <li><a href="#features" class="hover:text-lime-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> FitPulse Pro (Gym OS)</a></li>
-                    <li><a href="#features" class="hover:text-rose-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> TikketHub (Stage Pass)</a></li>
-                    <li><a href="#features" class="hover:text-orange-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Tamsang POS (ตามสั่ง)</a></li>
+                <h3 class="font-semibold text-base mb-5 text-[#1D1D1F]">แอปพลิเคชัน (Apps)</h3>
+                <ul class="space-y-2.5 text-[#6E6E73] text-sm">
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> IT Dashboard</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Pass App</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Device Monitor</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Task Tracking</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Accounting App (Express ERP)</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Inventory POS</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> FitPulse Pro (Gym OS)</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> TikketHub (Stage Pass)</a></li>
+                    <li><a href="#features" class="hover:text-[#0071E3] transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Tamsang POS (ตามสั่ง)</a></li>
                 </ul>
             </div>
 
             <!-- Company -->
             <div>
-                <h3 class="font-bold text-lg mb-6 text-gray-200">บริษัท (Company)</h3>
-                <ul class="space-y-3 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">เกี่ยวกับเรา (About us)</a></li>
-                    <li><a href="#pricing" class="hover:text-white transition-colors">ราคาแพ็กเกจ (Pricing)</a></li>
-                    <li><a href="#testimonials" class="hover:text-white transition-colors">รีวิวลูกค้า (Testimonials)</a></li>
-                    <li><a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i class="ph-fill ph-chat-circle-dots text-[#06C755]"></i> ติดต่อเราผ่าน LINE (24 ชม.)</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">นโยบายความเป็นส่วนตัว (Privacy Policy)</a></li>
+                <h3 class="font-semibold text-base mb-5 text-[#1D1D1F]">บริษัท (Company)</h3>
+                <ul class="space-y-2.5 text-[#6E6E73] text-sm">
+                    <li><a href="#" class="hover:text-[#1D1D1F] transition-colors">เกี่ยวกับเรา (About us)</a></li>
+                    <li><a href="#pricing" class="hover:text-[#1D1D1F] transition-colors">ราคาแพ็กเกจ (Pricing)</a></li>
+                    <li><a href="#testimonials" class="hover:text-[#1D1D1F] transition-colors">รีวิวลูกค้า (Testimonials)</a></li>
+                    <li><a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger hover:text-[#06C755] transition-colors flex items-center gap-1.5"><i class="ph-fill ph-chat-circle-dots text-[#06C755]"></i> ติดต่อเราผ่าน LINE (24 ชม.)</a></li>
+                    <li><a href="#" class="hover:text-[#1D1D1F] transition-colors">นโยบายความเป็นส่วนตัว (Privacy Policy)</a></li>
                 </ul>
             </div>
 
             <!-- LINE Official QR Card -->
             <div>
-                <h3 class="font-bold text-lg mb-4 text-slate-200 flex items-center gap-2">
+                <h3 class="font-semibold text-base mb-4 text-[#1D1D1F] flex items-center gap-2">
                     <i class="ph-fill ph-chat-circle-dots text-[#06C755]"></i> ติดต่อผ่าน LINE Official
                 </h3>
-                <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-4 mb-4 shadow-xl backdrop-blur-md">
-                    <div class="bg-white p-2 rounded-xl flex-shrink-0 shadow-md border border-emerald-500/30">
+                <div class="bg-[#F5F5F7] p-4 rounded-2xl border border-black/[0.08] flex items-center gap-4 mb-4">
+                    <div class="bg-white p-2 rounded-xl flex-shrink-0 shadow-xs border border-black/[0.06]">
                         <img src="images/line_qr.png" alt="LINE Official QR Code" class="w-20 h-20 object-contain rounded-lg" loading="lazy">
                     </div>
                     <div>
-                        <span class="text-xs text-white font-bold block mb-0.5">สแกน QR Code</span>
-                        <span class="text-[11px] text-slate-400 block mb-2 leading-tight">คุยกับทีมงาน ปรึกษาฟรี ตอบไวตลอด 24 ชม.</span>
-                        <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#06C755] hover:bg-[#05b34c] text-white text-[11px] font-bold shadow-sm transition-all">
+                        <span class="text-xs text-[#1D1D1F] font-bold block mb-0.5">สแกน QR Code</span>
+                        <span class="text-[11px] text-[#6E6E73] block mb-2 leading-tight">คุยกับทีมงาน ปรึกษาฟรี ตอบไวตลอด 24 ชม.</span>
+                        <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#06C755] hover:bg-[#05b34c] text-white text-[11px] font-semibold shadow-xs transition-all">
                             <span>เปิดแชท LINE</span> &rarr;
                         </a>
                     </div>
                 </div>
-                <p class="text-slate-400 text-xs mb-2">หรือสมัครรับข่าวสารและโปรโมชั่นพิเศษ:</p>
-                <div class="flex bg-slate-900/90 rounded-xl overflow-hidden border border-slate-800 focus-within:border-blue-500 transition-colors">
-                    <input type="email" placeholder="กรอกอีเมลของคุณ" class="bg-transparent text-sm px-4 py-2.5 w-full focus:outline-none text-white placeholder-slate-500">
-                    <button class="bg-blue-600 px-4 hover:bg-blue-500 transition-colors"><i class="ph-bold ph-paper-plane-tilt text-white"></i></button>
+                <p class="text-[#6E6E73] text-xs mb-2">หรือสมัครรับข่าวสารและโปรโมชั่นพิเศษ:</p>
+                <div class="flex bg-[#F5F5F7] rounded-full overflow-hidden border border-black/10 focus-within:border-[#0071E3] transition-colors">
+                    <input type="email" placeholder="กรอกอีเมลของคุณ" class="bg-transparent text-sm px-4 py-2 w-full focus:outline-none text-[#1D1D1F] placeholder-[#86868B]">
+                    <button class="bg-[#0071E3] px-4 hover:bg-[#0077ED] transition-colors"><i class="ph-bold ph-paper-plane-tilt text-white"></i></button>
                 </div>
             </div>
         </div>
         
         <!-- Bottom Bar -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-slate-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 pt-6 border-t border-black/[0.08] flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[#6E6E73] text-xs">
                 Copyright © 2026 NexusCore Solution. All rights reserved.
             </p>
-            <div class="flex items-center gap-3 sm:gap-4 text-sm text-slate-500 flex-wrap">
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <div class="flex items-center gap-3 sm:gap-4 text-xs text-[#6E6E73] flex-wrap">
+                <a href="#" class="hover:text-[#1D1D1F] transition-colors">Terms of Service</a>
                 <span>|</span>
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-[#1D1D1F] transition-colors">Privacy Policy</a>
                 <span>|</span>
-                <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                <a href="#" class="hover:text-[#1D1D1F] transition-colors">Cookies</a>
                 <span>|</span>
-                <button type="button" id="open-admin-inquiry-btn" class="hover:text-blue-400 transition-colors flex items-center gap-1.5 text-slate-400 hover:text-white font-medium bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800 text-xs shadow-sm" title="เปิดหน้าต่างจัดการคำขอ (Ctrl+Shift+L)">
-                    <i class="ph-fill ph-chart-polar text-blue-400"></i>
+                <button type="button" id="open-admin-inquiry-btn" class="hover:text-[#0071E3] transition-colors flex items-center gap-1.5 text-[#1D1D1F] font-medium bg-[#F5F5F7] px-3 py-1 rounded-full border border-black/[0.08] text-xs" title="เปิดหน้าต่างจัดการคำขอ (Ctrl+Shift+L)">
+                    <i class="ph-fill ph-chart-polar text-[#0071E3]"></i>
                     <span>Inquiry Console</span>
                 </button>
             </div>
@@ -2695,12 +2685,12 @@
                 if(isAnimating) return;
                 isAnimating = true;
 
-                // Update dots UI
+                // Update dots UI (Apple Clean Light Mode)
                 dots.forEach((dot, idx) => {
                     if (idx === currentIndex) {
-                        dot.className = "w-7 h-2 rounded-full bg-white cursor-pointer dot transition-all";
+                        dot.className = "w-7 h-2 rounded-full bg-[#0071E3] cursor-pointer dot transition-all";
                     } else {
-                        dot.className = "w-2 h-2 rounded-full bg-white/35 hover:bg-white/70 cursor-pointer dot transition-all";
+                        dot.className = "w-2 h-2 rounded-full bg-black/20 hover:bg-black/45 cursor-pointer dot transition-all";
                     }
                 });
 
@@ -3690,15 +3680,15 @@
             // --- Feature 1: Auto-Purge Legacy SW Caches & Keep Latest UI Active ---
             if ('caches' in window) {
                 caches.keys().then((keys) => {
-                    keys.filter((k) => k !== 'nexuscore-v7').forEach((k) => caches.delete(k));
+                    keys.filter((k) => k !== 'nexuscore-v8').forEach((k) => caches.delete(k));
                 }).catch(() => {});
             }
             if ('serviceWorker' in navigator) {
                 let swRefreshing = false;
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    if (swRefreshing || sessionStorage.getItem('nexus_sw_reloaded') === 'nexuscore-v7') return;
+                    if (swRefreshing || sessionStorage.getItem('nexus_sw_reloaded') === 'nexuscore-v8') return;
                     swRefreshing = true;
-                    sessionStorage.setItem('nexus_sw_reloaded', 'nexuscore-v7');
+                    sessionStorage.setItem('nexus_sw_reloaded', 'nexuscore-v8');
                     window.location.reload();
                 });
                 navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
