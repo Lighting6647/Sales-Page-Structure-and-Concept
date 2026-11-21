@@ -1,11 +1,6 @@
-// NexusCore Production Service Worker (PWA Offline Caching)
-const CACHE_NAME = 'nexuscore-v6';
+// NexusCore Production Service Worker (Zero-Stale-HTML Auto-Updater)
+const CACHE_NAME = 'nexuscore-v7';
 const STATIC_ASSETS = [
-    './',
-    './index.html',
-    './manifest.json',
-    './robots.txt',
-    './sitemap.xml',
     './images/it_dashboard.png',
     './images/pass_app.png',
     './images/asset_monitor.png',
@@ -17,57 +12,46 @@ const STATIC_ASSETS = [
     './images/tamsang.png'
 ];
 
-// Install: Cache critical assets
+// Install: Precache images only (never cache stale HTML) and activate immediately
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(STATIC_ASSETS);
-        }).then(() => self.skipWaiting())
+        caches.open(CACHE_NAME)
+            .then((cache) => cache.addAll(STATIC_ASSETS))
+            .then(() => self.skipWaiting())
     );
 });
 
-// Activate: Clean up old caches
+// Activate: Delete ALL legacy nexuscore-* caches & take immediate control
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((keys) => {
-            return Promise.all(
-                keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
-            );
-        }).then(() => self.clients.claim())
+        caches.keys()
+            .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+            .then(() => self.clients.claim())
     );
 });
 
-// Fetch: Network-first for navigation, Cache-first / Stale-While-Revalidate for assets
+// Fetch: Strict network-no-store for HTML documents; SWR for images/static files
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     const url = new URL(request.url);
 
-    // Skip non-GET requests and browser extensions
     if (request.method !== 'GET' || !url.protocol.startsWith('http')) {
         return;
     }
 
-    // HTML Navigation requests: Network first, fallback to cache
-    if (request.mode === 'navigate') {
+    // HTML documents must ALWAYS come fresh from network so visitors see latest UI immediately
+    if (request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
         event.respondWith(
-            fetch(request)
-                .then((networkResponse) => {
-                    if (networkResponse && networkResponse.status === 200) {
-                        const responseClone = networkResponse.clone();
-                        caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
-                    }
-                    return networkResponse;
-                })
-                .catch(() => caches.match('./index.html') || caches.match(request))
+            fetch(new Request(request, { cache: 'no-store' })).catch(() => fetch(request))
         );
         return;
     }
 
-    // Static Assets & Images: Stale-While-Revalidate
+    // Static image assets: Stale-While-Revalidate
     event.respondWith(
         caches.match(request).then((cachedResponse) => {
             const fetchPromise = fetch(request).then((networkResponse) => {
-                if (networkResponse && networkResponse.status === 200) {
+                if (networkResponse && networkResponse.status === 200 && url.origin === self.location.origin) {
                     const responseClone = networkResponse.clone();
                     caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
                 }

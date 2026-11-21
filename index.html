@@ -3687,11 +3687,23 @@
                 });
             }
 
-            // --- Feature 1: Register Service Worker for PWA Offline Caching ---
+            // --- Feature 1: Auto-Purge Legacy SW Caches & Keep Latest UI Active ---
+            if ('caches' in window) {
+                caches.keys().then((keys) => {
+                    keys.filter((k) => k !== 'nexuscore-v7').forEach((k) => caches.delete(k));
+                }).catch(() => {});
+            }
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./sw.js')
+                let swRefreshing = false;
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (swRefreshing || sessionStorage.getItem('nexus_sw_reloaded') === 'nexuscore-v7') return;
+                    swRefreshing = true;
+                    sessionStorage.setItem('nexus_sw_reloaded', 'nexuscore-v7');
+                    window.location.reload();
+                });
+                navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
                     .then((reg) => {
-                        console.log('NexusCore PWA ServiceWorker active:', reg.scope);
+                        reg.update().catch(() => {});
                     })
                     .catch((err) => {
                         console.warn('ServiceWorker registration error:', err);
