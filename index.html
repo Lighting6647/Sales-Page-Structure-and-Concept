@@ -109,6 +109,38 @@
             background-color: #FFFFFF;
             color: var(--apple-ink);
         }
+        @media (min-width: 1024px) {
+            html {
+                scroll-snap-type: y proximity;
+                scroll-padding-top: 68px;
+            }
+            #hero,
+            #features,
+            .apple-deep-dive,
+            #stats,
+            #testimonials,
+            #pricing,
+            #cta {
+                scroll-snap-align: start;
+            }
+            .apple-deep-dive,
+            #stats,
+            #cta {
+                min-height: calc(100dvh - 68px);
+                display: flex;
+                align-items: center;
+                padding-top: 2.75rem !important;
+                padding-bottom: 2.75rem !important;
+            }
+            .apple-deep-dive > div,
+            #stats > div,
+            #cta > div {
+                width: 100%;
+            }
+            .apple-deep-dive .blur-up-wrapper {
+                max-height: 54vh;
+            }
+        }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", "Prompt", sans-serif; 
             font-size: 16px; 
@@ -415,48 +447,48 @@
         </div>
     </nav>
 
-    <!-- 2. Hero Section (Apple Pro Dark OLED Stage) -->
-    <section id="hero" class="pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 bg-black text-white relative overflow-hidden border-b border-white/10">
+    <!-- 2. Hero Section (Apple Pro Dark OLED Stage - 1-Viewport Exact Fit) -->
+    <section id="hero" class="min-h-[100svh] pt-[102px] sm:pt-[112px] pb-3 sm:pb-4 flex flex-col justify-between bg-black text-white relative overflow-hidden border-b border-white/10">
         <!-- Studio Ambient Spotlight -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-[radial-gradient(ellipse_at_top,rgba(0,113,227,0.22),transparent_70%)] pointer-events-none"></div>
-        <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
 
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
             <!-- Executive Status Badge -->
-            <div class="hero-anim inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-md text-white/90 text-xs font-medium tracking-wide mb-8">
+            <div class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-md text-white/90 text-[11px] font-medium tracking-wide mb-2.5">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30D158] opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-[#30D158]"></span>
                 </span>
-                <span class="font-semibold tracking-widest text-[11px] uppercase">Enterprise Suite 2026</span>
+                <span class="font-semibold tracking-widest uppercase">Enterprise Suite 2026</span>
                 <span class="w-px h-3 bg-white/20"></span>
-                <span class="text-[#2997FF] font-medium text-[11px] flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
+                <span class="text-[#2997FF] font-medium flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
             </div>
 
-            <h1 class="hero-anim text-3xl sm:text-5xl lg:text-7xl font-bold leading-[1.08] text-white mb-6 tracking-tight">
+            <h1 class="hero-anim text-3xl sm:text-5xl font-bold leading-[1.06] text-white mb-2 tracking-tight" style="font-size: clamp(1.8rem, 3.8vw, 3.35rem) !important;">
                 โครงสร้างพื้นฐานดิจิทัล<br>
                 <span class="bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73] bg-clip-text text-transparent">ระดับองค์กรเพื่อธุรกิจไทย</span>
             </h1>
-            <p class="hero-anim text-base sm:text-xl text-[#A1A1A6] mb-10 max-w-2xl mx-auto leading-relaxed font-normal">
+            <p class="hero-anim text-xs sm:text-sm md:text-base text-[#A1A1A6] mb-3.5 sm:mb-4 max-w-2xl mx-auto leading-relaxed font-normal">
                 ยกระดับการบริหารด้วยโซลูชันรวมศูนย์: ระบบบัญชีและภาษีไทย, สต๊อกสินค้า POS, ฟิตเนส FitPulse Pro, จองบัตร TikketHub และ IT Operations ภายใต้มาตรฐานความปลอดภัยระดับสากล
             </p>
-            <div class="hero-anim flex flex-col sm:flex-row justify-center items-center gap-3.5 mb-6">
-                <a href="#cta" class="w-full sm:w-auto bg-[#0071E3] hover:bg-[#0077ED] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-[0_8px_28px_rgba(0,113,227,0.35)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+            <div class="hero-anim flex flex-col sm:flex-row justify-center items-center gap-2.5 mb-2.5">
+                <a href="#cta" class="w-full sm:w-auto bg-[#0071E3] hover:bg-[#0077ED] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-[0_8px_28px_rgba(0,113,227,0.35)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เริ่มต้นทดลองใช้ฟรี 14 วัน</span>
-                    <i class="ph-bold ph-arrow-right text-base"></i>
+                    <i class="ph-bold ph-arrow-right text-sm"></i>
                 </a>
-                <a href="#products" class="w-full sm:w-auto bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/15 px-7 py-3.5 rounded-full font-medium text-base transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md">
-                    <i class="ph-fill ph-play-circle text-xl text-[#2997FF]"></i> ดูการทำงานตัวอย่าง
+                <a href="#products" class="w-full sm:w-auto bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/15 px-5 py-2.5 rounded-full font-medium text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md">
+                    <i class="ph-fill ph-play-circle text-lg text-[#2997FF]"></i> ดูการทำงานตัวอย่าง
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-6 py-3.5 rounded-full font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
-                    <i class="ph-fill ph-chat-circle-dots text-xl"></i>
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
+                    <i class="ph-fill ph-chat-circle-dots text-lg"></i>
                     <span>ปรึกษาทีมวิศวกรผ่าน LINE</span>
                     <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-medium">หรือสแกน QR</span>
                 </a>
             </div>
 
             <!-- Zero-Risk Trust & Verification Strip -->
-            <div class="hero-anim flex flex-wrap items-center justify-center gap-y-2 gap-x-5 text-xs text-[#86868B] mb-12">
+            <div class="hero-anim flex flex-wrap items-center justify-center gap-y-1 gap-x-4 text-[11px] text-[#86868B] mb-1.5">
                 <button type="button" class="security-verify-trigger flex items-center gap-1.5 text-white/80 hover:text-emerald-300 px-3 py-1 rounded-full bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 transition-all cursor-pointer group">
                     <i class="ph-fill ph-shield-check text-[#30D158] text-sm group-hover:scale-110 transition-transform"></i>
                     <span>ปลอดภัย 100% ไม่ใช่ลิงก์ดูดเงิน / ไร้ไวรัส</span>
@@ -475,42 +507,42 @@
             </div>
         </div> <!-- Close text container -->
 
-        <!-- Wide Container for Gallery -->
-        <div class="w-full max-w-[1600px] mx-auto px-2 sm:px-6 relative z-10 text-center">
+        <!-- Wide Container for Gallery (Scaled neatly inside remaining 1st screen height) -->
+        <div class="w-full max-w-[1600px] mx-auto px-2 sm:px-6 relative z-10 text-center flex-shrink-0">
 
             <!-- Centered Image Showcase (3D Coverflow Slider - 7 Apps) -->
-            <div class="relative w-full max-w-[1400px] mx-auto h-[240px] sm:h-[340px] md:h-[460px] lg:h-[540px] mt-2 sm:mt-6 md:mt-8 perspective-[1200px] flex justify-center items-center" id="hero-gallery">
+            <div class="relative w-full max-w-[1400px] mx-auto h-[clamp(170px,26vh,330px)] mt-1 perspective-[1200px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
-                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
                 
                 <!-- App 2: Accounting -->
-                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
 
                 <!-- App 3: Team Task Tracking -->
-                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
 
                 <!-- App 4: IT Dashboard (Default Center - Index 3) -->
-                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
                 
                 <!-- App 5: FitPulse Pro -->
-                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
 
                 <!-- App 6: Pass Vault -->
-                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
                 
                 <!-- App 7: Asset Monitor -->
-                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
+                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-0 left-1/2 h-[92%] w-auto max-w-[80vw] md:max-w-[46%] aspect-[16/10] rounded-xl md:rounded-[1.25rem] shadow-[0_24px_70px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover object-top opacity-0">
 
                 <!-- Pedestal Light Reflection Under Carousel -->
-                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-14 bg-gradient-to-r from-transparent via-[#0071E3]/25 to-transparent blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-10 bg-gradient-to-r from-transparent via-[#0071E3]/25 to-transparent blur-2xl pointer-events-none"></div>
             </div>
 
-            <!-- Coverflow Controls -->
-            <div class="flex justify-center items-center gap-4 mt-4 sm:mt-8 relative z-40">
-                <button id="prev-slide" aria-label="Previous Slide" class="w-11 h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
-                    <i class="ph-bold ph-caret-left text-xl"></i>
+            <!-- Coverflow Controls (Visible completely above the fold) -->
+            <div class="flex justify-center items-center gap-3 mt-1.5 sm:mt-2 relative z-40">
+                <button id="prev-slide" aria-label="Previous Slide" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                    <i class="ph-bold ph-caret-left text-base"></i>
                 </button>
-                <div class="flex gap-2 mx-3 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl" id="slide-dots">
+                <div class="flex gap-2 mx-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl" id="slide-dots">
                     <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
                     <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
                     <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
@@ -519,8 +551,8 @@
                     <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
                     <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
                 </div>
-                <button id="next-slide" aria-label="Next Slide" class="w-11 h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
-                    <i class="ph-bold ph-caret-right text-xl"></i>
+                <button id="next-slide" aria-label="Next Slide" class="w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                    <i class="ph-bold ph-caret-right text-base"></i>
                 </button>
             </div>
         </div>
@@ -563,23 +595,23 @@
     </section>
 
     <!-- 4. Core Values (Apple Clean Light Bento Portfolio) -->
-    <section id="features" class="py-24 sm:py-28 bg-[#F5F5F7] text-center relative border-b border-black/[0.06]">
+    <section id="features" class="py-14 sm:py-16 bg-[#F5F5F7] text-center relative border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="apple-reveal">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[#0071E3] text-[11px] font-semibold uppercase tracking-widest mb-4 shadow-xs">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[#0071E3] text-[11px] font-semibold uppercase tracking-widest mb-3 shadow-xs">
                     <i class="ph-bold ph-squares-four text-sm"></i> Enterprise Solution Portfolio
                 </div>
-                <h2 class="text-3xl md:text-5xl font-bold text-[#1D1D1F] mb-4 tracking-tight leading-tight">
+                <h2 class="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#1D1D1F] mb-3 tracking-tight leading-tight">
                     บริหารจัดการทุกระบบธุรกิจ<br>
-                    <span class="text-[#6E6E73] font-semibold text-2xl md:text-4xl">บนโครงสร้างที่มั่นคงและเชื่อมต่อถึงกัน</span>
+                    <span class="text-[#6E6E73] font-semibold text-xl md:text-3xl">บนโครงสร้างที่มั่นคงและเชื่อมต่อถึงกัน</span>
                 </h2>
-                <p class="text-[#6E6E73] text-sm sm:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p class="text-[#6E6E73] text-sm sm:text-base max-w-2xl mx-auto mb-6 leading-relaxed">
                     เลือกสำรวจโซลูชันที่เหมาะสมกับขนาดองค์กรของคุณ ค้นหาฟังก์ชันที่ต้องการ หรือคลิกเพื่อทดลองใช้งานระบบจริงได้ทันที
                 </p>
             </div>
 
             <!-- Real-time Instant Search Bar -->
-            <div class="max-w-xl mx-auto mb-8 relative px-4">
+            <div class="max-w-xl mx-auto mb-5 relative px-4">
                 <div class="relative flex items-center shadow-sm rounded-full">
                     <i class="ph-bold ph-magnifying-glass absolute left-4 text-[#86868B] text-lg pointer-events-none"></i>
                     <input type="text" id="solution-search-input" 
@@ -4613,40 +4645,40 @@
     </div>
 
     <!-- Floating Quick Navigation Dock (Apple Dynamic Glass Pill Dock) -->
-    <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 pointer-events-none">
-        <div class="bg-[#1D1D1F]/80 backdrop-blur-2xl border border-white/15 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] flex items-center gap-1 sm:gap-2 pointer-events-auto">
+    <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 pointer-events-none max-w-[95vw]">
+        <div class="bg-[#1D1D1F]/85 backdrop-blur-2xl border border-white/15 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] flex items-center gap-1 sm:gap-1.5 pointer-events-auto whitespace-nowrap">
             <!-- Jump to Products -->
-            <a href="#features" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5">
+            <a href="#features" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap">
                 <i class="ph-bold ph-grid-four text-base text-[#2997FF]"></i>
                 <span class="hidden sm:inline">ระบบทั้งหมด</span>
             </a>
 
             <!-- Jump to Pricing -->
-            <a href="#pricing" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5">
+            <a href="#pricing" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap">
                 <i class="ph-bold ph-tag text-base text-[#30D158]"></i>
                 <span class="hidden sm:inline">แพ็กเกจ</span>
             </a>
 
             <!-- Catalog Quick Button -->
-            <button type="button" id="dock-catalog-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1" title="เปิด Solution Catalog (PDF)">
+            <button type="button" id="dock-catalog-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1 whitespace-nowrap" title="เปิด Solution Catalog (PDF)">
                 <i class="ph-bold ph-file-pdf text-rose-400 text-base"></i>
                 <span class="hidden md:inline">Catalog</span>
             </button>
 
             <!-- PWA Install Button -->
-            <button type="button" id="dock-install-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-[#64D2FF] hover:text-white transition-all flex items-center gap-1" title="ติดตั้งแอป NexusCore">
+            <button type="button" id="dock-install-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-[#64D2FF] hover:text-white transition-all flex items-center gap-1 whitespace-nowrap" title="ติดตั้งแอป NexusCore">
                 <i class="ph-bold ph-download-simple text-[#64D2FF] text-base"></i>
                 <span class="hidden md:inline">ติดตั้ง</span>
             </button>
 
             <!-- Free Trial Trigger -->
-            <button type="button" id="dock-trial-btn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-[#0071E3] hover:bg-[#0077ED] text-white transition-all shadow-sm flex items-center gap-1.5">
+            <button type="button" id="dock-trial-btn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-[#0071E3] hover:bg-[#0077ED] text-white transition-all shadow-sm flex items-center gap-1.5 whitespace-nowrap">
                 <i class="ph-bold ph-rocket-launch text-base"></i>
                 <span>ทดลองใช้ฟรี</span>
             </button>
 
             <!-- LINE Official Button -->
-            <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm" title="แชทปรึกษาทาง LINE">
+            <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm whitespace-nowrap" title="แชทปรึกษาทาง LINE">
                 <i class="ph-fill ph-chat-circle-dots text-base"></i>
                 <span class="hidden lg:inline">LINE</span>
             </a>

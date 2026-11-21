@@ -1,5 +1,5 @@
 // NexusCore Production Service Worker (PWA Offline Caching)
-const CACHE_NAME = 'nexuscore-v5';
+const CACHE_NAME = 'nexuscore-v6';
 const STATIC_ASSETS = [
     './',
     './index.html',
