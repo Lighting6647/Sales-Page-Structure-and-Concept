@@ -83,53 +83,149 @@
             }
         }
     </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230071e3'/><path d='M32 14L42 24L32 34L22 24Z' fill='white'/><path d='M32 30L42 40L32 50L22 40Z' fill='white' opacity='0.82'/><path d='M16 32L24 24L32 32L24 40Z' fill='white' opacity='0.65'/><path d='M32 32L40 24L48 32L40 40Z' fill='white' opacity='0.65'/></svg>">
     <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#0B0F19">
+    <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NexusCore">
     <style>
+        :root {
+            --apple-bg-light: #F5F5F7;
+            --apple-surface-light: #FFFFFF;
+            --apple-bg-dark: #000000;
+            --apple-surface-dark: #111114;
+            --apple-ink: #1D1D1F;
+            --apple-muted: #6E6E73;
+            --apple-blue: #0071E3;
+            --apple-blue-hover: #0077ED;
+            --apple-blue-tint: #2997FF;
+            --apple-radius-lg: 24px;
+            --apple-radius-xl: 28px;
+        }
         html, body {
             overflow-x: hidden;
             max-width: 100vw;
+            background-color: #FFFFFF;
+            color: var(--apple-ink);
         }
         body { 
-            font-family: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", "Prompt", sans-serif; 
             font-size: 16px; 
             -webkit-font-smoothing: antialiased; 
             -moz-osx-font-smoothing: grayscale;
             letter-spacing: -0.015em;
         }
         h1, h2, h3, h4 { 
-            letter-spacing: -0.025em; 
+            letter-spacing: -0.03em; 
             font-feature-settings: "cv02", "cv03", "cv04", "cv11"; 
         }
-        h1 { font-size: clamp(2.35rem, 5.2vw, 4.25rem) !important; line-height: 1.15; font-weight: 800; }
-        h2 { font-size: clamp(1.75rem, 3.6vw, 2.65rem) !important; line-height: 1.25; font-weight: 700; }
-        h3 { font-size: clamp(1.2rem, 2.2vw, 1.55rem) !important; line-height: 1.35; font-weight: 700; }
-        h4 { font-size: 1.125rem !important; }
+        h1 { font-size: clamp(2.4rem, 5.4vw, 4.5rem) !important; line-height: 1.08; font-weight: 700; }
+        h2 { font-size: clamp(1.85rem, 3.8vw, 3rem) !important; line-height: 1.16; font-weight: 700; }
+        h3 { font-size: clamp(1.2rem, 2.2vw, 1.55rem) !important; line-height: 1.28; font-weight: 600; }
+        h4 { font-size: 1.0625rem !important; font-weight: 600; }
+
+        .counter-val,
+        #roi-hours-saved,
+        #roi-money-saved {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Apple Scroll Progress Line */
+        #apple-scroll-progress {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0071E3 0%, #2997FF 60%, #30D158 100%);
+            transform-origin: left center;
+            transform: scaleX(0);
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        /* Apple Glassmorphic Header */
+        .apple-glass-nav {
+            background: rgba(251, 251, 253, 0.8);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .apple-glass-nav.is-scrolled {
+            background: rgba(251, 251, 253, 0.92);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Apple Bento Solution Card Craft */
+        .solution-card {
+            border-radius: var(--apple-radius-lg) !important;
+            background: #FFFFFF !important;
+            border: 1px solid rgba(0, 0, 0, 0.06) !important;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.03) !important;
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.3s ease !important;
+        }
+        .solution-card:hover {
+            transform: translateY(-6px) !important;
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.12) !important;
+            border-color: rgba(0, 113, 227, 0.25) !important;
+        }
+
+        /* Apple Product Showcase Frame */
+        .apple-device-frame {
+            border-radius: var(--apple-radius-lg) !important;
+            box-shadow: 0 28px 65px -15px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+        }
+
+        /* Apple Range Sliders inside ROI Calculator */
+        #roi-calculator input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.14);
+            outline: none;
+        }
+        #roi-calculator input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 9999px;
+            background: #FFFFFF;
+            border: 2px solid #0071E3;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+            transition: transform 0.18s ease;
+        }
+        #roi-calculator input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.14);
+        }
 
         /* Luxury Custom Selection */
         ::selection {
-            background: rgba(37, 99, 235, 0.22);
-            color: #1e40af;
+            background: rgba(0, 113, 227, 0.18);
+            color: #0071E3;
         }
 
-        /* Sleek Slim Scrollbar */
+        /* Sleek Apple Scrollbar */
         ::-webkit-scrollbar {
-            width: 9px;
-            height: 9px;
+            width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0B0F19;
+            background: #F5F5F7;
         }
         ::-webkit-scrollbar-thumb {
-            background: #334155;
+            background: #B8B8BE;
             border-radius: 9999px;
-            border: 2px solid #0B0F19;
+            border: 2px solid #F5F5F7;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+            background: #86868B;
         }
 
         @media print {
@@ -224,27 +320,28 @@
     </noscript>
     <!-- Phosphor Icons for modern icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- GSAP for smooth animations -->
+    <!-- GSAP + ScrollTrigger for full-system Apple choreography -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
-<body class="text-gray-800 antialiased overflow-x-hidden">
+<body class="text-[#1D1D1F] bg-white antialiased overflow-x-hidden">
 
-    <!-- 1. Header & Navigation -->
-    <nav class="bg-white/85 backdrop-blur-xl fixed w-full z-50 top-0 transition-all duration-300 border-b border-slate-200/80 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
-        <!-- Top Promotional Announcement Banner (Feature 3: Conversion & Urgency) -->
-        <div id="top-announcement-banner" class="bg-[#07090E] text-white py-2 px-4 border-b border-slate-800/80 transition-all duration-300">
+    <!-- 1. Apple Glassmorphic Header & Navigation -->
+    <nav id="main-nav" class="apple-glass-nav fixed w-full z-50 top-0">
+        <!-- Top Promotional Announcement Banner -->
+        <div id="top-announcement-banner" class="bg-[#1D1D1F] text-white py-2 px-4 border-b border-white/[0.08] transition-all duration-300">
             <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs">
                 <div class="flex items-center gap-2.5 overflow-hidden text-ellipsis whitespace-nowrap">
-                    <span class="inline-flex items-center gap-1.5 bg-amber-500/15 text-amber-300 text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-500/30 tracking-wider">
+                    <span class="inline-flex items-center gap-1.5 bg-white/10 text-amber-300 text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 rounded-full border border-white/10 tracking-wider">
                         <i class="ph-fill ph-crown"></i> EXECUTIVE PRIVILEGE
                     </span>
-                    <span class="text-slate-300 text-xs">สิทธิ์ทดลองใช้ระบบฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-400 font-bold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
+                    <span class="text-white/80 text-xs">สิทธิ์ทดลองใช้ระบบฟรี 30 วัน เดือนนี้เหลือ <strong class="text-amber-300 font-semibold" id="quota-counter">2</strong> องค์กรสุดท้าย</span>
                 </div>
                 <div class="flex items-center gap-3 flex-shrink-0">
-                    <button type="button" id="top-claim-btn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-3.5 py-1 rounded-full text-xs transition-all shadow-sm flex items-center gap-1 border border-blue-400/30">
+                    <button type="button" id="top-claim-btn" class="bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold px-3.5 py-1 rounded-full text-xs transition-all flex items-center gap-1">
                         <span>รับสิทธิ์ทันที</span> &rarr;
                     </button>
-                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-slate-400 hover:text-white transition-colors">
+                    <button type="button" id="top-banner-close" aria-label="Close banner" class="text-white/60 hover:text-white transition-colors">
                         <i class="ph-bold ph-x text-sm"></i>
                     </button>
                 </div>
@@ -252,44 +349,45 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+            <div class="flex justify-between h-16 sm:h-[68px] items-center">
                 <div class="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-md shadow-blue-500/20 border border-blue-400/30 group-hover:scale-105 transition-transform">
-                        <i class="ph-fill ph-diamonds-four text-white text-xl"></i>
+                    <div class="w-9 h-9 rounded-xl bg-[#0071E3] flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <i class="ph-fill ph-diamonds-four text-white text-lg"></i>
                     </div>
                     <div class="flex items-center gap-1.5">
-                        <span class="font-extrabold text-2xl tracking-tight text-slate-900">Nexus<span class="text-blue-600">Core</span></span>
-                        <span class="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md uppercase tracking-wider hidden sm:inline">Suite</span>
+                        <span class="font-bold text-xl sm:text-2xl tracking-tight text-[#1D1D1F]">Nexus<span class="text-[#0071E3]">Core</span></span>
+                        <span class="text-[10px] font-semibold text-[#6E6E73] bg-black/[0.04] border border-black/[0.08] px-2 py-0.5 rounded-md uppercase tracking-wider hidden sm:inline">Suite</span>
                         <!-- Official Verified Domain Pill -->
-                        <button type="button" class="security-verify-trigger hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-semibold transition-all shadow-xs cursor-pointer ml-1.5" title="คลิกเพื่อดูใบรับรองความปลอดภัยเว็บไซต์">
+                        <button type="button" class="security-verify-trigger hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/15 text-emerald-700 border border-emerald-500/20 text-[11px] font-semibold transition-all cursor-pointer ml-1.5" title="คลิกเพื่อดูใบรับรองความปลอดภัยเว็บไซต์">
                             <i class="ph-fill ph-shield-check text-emerald-600 text-sm"></i>
                             <span class="hidden md:inline">Official Verified</span>
-                            <span class="text-[9px] bg-emerald-200/70 text-emerald-900 px-1 rounded font-mono font-bold">TLS 1.3</span>
+                            <span class="text-[9px] bg-emerald-500/15 text-emerald-800 px-1.5 rounded font-mono font-bold">TLS 1.3</span>
                         </button>
                     </div>
                 </div>
-                <div class="hidden xl:flex items-center space-x-5">
-                    <a href="#features" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Features</a>
-                    <a href="#products" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Products</a>
-                    <a href="#pricing" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Pricing</a>
-                    <a href="#stats" class="text-slate-600 hover:text-blue-600 text-sm font-semibold tracking-tight transition-colors">Enterprise Proof</a>
-                    <button type="button" id="nav-catalog-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-1.5 shadow-sm bg-white/60">
+                <div class="hidden xl:flex items-center space-x-6">
+                    <a href="#features" class="text-[#1D1D1F]/75 hover:text-[#0071E3] text-[13px] font-medium tracking-tight transition-colors">Features</a>
+                    <a href="#products" class="text-[#1D1D1F]/75 hover:text-[#0071E3] text-[13px] font-medium tracking-tight transition-colors">Products</a>
+                    <a href="#pricing" class="text-[#1D1D1F]/75 hover:text-[#0071E3] text-[13px] font-medium tracking-tight transition-colors">Pricing</a>
+                    <a href="#stats" class="text-[#1D1D1F]/75 hover:text-[#0071E3] text-[13px] font-medium tracking-tight transition-colors">Enterprise Proof</a>
+                    <button type="button" id="nav-catalog-btn" class="text-xs font-medium px-3.5 py-1.5 rounded-full border border-black/10 hover:border-black/20 text-[#1D1D1F] hover:bg-black/[0.03] transition-colors flex items-center gap-1.5 bg-white/70">
                         <i class="ph-bold ph-file-pdf text-rose-500"></i> Catalog
                     </button>
-                    <button type="button" id="nav-install-btn" class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white transition-all flex items-center gap-1.5 shadow-sm">
+                    <button type="button" id="nav-install-btn" class="text-xs font-medium px-4 py-1.5 rounded-full bg-[#1D1D1F] hover:bg-black text-white transition-all flex items-center gap-1.5">
                         <i class="ph-bold ph-download-simple"></i> ติดตั้งแอป
                     </button>
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger text-xs font-bold px-4 py-1.5 rounded-full bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-[0_2px_12px_rgba(6,199,85,0.25)] hover:shadow-[0_4px_18px_rgba(6,199,85,0.35)]" title="ปรึกษาผ่าน LINE">
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger text-xs font-semibold px-4 py-1.5 rounded-full bg-[#06C755] hover:bg-[#05b34c] text-white transition-all flex items-center gap-1.5 shadow-sm" title="ปรึกษาผ่าน LINE">
                         <i class="ph-fill ph-chat-circle-dots text-base"></i> LINE ปรึกษาฟรี
                     </a>
                 </div>
                 <div class="xl:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-blue-600 focus:outline-none p-2 rounded-xl bg-slate-50 border border-slate-200">
-                        <i class="ph-bold ph-list text-2xl"></i>
+                    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="text-[#1D1D1F] hover:text-[#0071E3] focus:outline-none p-2 rounded-full bg-black/[0.04] border border-black/[0.08]">
+                        <i class="ph-bold ph-list text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
+        <div id="apple-scroll-progress" aria-hidden="true"></div>
         
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0 transition-all duration-300">
@@ -317,62 +415,61 @@
         </div>
     </nav>
 
-    <!-- 2. Hero Section (Modern Editorial Titanium Craft - Zero AI Slop) -->
-    <section class="pt-28 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-36 bg-[#07090E] text-white relative overflow-hidden border-b border-slate-800/80">
-        <!-- Subtle Dual Ambient Lighting & Architectural Grid (Ultra-Luxury Atmosphere) -->
-        <div class="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:36px_36px] opacity-35 pointer-events-none"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[480px] bg-gradient-to-b from-blue-600/15 via-indigo-600/10 to-transparent blur-[130px] pointer-events-none rounded-full"></div>
-        <div class="absolute -top-32 left-1/4 w-[450px] h-[350px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+    <!-- 2. Hero Section (Apple Pro Dark OLED Stage) -->
+    <section id="hero" class="pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 bg-black text-white relative overflow-hidden border-b border-white/10">
+        <!-- Studio Ambient Spotlight -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-[radial-gradient(ellipse_at_top,rgba(0,113,227,0.22),transparent_70%)] pointer-events-none"></div>
+        <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <!-- Executive Status Badge -->
-            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-slate-700/80 bg-slate-900/90 backdrop-blur-md text-slate-300 text-xs font-semibold tracking-wider uppercase mb-7 shadow-inner">
+            <div class="hero-anim inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-md text-white/90 text-xs font-medium tracking-wide mb-8">
                 <span class="flex h-2 w-2 relative">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30D158] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#30D158]"></span>
                 </span>
-                <span class="text-slate-300 font-semibold tracking-widest text-[11px]">ENTERPRISE SUITE 2026</span>
-                <span class="w-px h-3 bg-slate-700"></span>
-                <span class="text-amber-400 font-medium text-[11px] flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
+                <span class="font-semibold tracking-widest text-[11px] uppercase">Enterprise Suite 2026</span>
+                <span class="w-px h-3 bg-white/20"></span>
+                <span class="text-[#2997FF] font-medium text-[11px] flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> High Availability 99.9%</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.12] text-white mb-6 tracking-tight">
+            <h1 class="hero-anim text-3xl sm:text-5xl lg:text-7xl font-bold leading-[1.08] text-white mb-6 tracking-tight">
                 โครงสร้างพื้นฐานดิจิทัล<br>
-                <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">ระดับองค์กรเพื่อธุรกิจไทย</span>
+                <span class="bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73] bg-clip-text text-transparent">ระดับองค์กรเพื่อธุรกิจไทย</span>
             </h1>
-            <p class="text-base sm:text-lg md:text-xl text-slate-300/90 mb-9 max-w-3xl mx-auto leading-relaxed font-normal">
+            <p class="hero-anim text-base sm:text-xl text-[#A1A1A6] mb-10 max-w-2xl mx-auto leading-relaxed font-normal">
                 ยกระดับการบริหารด้วยโซลูชันรวมศูนย์: ระบบบัญชีและภาษีไทย, สต๊อกสินค้า POS, ฟิตเนส FitPulse Pro, จองบัตร TikketHub และ IT Operations ภายใต้มาตรฐานความปลอดภัยระดับสากล
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-3.5 mb-5">
-                <a href="#cta" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all shadow-[0_12px_32px_rgba(37,99,235,0.35)] hover:shadow-[0_16px_40px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 border border-blue-400/30">
+            <div class="hero-anim flex flex-col sm:flex-row justify-center items-center gap-3.5 mb-6">
+                <a href="#cta" class="w-full sm:w-auto bg-[#0071E3] hover:bg-[#0077ED] text-white px-8 py-3.5 rounded-full font-semibold text-base transition-all shadow-[0_8px_28px_rgba(0,113,227,0.35)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เริ่มต้นทดลองใช้ฟรี 14 วัน</span>
-                    <i class="ph-bold ph-arrow-right text-lg"></i>
+                    <i class="ph-bold ph-arrow-right text-base"></i>
                 </a>
-                <a href="#products" class="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 px-7 py-3.5 rounded-xl font-semibold text-base transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md shadow-sm">
-                    <i class="ph-fill ph-play-circle text-xl text-blue-400"></i> ดูการทำงานตัวอย่าง
+                <a href="#products" class="w-full sm:w-auto bg-white/[0.08] hover:bg-white/[0.14] text-white border border-white/15 px-7 py-3.5 rounded-full font-medium text-base transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 backdrop-blur-md">
+                    <i class="ph-fill ph-play-circle text-xl text-[#2997FF]"></i> ดูการทำงานตัวอย่าง
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white border border-emerald-400/30 px-6 py-3.5 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(6,199,85,0.3)]" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-6 py-3.5 rounded-full font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2" title="บัญชีทางการ LINE Official (ปลอดภัย 100%)">
                     <i class="ph-fill ph-chat-circle-dots text-xl"></i>
                     <span>ปรึกษาทีมวิศวกรผ่าน LINE</span>
-                    <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-md font-semibold">หรือสแกน QR</span>
+                    <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-medium">หรือสแกน QR</span>
                 </a>
             </div>
 
-            <!-- Zero-Risk Trust & Verification Strip (Boosts Click Confidence) -->
-            <div class="flex flex-wrap items-center justify-center gap-y-2 gap-x-5 text-xs text-slate-400 mb-11">
-                <button type="button" class="security-verify-trigger flex items-center gap-1.5 text-slate-300 hover:text-emerald-300 px-3 py-1 rounded-full bg-slate-900/70 hover:bg-slate-800 border border-slate-700/70 hover:border-emerald-500/50 transition-all cursor-pointer group shadow-xs">
-                    <i class="ph-fill ph-shield-check text-emerald-400 text-sm group-hover:scale-110 transition-transform"></i>
+            <!-- Zero-Risk Trust & Verification Strip -->
+            <div class="hero-anim flex flex-wrap items-center justify-center gap-y-2 gap-x-5 text-xs text-[#86868B] mb-12">
+                <button type="button" class="security-verify-trigger flex items-center gap-1.5 text-white/80 hover:text-emerald-300 px-3 py-1 rounded-full bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 transition-all cursor-pointer group">
+                    <i class="ph-fill ph-shield-check text-[#30D158] text-sm group-hover:scale-110 transition-transform"></i>
                     <span>ปลอดภัย 100% ไม่ใช่ลิงก์ดูดเงิน / ไร้ไวรัส</span>
-                    <span class="text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">ตรวจใบรับรอง</span>
+                    <span class="text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded-full">ตรวจใบรับรอง</span>
                 </button>
-                <span class="hidden sm:inline text-slate-700">•</span>
-                <div class="flex items-center gap-1.5 text-slate-300">
-                    <i class="ph-fill ph-credit-card text-blue-400 text-sm"></i>
+                <span class="hidden sm:inline text-white/20">•</span>
+                <div class="flex items-center gap-1.5 text-white/80">
+                    <i class="ph-fill ph-credit-card text-[#2997FF] text-sm"></i>
                     <span>ทดลองฟรี 14 วัน ไม่ต้องกรอกบัตรเครดิต</span>
                 </div>
-                <span class="hidden sm:inline text-slate-700">•</span>
-                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-950/50 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="hidden sm:inline text-white/20">•</span>
+                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] animate-ping"></span>
                     <span class="font-medium text-[11px]">วิศวกรออนไลน์ (เวลาตอบกลับเฉลี่ย &lt; 3 นาที)</span>
                 </div>
             </div>
@@ -382,123 +479,124 @@
         <div class="w-full max-w-[1600px] mx-auto px-2 sm:px-6 relative z-10 text-center">
 
             <!-- Centered Image Showcase (3D Coverflow Slider - 7 Apps) -->
-            <div class="relative w-full max-w-[1400px] mx-auto h-[240px] sm:h-[340px] md:h-[460px] lg:h-[540px] mt-2 sm:mt-6 md:mt-8 perspective-[1000px] flex justify-center items-center" id="hero-gallery">
+            <div class="relative w-full max-w-[1400px] mx-auto h-[240px] sm:h-[340px] md:h-[460px] lg:h-[540px] mt-2 sm:mt-6 md:mt-8 perspective-[1200px] flex justify-center items-center" id="hero-gallery">
                 <!-- App 1: Inventory -->
-                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/inventory.webp" src="images/inventory.png" alt="Inventory" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
                 
                 <!-- App 2: Accounting -->
-                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/accounting.webp" src="images/accounting.png" alt="Accounting Dashboard" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
 
                 <!-- App 3: Team Task Tracking -->
-                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/task_tracking.webp" src="images/task_tracking.png" alt="Team Task Tracking" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
 
                 <!-- App 4: IT Dashboard (Default Center - Index 3) -->
-                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="IT Dashboard" fetchpriority="high" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
                 
                 <!-- App 5: FitPulse Pro -->
-                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/fitpulse.webp" src="images/fitpulse.png" alt="FitPulse Pro" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
 
                 <!-- App 6: Pass Vault -->
-                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="Pass Vault" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
                 
                 <!-- App 7: Asset Monitor -->
-                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-xl md:rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-[4px] md:border-[8px] border-slate-900 object-cover opacity-0">
+                <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="Asset Monitor" loading="lazy" decoding="async" class="hero-img absolute top-2 sm:top-6 md:top-8 left-1/2 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[52%] rounded-2xl md:rounded-[1.5rem] shadow-[0_32px_90px_rgba(0,0,0,0.85)] border border-white/15 ring-1 ring-white/10 object-cover opacity-0">
 
                 <!-- Pedestal Light Reflection Under Carousel -->
-                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-14 bg-gradient-to-r from-transparent via-blue-500/25 to-transparent blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-14 bg-gradient-to-r from-transparent via-[#0071E3]/25 to-transparent blur-2xl pointer-events-none"></div>
             </div>
 
             <!-- Coverflow Controls -->
-            <div class="flex justify-center items-center gap-4 mt-3 sm:mt-6 relative z-40">
-                <button id="prev-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95 shadow-lg">
-                    <i class="ph-bold ph-caret-left text-2xl"></i>
+            <div class="flex justify-center items-center gap-4 mt-4 sm:mt-8 relative z-40">
+                <button id="prev-slide" aria-label="Previous Slide" class="w-11 h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                    <i class="ph-bold ph-caret-left text-xl"></i>
                 </button>
-                <div class="flex gap-2 mx-4" id="slide-dots">
-                    <!-- Dots will be updated by JS (7 apps) -->
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
-                    <div class="w-8 h-2 rounded-full bg-white cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
-                    <div class="w-2 h-2 rounded-full bg-white/40 cursor-pointer dot transition-all"></div>
+                <div class="flex gap-2 mx-3 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl" id="slide-dots">
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                    <div class="w-7 h-2 rounded-full bg-white cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
+                    <div class="w-2 h-2 rounded-full bg-white/35 cursor-pointer dot transition-all"></div>
                 </div>
-                <button id="next-slide" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/20 hover:scale-110 active:scale-95 shadow-lg">
-                    <i class="ph-bold ph-caret-right text-2xl"></i>
+                <button id="next-slide" aria-label="Next Slide" class="w-11 h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.2] text-white flex items-center justify-center backdrop-blur-xl transition-all border border-white/15 hover:scale-105 active:scale-95">
+                    <i class="ph-bold ph-caret-right text-xl"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 3. Enterprise Standards & Security Architecture Bar (Replaced generic client logos) -->
-    <section class="py-8 bg-[#0B0F19] border-b border-slate-800/90 text-slate-300">
+    <!-- 3. Enterprise Standards & Security Architecture Bar -->
+    <section class="py-7 bg-[#0A0A0C] border-b border-white/10 text-white/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                    <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-[#2997FF]">
                         <i class="ph-bold ph-shield-check text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-white uppercase tracking-wider block">Enterprise Grade Architecture</span>
-                        <span class="text-[11px] text-slate-400">มาตรฐานความปลอดภัยและการเชื่อมต่อระบบระดับสากล</span>
+                        <span class="text-xs font-semibold text-white uppercase tracking-wider block">Enterprise Grade Architecture</span>
+                        <span class="text-[11px] text-[#86868B]">มาตรฐานความปลอดภัยและการเชื่อมต่อระบบระดับสากล</span>
                     </div>
                 </div>
                 <!-- 4 Trust Badges -->
-                <div class="flex flex-wrap items-center justify-center gap-3 text-xs">
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
-                        <i class="ph-fill ph-lock-key text-blue-400 text-sm"></i>
-                        <span class="font-semibold">Zero-Knowledge Security</span>
+                <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs">
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
+                        <i class="ph-fill ph-lock-key text-[#2997FF] text-sm"></i>
+                        <span class="font-medium">Zero-Knowledge Security</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
-                        <i class="ph-fill ph-check-circle text-emerald-400 text-sm"></i>
-                        <span class="font-semibold">Thai PDPA Compliant</span>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
+                        <i class="ph-fill ph-check-circle text-[#30D158] text-sm"></i>
+                        <span class="font-medium">Thai PDPA Compliant</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
-                        <i class="ph-fill ph-cloud-check text-sky-400 text-sm"></i>
-                        <span class="font-semibold">99.9% High Availability SLA</span>
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
+                        <i class="ph-fill ph-cloud-check text-[#64D2FF] text-sm"></i>
+                        <span class="font-medium">99.9% High Availability SLA</span>
                     </div>
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200">
+                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-white/90">
                         <i class="ph-fill ph-clock-afternoon text-amber-400 text-sm"></i>
-                        <span class="font-semibold">24/7 Dedicated Support</span>
+                        <span class="font-medium">24/7 Dedicated Support</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Core Values (Our Products Overview) -->
-    <section id="features" class="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white text-center relative">
+    <!-- 4. Core Values (Apple Clean Light Bento Portfolio) -->
+    <section id="features" class="py-24 sm:py-28 bg-[#F5F5F7] text-center relative border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50/80 border border-blue-200/60 text-blue-700 text-xs font-bold uppercase tracking-widest mb-3.5 shadow-sm">
-                <i class="ph-bold ph-squares-four text-sm"></i> ENTERPRISE SOLUTION PORTFOLIO
+            <div class="apple-reveal">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[#0071E3] text-[11px] font-semibold uppercase tracking-widest mb-4 shadow-xs">
+                    <i class="ph-bold ph-squares-four text-sm"></i> Enterprise Solution Portfolio
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-[#1D1D1F] mb-4 tracking-tight leading-tight">
+                    บริหารจัดการทุกระบบธุรกิจ<br>
+                    <span class="text-[#6E6E73] font-semibold text-2xl md:text-4xl">บนโครงสร้างที่มั่นคงและเชื่อมต่อถึงกัน</span>
+                </h2>
+                <p class="text-[#6E6E73] text-sm sm:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+                    เลือกสำรวจโซลูชันที่เหมาะสมกับขนาดองค์กรของคุณ ค้นหาฟังก์ชันที่ต้องการ หรือคลิกเพื่อทดลองใช้งานระบบจริงได้ทันที
+                </p>
             </div>
-            <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-                บริหารจัดการทุกระบบธุรกิจ<br>
-                <span class="text-slate-500 font-semibold text-2xl md:text-4xl">บนโครงสร้างที่มั่นคงและเชื่อมต่อถึงกัน</span>
-            </h2>
-            <p class="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto mb-9 leading-relaxed">
-                เลือกสำรวจโซลูชันที่เหมาะสมกับขนาดองค์กรของคุณ ค้นหาฟังก์ชันที่ต้องการ หรือคลิกเพื่อทดลองใช้งานระบบจริงได้ทันที
-            </p>
 
-            <!-- Real-time Instant Search Bar (Feature 3: Data & Operations) -->
-            <div class="max-w-xl mx-auto mb-7 relative px-4">
-                <div class="relative flex items-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-full">
-                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-slate-400 text-lg pointer-events-none"></i>
+            <!-- Real-time Instant Search Bar -->
+            <div class="max-w-xl mx-auto mb-8 relative px-4">
+                <div class="relative flex items-center shadow-sm rounded-full">
+                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-[#86868B] text-lg pointer-events-none"></i>
                     <input type="text" id="solution-search-input" 
                            placeholder="ค้นหาฟังก์ชันหรือชื่อระบบ (เช่น บัญชี ERP, สต๊อก, POS, ตามสั่ง, อาหาร, IT, ฟิตเนส)..." 
-                           class="w-full pl-11 pr-10 py-3.5 rounded-full bg-white hover:bg-slate-50/50 focus:bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all">
-                    <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-slate-400 hover:text-slate-600 transition-colors">
+                           class="w-full pl-11 pr-10 py-3.5 rounded-full bg-white border border-black/10 text-sm text-[#1D1D1F] placeholder-[#86868B] focus:outline-none focus:ring-4 focus:ring-[#0071E3]/15 focus:border-[#0071E3] transition-all">
+                    <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-[#86868B] hover:text-[#1D1D1F] transition-colors">
                         <i class="ph-fill ph-x-circle text-lg"></i>
                     </button>
                 </div>
-                <div id="search-feedback" class="text-xs text-slate-500 mt-2 min-h-[18px] transition-all"></div>
+                <div id="search-feedback" class="text-xs text-[#6E6E73] mt-2 min-h-[18px] transition-all"></div>
                 <div class="flex items-center justify-center gap-2.5 mt-2.5 flex-wrap">
-                    <button type="button" id="open-catalog-modal-btn" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all shadow-sm hover:shadow border border-slate-700">
+                    <button type="button" id="open-catalog-modal-btn" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1D1D1F] hover:bg-black text-white text-xs font-medium transition-all shadow-xs">
                         <i class="ph-bold ph-file-pdf text-rose-400"></i>
                         <span>ดาวน์โหลด Catalog (PDF)</span>
                     </button>
-                    <a href="#roi-calculator" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold transition-all border border-blue-200">
-                        <i class="ph-bold ph-calculator text-blue-600"></i>
+                    <a href="#roi-calculator" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white hover:bg-black/[0.03] text-[#0071E3] text-xs font-semibold transition-all border border-black/10">
+                        <i class="ph-bold ph-calculator text-[#0071E3]"></i>
                         <span>คำนวณความคุ้มค่า (ROI)</span>
                     </a>
                 </div>
@@ -1058,7 +1156,7 @@
 
     <!-- Removed Demos Section -->
     <!-- 5. Benefit Deep Dive 1 (Left Image / Right Text) -->
-    <section id="products" class="py-20 bg-gray-50 border-b border-gray-100">
+    <section id="products" class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6">
@@ -1160,7 +1258,7 @@
     </section>
 
     <!-- Benefit Deep Dive 2 (Right Image) -->
-    <section class="py-20 bg-white border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1247,7 +1345,7 @@
     </section>
 
     <!-- Benefit Deep Dive 3 (Left Image) -->
-    <section class="py-20 bg-gray-50 border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1334,7 +1432,7 @@
     </section>
 
     <!-- Benefit Deep Dive 4 (Right Image) -->
-    <section class="py-20 bg-white border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1421,7 +1519,7 @@
     </section>
 
     <!-- Benefit Deep Dive 5 (Left Image) -->
-    <section class="py-20 bg-gray-50 border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1508,7 +1606,7 @@
     </section>
 
     <!-- Benefit Deep Dive 6 (Right Image) -->
-    <section class="py-20 bg-white border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1595,7 +1693,7 @@
     </section>
 
     <!-- Benefit Deep Dive 7 (Left Image - FitPulse Pro) -->
-    <section class="py-20 bg-gray-50 border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
@@ -1685,7 +1783,7 @@
     </section>
 
     <!-- Benefit Deep Dive 8 (Right Image - TikketHub) -->
-    <section class="py-20 bg-white border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2">
@@ -1775,7 +1873,7 @@
     </section>
 
     <!-- Benefit Deep Dive 9 (Left Image - Tamsang POS) -->
-    <section class="py-20 bg-gray-50 border-b border-gray-100">
+    <section class="apple-deep-dive py-24 sm:py-28 bg-white border-b border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
@@ -1864,71 +1962,71 @@
         </div>
     </section>
 
-    <!-- 6. Proof in Numbers (Stats - Luxury Executive Benchmark) -->
-    <section id="stats" class="py-24 bg-[#090D16] text-white relative overflow-hidden border-y border-slate-800/80">
-        <!-- Subtle Ambient Lighting Blobs -->
-        <div class="absolute -top-32 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute -bottom-32 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- 6. Proof in Numbers (Apple Pro OLED Dark Showcase) -->
+    <section id="stats" class="py-24 sm:py-28 bg-black text-white relative overflow-hidden border-y border-white/10">
+        <!-- Subtle Apple Blue Spotlight -->
+        <div class="absolute -top-32 right-10 w-96 h-96 bg-[#0071E3]/15 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 left-10 w-96 h-96 bg-[#30D158]/10 rounded-full blur-[130px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="w-full lg:w-1/3 text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest mb-3.5 shadow-sm">
-                        <i class="ph-bold ph-chart-line-up text-sm"></i> PROVEN ENTERPRISE BENCHMARKS
+                <div class="w-full lg:w-1/3 text-left apple-reveal">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[#2997FF] text-[11px] font-semibold uppercase tracking-widest mb-4">
+                        <i class="ph-bold ph-chart-line-up text-sm"></i> Proven Enterprise Benchmarks
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">
                         ขับเคลื่อนการเติบโต<br>
-                        <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">ด้วยข้อมูลสถิติที่พิสูจน์แล้ว</span>
+                        <span class="bg-gradient-to-r from-[#2997FF] via-[#64D2FF] to-[#30D158] bg-clip-text text-transparent">ด้วยข้อมูลสถิติที่พิสูจน์แล้ว</span>
                     </h2>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    <p class="text-[#A1A1A6] text-sm sm:text-base leading-relaxed mb-6">
                         แพลตฟอร์มที่ได้รับความไว้วางใจจากธุรกิจและองค์กรทั่วประเทศ ประมวลผลธุรกรรมที่ปลอดภัยนับล้านรายการในแต่ละเดือน
                     </p>
-                    <div class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3.5 py-1.5 rounded-full">
+                    <div class="inline-flex items-center gap-2 text-xs font-medium text-[#30D158] bg-[#30D158]/10 border border-[#30D158]/20 px-3.5 py-1.5 rounded-full">
                         <i class="ph-fill ph-check-circle text-base"></i> อัปเดตสถิติแบบ Real-time ทุก 24 ชม.
                     </div>
                 </div>
                 <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <!-- Stat Card 1 -->
-                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-blue-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 text-3xl flex-shrink-0 shadow-sm">
+                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#0071E3]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-[#0071E3]/15 border border-[#0071E3]/30 flex items-center justify-center text-[#2997FF] text-3xl flex-shrink-0">
                             <i class="ph-fill ph-users"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="2245341">0</h3>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">ผู้ใช้งานระบบทั้งหมด (Active Members)</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="2245341">0</h3>
+                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">ผู้ใช้งานระบบทั้งหมด (Active Members)</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 2 -->
-                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-emerald-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-3xl flex-shrink-0 shadow-sm">
+                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#30D158]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-[#30D158]/15 border border-[#30D158]/30 flex items-center justify-center text-[#30D158] text-3xl flex-shrink-0">
                             <i class="ph-fill ph-buildings"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="46328">0</h3>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">องค์กรและธุรกิจที่ไว้วางใจ</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="46328">0</h3>
+                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">องค์กรและธุรกิจที่ไว้วางใจ</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 3 -->
-                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-amber-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-3xl flex-shrink-0 shadow-sm">
+                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-amber-400/50 flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 text-3xl flex-shrink-0">
                             <i class="ph-fill ph-hand-coins"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="828867">0</h3>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">รายการเบิกจ่ายและเอกสารภาษี</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="828867">0</h3>
+                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">รายการเบิกจ่ายและเอกสารภาษี</p>
                         </div>
                     </div>
 
                     <!-- Stat Card 4 -->
-                    <div class="bg-slate-900/85 backdrop-blur-md p-6 rounded-2xl border border-slate-800/80 hover:border-indigo-500/40 shadow-lg flex items-center gap-5 transition-all hover:-translate-y-1">
-                        <div class="w-14 h-14 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-3xl flex-shrink-0 shadow-sm">
+                    <div class="apple-bento-stat bg-[#111114] backdrop-blur-md p-6 sm:p-7 rounded-[24px] border border-white/10 hover:border-[#64D2FF]/50 flex items-center gap-5 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-[#64D2FF]/15 border border-[#64D2FF]/30 flex items-center justify-center text-[#64D2FF] text-3xl flex-shrink-0">
                             <i class="ph-fill ph-credit-card"></i>
                         </div>
                         <div class="text-left">
-                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight counter-val font-heading" data-target="1926436">0</h3>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-0.5">ยอดธุรกรรมที่ประมวลผลสำเร็จ</p>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight counter-val" data-target="1926436">0</h3>
+                            <p class="text-[#A1A1A6] text-xs sm:text-sm mt-0.5">ยอดธุรกรรมที่ประมวลผลสำเร็จ</p>
                         </div>
                     </div>
                 </div>
@@ -1937,18 +2035,18 @@
     </section>
 
     <!-- 7. Social Proof / Testimonial -->
-    <section class="py-20 bg-gray-50" id="testimonials">
+    <section class="py-24 sm:py-28 bg-[#F5F5F7] border-b border-black/[0.06]" id="testimonials">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">เสียงตอบรับจากผู้ใช้งานจริง</h2>
-                <p class="text-gray-500 text-lg max-w-2xl mx-auto">ธุรกิจกว่า 1,000+ แห่ง ไว้วางใจเลือกใช้ NexusCore ในการขับเคลื่อนองค์กร</p>
+            <div class="text-center mb-16 apple-reveal">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#1D1D1F] mb-4 tracking-tight">เสียงตอบรับจากผู้ใช้งานจริง</h2>
+                <p class="text-[#6E6E73] text-lg max-w-2xl mx-auto">ธุรกิจกว่า 1,000+ แห่ง ไว้วางใจเลือกใช้ NexusCore ในการขับเคลื่อนองค์กร</p>
             </div>
 
             <!-- Testimonial Grid (10 Customers) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <!-- Card 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -1963,7 +2061,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -1978,7 +2076,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -1993,7 +2091,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2008,7 +2106,7 @@
                 </div>
 
                 <!-- Card 5 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2023,7 +2121,7 @@
                 </div>
 
                 <!-- Card 6 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2038,7 +2136,7 @@
                 </div>
 
                 <!-- Card 7 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2053,7 +2151,7 @@
                 </div>
 
                 <!-- Card 8 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2068,7 +2166,7 @@
                 </div>
 
                 <!-- Card 9 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="apple-testimonial-card bg-white p-8 rounded-[24px] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300">
                     <div class="flex text-yellow-400 mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -2112,41 +2210,41 @@
         </div>
     </section>
 
-    <!-- 8. Pricing Section -->
-    <section id="pricing" class="py-24 bg-white border-t border-gray-100">
+    <!-- 8. Pricing Section (Apple Clean Storefront + Pro Dark Flagship) -->
+    <section id="pricing" class="py-24 sm:py-28 bg-white border-t border-black/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">แพ็กเกจที่เหมาะกับธุรกิจคุณ</h2>
-                <p class="text-gray-500 text-lg max-w-2xl mx-auto">เลือกแผนที่ตรงกับขนาดองค์กร จ่ายเท่าที่ใช้ ไม่มีสัญญาผูกมัด</p>
+            <div class="text-center mb-14 apple-reveal">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#1D1D1F] mb-4 tracking-tight">แพ็กเกจที่เหมาะกับธุรกิจคุณ</h2>
+                <p class="text-[#6E6E73] text-lg max-w-2xl mx-auto">เลือกแผนที่ตรงกับขนาดองค์กร จ่ายเท่าที่ใช้ ไม่มีสัญญาผูกมัด</p>
             </div>
 
-            <!-- Interactive Pricing & ROI Calculator (Feature 1: UX & Engagement) -->
-            <div id="roi-calculator" class="max-w-4xl mx-auto mb-16 bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
+            <!-- Interactive Pricing & ROI Calculator -->
+            <div id="roi-calculator" class="apple-reveal max-w-4xl mx-auto mb-16 bg-black text-white rounded-[28px] p-6 sm:p-10 border border-white/10 shadow-[0_32px_80px_rgba(0,0,0,0.22)] relative overflow-hidden">
                 <!-- Background Accent Glow -->
-                <div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-[#0071E3]/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-[#30D158]/15 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 text-left">
                     <div class="text-center mb-8">
-                        <span class="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-wider mb-2">
-                            <i class="ph-bold ph-calculator text-sm"></i> ROI & Savings Calculator
+                        <span class="inline-flex items-center gap-1.5 bg-white/[0.08] text-[#2997FF] text-[11px] font-semibold px-3.5 py-1 rounded-full border border-white/15 uppercase tracking-wider mb-3">
+                            <i class="ph-bold ph-calculator text-sm"></i> ROI &amp; Savings Calculator
                         </span>
                         <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">คำนวณความคุ้มค่าและเวลาที่ประหยัดได้สำหรับองค์กร</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mt-2 max-w-xl mx-auto">เลื่อนสไลเดอร์เพื่อดูผลลัพธ์ว่า NexusCore ช่วยคืนเวลาทำงานและลดต้นทุนแฝงต่อปีได้เท่าใด</p>
+                        <p class="text-[#A1A1A6] text-sm sm:text-base mt-2 max-w-xl mx-auto">เลื่อนสไลเดอร์เพื่อดูผลลัพธ์ว่า NexusCore ช่วยคืนเวลาทำงานและลดต้นทุนแฝงต่อปีได้เท่าใด</p>
                     </div>
 
                     <!-- Sliders Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-slate-950/60 p-5 sm:p-6 rounded-2xl border border-slate-800/80">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-[#111114] p-5 sm:p-6 rounded-2xl border border-white/10">
                         <!-- Slider 1: Team Size -->
                         <div class="space-y-3">
                             <div class="flex justify-between items-center text-sm">
-                                <label for="roi-team-size" class="font-semibold text-gray-200 flex items-center gap-2">
-                                    <i class="ph-bold ph-users text-blue-400"></i> จำนวนบุคลากรในทีม/องค์กร
+                                <label for="roi-team-size" class="font-medium text-white/90 flex items-center gap-2">
+                                    <i class="ph-bold ph-users text-[#2997FF]"></i> จำนวนบุคลากรในทีม/องค์กร
                                 </label>
-                                <span id="roi-team-display" class="px-3 py-1 rounded-full bg-blue-600/30 text-blue-300 font-bold text-xs border border-blue-500/40">20 คน</span>
+                                <span id="roi-team-display" class="px-3 py-1 rounded-full bg-[#0071E3]/20 text-[#2997FF] font-semibold text-xs border border-[#0071E3]/30">20 คน</span>
                             </div>
-                            <input type="range" id="roi-team-size" min="3" max="150" step="1" value="20" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500">
-                            <div class="flex justify-between text-[11px] text-gray-500">
+                            <input type="range" id="roi-team-size" min="3" max="150" step="1" value="20" class="w-full cursor-pointer">
+                            <div class="flex justify-between text-[11px] text-[#86868B]">
                                 <span>3 คน (Startup)</span>
                                 <span>50 คน (SME)</span>
                                 <span>150+ คน (Enterprise)</span>
@@ -2156,13 +2254,13 @@
                         <!-- Slider 2: Average Salary -->
                         <div class="space-y-3">
                             <div class="flex justify-between items-center text-sm">
-                                <label for="roi-salary" class="font-semibold text-gray-200 flex items-center gap-2">
-                                    <i class="ph-bold ph-currency-circle-dollar text-emerald-400"></i> ฐานเงินเดือนเฉลี่ยต่อคน
+                                <label for="roi-salary" class="font-medium text-white/90 flex items-center gap-2">
+                                    <i class="ph-bold ph-currency-circle-dollar text-[#30D158]"></i> ฐานเงินเดือนเฉลี่ยต่อคน
                                 </label>
-                                <span id="roi-salary-display" class="px-3 py-1 rounded-full bg-emerald-600/30 text-emerald-300 font-bold text-xs border border-emerald-500/40">฿28,000 / เดือน</span>
+                                <span id="roi-salary-display" class="px-3 py-1 rounded-full bg-[#30D158]/15 text-[#30D158] font-semibold text-xs border border-[#30D158]/30">฿28,000 / เดือน</span>
                             </div>
-                            <input type="range" id="roi-salary" min="15000" max="80000" step="1000" value="28000" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
-                            <div class="flex justify-between text-[11px] text-gray-500">
+                            <input type="range" id="roi-salary" min="15000" max="80000" step="1000" value="28000" class="w-full cursor-pointer">
+                            <div class="flex justify-between text-[11px] text-[#86868B]">
                                 <span>฿15,000</span>
                                 <span>฿45,000</span>
                                 <span>฿80,000+</span>
@@ -2173,24 +2271,24 @@
                     <!-- Calculated Results Output Cards -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                         <!-- Metric 1: Hours Saved -->
-                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
-                            <div class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">เวลาทำงานที่ประหยัดได้</div>
-                            <div id="roi-hours-saved" class="text-2xl sm:text-3xl font-extrabold text-blue-400 my-1">3,360 ชม./ปี</div>
-                            <p class="text-[11px] text-gray-400">ลดเวลาทำ Report, ตามงาน & จัดการสต๊อกซ้ำซ้อน</p>
+                        <div class="bg-[#111114] p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <div class="text-xs text-[#86868B] uppercase font-semibold tracking-wider mb-1">เวลาทำงานที่ประหยัดได้</div>
+                            <div id="roi-hours-saved" class="text-2xl sm:text-3xl font-bold text-[#2997FF] my-1">3,360 ชม./ปี</div>
+                            <p class="text-[11px] text-[#A1A1A6]">ลดเวลาทำ Report, ตามงาน &amp; จัดการสต๊อกซ้ำซ้อน</p>
                         </div>
 
                         <!-- Metric 2: Estimated Cost Savings -->
-                        <div class="bg-gradient-to-b from-emerald-950/40 to-slate-950 p-5 rounded-2xl border border-emerald-500/30 flex flex-col justify-between">
-                            <div class="text-xs text-emerald-300 uppercase font-semibold tracking-wider mb-1">มูลค่าความคุ้มค่าที่ได้คืน</div>
-                            <div id="roi-money-saved" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 my-1">฿411,600 / ปี</div>
-                            <p class="text-[11px] text-gray-400">ประเมินจากประสิทธิภาพการทำงานที่เพิ่มขึ้น 70%</p>
+                        <div class="bg-gradient-to-b from-[#30D158]/10 to-[#111114] p-5 rounded-2xl border border-[#30D158]/30 flex flex-col justify-between">
+                            <div class="text-xs text-[#30D158] uppercase font-semibold tracking-wider mb-1">มูลค่าความคุ้มค่าที่ได้คืน</div>
+                            <div id="roi-money-saved" class="text-2xl sm:text-3xl font-bold text-[#30D158] my-1">฿411,600 / ปี</div>
+                            <p class="text-[11px] text-[#A1A1A6]">ประเมินจากประสิทธิภาพการทำงานที่เพิ่มขึ้น 70%</p>
                         </div>
 
                         <!-- Metric 3: Recommended Plan -->
-                        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                        <div class="bg-[#111114] p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
                             <div class="text-xs text-amber-300 uppercase font-semibold tracking-wider mb-1">แพ็กเกจที่เหมาะสม</div>
                             <div id="roi-plan-name" class="text-xl sm:text-2xl font-bold text-white my-1">Professional</div>
-                            <button type="button" id="roi-select-plan-btn" class="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow mt-1">
+                            <button type="button" id="roi-select-plan-btn" class="w-full py-2.5 px-4 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-semibold transition-all mt-1">
                                 เลือกแพ็กเกจนี้ &rarr;
                             </button>
                         </div>
@@ -2200,121 +2298,118 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                 <!-- Starter Plan -->
-                <div class="bg-white/80 rounded-3xl p-8 shadow-sm hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex flex-col mt-4 mb-4 hover:-translate-y-1">
+                <div class="apple-pricing-card bg-[#F5F5F7] rounded-[28px] p-8 border border-black/[0.06] transition-all duration-300 flex flex-col mt-2 mb-2 hover:-translate-y-1.5 hover:shadow-xl">
                     <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900 font-heading">Starter</h3>
-                        <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold">Standard</span>
+                        <h3 class="text-xl font-bold text-[#1D1D1F]">Starter</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white text-[#6E6E73] border border-black/[0.08] text-[11px] font-semibold">Standard</span>
                     </div>
-                    <p class="text-slate-500 text-sm mb-6">สำหรับธุรกิจขนาดเล็ก หรือเริ่มต้นใช้งานระบบ</p>
+                    <p class="text-[#6E6E73] text-sm mb-6">สำหรับธุรกิจขนาดเล็ก หรือเริ่มต้นใช้งานระบบ</p>
                     <div class="mb-6 flex items-baseline gap-1">
-                        <span class="text-4xl font-extrabold text-slate-900 font-heading tracking-tight">฿990</span>
-                        <span class="text-slate-500 text-sm">/ เดือน</span>
+                        <span class="text-4xl font-bold text-[#1D1D1F] tracking-tight">฿990</span>
+                        <span class="text-[#6E6E73] text-sm">/ เดือน</span>
                     </div>
                     <ul class="space-y-3.5 mb-8 flex-grow text-sm">
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 5 คน (3 แอปพลิเคชัน)</li>
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 0.5 vCPU / 512MB RAM</li>
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 50 GB</li>
-                        <li class="flex items-center text-slate-400"><span class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-x"></i></span>Shared Database</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 5 คน (3 แอปพลิเคชัน)</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 0.5 vCPU / 512MB RAM</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 50 GB</li>
+                        <li class="flex items-center text-[#86868B]"><span class="w-5 h-5 rounded-full bg-black/[0.06] text-[#86868B] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-x"></i></span>Shared Database</li>
                     </ul>
-                    <a href="#cta" class="block w-full text-center bg-white hover:bg-slate-50 text-slate-900 font-bold py-3.5 rounded-xl transition-all border border-slate-300 shadow-sm mt-auto hover:border-slate-400">ทดลองใช้ฟรี 14 วัน</a>
-                    <div class="mt-2.5 text-center text-[11px] text-slate-500 flex items-center justify-center gap-1.5"><i class="ph-bold ph-credit-card text-slate-400"></i><span>ไม่ต้องใช้บัตรเครดิต | ยกเลิกได้ตลอดเวลา</span></div>
+                    <a href="#cta" class="block w-full text-center bg-white hover:bg-[#1D1D1F] hover:text-white text-[#1D1D1F] font-semibold py-3.5 rounded-full transition-all border border-black/15 mt-auto">ทดลองใช้ฟรี 14 วัน</a>
+                    <div class="mt-2.5 text-center text-[11px] text-[#6E6E73] flex items-center justify-center gap-1.5"><i class="ph-bold ph-credit-card text-[#86868B]"></i><span>ไม่ต้องใช้บัตรเครดิต | ยกเลิกได้ตลอดเวลา</span></div>
                 </div>
 
-                <!-- Professional Plan (Highlighted Flagship) -->
-                <div class="bg-gradient-to-b from-[#090D16] via-[#0E1526] to-[#070A12] rounded-3xl p-8 sm:p-9 shadow-[0_20px_50px_-10px_rgba(37,99,235,0.3)] border-2 border-blue-500/80 relative flex flex-col z-10 md:-translate-y-2 ring-1 ring-blue-400/30">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-[0_4px_15px_rgba(37,99,235,0.4)] border border-blue-300/30 flex items-center gap-1.5 whitespace-nowrap">
-                        <i class="ph-fill ph-crown text-amber-300"></i> RECOMMENDED BY ENTERPRISE
+                <!-- Professional Plan (Apple Pro Dark Flagship) -->
+                <div class="apple-pricing-card bg-black rounded-[28px] p-8 sm:p-9 shadow-[0_28px_70px_-15px_rgba(0,113,227,0.35)] border border-[#0071E3]/60 relative flex flex-col z-10 md:-translate-y-2 ring-1 ring-[#2997FF]/30">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0071E3] text-white text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="ph-fill ph-crown text-amber-300"></i> Recommended by Enterprise
                     </div>
                     <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-2xl font-bold text-white font-heading">Professional</h3>
-                        <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold border border-blue-500/30">Flagship</span>
+                        <h3 class="text-2xl font-bold text-white">Professional</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-[#2997FF] text-[11px] font-semibold border border-white/15">Flagship</span>
                     </div>
-                    <p class="text-slate-300 text-sm mb-6">สำหรับธุรกิจที่ต้องการประสิทธิภาพและความเสถียรสูงสุด</p>
+                    <p class="text-[#A1A1A6] text-sm mb-6">สำหรับธุรกิจที่ต้องการประสิทธิภาพและความเสถียรสูงสุด</p>
                     <div class="mb-6 flex items-baseline gap-1">
-                        <span class="text-5xl font-extrabold text-white font-heading tracking-tight">฿2,490</span>
-                        <span class="text-slate-400 text-sm">/ เดือน</span>
+                        <span class="text-5xl font-bold text-white tracking-tight">฿2,490</span>
+                        <span class="text-[#86868B] text-sm">/ เดือน</span>
                     </div>
                     <ul class="space-y-3.5 mb-8 flex-grow text-sm">
-                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 20 คน (ใช้งานได้ทุกแอป)</li>
-                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 1 vCPU / 2GB RAM</li>
-                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 500 GB</li>
-                        <li class="flex items-center text-slate-100"><span class="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-400 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>Private Database & API Access</li>
+                        <li class="flex items-center text-white/90"><span class="w-5 h-5 rounded-full bg-[#0071E3]/20 border border-[#0071E3]/40 text-[#2997FF] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานสูงสุด 20 คน (ใช้งานได้ทุกแอป)</li>
+                        <li class="flex items-center text-white/90"><span class="w-5 h-5 rounded-full bg-[#0071E3]/20 border border-[#0071E3]/40 text-[#2997FF] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: 1 vCPU / 2GB RAM</li>
+                        <li class="flex items-center text-white/90"><span class="w-5 h-5 rounded-full bg-[#0071E3]/20 border border-[#0071E3]/40 text-[#2997FF] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>พื้นที่เก็บข้อมูล (Storage) 500 GB</li>
+                        <li class="flex items-center text-white/90"><span class="w-5 h-5 rounded-full bg-[#0071E3]/20 border border-[#0071E3]/40 text-[#2997FF] flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>Private Database &amp; API Access</li>
                     </ul>
-                    <a href="#cta" class="block w-full text-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-[0_10px_25px_rgba(37,99,235,0.35)] hover:shadow-[0_14px_35px_rgba(37,99,235,0.5)] mt-auto text-base hover:-translate-y-0.5">เลือกแพ็กเกจนี้ &rarr;</a>
-                    <div class="mt-2.5 text-center text-[11px] text-blue-300/80 flex items-center justify-center gap-1.5"><i class="ph-fill ph-shield-check text-emerald-400"></i><span>ทดลองฟรี 14 วัน • จัดสรร Cloud Workspace ทันที</span></div>
+                    <a href="#cta" class="block w-full text-center bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold py-3.5 rounded-full transition-all shadow-[0_8px_25px_rgba(0,113,227,0.4)] mt-auto text-base hover:-translate-y-0.5">เลือกแพ็กเกจนี้ &rarr;</a>
+                    <div class="mt-2.5 text-center text-[11px] text-[#A1A1A6] flex items-center justify-center gap-1.5"><i class="ph-fill ph-shield-check text-[#30D158]"></i><span>ทดลองฟรี 14 วัน • จัดสรร Cloud Workspace ทันที</span></div>
                 </div>
 
                 <!-- Enterprise Plan -->
-                <div class="bg-white/80 rounded-3xl p-8 shadow-sm hover:shadow-xl border border-slate-200/90 transition-all duration-300 flex flex-col mt-4 mb-4 hover:-translate-y-1">
+                <div class="apple-pricing-card bg-[#F5F5F7] rounded-[28px] p-8 border border-black/[0.06] transition-all duration-300 flex flex-col mt-2 mb-2 hover:-translate-y-1.5 hover:shadow-xl">
                     <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-slate-900 font-heading">Enterprise</h3>
-                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200/60">Bespoke</span>
+                        <h3 class="text-xl font-bold text-[#1D1D1F]">Enterprise</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 text-[11px] font-semibold border border-emerald-500/20">Bespoke</span>
                     </div>
-                    <p class="text-slate-500 text-sm mb-6">สำหรับองค์กรขนาดใหญ่ สถาปัตยกรรมเฉพาะคุณ</p>
+                    <p class="text-[#6E6E73] text-sm mb-6">สำหรับองค์กรขนาดใหญ่ สถาปัตยกรรมเฉพาะคุณ</p>
                     <div class="mb-6 flex items-baseline gap-1">
-                        <span class="text-4xl font-extrabold text-slate-900 font-heading tracking-tight">Custom</span>
-                        <span class="text-slate-500 text-sm">/ ออกแบบเฉพาะ</span>
+                        <span class="text-4xl font-bold text-[#1D1D1F] tracking-tight">Custom</span>
+                        <span class="text-[#6E6E73] text-sm">/ ออกแบบเฉพาะ</span>
                     </div>
                     <ul class="space-y-3.5 mb-8 flex-grow text-sm">
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานไม่จำกัด (Unlimited Users)</li>
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: Dedicated Server (เลือกสเปกได้)</li>
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ไม่จำกัดพื้นที่จัดเก็บ (Unlimited Storage)</li>
-                        <li class="flex items-center text-slate-700"><span class="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>วิศวกรและทีมงานดูแลระดับ Dedicated 24/7</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ผู้ใช้งานไม่จำกัด (Unlimited Users)</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ทรัพยากร: Dedicated Server (เลือกสเปกได้)</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>ไม่จำกัดพื้นที่จัดเก็บ (Unlimited Storage)</li>
+                        <li class="flex items-center text-[#1D1D1F]/80"><span class="w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center text-xs mr-3 flex-shrink-0"><i class="ph-bold ph-check"></i></span>วิศวกรและทีมงานดูแลระดับ Dedicated 24/7</li>
                     </ul>
-                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger block w-full text-center bg-emerald-50 hover:bg-[#06C755] hover:text-white text-emerald-700 font-bold py-3.5 rounded-xl transition-all border border-emerald-200/80 shadow-sm mt-auto flex items-center justify-center gap-2">
+                    <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger block w-full text-center bg-emerald-500/10 hover:bg-[#06C755] hover:text-white text-emerald-700 font-semibold py-3.5 rounded-full transition-all border border-emerald-500/20 mt-auto flex items-center justify-center gap-2">
                         <i class="ph-fill ph-chat-circle-dots text-lg"></i> ปรึกษาสเปกองค์กรผ่าน LINE
                     </a>
-                    <div class="mt-2.5 text-center text-[11px] text-slate-500 flex items-center justify-center gap-1.5"><i class="ph-fill ph-shield-check text-[#06C755]"></i><span>บัญชีทางการ LINE Official (Verified Partner)</span></div>
+                    <div class="mt-2.5 text-center text-[11px] text-[#6E6E73] flex items-center justify-center gap-1.5"><i class="ph-fill ph-shield-check text-[#06C755]"></i><span>บัญชีทางการ LINE Official (Verified Partner)</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. Final Call to Action (Executive Suite Obsidian & Sapphire Accent) -->
-    <section id="cta" class="py-24 sm:py-28 bg-[#07090E] relative overflow-hidden text-center border-t border-slate-800/80">
-        <!-- Dual Subtle Ambient Lighting -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[450px] opacity-40 pointer-events-none z-0 flex justify-center items-center">
-            <div class="absolute w-[420px] h-[420px] bg-blue-600/20 rounded-full filter blur-[120px] -ml-40"></div>
-            <div class="absolute w-[360px] h-[360px] bg-indigo-600/20 rounded-full filter blur-[120px] ml-40"></div>
-        </div>
+    <!-- 9. Final Call to Action (Apple Pro OLED Finale) -->
+    <section id="cta" class="py-24 sm:py-32 bg-black relative overflow-hidden text-center border-t border-white/10">
+        <!-- Studio Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[820px] h-[420px] bg-[radial-gradient(ellipse_at_center,rgba(0,113,227,0.22),transparent_70%)] pointer-events-none"></div>
 
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>EXECUTIVE ONBOARDING &amp; ENTERPRISE SETUP</span>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 apple-reveal">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-[#2997FF] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-[#30D158] animate-ping"></span>
+                <span>Executive Onboarding &amp; Enterprise Setup</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight font-heading tracking-tight">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
                 พร้อมยกระดับโครงสร้างธุรกิจ <br>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">สู่มาตรฐานระดับองค์กรสากลแล้วหรือยัง?</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73]">สู่มาตรฐานระดับองค์กรสากลแล้วหรือยัง?</span>
             </h2>
-            <p class="text-base sm:text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-base sm:text-lg text-[#A1A1A6] mb-10 max-w-2xl mx-auto leading-relaxed">
                 เริ่มต้นทดลองใช้งานแพลตฟอร์มระดับ Enterprise ฟรี 14 วัน พร้อมบริการ Onboarding และทีมวิศวกรดูแลความปลอดภัยตลอด 24 ชั่วโมง
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#features" class="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-[0_10px_35px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_45px_rgba(37,99,235,0.6)] hover:-translate-y-0.5">
+                <a href="#features" class="inline-flex items-center justify-center gap-2.5 bg-[#0071E3] hover:bg-[#0077ED] text-white px-8 py-4 rounded-full font-semibold text-base transition-all shadow-[0_10px_35px_rgba(0,113,227,0.4)] hover:-translate-y-0.5">
                     <i class="ph-bold ph-squares-four text-lg"></i> เลือกแอปพลิเคชันเพื่อทดลองใช้ &rarr;
                 </a>
-                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5" title="คุยตรงกับทีมวิศวกรผ่าน LINE Official (ปลอดภัย 100%)">
+                <a href="https://lin.ee/Zo0psZDF" target="_blank" class="line-qr-trigger inline-flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-4 rounded-full font-semibold text-base transition-all hover:-translate-y-0.5" title="คุยตรงกับทีมวิศวกรผ่าน LINE Official (ปลอดภัย 100%)">
                     <i class="ph-fill ph-chat-circle-dots text-xl"></i>
                     <span>ปรึกษาทีมวิศวกรผ่าน LINE</span>
-                    <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-md font-bold">หรือสแกน QR</span>
+                    <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-semibold">หรือสแกน QR</span>
                 </a>
             </div>
 
             <!-- Zero-Risk Trust & Verification Strip -->
-            <div class="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-400">
-                <div class="flex items-center gap-1.5 text-slate-300">
-                    <i class="ph-fill ph-shield-check text-emerald-400 text-sm"></i>
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-[#86868B]">
+                <div class="flex items-center gap-1.5 text-white/80">
+                    <i class="ph-fill ph-shield-check text-[#30D158] text-sm"></i>
                     <span>บัญชีทางการ LINE Official ยืนยันตัวตน (Verified Shield)</span>
                 </div>
-                <span class="hidden sm:inline text-slate-700">•</span>
-                <div class="flex items-center gap-1.5 text-slate-300">
-                    <i class="ph-fill ph-check-circle text-blue-400 text-sm"></i>
+                <span class="hidden sm:inline text-white/20">•</span>
+                <div class="flex items-center gap-1.5 text-white/80">
+                    <i class="ph-fill ph-check-circle text-[#2997FF] text-sm"></i>
                     <span>ปลอดภัย 100% ไม่ใช่ลิงก์ดูดเงิน / ไร้ไวรัส</span>
                 </div>
-                <span class="hidden sm:inline text-slate-700">•</span>
-                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="hidden sm:inline text-white/20">•</span>
+                <div class="flex items-center gap-1.5 text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#30D158] animate-ping"></span>
                     <span>วิศวกรพร้อมตอบทันที (เวลาตอบกลับเฉลี่ย &lt; 3 นาที)</span>
                 </div>
             </div>
@@ -2322,7 +2417,7 @@
     </section>
 
     <!-- 10. Footer -->
-    <footer class="bg-[#05070C] text-white py-16 border-t border-slate-800/80">
+    <footer class="bg-[#0A0A0C] text-white py-16 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand & Socials -->
             <div class="col-span-1 md:col-span-1">
@@ -2422,6 +2517,47 @@
     <script>
         // --- Mobile Menu Toggle ---
         document.addEventListener("DOMContentLoaded", () => {
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+
+            // Unified Apple GSAP Modal Choreography (Used across the entire site)
+            const appleOpenModal = (modalEl, lockBody = true) => {
+                if (!modalEl) return;
+                const panel = modalEl.firstElementChild;
+                modalEl.classList.remove('hidden');
+                if (lockBody) document.body.style.overflow = 'hidden';
+                if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                    gsap.killTweensOf([modalEl, panel]);
+                    gsap.fromTo(modalEl, { opacity: 0 }, { opacity: 1, duration: 0.24, ease: 'power2.out' });
+                    if (panel) {
+                        gsap.fromTo(panel, { opacity: 0, y: 18, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.34, ease: 'power3.out', clearProps: 'transform' });
+                    }
+                }
+            };
+
+            const appleCloseModal = (modalEl, onDone) => {
+                if (!modalEl) return;
+                const panel = modalEl.firstElementChild;
+                const finish = () => {
+                    modalEl.classList.add('hidden');
+                    modalEl.style.opacity = '';
+                    document.body.style.overflow = '';
+                    document.body.classList.remove('overflow-hidden');
+                    if (typeof onDone === 'function') onDone();
+                };
+                if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                    gsap.killTweensOf([modalEl, panel]);
+                    if (panel) {
+                        gsap.to(panel, { opacity: 0, y: 12, scale: 0.97, duration: 0.2, ease: 'power2.in' });
+                    }
+                    gsap.to(modalEl, { opacity: 0, duration: 0.22, ease: 'power2.in', onComplete: finish });
+                } else {
+                    finish();
+                }
+            };
+
             // --- Progressive Image Blur-Up & Placeholder Loader ---
             const initProgressiveBlurUp = () => {
                 const wrappers = document.querySelectorAll('.blur-up-wrapper');
@@ -2446,7 +2582,15 @@
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.fromTo(mobileMenu, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.26, ease: 'power3.out', clearProps: 'transform' });
+                    }
+                } else {
+                    mobileMenu.classList.add('hidden');
+                }
             });
             
             // Close menu when clicking a link
@@ -2456,12 +2600,25 @@
                 });
             });
 
+            // --- Hero Editorial Entrance Choreography ---
+            if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                gsap.from('.hero-anim', {
+                    y: 26,
+                    opacity: 0,
+                    duration: 0.85,
+                    stagger: 0.08,
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity'
+                });
+            }
+
             // --- GSAP Hero Animation Logic (Interactive 3D Coverflow Slider) ---
             const images = Array.from(document.querySelectorAll('.hero-img'));
             const dots = document.querySelectorAll('.dot');
             const prevBtn = document.getElementById('prev-slide');
             const nextBtn = document.getElementById('next-slide');
             const gallery = document.getElementById('hero-gallery');
+            const heroFloatTweens = [];
             
             let currentIndex = 3; // Center image initially (Index 3 out of 7 apps for 3-1-3 symmetry)
             let isAnimating = false;
@@ -2509,9 +2666,9 @@
                 // Update dots UI
                 dots.forEach((dot, idx) => {
                     if (idx === currentIndex) {
-                        dot.className = "w-8 h-2 rounded-full bg-white cursor-pointer dot transition-all";
+                        dot.className = "w-7 h-2 rounded-full bg-white cursor-pointer dot transition-all";
                     } else {
-                        dot.className = "w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 cursor-pointer dot transition-all";
+                        dot.className = "w-2 h-2 rounded-full bg-white/35 hover:bg-white/70 cursor-pointer dot transition-all";
                     }
                 });
 
@@ -2522,7 +2679,7 @@
                     
                     gsap.to(img, {
                         ...props,
-                        duration: 0.8,
+                        duration: prefersReducedMotion ? 0 : 0.75,
                         ease: "power3.out",
                         onComplete: () => {
                             if (idx === images.length - 1) isAnimating = false;
@@ -2532,32 +2689,35 @@
             };
 
             // 1. Initial Entrance Animation
-            gsap.set(images, { x: 0, xPercent: -50, y: 30, rotateY: 0, scale: 0.5, opacity: 0, transformStyle: "preserve-3d" });
+            gsap.set(images, { x: 0, xPercent: -50, y: 30, rotateY: 0, scale: 0.6, opacity: 0, transformStyle: "preserve-3d" });
             
             images.forEach((img, idx) => {
                 const offset = idx - currentIndex;
                 const props = getPositionProps(offset);
                 gsap.to(img, {
                     ...props,
-                    duration: 1.5,
-                    delay: Math.abs(offset) * 0.15,
-                    ease: "back.out(1.2)"
+                    duration: prefersReducedMotion ? 0 : 1.15,
+                    delay: prefersReducedMotion ? 0 : 0.12 + Math.abs(offset) * 0.1,
+                    ease: "power3.out"
                 });
             });
 
-            // 2. Continuous Floating Effect (Independent timeline)
-            images.forEach((img, index) => {
-                gsap.to(img, {
-                    y: "-=8",
-                    duration: 2.5 + (index * 0.2),
-                    yoyo: true,
-                    repeat: -1,
-                    ease: "sine.inOut",
-                    delay: 1.5
+            // 2. Subtle Floating Effect (Isolated to heroFloatTweens — never pauses globalTimeline!)
+            if (!prefersReducedMotion) {
+                images.forEach((img, index) => {
+                    const floatTween = gsap.to(img, {
+                        y: "-=7",
+                        duration: 2.8 + (index * 0.2),
+                        yoyo: true,
+                        repeat: -1,
+                        ease: "sine.inOut",
+                        delay: 1.4
+                    });
+                    heroFloatTweens.push(floatTween);
                 });
-            });
+            }
 
-            // 3. Event Listeners for Controls
+            // 3. Event Listeners for Controls (Buttons, Dots, Touch, Keyboard Arrows)
             prevBtn.addEventListener('click', () => {
                 if (currentIndex > 0 && !isAnimating) {
                     currentIndex--;
@@ -2581,7 +2741,18 @@
                 });
             });
 
-            // Touch Swipe Support for Mobile (using clientX for universal mobile browser compatibility)
+            document.addEventListener('keydown', (e) => {
+                if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+                if (e.key === 'ArrowLeft' && currentIndex > 0 && !isAnimating) {
+                    currentIndex--;
+                    updateSlider();
+                } else if (e.key === 'ArrowRight' && currentIndex < images.length - 1 && !isAnimating) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+
+            // Touch Swipe Support for Mobile
             gallery.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].clientX;
             }, {passive: true});
@@ -2594,19 +2765,13 @@
             const handleSwipe = () => {
                 if (isAnimating) return;
                 const swipeThreshold = 40;
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swipe Left (Next)
-                    if (currentIndex < images.length - 1) {
-                        currentIndex++;
-                        updateSlider();
-                    }
+                if (touchEndX < touchStartX - swipeThreshold && currentIndex < images.length - 1) {
+                    currentIndex++;
+                    updateSlider();
                 }
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swipe Right (Prev)
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateSlider();
-                    }
+                if (touchEndX > touchStartX + swipeThreshold && currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
                 }
             };
             
@@ -2622,17 +2787,16 @@
             if (!leadModal) return;
             const selectEl = document.getElementById('lead-solution');
             if (selectEl && solution) selectEl.value = solution;
-            leadModal.classList.remove('hidden');
+            appleOpenModal(leadModal);
         };
 
         const closeLeadModal = () => {
             if (!leadModal) return;
-            leadModal.classList.add('hidden');
-            setTimeout(() => {
+            appleCloseModal(leadModal, () => {
                 if (leadForm) leadForm.reset();
                 if (leadSuccess) leadSuccess.classList.add('hidden');
                 if (leadForm) leadForm.classList.remove('hidden');
-            }, 300);
+            });
         };
 
         if (closeModalBtn) closeModalBtn.addEventListener('click', closeLeadModal);
@@ -2799,13 +2963,13 @@
 
         window.openNexusAdmin = () => {
             if (!adminModal) return;
-            adminModal.classList.remove('hidden');
+            appleOpenModal(adminModal, false);
             window.refreshAdminInquiries();
         };
 
         window.closeNexusAdmin = () => {
             if (!adminModal) return;
-            adminModal.classList.add('hidden');
+            appleCloseModal(adminModal);
         };
 
         if (adminOpenBtn) adminOpenBtn.addEventListener('click', window.openNexusAdmin);
@@ -3044,16 +3208,11 @@
         if (adminExportCsvBtn) adminExportCsvBtn.addEventListener('click', () => window.NexusExportLeads('csv'));
         if (adminExportJsonBtn) adminExportJsonBtn.addEventListener('click', () => window.NexusExportLeads('json'));
 
-        // --- Performance & Battery: Intersection Observer for GSAP Hero Float ---
+        // --- Performance & Battery: Intersection Observer for GSAP Hero Float Only ---
         if ('IntersectionObserver' in window && gallery) {
             const heroObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        gsap.globalTimeline.play();
-                    } else {
-                        // Pause idle heavy background animations when user scrolls away
-                        gsap.globalTimeline.pause();
-                    }
+                    heroFloatTweens.forEach(t => entry.isIntersecting ? t.play() : t.pause());
                 });
             }, { threshold: 0.1 });
             heroObserver.observe(gallery);
@@ -3094,6 +3253,7 @@
                     }
                 }
 
+                const matchedCards = [];
                 solutionCards.forEach(card => {
                     const cardCategory = card.getAttribute('data-category') || '';
                     const cardScale = card.getAttribute('data-scale') || '';
@@ -3113,18 +3273,21 @@
                     if (matchesCategory && matchesScale && matchesQuery) {
                         matchedCount++;
                         card.style.display = 'flex';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 20);
+                        matchedCards.push(card);
                     } else {
+                        card.style.display = 'none';
                         card.style.opacity = '0';
-                        card.style.transform = 'translateY(10px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 200);
                     }
                 });
+
+                if (typeof gsap !== 'undefined' && !prefersReducedMotion && matchedCards.length > 0) {
+                    gsap.fromTo(matchedCards,
+                        { opacity: 0, y: 16, scale: 0.98 },
+                        { opacity: 1, y: 0, scale: 1, duration: 0.36, stagger: 0.04, ease: 'power2.out', overwrite: true, clearProps: 'transform' }
+                    );
+                } else {
+                    matchedCards.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+                }
 
                 if (searchFeedback) {
                     if (query.length > 0) {
@@ -3321,14 +3484,12 @@
                     }
                 }
 
-                qvModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
+                appleOpenModal(qvModal);
             };
 
             const closeQuickView = () => {
                 if (!qvModal) return;
-                qvModal.classList.add('hidden');
-                document.body.style.overflow = '';
+                appleCloseModal(qvModal);
             };
 
             // Viewport Switcher (Desktop vs Mobile Preview)
@@ -3397,61 +3558,66 @@
                 });
             }
 
-            // Scroll-triggered Animated Count-Up Numbers for Stats
+            // GSAP Scroll-triggered Animated Count-Up Numbers for Stats
             const statCounters = document.querySelectorAll('.counter-val');
-            if (statCounters.length > 0 && 'IntersectionObserver' in window) {
-                const animateCount = (el) => {
-                    const target = parseInt(el.getAttribute('data-target') || '0', 10);
-                    const duration = 1800; // ms
-                    const startTime = performance.now();
-                    const startVal = 0;
-
-                    const step = (currentTime) => {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // easeOutExpo
-                        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                        const current = Math.floor(ease * (target - startVal) + startVal);
-                        el.textContent = current.toLocaleString('en-US');
-
-                        if (progress < 1) {
-                            requestAnimationFrame(step);
-                        } else {
-                            el.textContent = target.toLocaleString('en-US');
-                        }
-                    };
-                    requestAnimationFrame(step);
-                };
-
-                const statsObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateCount(entry.target);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.25 });
-
-                statCounters.forEach(counter => statsObserver.observe(counter));
+            if (statCounters.length > 0) {
+                statCounters.forEach(counterEl => {
+                    const target = parseInt(counterEl.getAttribute('data-target') || '0', 10);
+                    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 1.7,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: counterEl,
+                                start: 'top 90%',
+                                once: true
+                            },
+                            onUpdate: () => {
+                                counterEl.textContent = Math.floor(obj.val).toLocaleString('en-US');
+                            },
+                            onComplete: () => {
+                                counterEl.textContent = target.toLocaleString('en-US');
+                            }
+                        });
+                    } else {
+                        counterEl.textContent = target.toLocaleString('en-US');
+                    }
+                });
             }
 
-            // --- Feature 2: Floating Quick Navigation Dock Logic ---
+            // --- Feature 2: Apple GSAP Floating Quick Navigation Dock Logic ---
             const floatingDock = document.getElementById('floating-dock');
             const dockScrollTop = document.getElementById('dock-scroll-top');
             const dockTrialBtn = document.getElementById('dock-trial-btn');
+            let dockVisible = false;
 
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
+            const syncFloatingDock = () => {
                 if (!floatingDock) return;
-
-                if (currentScrollY > 350) {
-                    floatingDock.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    floatingDock.classList.add('translate-y-0', 'opacity-100');
+                const shouldShow = window.scrollY > 340;
+                if (shouldShow === dockVisible) return;
+                dockVisible = shouldShow;
+                if (shouldShow) {
+                    floatingDock.classList.remove('pointer-events-none');
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.to(floatingDock, { y: 0, opacity: 1, duration: 0.42, ease: 'back.out(1.3)', overwrite: true });
+                    } else {
+                        floatingDock.classList.remove('translate-y-28', 'opacity-0');
+                        floatingDock.classList.add('translate-y-0', 'opacity-100');
+                    }
                 } else {
-                    floatingDock.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    floatingDock.classList.remove('translate-y-0', 'opacity-100');
+                    floatingDock.classList.add('pointer-events-none');
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.to(floatingDock, { y: 112, opacity: 0, duration: 0.28, ease: 'power2.in', overwrite: true });
+                    } else {
+                        floatingDock.classList.add('translate-y-28', 'opacity-0');
+                        floatingDock.classList.remove('translate-y-0', 'opacity-100');
+                    }
                 }
-            }, { passive: true });
+            };
+            window.addEventListener('scroll', syncFloatingDock, { passive: true });
+            syncFloatingDock();
 
             if (dockScrollTop) {
                 dockScrollTop.addEventListener('click', () => {
@@ -3478,14 +3644,14 @@
 
             if (topBannerClose && topBanner) {
                 topBannerClose.addEventListener('click', () => {
-                    topBanner.style.maxHeight = '0px';
-                    topBanner.style.overflow = 'hidden';
-                    topBanner.style.paddingTop = '0px';
-                    topBanner.style.paddingBottom = '0px';
-                    topBanner.style.opacity = '0';
-                    setTimeout(() => {
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.to(topBanner, {
+                            height: 0, paddingTop: 0, paddingBottom: 0, opacity: 0, duration: 0.28, ease: 'power2.inOut',
+                            onComplete: () => { topBanner.style.display = 'none'; }
+                        });
+                    } else {
                         topBanner.style.display = 'none';
-                    }, 300);
+                    }
                 });
             }
 
@@ -3501,35 +3667,34 @@
             }
 
             // ==========================================
-            // SYSTEM TOAST NOTIFICATION UTILITY
+            // SYSTEM TOAST NOTIFICATION UTILITY (GSAP)
             // ==========================================
             window.showToast = (message, type = 'success') => {
                 const container = document.getElementById('nexus-toast-container');
                 if (!container) return;
 
                 const toast = document.createElement('div');
-                toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-semibold transition-all duration-300 transform translate-x-8 opacity-0 ${
+                toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium backdrop-blur-xl ${
                     type === 'success' 
-                        ? 'bg-slate-950 text-white border border-green-500/40 shadow-green-950/20' 
-                        : 'bg-slate-950 text-white border border-rose-500/40 shadow-rose-950/20'
+                        ? 'bg-[#1D1D1F]/90 text-white border border-[#30D158]/40' 
+                        : 'bg-[#1D1D1F]/90 text-white border border-rose-500/40'
                 }`;
 
                 const icon = type === 'success' 
-                    ? '<i class="ph-fill ph-check-circle text-green-400 text-lg flex-shrink-0"></i>' 
+                    ? '<i class="ph-fill ph-check-circle text-[#30D158] text-lg flex-shrink-0"></i>' 
                     : '<i class="ph-fill ph-info text-amber-400 text-lg flex-shrink-0"></i>';
 
                 toast.innerHTML = `${icon}<span>${message}</span>`;
                 container.appendChild(toast);
 
-                requestAnimationFrame(() => {
-                    toast.classList.remove('translate-x-8', 'opacity-0');
-                    toast.classList.add('translate-x-0', 'opacity-100');
-                });
-
-                setTimeout(() => {
-                    toast.classList.add('translate-x-8', 'opacity-0');
-                    setTimeout(() => toast.remove(), 300);
-                }, 3500);
+                if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                    gsap.fromTo(toast, { x: 40, opacity: 0, scale: 0.96 }, { x: 0, opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(1.4)' });
+                    setTimeout(() => {
+                        gsap.to(toast, { x: 32, opacity: 0, duration: 0.25, ease: 'power2.in', onComplete: () => toast.remove() });
+                    }, 3400);
+                } else {
+                    setTimeout(() => toast.remove(), 3500);
+                }
             };
 
             // ==========================================
@@ -3614,15 +3779,11 @@
             const catalogCopyBtn = document.getElementById('catalog-copy-btn');
 
             const openCatalog = () => {
-                if (!catalogModal) return;
-                catalogModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
+                appleOpenModal(catalogModal);
             };
 
             const closeCatalog = () => {
-                if (!catalogModal) return;
-                catalogModal.classList.add('hidden');
-                document.body.style.overflow = '';
+                appleCloseModal(catalogModal);
             };
 
             catalogOpenBtns.forEach(btn => {
@@ -3660,10 +3821,6 @@
             // FEATURE 2: PWA ONE-CLICK APP INSTALL
             // ==========================================
             let deferredInstallPrompt = null;
-            const pwaInstallBanner = document.getElementById('pwa-install-banner');
-            const pwaInstallConfirmBtn = document.getElementById('pwa-install-confirm-btn');
-            const pwaInstallDismissBtn = document.getElementById('pwa-install-dismiss-btn');
-            const pwaInstallLaterBtn = document.getElementById('pwa-install-later-btn');
             const navInstallBtn = document.getElementById('nav-install-btn');
             const mobileInstallBtn = document.getElementById('mobile-install-btn');
             const dockInstallBtn = document.getElementById('dock-install-btn');
@@ -3675,18 +3832,9 @@
                 return /iphone|ipad|ipod/.test(userAgent);
             };
 
-            const isInStandaloneMode = () => {
-                return (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone === true);
-            };
-
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredInstallPrompt = e;
-
-                // Show install triggers
-                if (!isInStandaloneMode()) {
-                    if (pwaInstallBanner) pwaInstallBanner.classList.remove('hidden');
-                }
             });
 
             const triggerInstall = () => {
@@ -3695,30 +3843,23 @@
                     deferredInstallPrompt.userChoice.then((choiceResult) => {
                         if (choiceResult.outcome === 'accepted') {
                             showToast('กำลังติดตั้งแอป NexusCore ลงบนอุปกรณ์...');
-                            if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
                         }
                         deferredInstallPrompt = null;
                     });
                 } else if (isIos()) {
-                    if (iosInstallModal) iosInstallModal.classList.remove('hidden');
+                    appleOpenModal(iosInstallModal);
                 } else {
                     showToast('ระบบพร้อมทำงานแบบ Offline ผ่าน Service Worker แล้ว!', 'success');
                 }
             };
 
-            [pwaInstallConfirmBtn, navInstallBtn, mobileInstallBtn, dockInstallBtn].forEach(btn => {
+            [navInstallBtn, mobileInstallBtn, dockInstallBtn].forEach(btn => {
                 if (btn) btn.addEventListener('click', triggerInstall);
             });
 
-            const dismissBanner = () => {
-                if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
-            };
-            if (pwaInstallDismissBtn) pwaInstallDismissBtn.addEventListener('click', dismissBanner);
-            if (pwaInstallLaterBtn) pwaInstallLaterBtn.addEventListener('click', dismissBanner);
-
             if (closeIosModalBtn && iosInstallModal) {
                 closeIosModalBtn.addEventListener('click', () => {
-                    iosInstallModal.classList.add('hidden');
+                    appleCloseModal(iosInstallModal);
                 });
             }
 
@@ -3730,15 +3871,11 @@
             const lineQrTriggers = document.querySelectorAll('.line-qr-trigger');
 
             const openLineModal = () => {
-                if (!lineQrModal) return;
-                lineQrModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
+                appleOpenModal(lineQrModal);
             };
 
             const closeLineModal = () => {
-                if (!lineQrModal) return;
-                lineQrModal.classList.add('hidden');
-                document.body.style.overflow = '';
+                appleCloseModal(lineQrModal);
             };
 
             lineQrTriggers.forEach(el => {
@@ -3781,15 +3918,14 @@
 
             const openSecurityModal = () => {
                 if (securityModal) {
-                    securityModal.classList.remove('hidden');
+                    appleOpenModal(securityModal);
                     document.body.classList.add('overflow-hidden');
                 }
             };
 
             const closeSecurityModal = () => {
                 if (securityModal) {
-                    securityModal.classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden');
+                    appleCloseModal(securityModal);
                 }
             };
 
@@ -3972,6 +4108,29 @@
                     });
                 };
 
+                const showPopoverGsap = (popover) => {
+                    popover.classList.remove('opacity-0', 'pointer-events-none');
+                    popover.classList.add('opacity-100', 'pointer-events-auto');
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.fromTo(popover, { y: 8, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.24, ease: 'back.out(1.4)', overwrite: true });
+                    }
+                };
+
+                const hidePopoverGsap = (popover) => {
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.to(popover, {
+                            y: 6, scale: 0.95, opacity: 0, duration: 0.16, ease: 'power2.in', overwrite: true,
+                            onComplete: () => {
+                                popover.classList.remove('opacity-100', 'pointer-events-auto');
+                                popover.classList.add('opacity-0', 'pointer-events-none');
+                            }
+                        });
+                    } else {
+                        popover.classList.remove('opacity-100', 'pointer-events-auto');
+                        popover.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                };
+
                 hotspotPins.forEach(pin => {
                     const trigger = pin.querySelector('.hotspot-trigger');
                     const popover = pin.querySelector('.hotspot-popover');
@@ -3984,8 +4143,7 @@
                             const isOpening = popover.classList.contains('opacity-0');
                             closeAllPopovers();
                             if (isOpening) {
-                                popover.classList.remove('opacity-0', 'pointer-events-none');
-                                popover.classList.add('opacity-100', 'pointer-events-auto');
+                                showPopoverGsap(popover);
                                 if (typeof window.recordNexusEngagement === 'function') {
                                     window.recordNexusEngagement('Hotspot', title);
                                 }
@@ -3994,16 +4152,14 @@
 
                         // Desktop hover
                         pin.addEventListener('mouseenter', () => {
-                            popover.classList.remove('opacity-0', 'pointer-events-none');
-                            popover.classList.add('opacity-100', 'pointer-events-auto');
+                            showPopoverGsap(popover);
                             if (typeof window.recordNexusEngagement === 'function') {
                                 window.recordNexusEngagement('Hotspot', title);
                             }
                         });
 
                         pin.addEventListener('mouseleave', () => {
-                            popover.classList.remove('opacity-100', 'pointer-events-auto');
-                            popover.classList.add('opacity-0', 'pointer-events-none');
+                            hidePopoverGsap(popover);
                         });
                     }
                 });
@@ -4017,6 +4173,135 @@
 
             initHotspots();
 
+            // ==========================================
+            // FULL-SYSTEM GSAP + SCROLLTRIGGER CHOREOGRAPHY
+            // ==========================================
+            const initAppleMotionSystem = () => {
+                if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+                if (prefersReducedMotion) return;
+
+                // 1. Scroll Progress Bar under Apple Glass Nav
+                const progressEl = document.getElementById('apple-scroll-progress');
+                if (progressEl) {
+                    gsap.to(progressEl, {
+                        scaleX: 1,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: document.documentElement,
+                            start: 'top top',
+                            end: 'bottom bottom',
+                            scrub: 0.2
+                        }
+                    });
+                }
+
+                // 2. Sticky Apple Nav Scroll Density
+                const mainNav = document.getElementById('main-nav');
+                if (mainNav) {
+                    ScrollTrigger.create({
+                        start: 'top -24',
+                        onEnter: () => mainNav.classList.add('is-scrolled'),
+                        onLeaveBack: () => mainNav.classList.remove('is-scrolled')
+                    });
+                }
+
+                // 3. Section Headings & Editorial Reveals
+                ScrollTrigger.batch('.apple-reveal', {
+                    start: 'top 90%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 26 },
+                            { opacity: 1, y: 0, duration: 0.72, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity' }
+                        );
+                    }
+                });
+
+                // 4. Bento Solution Cards Grid Stagger
+                ScrollTrigger.batch('#solution-cards-grid .solution-card', {
+                    start: 'top 92%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 28, scale: 0.98 },
+                            { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.06, ease: 'power3.out', clearProps: 'transform,opacity' }
+                        );
+                    }
+                });
+
+                // 5. All 9 Product Deep-Dives (Mockup Scale + Copy Reveal + Gentle Parallax)
+                document.querySelectorAll('.apple-deep-dive').forEach((section) => {
+                    const row = section.querySelector('.flex');
+                    if (!row || row.children.length < 2) return;
+                    const mediaCol = row.children[0];
+                    const copyCol = row.children[1];
+
+                    gsap.fromTo(mediaCol,
+                        { opacity: 0, y: 28, scale: 0.97 },
+                        {
+                            opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out',
+                            clearProps: 'transform,opacity',
+                            scrollTrigger: { trigger: section, start: 'top 86%', once: true }
+                        }
+                    );
+
+                    gsap.fromTo(copyCol,
+                        { opacity: 0, y: 24 },
+                        {
+                            opacity: 1, y: 0, duration: 0.75, delay: 0.08, ease: 'power3.out',
+                            clearProps: 'transform,opacity',
+                            scrollTrigger: { trigger: section, start: 'top 86%', once: true }
+                        }
+                    );
+                });
+
+                // 6. Stats Bento Tiles, Testimonials & Pricing Cards
+                ScrollTrigger.batch('.apple-bento-stat', {
+                    start: 'top 90%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 22, scale: 0.97 },
+                            { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.07, ease: 'power3.out', clearProps: 'transform,opacity' }
+                        );
+                    }
+                });
+
+                ScrollTrigger.batch('.apple-testimonial-card', {
+                    start: 'top 92%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 24 },
+                            { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: 'power3.out', clearProps: 'transform,opacity' }
+                        );
+                    }
+                });
+
+                ScrollTrigger.batch('.apple-pricing-card', {
+                    start: 'top 90%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 26, scale: 0.98 },
+                            { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out', clearProps: 'transform,opacity' }
+                        );
+                    }
+                });
+            };
+
+            initAppleMotionSystem();
+
+            // ROI output subtle GSAP pulse feedback on slider interaction
+            [roiTeamSlider, roiSalarySlider].forEach((slider) => {
+                if (!slider) return;
+                slider.addEventListener('input', () => {
+                    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+                        gsap.fromTo([roiHoursSavedEl, roiMoneySavedEl], { scale: 0.97 }, { scale: 1, duration: 0.25, ease: 'power2.out', overwrite: true, clearProps: 'transform' });
+                    }
+                });
+            });
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (lineQrModal && !lineQrModal.classList.contains('hidden')) {
@@ -4025,12 +4310,17 @@
                     if (securityModal && !securityModal.classList.contains('hidden')) {
                         closeSecurityModal();
                     }
+                    if (catalogModal && !catalogModal.classList.contains('hidden')) {
+                        closeCatalog();
+                    }
+                    if (leadModal && !leadModal.classList.contains('hidden')) {
+                        closeLeadModal();
+                    }
                 }
             });
 
             window.addEventListener('appinstalled', () => {
                 showToast('🎉 ติดตั้งแอป NexusCore เรียบร้อยแล้ว!');
-                if (pwaInstallBanner) pwaInstallBanner.classList.add('hidden');
             });
         });
     </script>
@@ -4322,35 +4612,35 @@
         </div>
     </div>
 
-    <!-- Floating Quick Navigation Dock (Feature 2: UX & Conversion) -->
-    <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-950/90 backdrop-blur-xl border border-white/10 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2.5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center gap-1 sm:gap-2 pointer-events-auto">
+    <!-- Floating Quick Navigation Dock (Apple Dynamic Glass Pill Dock) -->
+    <nav id="floating-dock" aria-label="Quick Navigation" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transform translate-y-28 opacity-0 pointer-events-none">
+        <div class="bg-[#1D1D1F]/80 backdrop-blur-2xl border border-white/15 text-white rounded-full px-3 py-2 sm:px-4 sm:py-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] flex items-center gap-1 sm:gap-2 pointer-events-auto">
             <!-- Jump to Products -->
-            <a href="#features" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
-                <i class="ph-bold ph-grid-four text-base text-green-400"></i>
+            <a href="#features" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-grid-four text-base text-[#2997FF]"></i>
                 <span class="hidden sm:inline">ระบบทั้งหมด</span>
             </a>
 
             <!-- Jump to Pricing -->
-            <a href="#pricing" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1.5">
-                <i class="ph-bold ph-tag text-base text-emerald-400"></i>
+            <a href="#pricing" class="dock-link px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-tag text-base text-[#30D158]"></i>
                 <span class="hidden sm:inline">แพ็กเกจ</span>
             </a>
 
             <!-- Catalog Quick Button -->
-            <button type="button" id="dock-catalog-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-gray-200 hover:text-white transition-all flex items-center gap-1" title="เปิด Solution Catalog (PDF)">
+            <button type="button" id="dock-catalog-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-white/80 hover:text-white transition-all flex items-center gap-1" title="เปิด Solution Catalog (PDF)">
                 <i class="ph-bold ph-file-pdf text-rose-400 text-base"></i>
                 <span class="hidden md:inline">Catalog</span>
             </button>
 
             <!-- PWA Install Button -->
-            <button type="button" id="dock-install-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-blue-300 hover:text-white transition-all flex items-center gap-1" title="ติดตั้งแอป NexusCore">
-                <i class="ph-bold ph-download-simple text-blue-400 text-base"></i>
+            <button type="button" id="dock-install-btn" class="dock-link px-2.5 py-1.5 rounded-full text-xs font-medium hover:bg-white/10 text-[#64D2FF] hover:text-white transition-all flex items-center gap-1" title="ติดตั้งแอป NexusCore">
+                <i class="ph-bold ph-download-simple text-[#64D2FF] text-base"></i>
                 <span class="hidden md:inline">ติดตั้ง</span>
             </button>
 
             <!-- Free Trial Trigger -->
-            <button type="button" id="dock-trial-btn" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 hover:bg-green-400 text-slate-950 transition-all shadow-md flex items-center gap-1.5">
+            <button type="button" id="dock-trial-btn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-[#0071E3] hover:bg-[#0077ED] text-white transition-all shadow-sm flex items-center gap-1.5">
                 <i class="ph-bold ph-rocket-launch text-base"></i>
                 <span>ทดลองใช้ฟรี</span>
             </button>
@@ -4595,30 +4885,6 @@
                     </div>
                     <div class="text-[11px]">ทดลองใช้ฟรี 30 วัน ไม่มีสัญญาผูกมัด</div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PWA Install Prompt Floating Toast (Feature 2: Security & Performance) -->
-    <div id="pwa-install-banner" class="fixed bottom-24 right-4 sm:right-6 z-50 max-w-sm bg-slate-950 text-white p-4 rounded-2xl shadow-2xl border border-slate-800 hidden flex items-start gap-3 transition-all duration-300 transform translate-y-4">
-        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0 text-xl shadow">
-            <i class="ph-fill ph-diamonds-four"></i>
-        </div>
-        <div class="flex-grow text-left">
-            <div class="flex items-center justify-between">
-                <h4 class="text-xs font-bold text-white">ติดตั้งแอป NexusCore</h4>
-                <button type="button" id="pwa-install-dismiss-btn" class="text-gray-400 hover:text-white text-xs">
-                    <i class="ph-bold ph-x"></i>
-                </button>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-0.5 mb-2.5 leading-relaxed">เข้าถึง 8 ระบบได้รวดเร็วกว่า พร้อมเปิดใช้งานแบบออฟไลน์บนหน้าจอหลัก</p>
-            <div class="flex items-center gap-2">
-                <button type="button" id="pwa-install-confirm-btn" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow">
-                    ติดตั้งทันที
-                </button>
-                <button type="button" id="pwa-install-later-btn" class="px-2.5 py-1.5 rounded-lg text-gray-400 hover:text-gray-200 text-xs transition-colors">
-                    ไว้คราวหลัง
-                </button>
             </div>
         </div>
     </div>

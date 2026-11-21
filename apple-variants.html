@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusCore · 5 ตัวอย่าง UX/UI สไตล์ Apple (Interactive Design Lab)</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230071e3'/><path d='M32 14L42 24L32 34L22 24Z' fill='white'/><path d='M32 30L42 40L32 50L22 40Z' fill='white' opacity='0.82'/><path d='M16 32L24 24L32 32L24 40Z' fill='white' opacity='0.65'/><path d='M32 32L40 24L48 32L40 40Z' fill='white' opacity='0.65'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --apple-blue: #0071E3;
+            --apple-blue-hover: #0077ED;
+            --apple-ink: #1D1D1F;
+            --apple-muted: #6E6E73;
+            --apple-gray: #F5F5F7;
+            --apple-dark: #000000;
+            --apple-card-dark: #161617;
+        }
+        html, body {
+            overflow-x: clip;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", "Prompt", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #FFFFFF;
+            color: var(--apple-ink);
+        }
+        h1, h2, h3, h4 {
+            letter-spacing: -0.03em;
+        }
+        .tabular {
+            font-variant-numeric: tabular-nums;
+        }
+        .apple-glass {
+            background: rgba(251, 251, 253, 0.82);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+        .apple-dark-glass {
+            background: rgba(22, 22, 23, 0.78);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+        .studio-pill.is-active {
+            background: #0071E3;
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+        }
+        .variant-panel {
+            display: none;
+        }
+        .variant-panel.is-active {
+            display: block;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .config-option.is-selected {
+            border-color: #0071E3 !important;
+            box-shadow: 0 0 0 1px #0071E3, 0 10px 25px -8px rgba(0, 113, 227, 0.18);
+            background: rgba(0, 113, 227, 0.03);
+        }
+        .chapter-btn.is-active {
+            border-left-color: #0071E3;
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================= -->
+    <!-- STUDIO SWITCHER BAR (Switch Between 5 Apple Prototypes)   -->
+    <!-- ========================================================= -->
+    <header id="studio-switcher" class="sticky top-0 z-50 bg-[#1D1D1F]/95 backdrop-blur-xl border-b border-white/10 text-white">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap lg:flex-nowrap items-center justify-between gap-2.5">
+            <div class="flex items-center gap-2 flex-shrink-0">
+                <div class="w-7 h-7 rounded-lg bg-[#0071E3] flex items-center justify-center flex-shrink-0">
+                    <i class="ph-fill ph-apple-logo text-white text-sm"></i>
+                </div>
+                <div class="text-xs font-semibold tracking-tight text-white flex items-center gap-2 whitespace-nowrap">
+                    <span>Design Lab</span>
+                    <span class="px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-[#2997FF] font-mono hidden sm:inline">5 Prototypes</span>
+                </div>
+            </div>
+
+            <!-- 5 Prototype Tabs -->
+            <nav aria-label="เลือกดูตัวอย่าง 5 แบบ" class="flex items-center gap-1 overflow-x-auto hide-scrollbar py-0.5 max-w-full" id="variant-tabs">
+                <button type="button" data-variant="1" class="studio-pill is-active px-2.5 py-1.5 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/10 transition-all whitespace-nowrap cursor-pointer">
+                    1. Apple Store Clean
+                </button>
+                <button type="button" data-variant="2" class="studio-pill px-2.5 py-1.5 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/10 transition-all whitespace-nowrap cursor-pointer">
+                    2. Titanium Dark Pro
+                </button>
+                <button type="button" data-variant="3" class="studio-pill px-2.5 py-1.5 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/10 transition-all whitespace-nowrap cursor-pointer">
+                    3. Bento Keynote
+                </button>
+                <button type="button" data-variant="4" class="studio-pill px-2.5 py-1.5 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/10 transition-all whitespace-nowrap cursor-pointer">
+                    4. macOS Split Stage
+                </button>
+                <button type="button" data-variant="5" class="studio-pill px-2.5 py-1.5 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/10 transition-all whitespace-nowrap cursor-pointer">
+                    5. Apple Configurator
+                </button>
+            </nav>
+
+            <!-- Studio Actions -->
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+                <button type="button" id="replay-gsap-btn" class="px-2.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap" title="เล่นแอนิเมชัน GSAP ใหม่อีกครั้ง">
+                    <i class="ph-bold ph-play"></i>
+                    <span class="hidden md:inline">Replay GSAP</span>
+                </button>
+                <button type="button" id="pick-variant-btn" class="px-3 py-1.5 rounded-full bg-[#30D158] hover:bg-[#28bd4c] text-black text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap">
+                    <i class="ph-bold ph-check"></i>
+                    <span>เลือกแบบที่ <span id="picked-num">1</span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toast Notification -->
+    <div id="lab-toast" class="fixed top-20 right-4 z-[60] hidden bg-[#1D1D1F] text-white border border-white/15 px-4 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-medium flex items-center gap-2.5 max-w-sm">
+        <i class="ph-fill ph-check-circle text-[#30D158] text-lg flex-shrink-0"></i>
+        <span id="lab-toast-msg">บันทึกการเลือกแล้ว</span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VARIANT 1: APPLE STORE EDITORIAL (CLEAN WHITE & #F5F5F7)  -->
+    <!-- ========================================================= -->
+    <section id="variant-1" class="variant-panel is-active bg-white text-[#1D1D1F]">
+        <!-- Apple-authentic Minimal 44px Sub-Nav -->
+        <div class="apple-glass border-b border-black/[0.08]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-between text-xs font-medium text-[#1D1D1F]/80">
+                <span class="font-semibold text-[#1D1D1F] flex items-center gap-1.5">
+                    <i class="ph-fill ph-diamonds-four text-[#0071E3] text-sm"></i> NexusCore
+                </span>
+                <div class="hidden md:flex items-center gap-7">
+                    <span>ภาพรวมระบบ</span>
+                    <span>บัญชี ERP</span>
+                    <span>สต๊อก POS</span>
+                    <span>IT Operations</span>
+                    <span>ฟิตเนส &amp; อีเวนต์</span>
+                    <span>ราคา</span>
+                </div>
+                <button type="button" class="px-3 py-1 rounded-full bg-[#0071E3] text-white text-[11px] font-medium">ทดลองใช้</button>
+            </div>
+        </div>
+
+        <!-- Hero White Clean Editorial -->
+        <div class="pt-16 pb-12 sm:pt-24 sm:pb-16 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+            <p class="v1-anim text-sm font-semibold text-[#0071E3] mb-3 tracking-wide uppercase">NexusCore Suite 2026</p>
+            <h1 class="v1-anim text-4xl sm:text-6xl lg:text-[68px] font-bold text-[#1D1D1F] leading-[1.06] mb-5">
+                ทุกระบบองค์กร.<br>
+                <span class="text-[#6E6E73]">เรียบง่ายในที่เดียว.</span>
+            </h1>
+            <p class="v1-anim text-base sm:text-xl text-[#6E6E73] max-w-2xl mx-auto mb-8 leading-relaxed">
+                รวมงาน IT, บัญชีภาษีไทย Express ERP, คลังสินค้า POS, ระบบฟิตเนส FitPulse Pro และจองบัตรไว้บนสถาปัตยกรรมเดียวที่เชื่อมต่อถึงกันแบบ Real-time
+            </p>
+            <div class="v1-anim flex items-center justify-center gap-4 mb-14 flex-wrap">
+                <a href="#v1-promos" class="px-7 py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-sm sm:text-base transition-all">
+                    เริ่มต้นทดลองใช้ฟรี 14 วัน
+                </a>
+                <a href="#v1-shelf" class="px-6 py-3 rounded-full border border-[#0071E3] text-[#0071E3] hover:bg-[#0071E3]/5 font-medium text-sm sm:text-base transition-all flex items-center gap-1">
+                    สำรวจทั้ง 9 ระบบ <i class="ph-bold ph-caret-right text-sm"></i>
+                </a>
+            </div>
+
+            <!-- Hero Display Frame -->
+            <div class="v1-hero-frame relative rounded-[28px] overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.18)] border border-black/[0.08] bg-[#F5F5F7] p-2 sm:p-3">
+                <img src="images/it_dashboard.webp" onerror="this.src='images/it_dashboard.png'" alt="IT Monthly Dashboard" class="w-full h-auto rounded-[20px] object-cover">
+            </div>
+        </div>
+
+        <!-- Two-Up Apple Promo Grid (Light Tile vs Pro Dark Tile) -->
+        <div id="v1-promos" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Tile Left: Light Surface -->
+                <div class="v1-tile bg-[#F5F5F7] rounded-[28px] p-8 sm:p-12 text-center flex flex-col justify-between overflow-hidden border border-black/[0.04]">
+                    <div>
+                        <span class="text-xs font-semibold text-[#0071E3] uppercase tracking-wider">Finance &amp; Tax</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold text-[#1D1D1F] mt-2 mb-3">Express Accounting ERP</h2>
+                        <p class="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto mb-6">ปิดงบดุล ภาษี VAT 7% ภ.ง.ด. 3/53 และอายุหนี้ AP/AR อัตโนมัติในคลิกเดียว</p>
+                        <div class="flex justify-center gap-4 mb-8">
+                            <span class="px-4 py-1.5 rounded-full bg-[#0071E3] text-white text-xs font-medium">ทดลองใช้ฟรี</span>
+                            <span class="px-4 py-1.5 text-[#0071E3] text-xs font-medium flex items-center gap-1">ดูรายละเอียด <i class="ph-bold ph-caret-right"></i></span>
+                        </div>
+                    </div>
+                    <img src="images/accounting.webp" onerror="this.src='images/accounting.png'" alt="Accounting ERP" class="w-full rounded-2xl shadow-lg border border-black/[0.06] transition-transform duration-500 hover:scale-[1.02]">
+                </div>
+
+                <!-- Tile Right: Pro Dark Contrast -->
+                <div class="v1-tile bg-black text-white rounded-[28px] p-8 sm:p-12 text-center flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <span class="text-xs font-semibold text-[#2997FF] uppercase tracking-wider">Omnichannel Retail</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2 mb-3">Inventory &amp; POS</h2>
+                        <p class="text-sm sm:text-base text-[#A1A1A6] max-w-md mx-auto mb-6">ตัดสต๊อกหน้าร้านทันที สแกนบาร์โค้ดไว แจ้งเตือนของใกล้หมดก่อนเสียโอกาสขาย</p>
+                        <div class="flex justify-center gap-4 mb-8">
+                            <span class="px-4 py-1.5 rounded-full bg-[#0071E3] text-white text-xs font-medium">ทดลองใช้ฟรี</span>
+                            <span class="px-4 py-1.5 text-[#2997FF] text-xs font-medium flex items-center gap-1">ดูรายละเอียด <i class="ph-bold ph-caret-right"></i></span>
+                        </div>
+                    </div>
+                    <img src="images/inventory.webp" onerror="this.src='images/inventory.png'" alt="Inventory POS" class="w-full rounded-2xl shadow-2xl border border-white/15 transition-transform duration-500 hover:scale-[1.02]">
+                </div>
+            </div>
+        </div>
+
+        <!-- Apple Store Horizontal Product Shelf -->
+        <div id="v1-shelf" class="bg-[#F5F5F7] py-16 px-4 sm:px-6 border-t border-black/[0.06]">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-end justify-between mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-[#1D1D1F]">ทุกระบบในชุด <span class="text-[#6E6E73]">เลือกใช้ได้ตามโตของธุรกิจ</span></h3>
+                    </div>
+                    <span class="text-xs text-[#6E6E73] hidden sm:inline">เลื่อนดูซ้าย-ขวา</span>
+                </div>
+                <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4">
+                    <div class="v1-shelf-card min-w-[290px] sm:min-w-[330px] bg-white rounded-[24px] p-6 border border-black/[0.05] shadow-sm flex-shrink-0 hover:-translate-y-1 transition-transform">
+                        <div class="text-[11px] font-semibold text-[#0071E3] uppercase mb-1">Security</div>
+                        <h4 class="text-lg font-bold text-[#1D1D1F] mb-2">Pass App Vault</h4>
+                        <p class="text-xs text-[#6E6E73] mb-4">ตู้เซฟรหัสผ่านเข้ารหัส AES-256 สำหรับทีม</p>
+                        <img src="images/pass_app.webp" onerror="this.src='images/pass_app.png'" alt="Pass App" class="w-full h-44 object-cover object-top rounded-xl border border-black/[0.06]">
+                    </div>
+                    <div class="v1-shelf-card min-w-[290px] sm:min-w-[330px] bg-white rounded-[24px] p-6 border border-black/[0.05] shadow-sm flex-shrink-0 hover:-translate-y-1 transition-transform">
+                        <div class="text-[11px] font-semibold text-[#0071E3] uppercase mb-1">Task Ops</div>
+                        <h4 class="text-lg font-bold text-[#1D1D1F] mb-2">Team Task Tracking</h4>
+                        <p class="text-xs text-[#6E6E73] mb-4">ติดตามงาน Kanban &amp; Timeline ไม่ตกหล่น</p>
+                        <img src="images/task_tracking.webp" onerror="this.src='images/task_tracking.png'" alt="Task Tracking" class="w-full h-44 object-cover object-top rounded-xl border border-black/[0.06]">
+                    </div>
+                    <div class="v1-shelf-card min-w-[290px] sm:min-w-[330px] bg-white rounded-[24px] p-6 border border-black/[0.05] shadow-sm flex-shrink-0 hover:-translate-y-1 transition-transform">
+                        <div class="text-[11px] font-semibold text-[#0071E3] uppercase mb-1">Gym &amp; Club</div>
+                        <h4 class="text-lg font-bold text-[#1D1D1F] mb-2">FitPulse Pro OS</h4>
+                        <p class="text-xs text-[#6E6E73] mb-4">สแกน QR เช็กอินและจัดการสมาชิกฟิตเนส</p>
+                        <img src="images/fitpulse.webp" onerror="this.src='images/fitpulse.png'" alt="FitPulse Pro" class="w-full h-44 object-cover object-top rounded-xl border border-black/[0.06]">
+                    </div>
+                    <div class="v1-shelf-card min-w-[290px] sm:min-w-[330px] bg-white rounded-[24px] p-6 border border-black/[0.05] shadow-sm flex-shrink-0 hover:-translate-y-1 transition-transform">
+                        <div class="text-[11px] font-semibold text-[#0071E3] uppercase mb-1">Food &amp; Kitchen</div>
+                        <h4 class="text-lg font-bold text-[#1D1D1F] mb-2">Tamsang POS &amp; KDS</h4>
+                        <p class="text-xs text-[#6E6E73] mb-4">QR สั่งอาหาร + จอครัวรวบกระทะ + PromptPay</p>
+                        <img src="images/tamsang.webp" onerror="this.src='images/tamsang.png'" alt="Tamsang POS" class="w-full h-44 object-cover object-top rounded-xl border border-black/[0.06]">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VARIANT 2: APPLE TITANIUM PRO DARK (MACBOOK PRO LAUNCH)   -->
+    <!-- ========================================================= -->
+    <section id="variant-2" class="variant-panel bg-black text-white min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-20 text-center relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[380px] bg-[radial-gradient(ellipse_at_top,rgba(41,151,255,0.22),transparent_70%)] pointer-events-none"></div>
+
+            <div class="v2-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.07] border border-white/15 text-[11px] font-medium text-[#2997FF] uppercase tracking-widest mb-6">
+                NexusCore Enterprise Pro
+            </div>
+            <h1 class="v2-anim text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-b from-white via-[#E5E5EA] to-[#6E6E73] bg-clip-text text-transparent">
+                สถาปัตยกรรมระดับ Pro.<br>ขับเคลื่อนองค์กรไม่สะดุด.
+            </h1>
+            <p class="v2-anim text-base sm:text-xl text-[#A1A1A6] max-w-2xl mx-auto mb-10">
+                สร้างขึ้นบนความเร็วและ Zero-Knowledge Security เชื่อมโยงทุกแผนกตั้งแต่หน้าบ้านจนถึงบัญชีภาษีด้วยความเสถียร 99.9% SLA
+            </p>
+
+            <!-- Titanium Aperture Frame -->
+            <div class="v2-stage relative rounded-[28px] p-2 sm:p-4 bg-gradient-to-b from-white/15 via-white/5 to-transparent border border-white/15 shadow-[0_40px_120px_rgba(0,113,227,0.22)] mb-14">
+                <img id="v2-stage-img" src="images/it_dashboard.webp" onerror="this.src='images/it_dashboard.png'" alt="NexusCore Pro Stage" class="w-full rounded-[20px] object-cover">
+            </div>
+
+            <!-- Interactive Hardware Spec Switcher -->
+            <div class="flex flex-wrap justify-center gap-2.5 mb-12" id="v2-switcher">
+                <button type="button" data-img="images/it_dashboard.webp" data-cap="IT Monthly Dashboard — มอนิเตอร์ 134 อุปกรณ์และ SLA ทีมซัพพอร์ตแบบเรียลไทม์" class="v2-tab px-4 py-2 rounded-full bg-[#0071E3] text-white text-xs font-semibold transition-all cursor-pointer">IT Operations</button>
+                <button type="button" data-img="images/pass_app.webp" data-cap="Pass App Vault — เก็บรหัสผ่านระดับ Zero-Knowledge พร้อม Role Permission" class="v2-tab px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 text-xs font-semibold transition-all cursor-pointer">Pass Vault</button>
+                <button type="button" data-img="images/asset_monitor.webp" data-cap="iOS Device Monitor — เช็กพิกัดเครื่ององค์กรและสั่งล็อคเครื่องจากระยะไกล" class="v2-tab px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 text-xs font-semibold transition-all cursor-pointer">Asset MDM</button>
+                <button type="button" data-img="images/tikkethub.webp" data-cap="TikketHub Stage Pass — จองผังที่นั่งสดและสแกนเข้างานความเร็วสูง" class="v2-tab px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 text-xs font-semibold transition-all cursor-pointer">TikketHub</button>
+            </div>
+            <p id="v2-stage-caption" class="text-sm text-[#A1A1A6] mb-14">IT Monthly Dashboard — มอนิเตอร์ 134 อุปกรณ์และ SLA ทีมซัพพอร์ตแบบเรียลไทม์</p>
+
+            <!-- Titanium Benchmark Specs -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 text-left">
+                <div class="v2-spec bg-[#161617] rounded-[24px] p-7 border border-white/10">
+                    <div class="text-xs text-[#86868B] uppercase tracking-wider mb-2">ความเร็วประมวลผล</div>
+                    <div class="text-4xl sm:text-5xl font-bold text-white tabular mb-1">99.9%</div>
+                    <div class="text-xs text-[#30D158]">High Availability Cloud SLA</div>
+                </div>
+                <div class="v2-spec bg-[#161617] rounded-[24px] p-7 border border-white/10">
+                    <div class="text-xs text-[#86868B] uppercase tracking-wider mb-2">ผู้ใช้งานในระบบ</div>
+                    <div class="text-4xl sm:text-5xl font-bold text-[#2997FF] tabular mb-1">2.24M+</div>
+                    <div class="text-xs text-[#A1A1A6]">ธุรกรรมและสมาชิกที่ใช้งานจริง</div>
+                </div>
+                <div class="v2-spec bg-[#161617] rounded-[24px] p-7 border border-white/10">
+                    <div class="text-xs text-[#86868B] uppercase tracking-wider mb-2">การตอบกลับวิศวกร</div>
+                    <div class="text-4xl sm:text-5xl font-bold text-white tabular mb-1">&lt; 3 นาที</div>
+                    <div class="text-xs text-[#A1A1A6]">ซัพพอร์ตเฉพาะทางตลอด 24 ชม.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VARIANT 3: APPLE BENTO KEYNOTE MATRIX                     -->
+    <!-- ========================================================= -->
+    <section id="variant-3" class="variant-panel bg-[#F5F5F7] text-[#1D1D1F] min-h-screen py-14 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="v3-anim inline-block px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[11px] font-semibold text-[#0071E3] uppercase tracking-widest mb-3">Apple Keynote Spec Matrix</span>
+                <h1 class="v3-anim text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mb-3">9 โซลูชัน. ครบจบใน Bento เดียว.</h1>
+                <p class="v3-anim text-sm sm:text-lg text-[#6E6E73] max-w-2xl mx-auto mb-7">จัดวางสเปกเด่นและหน้าจอจริงแบบสไลด์เปิดตัว Apple Keynote กดกรองหมวดหมู่เพื่อดูจังหวะจัดเรียง GSAP</p>
+
+                <!-- Filter Pills -->
+                <div class="flex flex-wrap justify-center gap-2" id="v3-filters">
+                    <button type="button" data-cat="all" class="v3-filter px-4 py-2 rounded-full bg-[#1D1D1F] text-white text-xs font-semibold cursor-pointer">ทั้งหมด (6 Tiles)</button>
+                    <button type="button" data-cat="ops" class="v3-filter px-4 py-2 rounded-full bg-white text-[#6E6E73] hover:text-[#1D1D1F] border border-black/10 text-xs font-semibold cursor-pointer">IT &amp; ความปลอดภัย</button>
+                    <button type="button" data-cat="biz" class="v3-filter px-4 py-2 rounded-full bg-white text-[#6E6E73] hover:text-[#1D1D1F] border border-black/10 text-xs font-semibold cursor-pointer">บัญชี ขาย &amp; หน้าร้าน</button>
+                </div>
+            </div>
+
+            <!-- Keynote Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-4" id="v3-grid">
+                <!-- Big Featured Tile -->
+                <div data-cat="ops" class="v3-tile md:col-span-4 bg-black text-white rounded-[28px] p-7 sm:p-9 flex flex-col justify-between overflow-hidden group">
+                    <div class="flex items-start justify-between gap-4 mb-5">
+                        <div>
+                            <span class="text-[11px] font-semibold text-[#2997FF] uppercase tracking-wider">Command Center</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold mt-1">IT Monthly Dashboard</h2>
+                            <p class="text-xs sm:text-sm text-[#A1A1A6] mt-1">รวมสถานะเซิร์ฟเวอร์ SLA และแจ้งซ่อม Lark ในหน้าเดียว</p>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-[#0071E3] text-white text-xs font-medium flex-shrink-0">Flagship</span>
+                    </div>
+                    <img src="images/it_dashboard.webp" onerror="this.src='images/it_dashboard.png'" alt="IT Dashboard" class="w-full h-56 sm:h-72 object-cover object-top rounded-2xl border border-white/15 group-hover:scale-[1.02] transition-transform duration-500">
+                </div>
+
+                <!-- Tall Stat Tile -->
+                <div data-cat="ops" class="v3-tile md:col-span-2 bg-white rounded-[28px] p-7 border border-black/[0.06] flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 rounded-2xl bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center text-2xl mb-4">
+                            <i class="ph-fill ph-lock-key"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#1D1D1F] mb-2">Pass App &amp; iOS MDM</h3>
+                        <p class="text-xs text-[#6E6E73] leading-relaxed">Zero-Knowledge Security พร้อมสั่งล็อคเครื่องระยะไกลและจัดการทรัพย์สินองค์กร</p>
+                    </div>
+                    <div class="pt-6 border-t border-black/[0.06]">
+                        <div class="text-4xl font-bold text-[#0071E3] tabular">256-bit</div>
+                        <div class="text-xs text-[#6E6E73] mt-1">AES Hardware-grade Encryption</div>
+                    </div>
+                </div>
+
+                <!-- Medium Commerce Tile -->
+                <div data-cat="biz" class="v3-tile md:col-span-3 bg-white rounded-[28px] p-7 border border-black/[0.06] flex flex-col justify-between group">
+                    <div class="mb-4">
+                        <span class="text-[11px] font-semibold text-emerald-600 uppercase tracking-wider">Express ERP &amp; Tax</span>
+                        <h3 class="text-2xl font-bold text-[#1D1D1F] mt-1">ระบบบัญชีและภาษีไทย 7%</h3>
+                        <p class="text-xs text-[#6E6E73] mt-1">แยกสมุดรายวัน 5 เล่ม ลงบัญชี Auto-GL และวิเคราะห์ Aging</p>
+                    </div>
+                    <img src="images/accounting.webp" onerror="this.src='images/accounting.png'" alt="Accounting" class="w-full h-48 object-cover object-top rounded-2xl border border-black/[0.06] group-hover:scale-[1.02] transition-transform duration-500">
+                </div>
+
+                <!-- Medium Retail Tile -->
+                <div data-cat="biz" class="v3-tile md:col-span-3 bg-white rounded-[28px] p-7 border border-black/[0.06] flex flex-col justify-between group">
+                    <div class="mb-4">
+                        <span class="text-[11px] font-semibold text-orange-600 uppercase tracking-wider">POS &amp; Kitchen</span>
+                        <h3 class="text-2xl font-bold text-[#1D1D1F] mt-1">Inventory POS &amp; Tamsang</h3>
+                        <p class="text-xs text-[#6E6E73] mt-1">ขายหน้าร้าน คิวครัว KDS และสร้าง PromptPay QR อัตโนมัติ</p>
+                    </div>
+                    <img src="images/tamsang.webp" onerror="this.src='images/tamsang.png'" alt="Tamsang POS" class="w-full h-48 object-cover object-top rounded-2xl border border-black/[0.06] group-hover:scale-[1.02] transition-transform duration-500">
+                </div>
+
+                <!-- Small Tile 1 -->
+                <div data-cat="biz" class="v3-tile md:col-span-3 bg-[#161617] text-white rounded-[28px] p-7 flex items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[11px] text-[#30D158] font-semibold uppercase">Gym OS</span>
+                        <h3 class="text-xl font-bold mt-1">FitPulse Pro</h3>
+                        <p class="text-xs text-[#A1A1A6] mt-1">QR Check-in + คำนวณค่าคอม PT</p>
+                    </div>
+                    <img src="images/fitpulse.webp" onerror="this.src='images/fitpulse.png'" alt="FitPulse" class="w-28 h-20 object-cover rounded-xl border border-white/15 flex-shrink-0">
+                </div>
+
+                <!-- Small Tile 2 -->
+                <div data-cat="biz" class="v3-tile md:col-span-3 bg-[#0071E3] text-white rounded-[28px] p-7 flex items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[11px] text-white/80 font-semibold uppercase">Stage &amp; Event</span>
+                        <h3 class="text-xl font-bold mt-1">TikketHub</h3>
+                        <p class="text-xs text-white/85 mt-1">ผังที่นั่ง Live + แจกตั๋ว E-Ticket QR</p>
+                    </div>
+                    <img src="images/tikkethub.webp" onerror="this.src='images/tikkethub.png'" alt="TikketHub" class="w-28 h-20 object-cover rounded-xl border border-white/25 flex-shrink-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VARIANT 4: MACOS / VISIONOS STICKY SPLIT HARDWARE STAGE   -->
+    <!-- ========================================================= -->
+    <section id="variant-4" class="variant-panel bg-[#0A0A0D] text-white min-h-screen py-14 sm:py-20 px-4 sm:px-6 pb-28 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold text-[#2997FF] uppercase tracking-widest">macOS Interactive Architecture</span>
+                <h1 class="text-3xl sm:text-5xl font-bold text-white mt-2">คลิกดูทีละระบบ บนหน้าจอจำลอง macOS</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Chapters Rail -->
+                <div class="lg:col-span-4 space-y-3" id="v4-chapters">
+                    <button type="button" data-idx="0" class="chapter-btn is-active w-full text-left p-5 rounded-2xl border-l-4 border-transparent bg-white/[0.04] hover:bg-white/[0.08] transition-all cursor-pointer">
+                        <div class="text-[11px] font-mono text-[#2997FF] mb-1">01 · IT OPERATIONS</div>
+                        <div class="text-lg font-bold text-white">IT Monthly Dashboard</div>
+                        <p class="text-xs text-[#A1A1A6] mt-1">รวมสถานะ Server, Helpdesk SLA และอุปกรณ์ IT แบบ Real-time</p>
+                    </button>
+                    <button type="button" data-idx="1" class="chapter-btn w-full text-left p-5 rounded-2xl border-l-4 border-transparent bg-white/[0.04] hover:bg-white/[0.08] transition-all cursor-pointer">
+                        <div class="text-[11px] font-mono text-[#30D158] mb-1">02 · EXPRESS ACCOUNTING</div>
+                        <div class="text-lg font-bold text-white">Thai Accounting &amp; Tax ERP</div>
+                        <p class="text-xs text-[#A1A1A6] mt-1">ยื่นภาษี VAT 7%, ภ.ง.ด. 3/53, ออกใบกำกับและเช็ก Aging ลูกหนี้</p>
+                    </button>
+                    <button type="button" data-idx="2" class="chapter-btn w-full text-left p-5 rounded-2xl border-l-4 border-transparent bg-white/[0.04] hover:bg-white/[0.08] transition-all cursor-pointer">
+                        <div class="text-[11px] font-mono text-amber-400 mb-1">03 · RETAIL &amp; FOOD POS</div>
+                        <div class="text-lg font-bold text-white">Inventory POS &amp; Tamsang</div>
+                        <p class="text-xs text-[#A1A1A6] mt-1">คุมสต๊อกสาขา บาร์โค้ดไว คิวครัว KDS และรับเงิน PromptPay</p>
+                    </button>
+                    <button type="button" data-idx="3" class="chapter-btn w-full text-left p-5 rounded-2xl border-l-4 border-transparent bg-white/[0.04] hover:bg-white/[0.08] transition-all cursor-pointer">
+                        <div class="text-[11px] font-mono text-pink-400 mb-1">04 · WORKSPACE &amp; TASK</div>
+                        <div class="text-lg font-bold text-white">Team Task Tracking</div>
+                        <p class="text-xs text-[#A1A1A6] mt-1">บอร์ดงาน Connect Boards, Automation Rules และ Activity Log</p>
+                    </button>
+                </div>
+
+                <!-- Right Sticky macOS Window -->
+                <div class="lg:col-span-8 lg:sticky lg:top-24">
+                    <div class="rounded-[24px] overflow-hidden border border-white/15 bg-[#161617] shadow-[0_40px_100px_rgba(0,0,0,0.75)]">
+                        <!-- macOS Window Toolbar -->
+                        <div class="px-5 py-3.5 bg-[#1D1D1F] border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+                                <span class="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+                                <span class="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+                            </div>
+                            <div id="v4-url-pill" class="px-4 py-1 rounded-full bg-black/40 border border-white/10 text-[11px] text-[#A1A1A6] font-mono">
+                                it-monthly.nexuscore.cloud
+                            </div>
+                            <span class="text-[11px] text-[#30D158] flex items-center gap-1 font-medium">
+                                <i class="ph-fill ph-lock-simple"></i> Verified
+                            </span>
+                        </div>
+                        <div class="p-3 sm:p-4 bg-black">
+                            <img id="v4-screen" src="images/it_dashboard.webp" onerror="this.src='images/it_dashboard.png'" alt="macOS Stage View" class="w-full rounded-xl object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- macOS Bottom Glass Dock -->
+        <div class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 apple-dark-glass border border-white/15 rounded-2xl px-3 py-2 shadow-2xl hidden sm:flex items-center gap-2">
+            <button type="button" data-idx="0" class="v4-dock-icon w-10 h-10 rounded-xl bg-[#0071E3] text-white flex items-center justify-center hover:scale-110 transition-transform cursor-pointer" title="IT Dashboard"><i class="ph-fill ph-desktop text-lg"></i></button>
+            <button type="button" data-idx="1" class="v4-dock-icon w-10 h-10 rounded-xl bg-[#30D158] text-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer" title="Accounting ERP"><i class="ph-fill ph-receipt text-lg"></i></button>
+            <button type="button" data-idx="2" class="v4-dock-icon w-10 h-10 rounded-xl bg-amber-400 text-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer" title="Inventory & Tamsang"><i class="ph-fill ph-storefront text-lg"></i></button>
+            <button type="button" data-idx="3" class="v4-dock-icon w-10 h-10 rounded-xl bg-white/15 text-white flex items-center justify-center hover:scale-110 transition-transform cursor-pointer" title="Task Tracking"><i class="ph-fill ph-check-square-offset text-lg"></i></button>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VARIANT 5: APPLE STORE INTERACTIVE CONFIGURATOR (BUY-FLOW) -->
+    <!-- ========================================================= -->
+    <section id="variant-5" class="variant-panel bg-white text-[#1D1D1F] min-h-screen py-12 sm:py-16 px-4 sm:px-6 pb-32">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="border-b border-black/[0.08] pb-6 mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <span class="text-xs font-semibold text-[#BF4800] uppercase tracking-wider">NexusCore Builder</span>
+                    <h1 class="text-3xl sm:text-5xl font-bold text-[#1D1D1F] mt-1">จัดชุดระบบ NexusCore ของคุณ</h1>
+                </div>
+                <p class="text-sm text-[#6E6E73]">เลือกขนาดองค์กรและโมดูลที่ใช้งานจริง คำนวณราคาแบบ Apple Store</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <!-- Left Sticky Visual Preview Pedestal -->
+                <div class="lg:col-span-7 lg:sticky lg:top-24 bg-[#F5F5F7] rounded-[28px] p-6 sm:p-10 border border-black/[0.05] text-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-medium text-[#1D1D1F] mb-5">
+                        <span class="w-2 h-2 rounded-full bg-[#30D158]"></span>
+                        <span id="v5-preview-label">IT Monthly Dashboard · Workspace Preview</span>
+                    </div>
+                    <img id="v5-preview-img" src="images/it_dashboard.webp" onerror="this.src='images/it_dashboard.png'" alt="Configurator Preview" class="w-full rounded-2xl shadow-xl border border-black/[0.08] mb-6">
+                    <div class="grid grid-cols-3 gap-3 text-xs text-[#6E6E73]">
+                        <div class="bg-white rounded-xl p-3 border border-black/[0.05]">
+                            <i class="ph-bold ph-shield-check text-[#0071E3] text-base block mb-1"></i> ทดลองฟรี 14 วัน
+                        </div>
+                        <div class="bg-white rounded-xl p-3 border border-black/[0.05]">
+                            <i class="ph-bold ph-arrows-clockwise text-[#0071E3] text-base block mb-1"></i> ปรับแผนได้ตลอด
+                        </div>
+                        <div class="bg-white rounded-xl p-3 border border-black/[0.05]">
+                            <i class="ph-bold ph-headset text-[#0071E3] text-base block mb-1"></i> ซัพพอร์ต 24/7
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Tactile Option Selector -->
+                <div class="lg:col-span-5 space-y-8">
+                    <!-- Step 1: Plan Size -->
+                    <div>
+                        <h2 class="text-lg font-bold text-[#1D1D1F] mb-1">1. ขนาดองค์กร. <span class="text-[#6E6E73] font-normal">เลือกแพ็กเกจเริ่มต้น</span></h2>
+                        <p class="text-xs text-[#6E6E73] mb-4">เปลี่ยนสเปกได้ทันทีโดยไม่เสียข้อมูลเดิม</p>
+                        <div class="space-y-3" id="v5-plan-options">
+                            <button type="button" data-plan="Starter" data-price="990" class="config-option w-full text-left p-4 rounded-2xl border border-black/15 flex items-center justify-between transition-all cursor-pointer">
+                                <div>
+                                    <div class="font-semibold text-sm text-[#1D1D1F]">Starter · ทีมขนาดเล็ก</div>
+                                    <div class="text-xs text-[#6E6E73]">สูงสุด 5 ผู้ใช้ • 50 GB Storage</div>
+                                </div>
+                                <div class="font-semibold text-sm text-[#1D1D1F] tabular">฿990/ด.</div>
+                            </button>
+                            <button type="button" data-plan="Professional" data-price="2490" class="config-option is-selected w-full text-left p-4 rounded-2xl border border-black/15 flex items-center justify-between transition-all cursor-pointer">
+                                <div>
+                                    <div class="font-semibold text-sm text-[#1D1D1F]">Professional · แนะนำสำหรับ SME</div>
+                                    <div class="text-xs text-[#6E6E73]">สูงสุด 20 ผู้ใช้ • Private DB &amp; API</div>
+                                </div>
+                                <div class="font-semibold text-sm text-[#1D1D1F] tabular">฿2,490/ด.</div>
+                            </button>
+                            <button type="button" data-plan="Enterprise" data-price="0" class="config-option w-full text-left p-4 rounded-2xl border border-black/15 flex items-center justify-between transition-all cursor-pointer">
+                                <div>
+                                    <div class="font-semibold text-sm text-[#1D1D1F]">Enterprise · องค์กรขนาดใหญ่</div>
+                                    <div class="text-xs text-[#6E6E73]">ไม่จำกัดผู้ใช้ • Dedicated Server</div>
+                                </div>
+                                <div class="font-semibold text-sm text-[#0071E3]">Custom</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Preview Modules -->
+                    <div>
+                        <h2 class="text-lg font-bold text-[#1D1D1F] mb-1">2. โมดูลหลักที่ต้องการใช้. <span class="text-[#6E6E73] font-normal">กดดูหน้าจอจริงด้านซ้าย</span></h2>
+                        <div class="grid grid-cols-2 gap-2.5 mt-4" id="v5-module-options">
+                            <button type="button" data-mod="IT Monthly Dashboard" data-img="images/it_dashboard.webp" class="config-option is-selected p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">IT Dashboard</button>
+                            <button type="button" data-mod="Accounting ERP" data-img="images/accounting.webp" class="config-option p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">บัญชี ERP ไทย</button>
+                            <button type="button" data-mod="Inventory POS" data-img="images/inventory.webp" class="config-option p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">สต๊อก &amp; POS</button>
+                            <button type="button" data-mod="Tamsang KDS" data-img="images/tamsang.webp" class="config-option p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">Tamsang ร้านอาหาร</button>
+                            <button type="button" data-mod="FitPulse Pro" data-img="images/fitpulse.webp" class="config-option p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">FitPulse ฟิตเนส</button>
+                            <button type="button" data-mod="TikketHub" data-img="images/tikkethub.webp" class="config-option p-3.5 rounded-2xl border border-black/15 text-left text-xs font-semibold transition-all cursor-pointer">TikketHub จองบัตร</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Apple Bag Bottom Summary Bar -->
+        <div class="fixed bottom-0 inset-x-0 z-40 apple-glass border-t border-black/10 py-3.5 px-4 sm:px-6">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+                <div>
+                    <div class="text-xs text-[#6E6E73]">สรุปแผนที่เลือก (<span id="v5-summary-mod">IT Monthly Dashboard</span>)</div>
+                    <div class="text-base sm:text-lg font-bold text-[#1D1D1F] tabular">
+                        <span id="v5-summary-plan">Professional</span> — <span id="v5-summary-price">฿2,490 / เดือน</span>
+                    </div>
+                </div>
+                <button type="button" id="v5-bag-btn" class="px-6 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-sm font-semibold transition-all cursor-pointer">
+                    เริ่มทดลองใช้ฟรี 14 วัน
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+            const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let currentVariant = 1;
+
+            const showToast = (msg) => {
+                const toast = document.getElementById('lab-toast');
+                const toastMsg = document.getElementById('lab-toast-msg');
+                if (!toast || !toastMsg) return;
+                toastMsg.textContent = msg;
+                toast.classList.remove('hidden');
+                if (typeof gsap !== 'undefined' && !prefersReduced) {
+                    gsap.fromTo(toast, { y: -14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: 'power3.out' });
+                    clearTimeout(window.__labToastTimer);
+                    window.__labToastTimer = setTimeout(() => {
+                        gsap.to(toast, { y: -10, opacity: 0, duration: 0.2, onComplete: () => toast.classList.add('hidden') });
+                    }, 3000);
+                }
+            };
+
+            const animateVariant = (num) => {
+                if (typeof gsap === 'undefined' || prefersReduced) return;
+                if (num === 1) {
+                    gsap.fromTo('#variant-1 .v1-anim', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-1 .v1-hero-frame', { y: 32, scale: 0.96, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.85, delay: 0.18, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-1 .v1-tile', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, delay: 0.25, ease: 'power3.out', clearProps: 'transform,opacity' });
+                } else if (num === 2) {
+                    gsap.fromTo('#variant-2 .v2-anim', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, stagger: 0.09, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-2 .v2-stage', { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, delay: 0.16, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-2 .v2-spec', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.08, delay: 0.28, ease: 'power3.out', clearProps: 'transform,opacity' });
+                } else if (num === 3) {
+                    gsap.fromTo('#variant-3 .v3-anim', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.07, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-3 .v3-tile', { scale: 0.95, y: 24, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.65, stagger: 0.06, delay: 0.15, ease: 'power3.out', clearProps: 'transform,opacity' });
+                } else if (num === 4) {
+                    gsap.fromTo('#variant-4 .chapter-btn', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, stagger: 0.07, ease: 'power3.out', clearProps: 'transform,opacity' });
+                    gsap.fromTo('#variant-4 #v4-screen', { scale: 0.97, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out', clearProps: 'transform,opacity' });
+                } else if (num === 5) {
+                    gsap.fromTo('#variant-5 .config-option', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out', clearProps: 'transform,opacity' });
+                }
+            };
+
+            const switchVariant = (num) => {
+                currentVariant = Number(num);
+                document.querySelectorAll('.variant-panel').forEach((p) => p.classList.remove('is-active'));
+                const target = document.getElementById(`variant-${currentVariant}`);
+                if (target) target.classList.add('is-active');
+
+                document.querySelectorAll('.studio-pill').forEach((btn) => {
+                    btn.classList.toggle('is-active', Number(btn.dataset.variant) === currentVariant);
+                });
+                const pickedEl = document.getElementById('picked-num');
+                if (pickedEl) pickedEl.textContent = String(currentVariant);
+
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                animateVariant(currentVariant);
+            };
+
+            document.querySelectorAll('.studio-pill').forEach((btn) => {
+                btn.addEventListener('click', () => switchVariant(btn.dataset.variant));
+            });
+
+            document.getElementById('replay-gsap-btn')?.addEventListener('click', () => {
+                animateVariant(currentVariant);
+                showToast(`เล่นแอนิเมชัน GSAP แบบที่ ${currentVariant} ใหม่แล้ว`);
+            });
+
+            const names = {
+                1: 'แบบที่ 1: Apple Store Clean Editorial',
+                2: 'แบบที่ 2: Apple Titanium Dark Pro',
+                3: 'แบบที่ 3: Apple Bento Keynote Matrix',
+                4: 'แบบที่ 4: macOS Split Hardware Stage',
+                5: 'แบบที่ 5: Apple Store Configurator'
+            };
+
+            document.getElementById('pick-variant-btn')?.addEventListener('click', () => {
+                const label = names[currentVariant] || `แบบที่ ${currentVariant}`;
+                showToast(`คุณเลือก "${label}" — แจ้งจาวิสว่า "เอาแบบที่ ${currentVariant}" ได้เลยครับ!`);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (['1', '2', '3', '4', '5'].includes(e.key)) {
+                    switchVariant(Number(e.key));
+                }
+            });
+
+            // Variant 2 Switcher
+            document.querySelectorAll('.v2-tab').forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.v2-tab').forEach((t) => {
+                        t.classList.remove('bg-[#0071E3]', 'text-white');
+                        t.classList.add('bg-white/10', 'text-white/80');
+                    });
+                    tab.classList.add('bg-[#0071E3]', 'text-white');
+                    tab.classList.remove('bg-white/10', 'text-white/80');
+
+                    const img = document.getElementById('v2-stage-img');
+                    const cap = document.getElementById('v2-stage-caption');
+                    if (cap) cap.textContent = tab.dataset.cap || '';
+                    if (img) {
+                        const src = tab.dataset.img;
+                        gsap.to(img, {
+                            opacity: 0, scale: 0.98, duration: 0.18,
+                            onComplete: () => {
+                                img.src = src;
+                                img.onerror = () => { img.src = src.replace('.webp', '.png'); };
+                                gsap.to(img, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Variant 3 Bento Filter + GSAP Stagger
+            document.querySelectorAll('.v3-filter').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.cat;
+                    document.querySelectorAll('.v3-filter').forEach((b) => {
+                        b.classList.remove('bg-[#1D1D1F]', 'text-white');
+                        b.classList.add('bg-white', 'text-[#6E6E73]', 'border', 'border-black/10');
+                    });
+                    btn.classList.add('bg-[#1D1D1F]', 'text-white');
+                    btn.classList.remove('bg-white', 'text-[#6E6E73]', 'border', 'border-black/10');
+
+                    const visibleTiles = [];
+                    document.querySelectorAll('#v3-grid .v3-tile').forEach((tile) => {
+                        const show = cat === 'all' || tile.dataset.cat === cat;
+                        tile.style.display = show ? 'flex' : 'none';
+                        if (show) visibleTiles.push(tile);
+                    });
+                    if (typeof gsap !== 'undefined' && !prefersReduced && visibleTiles.length) {
+                        gsap.fromTo(visibleTiles, { opacity: 0, scale: 0.96, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', clearProps: 'transform' });
+                    }
+                });
+            });
+
+            // Variant 4 macOS Split Stage + Dock Sync
+            const v4Data = [
+                { img: 'images/it_dashboard.webp', url: 'it-monthly.nexuscore.cloud' },
+                { img: 'images/accounting.webp', url: 'accounting.nexuscore.cloud' },
+                { img: 'images/tamsang.webp', url: 'pos-kds.nexuscore.cloud' },
+                { img: 'images/task_tracking.webp', url: 'tasks.nexuscore.cloud' }
+            ];
+            const setV4Chapter = (idx) => {
+                const item = v4Data[idx];
+                if (!item) return;
+                document.querySelectorAll('#v4-chapters .chapter-btn').forEach((b) => {
+                    b.classList.toggle('is-active', Number(b.dataset.idx) === idx);
+                });
+                const urlPill = document.getElementById('v4-url-pill');
+                const screenImg = document.getElementById('v4-screen');
+                if (urlPill) urlPill.textContent = item.url;
+                if (screenImg) {
+                    gsap.to(screenImg, {
+                        opacity: 0, y: 8, duration: 0.18,
+                        onComplete: () => {
+                            screenImg.src = item.img;
+                            screenImg.onerror = () => { screenImg.src = item.img.replace('.webp', '.png'); };
+                            gsap.to(screenImg, { opacity: 1, y: 0, duration: 0.34, ease: 'power3.out' });
+                        }
+                    });
+                }
+            };
+            document.querySelectorAll('#v4-chapters .chapter-btn, .v4-dock-icon').forEach((el) => {
+                el.addEventListener('click', () => setV4Chapter(Number(el.dataset.idx)));
+            });
+
+            // Variant 5 Apple Store Configurator Logic
+            document.querySelectorAll('#v5-plan-options .config-option').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#v5-plan-options .config-option').forEach((b) => b.classList.remove('is-selected'));
+                    btn.classList.add('is-selected');
+                    const price = Number(btn.dataset.price);
+                    document.getElementById('v5-summary-plan').textContent = btn.dataset.plan;
+                    document.getElementById('v5-summary-price').textContent = price > 0 ? `฿${price.toLocaleString()} / เดือน` : 'Custom (ออกแบบเฉพาะ)';
+                });
+            });
+            document.querySelectorAll('#v5-module-options .config-option').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#v5-module-options .config-option').forEach((b) => b.classList.remove('is-selected'));
+                    btn.classList.add('is-selected');
+                    const imgEl = document.getElementById('v5-preview-img');
+                    const lbl = document.getElementById('v5-preview-label');
+                    const modSum = document.getElementById('v5-summary-mod');
+                    if (lbl) lbl.textContent = `${btn.dataset.mod} · Workspace Preview`;
+                    if (modSum) modSum.textContent = btn.dataset.mod;
+                    if (imgEl && btn.dataset.img) {
+                        const s = btn.dataset.img;
+                        gsap.to(imgEl, {
+                            opacity: 0, scale: 0.98, duration: 0.16,
+                            onComplete: () => {
+                                imgEl.src = s;
+                                imgEl.onerror = () => { imgEl.src = s.replace('.webp', '.png'); };
+                                gsap.to(imgEl, { opacity: 1, scale: 1, duration: 0.32, ease: 'power3.out' });
+                            }
+                        });
+                    }
+                });
+            });
+            document.getElementById('v5-bag-btn')?.addEventListener('click', () => {
+                showToast('ตัวอย่าง Bag Flow: พร้อมส่งต่อเข้าฟอร์มขอทดลองใช้ฟรี 14 วัน');
+            });
+
+            // Initial GSAP Entrance
+            animateVariant(1);
+        });
+    </script>
+</body>
+</html>
