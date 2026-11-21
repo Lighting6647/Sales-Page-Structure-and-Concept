@@ -1,5 +1,5 @@
 // NexusCore Production Service Worker (PWA Offline Caching)
-const CACHE_NAME = 'nexuscore-v3';
+const CACHE_NAME = 'nexuscore-v4';
 const STATIC_ASSETS = [
     './',
     './index.html',
@@ -13,7 +13,8 @@ const STATIC_ASSETS = [
     './images/accounting.png',
     './images/inventory.png',
     './images/fitpulse.png',
-    './images/tikkethub.png'
+    './images/tikkethub.png',
+    './images/tamsang.png'
 ];
 
 // Install: Cache critical assets

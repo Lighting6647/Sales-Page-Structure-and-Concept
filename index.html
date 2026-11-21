@@ -485,7 +485,7 @@
                 <div class="relative flex items-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-full">
                     <i class="ph-bold ph-magnifying-glass absolute left-4 text-slate-400 text-lg pointer-events-none"></i>
                     <input type="text" id="solution-search-input" 
-                           placeholder="ค้นหาฟังก์ชันหรือชื่อระบบ (เช่น บัญชี, สต๊อก, POS, MDM, IT, ฟิตเนส)..." 
+                           placeholder="ค้นหาฟังก์ชันหรือชื่อระบบ (เช่น บัญชี ERP, สต๊อก, POS, ตามสั่ง, อาหาร, IT, ฟิตเนส)..." 
                            class="w-full pl-11 pr-10 py-3.5 rounded-full bg-white hover:bg-slate-50/50 focus:bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all">
                     <button id="solution-search-clear" type="button" aria-label="Clear search" class="hidden absolute right-3.5 text-slate-400 hover:text-slate-600 transition-colors">
                         <i class="ph-fill ph-x-circle text-lg"></i>
@@ -508,7 +508,7 @@
             <div class="flex flex-wrap justify-center items-center gap-2 mb-4" id="solution-filter-tabs" role="tablist" aria-label="หมวดหมู่โซลูชัน">
                 <button type="button" data-filter="all" class="filter-tab active px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-slate-900 text-white shadow-sm flex items-center gap-2">
                     <span>ทั้งหมด</span>
-                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white font-medium filter-count">8</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white font-medium filter-count">9</span>
                 </button>
                 <button type="button" data-filter="it" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
                     <i class="ph-bold ph-desktop"></i>
@@ -517,8 +517,8 @@
                 </button>
                 <button type="button" data-filter="finance" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
                     <i class="ph-bold ph-receipt"></i>
-                    <span>บัญชี & สต๊อกสินค้า</span>
-                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">2</span>
+                    <span>บัญชี & สต๊อกสินค้า & POS</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium filter-count">3</span>
                 </button>
                 <button type="button" data-filter="ops" class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center gap-2">
                     <i class="ph-bold ph-check-square-offset"></i>
@@ -563,7 +563,7 @@
                      data-badge="IT INFRASTRUCTURE"
                      data-desc="รวบรวมข้อมูลการทำงานของระบบ IT ทั้งหมดไว้ในแดชบอร์ดเดียว ลดเวลาทำ Report ด้วยข้อมูล Real-time ไม่ต้องเปิดหลายโปรแกรมให้วุ่นวาย"
                      data-img="images/it_dashboard.png"
-                     data-link="https://it-monthly-dashboard-hb21.onrender.com/#/"
+                     data-link="https://it-dashboard-jade.vercel.app/#/"
                      data-highlights='["มอนิเตอร์สถานะเซิร์ฟเวอร์และ Service สำคัญ 24/7 พร้อมแจ้งเตือน", "สรุป SLA และประสิทธิภาพการทำงานของทีมซัพพอร์ตอัตโนมัติ", "Export กราฟและข้อมูลเป็นรายงานสรุปส่งผู้บริหารในคลิกเดียว"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
@@ -579,7 +579,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCiGGKvST2rQOohG8rhTgcHH1rMJKjkUFJG6K3NdcncTYu7bkd6cSSKj8mUclGp4GVpbmTkITmmbscf1oopMsN5x/8AXqQN8tFFCZnI/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAIEAwUG/8QAJRAAAgEDAwQCAwAAAAAAAAAAAQIRAAMhBRIxBBMiMzJBYYGx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAgEDBf/EABoRAAMAAwEAAAAAAAAAAAAAAAABAgMRMUH/2gAMAwEAAhEDEQA/AIep1m22hv0x0uwpuWFUXMSsKBI8JnE8/dc85YwmA3OLSiqr7A6cnmnrGN8nitV32kNAkV0MkKeGKb9LLHuDEq23gdsEfsVmuncrkqgkTi2BUXTP8ywprl4FGAaonoFLZIbhbaAfxxVZulNsMYjj6/tFFBdGxbWFcqIxS3AOyDAkzmiilRT/2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/it_dashboard.webp" src="images/it_dashboard.png" alt="it_dashboard" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -605,7 +605,7 @@
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📊 Auto Report</span>
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🔔 Real-time Alert</span>
                     </div>
-                    <a href="https://it-monthly-dashboard-hb21.onrender.com/#/" target="_blank" class="block w-full text-center bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 font-semibold py-3 rounded-xl transition-all border border-blue-100 shadow-sm hover:shadow">
+                    <a href="https://it-dashboard-jade.vercel.app/#/" target="_blank" class="block w-full text-center bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 font-semibold py-3 rounded-xl transition-all border border-blue-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -634,7 +634,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHK47g0mKtB0Cj92p/CoZcMxIAA9BSJFS3mdQyROynuFpTbTgZMLgD/ZNa9hcxpYxqZUUjOQT71JLdxGJx5yH5T3qhmGGPrTWJooqAIzSUUUwP/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAcBBgIDBP/EACgQAAIABQIFBAMAAAAAAAAAAAECAAMEBhEFEhMhIkFRIzJhYjGh0f/EABYBAQEBAAAAAAAAAAAAAAAAAAECAP/EABcRAQEBAQAAAAAAAAAAAAAAAAABESH/2gAMAwEAAhEDEQA/AK/as4NddA6jaQTzxy9p+Ybkia8zCiqls31A/sJi2JBq7gpaZW2mcHQN4yjDMMa3bNnaRqq1rV5mhd3RjyIOxEWj1e839RoqKdaiZKecqzOE25SV9p+I7GBDZiGDBDnHPMVqiVsoqbu00hcdZ7/Uw6pQG5iMePxBBA0ZOM4B7xXKu6hI1F6EURbbM4e/i474zjEEEDV//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/pass_app.webp" src="images/pass_app.png" alt="pass_app" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -673,7 +673,7 @@
                      data-badge="MOBILE DEVICE MGMT"
                      data-desc="ควบคุมอุปกรณ์ iPhone/iPad ของบริษัทได้เบ็ดเสร็จ (MDM) ป้องกันข้อมูลรั่วไหล สั่งล็อคเครื่องระยะไกลได้ทันที"
                      data-img="images/asset_monitor.png"
-                     data-link="https://ios-device-monitor-lkxv.onrender.com/"
+                     data-link="https://asset-wheat-beta.vercel.app/"
                      data-highlights='["ตรวจสอบสถานะเครื่อง แบตเตอรี่ และเวอร์ชัน OS จากศูนย์กลาง", "สั่งล็อคหรือล้างข้อมูลเครื่อง (Remote Wipe) กรณีสูญหาย", "ควบคุมการติดตั้งแอปพลิเคชันให้อยู่ในนโยบายความปลอดภัย"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
@@ -689,7 +689,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKYJ23fjUbe1OPToaYamxVxdpFLxSbhRQA7C4/iz9abiiimAqqpznNBAHTNFFAH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAIDAQQG/8QAJxAAAgEDAwIGAwAAAAAAAAAAAQIAAxEhEkFRIpEEEyMxcaGxwtH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAP/xAAYEQEBAQEBAAAAAAAAAAAAAAAAAQIRIf/aAAwDAQACEQMRAD8A4us6emBTo5APSSe+ZrGmrVCocW52ljV00lGMrxIlxsIJnjS66wKSrqu46fuNZQoN8naU8OVZm1KDjiPVC+WWAtbgSsUJdDTXUgJA98/2SKoDv2hCMM+qUGCuxtYfF41RwaJH6j8whDTf/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/asset_monitor.webp" src="images/asset_monitor.png" alt="asset_monitor" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -715,7 +715,7 @@
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🔒 Remote Wipe</span>
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🛡️ Policy Guard</span>
                     </div>
-                    <a href="https://ios-device-monitor-lkxv.onrender.com/" target="_blank" class="block w-full text-center bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-600 font-semibold py-3 rounded-xl transition-all border border-purple-100 shadow-sm hover:shadow">
+                    <a href="https://asset-wheat-beta.vercel.app/" target="_blank" class="block w-full text-center bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-600 font-semibold py-3 rounded-xl transition-all border border-purple-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -728,7 +728,7 @@
                      data-badge="TASK & PRODUCTIVITY"
                      data-desc="ทุกงานถูกบันทึกและมอบหมายชัดเจน (Who/What/When) ติดตามความคืบหน้าแบบ Real-time ไม่พลาดทุก Deadline"
                      data-img="images/task_tracking.png"
-                     data-link="https://team-task-tracking.onrender.com/"
+                     data-link="https://team-task-tracking-pi.vercel.app/"
                      data-highlights='["มุมมอง Kanban Board และ Timeline ติดตามความคืบหน้าโปรเจกต์", "ระบบมอบหมายงาน แจ้งเตือน และแนบเอกสารที่เกี่ยวข้องในที่เดียว", "วิเคราะห์ Workload ของทีมงานเพื่อกระจายงานได้อย่างสมดุล"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
@@ -770,7 +770,7 @@
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">⏱️ Timeline Gantt</span>
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">⚖️ Workload Balance</span>
                     </div>
-                    <a href="https://team-task-tracking.onrender.com/" target="_blank" class="block w-full text-center bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold py-3 rounded-xl transition-all border border-indigo-100 shadow-sm hover:shadow">
+                    <a href="https://team-task-tracking-pi.vercel.app/" target="_blank" class="block w-full text-center bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold py-3 rounded-xl transition-all border border-indigo-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -780,11 +780,11 @@
                      data-category="finance"
                      data-scale="startup sme enterprise"
                      data-title="Thai Accounting App"
-                     data-badge="THAI ACCOUNTING & TAX"
-                     data-desc="บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น"
+                     data-badge="EXPRESS ERP & TAX"
+                     data-desc="ระบบบัญชี Express ERP ครบวงจร (AP/AR/IC & Auto-GL) จัดการใบสั่งซื้อ ใบแจ้งหนี้ Aging และภาษีไทย VAT 7% พร้อมสรุปกำไร-ขาดทุน Real-time"
                      data-img="images/accounting.png"
-                     data-link="https://thai-accounting-app.onrender.com/"
-                     data-highlights='["รองรับภาษีมูลค่าเพิ่ม (VAT 7%) และภาษีหัก ณ ที่จ่าย (Withholding Tax)", "ออกเอกสารใบเสร็จ ใบกำกับภาษี และใบแจ้งหนี้มาตรฐานสรรพากร", "สรุปงบกำไรขาดทุน (P&L) และกระแสเงินสดแบบ Real-time"]'>
+                     data-link="https://thai-accounting-app-six.vercel.app/"
+                     data-highlights='["ครบวงจร Express ERP: ซื้อ-เจ้าหนี้ (PO/RR/PV), ขาย-ลูกหนี้ (QT/SO/IV/RE) และคลังสินค้า Stock Card", "รองรับภาษีมูลค่าเพิ่ม (VAT 7%) และภาษีหัก ณ ที่จ่าย (WHT) พร้อมลงสมุดรายวัน Auto-GL", "ติดตามลูกหนี้-เจ้าหนี้ค้างชำระ (AR/AP Aging) และงบกำไรขาดทุน (P&L) แบบ Real-time"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
                         <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
@@ -799,7 +799,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDdRcdKCo9P1pw70YHpQAlFOooAaDyeKAwLY7iiigBCcc806iigD//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQf/xAAhEAACAgICAgMBAAAAAAAAAAABAgARAyESMUFhUXGR8f/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8A6SmJUVgOpJceNmFKKPk2JcWOVxUPyoFdVATgiFSoG/IuKcK5+DZNlTYpyP7KN2pUDU1aoaAPqXbOIEfkG+6mqpIs9H3CEimKCuz+xACRZ1vVGEIH/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/accounting.webp" src="images/accounting.png" alt="accounting" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -817,15 +817,15 @@
                             <i class="ph-bold ph-eye"></i> รายละเอียด
                         </button>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-emerald-600 transition-colors text-left">Thai Accounting App</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">บันทึกรายจ่ายและระบบภาษีเพื่อธุรกิจไทย รู้กำไร-ขาดทุน ชัดเจน พร้อมเตรียมเอกสารง่ายขึ้น</p>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-emerald-600 transition-colors text-left">Thai Accounting App (Express ERP)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">ระบบบัญชีและ Express ERP ครบวงจร (AP/AR/IC &amp; Auto-GL) พร้อมภาษี VAT 7% และสรุปกำไร-ขาดทุน Real-time</p>
                     <!-- Feature Pills -->
                     <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
-                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🧾 VAT 7%</span>
-                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">💼 หัก ณ ที่จ่าย</span>
-                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📈 งบ P&L สด</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🧾 AP/AR &amp; VAT 7%</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📊 Aging &amp; Auto-GL</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📈 งบ P&amp;L สด</span>
                     </div>
-                    <a href="https://thai-accounting-app.onrender.com/" target="_blank" class="block w-full text-center bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 font-semibold py-3 rounded-xl transition-all border border-emerald-100 shadow-sm hover:shadow">
+                    <a href="https://thai-accounting-app-six.vercel.app/" target="_blank" class="block w-full text-center bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 font-semibold py-3 rounded-xl transition-all border border-emerald-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -838,7 +838,7 @@
                      data-badge="POS & INVENTORY"
                      data-desc="ป้องกันสินค้าขาดหรือล้นสต๊อก รู้ยอดคงเหลือแบบ Real-time ค้นหาสินค้าเจอง่ายพร้อมแจ้งเตือน"
                      data-img="images/inventory.png"
-                     data-link="https://inventory-app-dvlk.onrender.com/pos"
+                     data-link="https://inventory-woad-iota.vercel.app/pos"
                      data-highlights='["ระบบขายหน้าร้าน (POS) ยิงบาร์โค้ด ตัดสต๊อกอัตโนมัติทันที", "แจ้งเตือนจุดสั่งซื้อซ้ำ (Reorder Point) เมื่อสินค้าใกล้หมดสต๊อก", "ระบุพิกัดตำแหน่งจัดเก็บสินค้า (Shelf / Zone) เพื่อหยิบของได้เร็ว"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
@@ -854,7 +854,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMZicDt6ZrozY2oUbo0CY5yT/jXN9xXYKoZBnnincViqunWTqCsSEeoJ/xp39mWf8AzxH5mpyyR4DEKCeO1ObPG09+eKNQOO7iuwT7g+lFFACOrNja2PwzQFcEZcEf7tFFAz//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAIDAQQG/8QAIhAAAgICAQMFAAAAAAAAAAAAAQIAERIhAwQxURMzYXGh/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAECA//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwDwHJyF8RloaqzL10zpbs1qNAsd/k5DplJ1KZrl7gr6+Z1YhAEPILBCk+YxbGyhYa1uaKcIoazfYDcwoCGxs0IEWOoohCRVOJ/T5Ffwb1LN1KspAB2K7CEIH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/inventory.webp" src="images/inventory.png" alt="inventory" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -880,7 +880,7 @@
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📦 Reorder Alert</span>
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📍 Shelf Locator</span>
                     </div>
-                    <a href="https://inventory-app-dvlk.onrender.com/pos" target="_blank" class="block w-full text-center bg-amber-50 hover:bg-amber-600 hover:text-white text-amber-600 font-semibold py-3 rounded-xl transition-all border border-amber-100 shadow-sm hover:shadow">
+                    <a href="https://inventory-woad-iota.vercel.app/pos" target="_blank" class="block w-full text-center bg-amber-50 hover:bg-amber-600 hover:text-white text-amber-600 font-semibold py-3 rounded-xl transition-all border border-amber-100 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -893,7 +893,7 @@
                      data-badge="GYM & FITNESS OS"
                      data-desc="ระบบจัดการฟิตเนสครบวงจร เช็คอินสมาชิกด้วย QR Code บริหารคอร์ส PT สัญญาซื้อขาย และดูงบการเงินแบบ Real-time"
                      data-img="images/fitpulse.png"
-                     data-link="https://fitness-zo64.onrender.com/"
+                     data-link="https://fitness-zeta-sepia.vercel.app/"
                      data-highlights='["สแกน QR Code เช็คอินหน้าร้าน ตรวจสอบสิทธิ์สมาชิกทันที", "จัดการสัญญาซื้อขายคอร์ส PT และระบบตัดจำนวนครั้งคงเหลือ", "วิเคราะห์ช่วงเวลาคนเข้ายิมหนาแน่น (Peak Hours) เพื่อจัดเวรเทรนเนอร์"]'>
                     <!-- Browser Mockup Window -->
                     <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
@@ -936,7 +936,7 @@
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🏋️ สัญญาคอร์ส PT</span>
                         <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📊 Peak Hours</span>
                     </div>
-                    <a href="https://fitness-zo64.onrender.com/" target="_blank" class="block w-full text-center bg-lime-50 hover:bg-lime-600 hover:text-white text-lime-700 font-semibold py-3 rounded-xl transition-all border border-lime-200 shadow-sm hover:shadow">
+                    <a href="https://fitness-zeta-sepia.vercel.app/" target="_blank" class="block w-full text-center bg-lime-50 hover:bg-lime-600 hover:text-white text-lime-700 font-semibold py-3 rounded-xl transition-all border border-lime-200 shadow-sm hover:shadow">
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
@@ -966,7 +966,7 @@
                         <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
                             <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                             <div class="blur-up-skeleton"></div>
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDM2/IDuAppH+0KmhVjko2CPUCovK3c0AJGNz7S2B61cmsVjtjKJtx/u4qiVUHv+VBjGM/NihjJgiFclRk96XagH3RRRQIQxpj7ooKJj7ooooA//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEAwf/xAAhEAACAgIDAAIDAAAAAAAAAAABAgMRABIEITEFYSQyQf/EABcBAAMBAAAAAAAAAAAAAAAAAAABAwL/xAAZEQEBAQEBAQAAAAAAAAAAAAABAAIRAzH/2gAMAwEAAhEDEQA/AOe8R41kqYuIyO9AL+vfvLyPjiNgvJsn06jq+8k40Blg2Cqe6ssBmkivGoD/AKjwb3WDlq49A+lQT8YJAfyqHd0vt5BzZVm5DOpYjqtgAfPrKNFaICrYi7vJ50VY7AF3iMz3vpwJdJU44kDLoT5/cRZpFJKtVisMM1RHkCeQeNitIzCmN4YYRf/Z" class="blur-up-lqip" alt="" aria-hidden="true">
                             <img srcset="images/tikkethub.webp" src="images/tikkethub.png" alt="tikkethub" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                                 <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
@@ -996,6 +996,62 @@
                         ทดลองใช้งาน &rarr;
                     </a>
                 </div>
+
+                <!-- App 9: Tamsang POS (Restaurant & Kitchen Order Platform) -->
+                <div class="solution-card p-6 sm:p-7 rounded-2xl bg-white shadow-md hover:shadow-[0_22px_45px_rgba(234,88,12,0.18)] hover:border-orange-200 transition-all duration-300 border border-gray-100 group transform hover:-translate-y-1.5 flex flex-col"
+                     data-category="finance"
+                     data-scale="startup sme"
+                     data-title="Tamsang POS (ตามสั่ง)"
+                     data-badge="RESTAURANT &amp; KDS POS"
+                     data-desc="ระบบจัดการร้านอาหารตามสั่งครบวงจร สแกน QR สั่งอาหารประจำโต๊ะ รวมออเดอร์คิวครัวกระทะเดียว พร้อมระบบหารบิลและสร้าง PromptPay QR ทันที"
+                     data-img="images/tamsang.png"
+                     data-link="https://tamsang.vercel.app/"
+                     data-highlights='["สแกน QR สั่งอาหารประจำโต๊ะ แยกความเผ็ด ไข่ดาว และท็อปปิ้งรายจาน", "จอคิวครัวอัจฉริยะ (Kitchen Display & Aggregator) รวมเมนูผัดกระทะเดียวกันอัตโนมัติ", "ระบบคิดเงิน หารบิลแยกคน และสร้าง PromptPay QR Code มาตรฐาน EMVCo ทันที"]'>
+                    <!-- Browser Mockup Window -->
+                    <div class="quickview-trigger w-full rounded-xl overflow-hidden mb-5 shadow-sm border border-gray-200 bg-slate-900 cursor-pointer group/img relative">
+                        <span class="absolute top-8 right-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 shadow">NEW</span>
+                        <div class="px-3 py-1.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">tamsang.nexuscore.cloud</span>
+                            <span class="w-5"></span>
+                        </div>
+                        <div class="h-44 sm:h-48 overflow-hidden relative bg-slate-950 blur-up-wrapper">
+                            <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                            <div class="blur-up-skeleton"></div>
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMCBAYF/8QAJxAAAgEDAwIGAwAAAAAAAAAAAQIDAAQRBRIhIjEGE0FhcYFRobH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABoRAQEBAQADAAAAAAAAAAAAAAEAAhESIUH/2gAMAwEAAhEDEQA/AN4XdZGVLNm6jjrXnnP5q0THDgsQu44HzSFk89nIXrhY7cggZ5H3Vjc+BhVznnmoBK1H5JurS1vNrXQLbOx3FcZ+DTgY0RMuMZAHuaXcFjE5kh8xQVKqnc4IP9qEdySVQWky5OMlRx+6XQeoMqdLNrpOsvq9zLJcwSWxchELsGUFjj09KrWekeIUuRcy38EmFYAmRsjpOONuO9FFT4krdvw/DqscsrahPFJGw6QrliD9gUX/AIhFnqbWRtS+0qN+/HcA9se9FFVk4Rp63//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                            <img srcset="images/tamsang.webp" src="images/tamsang.png" alt="tamsang" class="blur-up-img w-full h-full object-cover object-top group-hover/img:scale-105 transition-[transform,filter,opacity] duration-500" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                                <span class="px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg border border-white/20">
+                                    <i class="ph-bold ph-magnifying-glass-plus text-base"></i> ดูภาพขยาย & ไฮไลท์
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full">Restaurant POS</span>
+                            <span class="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="ph-bold ph-rocket-launch text-xs"></i> Startup / SME</span>
+                        </div>
+                        <button type="button" class="quickview-btn text-xs text-gray-400 hover:text-green-600 flex items-center gap-1 transition-colors">
+                            <i class="ph-bold ph-eye"></i> รายละเอียด
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-orange-600 transition-colors text-left">Tamsang POS (ตามสั่ง)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-3.5 text-left">สแกน QR สั่งอาหารตามโต๊ะ รวมออเดอร์คิวครัวกระทะเดียว พร้อมระบบหารบิลและ PromptPay QR ทันที</p>
+                    <!-- Feature Pills -->
+                    <div class="flex items-center gap-1.5 flex-wrap mb-5 mt-auto">
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">🍳 รวมคิวครัวกระทะเดียว</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">📱 QR สั่งตามโต๊ะ</span>
+                        <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">💸 หารบิล &amp; PromptPay</span>
+                    </div>
+                    <a href="https://tamsang.vercel.app/" target="_blank" class="block w-full text-center bg-orange-50 hover:bg-orange-600 hover:text-white text-orange-600 font-semibold py-3 rounded-xl transition-all border border-orange-100 shadow-sm hover:shadow">
+                        ทดลองใช้งาน &rarr;
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1009,7 +1065,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(37,_99,_235,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCiGGKvST2rQOohG8rhTgcHH1rMJKjkUFJG6K3NdcncTYu7bkd6cSSKj8mUclGp4GVpbmTkITmmbscf1oopMsN5x/8AXqQN8tFFCZnI/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAIEAwUG/8QAJRAAAgEDAwQCAwAAAAAAAAAAAQIRAAMhBRIxBBMiMzJBYYGx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAgEDBf/EABoRAAMAAwEAAAAAAAAAAAAAAAABAgMRMUH/2gAMAwEAAhEDEQA/AIep1m22hv0x0uwpuWFUXMSsKBI8JnE8/dc85YwmA3OLSiqr7A6cnmnrGN8nitV32kNAkV0MkKeGKb9LLHuDEq23gdsEfsVmuncrkqgkTi2BUXTP8ywprl4FGAaonoFLZIbhbaAfxxVZulNsMYjj6/tFFBdGxbWFcqIxS3AOyDAkzmiilRT/2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/it_dashboard.webp" type="image/webp">
@@ -1127,7 +1183,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(34,_197,_94,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHK47g0mKtB0Cj92p/CoZcMxIAA9BSJFS3mdQyROynuFpTbTgZMLgD/ZNa9hcxpYxqZUUjOQT71JLdxGJx5yH5T3qhmGGPrTWJooqAIzSUUUwP/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAcBBgIDBP/EACgQAAIABQIFBAMAAAAAAAAAAAECAAMEBhEFEhMhIkFRIzJhYjGh0f/EABYBAQEBAAAAAAAAAAAAAAAAAAECAP/EABcRAQEBAQAAAAAAAAAAAAAAAAABESH/2gAMAwEAAhEDEQA/AK/as4NddA6jaQTzxy9p+Ybkia8zCiqls31A/sJi2JBq7gpaZW2mcHQN4yjDMMa3bNnaRqq1rV5mhd3RjyIOxEWj1e839RoqKdaiZKecqzOE25SV9p+I7GBDZiGDBDnHPMVqiVsoqbu00hcdZ7/Uw6pQG5iMePxBBA0ZOM4B7xXKu6hI1F6EURbbM4e/i474zjEEEDV//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/pass_app.webp" type="image/webp">
@@ -1198,7 +1254,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(147,_51,_234,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKYJ23fjUbe1OPToaYamxVxdpFLxSbhRQA7C4/iz9abiiimAqqpznNBAHTNFFAH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAIDAQQG/8QAJxAAAgEDAwIGAwAAAAAAAAAAAQIAAxEhEkFRIpEEEyMxcaGxwtH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAP/xAAYEQEBAQEBAAAAAAAAAAAAAAAAAQIRIf/aAAwDAQACEQMRAD8A4us6emBTo5APSSe+ZrGmrVCocW52ljV00lGMrxIlxsIJnjS66wKSrqu46fuNZQoN8naU8OVZm1KDjiPVC+WWAtbgSsUJdDTXUgJA98/2SKoDv2hCMM+qUGCuxtYfF41RwaJH6j8whDTf/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/asset_monitor.webp" type="image/webp">
@@ -1372,7 +1428,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(234,_179,_8,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDdRcdKCo9P1pw70YHpQAlFOooAaDyeKAwLY7iiigBCcc806iigD//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQf/xAAhEAACAgICAgMBAAAAAAAAAAABAgARAyESMUFhUXGR8f/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8A6SmJUVgOpJceNmFKKPk2JcWOVxUPyoFdVATgiFSoG/IuKcK5+DZNlTYpyP7KN2pUDU1aoaAPqXbOIEfkG+6mqpIs9H3CEimKCuz+xACRZ1vVGEIH/9k=" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/accounting.webp" type="image/webp">
@@ -1432,18 +1488,18 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จบเรื่องปวดหัวด้านบัญชี กับ <br><span class="text-yellow-600">Thai Accounting App</span></h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จบเรื่องปวดหัวด้านบัญชี กับ <br><span class="text-yellow-600">Thai Accounting App (Express ERP)</span></h2>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                        ยุติความปวดหัวเรื่องเอกสารหาย บิลตกหล่น และปัญหาภาษีย้อนหลัง ด้วยแอปพลิเคชันที่ออกแบบมาเพื่อธุรกิจไทยโดยเฉพาะ รองรับระบบภาษี (VAT/WHT)
+                        ยกระดับจากบันทึกบัญชีทั่วไปสู่ Express ERP ครบวงจรทั้ง AP/AR/IC และสมุดรายวัน Auto-GL รองรับระบบภาษีไทย (VAT 7% / WHT) พร้อมติดตามอายุหนี้ Aging ได้ทันที
                     </p>
                     <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
                             <i class="ph-fill ph-check-circle text-yellow-500 text-xl mr-3 mt-1"></i>
-                            <span class="text-gray-600"><strong>รู้กำไร-ขาดทุน ชัดเจน:</strong> บันทึกรายจ่ายปุ๊บ รู้กระแสเงินสดปั๊บ ไม่ต้องรอสำนักงานบัญชีสรุปให้</span>
+                            <span class="text-gray-600"><strong>ครบวงจร AP / AR / คลังสินค้า:</strong> เชื่อมเอกสาร PO, ใบรับของ, ใบเสนอราคา, ใบแจ้งหนี้ และ Stock Card Moving Average อัตโนมัติ</span>
                         </li>
                         <li class="flex items-start">
                             <i class="ph-fill ph-check-circle text-yellow-500 text-xl mr-3 mt-1"></i>
-                            <span class="text-gray-600"><strong>เตรียมเอกสารง่ายขึ้น:</strong> ช่วยจัดกลุ่มค่าใช้จ่าย ทำให้การทำเอกสารส่งสรรพากรเป็นเรื่องง่าย</span>
+                            <span class="text-gray-600"><strong>รู้กำไร-ขาดทุน &amp; ภาษีชัดเจน:</strong> สรุป AR/AP Aging, งบ P&amp;L และเตรียมเอกสารส่งสรรพากรได้ภายในไม่กี่คลิก</span>
                         </li>
                     </ul>
                 </div>
@@ -1475,7 +1531,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(249,_115,_22,_0.15)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMZicDt6ZrozY2oUbo0CY5yT/jXN9xXYKoZBnnincViqunWTqCsSEeoJ/xp39mWf8AzxH5mpyyR4DEKCeO1ObPG09+eKNQOO7iuwT7g+lFFACOrNja2PwzQFcEZcEf7tFFAz//2Q==" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAIDAQQG/8QAIhAAAgICAQMFAAAAAAAAAAAAAQIAERIhAwQxURMzYXGh/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAECA//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwDwHJyF8RloaqzL10zpbs1qNAsd/k5DplJ1KZrl7gr6+Z1YhAEPILBCk+YxbGyhYa1uaKcIoazfYDcwoCGxs0IEWOoohCRVOJ/T5Ffwb1LN1KspAB2K7CEIH//Z" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/inventory.webp" type="image/webp">
@@ -1655,7 +1711,7 @@
                     <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(244,_63,_94,_0.18)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
                         <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
                         <div class="blur-up-skeleton"></div>
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAWACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDM2/IDuAppH+0KmhVjko2CPUCovK3c0AJGNz7S2B61cmsVjtjKJtx/u4qiVUHv+VBjGM/NihjJgiFclRk96XagH3RRRQIQxpj7ooKJj7ooooA//9k=" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEAwf/xAAhEAACAgIDAAIDAAAAAAAAAAABAgMRABIEITEFYSQyQf/EABcBAAMBAAAAAAAAAAAAAAAAAAABAwL/xAAZEQEBAQEBAQAAAAAAAAAAAAABAAIRAzH/2gAMAwEAAhEDEQA/AOe8R41kqYuIyO9AL+vfvLyPjiNgvJsn06jq+8k40Blg2Cqe6ssBmkivGoD/AKjwb3WDlq49A+lQT8YJAfyqHd0vt5BzZVm5DOpYjqtgAfPrKNFaICrYi7vJ50VY7AF3iMz3vpwJdJU44kDLoT5/cRZpFJKtVisMM1RHkCeQeNitIzCmN4YYRf/Z" class="blur-up-lqip" alt="" aria-hidden="true">
                         <!-- Responsive WebP Image with PNG fallback -->
                         <picture class="w-full h-full block">
                             <source srcset="images/tikkethub.webp" type="image/webp">
@@ -1713,6 +1769,96 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Deep Dive 9 (Left Image - Tamsang POS) -->
+    <section class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 p-2 lg:p-6 flex justify-center">
+                    <div class="relative w-full rounded-2xl aspect-[1024/709] shadow-[0_20px_50px_rgba(234,_88,_12,_0.16)] border border-slate-200/90 bg-slate-950 overflow-hidden select-none group/hotspot-container blur-up-wrapper">
+                        <!-- Progressive Blur-Up Skeleton & LQIP Placeholder -->
+                        <div class="blur-up-skeleton"></div>
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAWACADASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMCBAYF/8QAJxAAAgEDAwIGAwAAAAAAAAAAAQIDAAQRBRIhIjEGE0FhcYFRobH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABoRAQEBAQADAAAAAAAAAAAAAAEAAhESIUH/2gAMAwEAAhEDEQA/AN4XdZGVLNm6jjrXnnP5q0THDgsQu44HzSFk89nIXrhY7cggZ5H3Vjc+BhVznnmoBK1H5JurS1vNrXQLbOx3FcZ+DTgY0RMuMZAHuaXcFjE5kh8xQVKqnc4IP9qEdySVQWky5OMlRx+6XQeoMqdLNrpOsvq9zLJcwSWxchELsGUFjj09KrWekeIUuRcy38EmFYAmRsjpOONuO9FFT4krdvw/DqscsrahPFJGw6QrliD9gUX/AIhFnqbWRtS+0qN+/HcA9se9FFVk4Rp63//Z" class="blur-up-lqip" alt="" aria-hidden="true">
+                        <!-- Responsive WebP Image with PNG fallback -->
+                        <picture class="w-full h-full block">
+                            <source srcset="images/tamsang.webp" type="image/webp">
+                            <img src="images/tamsang.png" alt="Tamsang POS" class="blur-up-img w-full h-full object-cover block rounded-2xl" loading="lazy" decoding="async" onload="this.classList.add('is-loaded'); this.closest('.blur-up-wrapper')?.classList.add('loaded');">
+                        </picture>
+
+                        <!-- Hotspot Instruction Overlay Badge -->
+                        <div class="absolute top-2.5 left-2.5 pointer-events-none z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-[10px] sm:text-[11px] font-medium text-slate-300 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
+                            <span>คลิกหรือแตะจุด <span class="text-orange-400 font-bold">Hotspot</span> เพื่อเจาะลึก</span>
+                        </div>
+
+                        <!-- Hotspot 1: Table QR Ordering -->
+                        <div class="hotspot-pin absolute top-[18%] left-[72%] z-20" data-hotspot="tamsang-qr" data-hotspot-title="Tamsang POS: QR Table Ordering">
+                            <button type="button" aria-label="QR Table Ordering Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-orange-600 text-white shadow-[0_0_16px_rgba(234,88,12,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-qr-code text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-orange-400 flex items-center gap-1"><i class="ph-fill ph-qr-code"></i> QR สั่งประจำโต๊ะ</span>
+                                    <span class="text-[9px] font-mono bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded border border-orange-500/30">Multi-Order</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ลูกค้าสแกน QR ที่โต๊ะสั่งอาหารเองได้ทันที เลือกความเผ็ด ไข่ดาว และท็อปปิ้งครบจบในมือถือ</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 2: Smart Kitchen Aggregator (KDS) -->
+                        <div class="hotspot-pin absolute top-[32%] left-[35%] z-20" data-hotspot="tamsang-kds" data-hotspot-title="Tamsang POS: Kitchen Display & Aggregator">
+                            <button type="button" aria-label="Kitchen Aggregator Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-amber-600 text-white shadow-[0_0_16px_rgba(217,119,6,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-cooking-pot text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-amber-400 flex items-center gap-1"><i class="ph-fill ph-fire"></i> จอคิวครัวอัจฉริยะ (KDS)</span>
+                                    <span class="text-[9px] font-mono bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">รวมกระทะ</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">ระบบจัดกลุ่มออเดอร์เมนูเดียวกันจากหลายโต๊ะให้พ่อครัวผัดรวมในกระทะเดียว ลดเวลาคิวช่วงพีค</p>
+                            </div>
+                        </div>
+
+                        <!-- Hotspot 3: Bill Splitter & PromptPay QR -->
+                        <div class="hotspot-pin absolute top-[68%] left-[78%] z-20" data-hotspot="tamsang-promptpay" data-hotspot-title="Tamsang POS: Split Bill & PromptPay QR">
+                            <button type="button" aria-label="PromptPay QR Hotspot" class="hotspot-trigger relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-600 text-white shadow-[0_0_16px_rgba(5,150,105,0.8)] hover:scale-115 active:scale-95 transition-all focus:outline-none cursor-pointer">
+                                <span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75 pointer-events-none"></span>
+                                <i class="ph-bold ph-money text-xs sm:text-sm"></i>
+                            </button>
+                            <div class="hotspot-popover absolute top-full right-0 mt-2 w-56 sm:w-64 p-3 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 text-white shadow-2xl opacity-0 pointer-events-none transition-all duration-200 z-30">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i class="ph-fill ph-currency-btc"></i> หารบิล &amp; PromptPay</span>
+                                    <span class="text-[9px] font-mono bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">EMVCo CRC-16</span>
+                                </div>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">หารบิลรายคนและสร้าง QR PromptPay พร้อมยอดเงินเป๊ะอัตโนมัติ เช็คบิลไวไม่ต้องกดเครื่องคิดเลข</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                        <i class="ph-fill ph-fork-knife"></i> NEW CULINARY POS
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 leading-snug">จัดการร้านอาหารตามสั่งยุคใหม่ ด้วย <br><span class="text-orange-600">Tamsang POS (Restaurant &amp; Kitchen OS)</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        เปลี่ยนความวุ่นวายในครัวและหน้าเคาน์เตอร์ให้เป็นระบบอัตโนมัติ รองรับทั้งลูกค้าทานที่ร้าน สั่งกลับบ้าน และเดลิเวอรี พร้อมระบบรวมเมนูเดียวกันขึ้นจอครัวแบบ Real-time
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-orange-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>QR สั่งตามโต๊ะ &amp; รวมคิวกระทะเดียว:</strong> ระบุรายละเอียดรายจานชัดเจน และรวบออเดอร์เหมือนกันเข้าหน้าเตาช่วยให้เสิร์ฟไวขึ้น 2 เท่า</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-check-circle text-orange-500 text-xl mr-3 mt-1"></i>
+                            <span class="text-gray-600"><strong>คิดเงินไว หารบิล &amp; PromptPay QR ในคลิกเดียว:</strong> สรุปยอดขายรายวัน ตัดโต๊ะที่จ่ายแล้ว และออก QR รับเงินมาตรฐาน EMVCo ทันที</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -2208,9 +2354,11 @@
                     <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Pass App</a></li>
                     <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Device Monitor</a></li>
                     <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Task Tracking</a></li>
-                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Accounting App</a></li>
+                    <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Accounting App (Express ERP)</a></li>
                     <li><a href="#features" class="hover:text-blue-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Inventory POS</a></li>
                     <li><a href="#features" class="hover:text-lime-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> FitPulse Pro (Gym OS)</a></li>
+                    <li><a href="#features" class="hover:text-rose-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> TikketHub (Stage Pass)</a></li>
+                    <li><a href="#features" class="hover:text-orange-400 transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-xs"></i> Tamsang POS (ตามสั่ง)</a></li>
                 </ul>
             </div>
 
@@ -3496,7 +3644,7 @@
 
             if (catalogCopyBtn) {
                 catalogCopyBtn.addEventListener('click', () => {
-                    const textSummary = `📋 NexusCore Enterprise Solutions Suite 2026\nสรุปภาพรวม 8 โซลูชันบริหารธุรกิจสำหรับองค์กร:\n1. IT Monthly Dashboard (ระบบสรุปสถานะ IT & SLA)\n2. Pass App Vault (ระบบตู้เซฟรหัสผ่าน Zero-Knowledge)\n3. iOS Device Monitor (MDM บริหารจัดการอุปกรณ์ Apple)\n4. Team Task Tracking (ระบบติดตามงาน Kanban & Timeline)\n5. Thai Accounting App (ระบบบัญชีภาษี VAT 7% & หัก ณ ที่จ่าย)\n6. Inventory App POS (ระบบขายหน้าร้าน & สต๊อกสินค้า)\n7. FitPulse Pro Gym OS (ระบบจัดการฟิตเนส & QR Check-in)\n8. TikketHub Stage Pass (ระบบจองตั๋วคอนเสิร์ต & ผังที่นั่งสด)\n\nทดลองใช้งานฟรี: https://it-monthly-dashboard-hb21.onrender.com/#/`;
+                    const textSummary = `📋 NexusCore Enterprise Solutions Suite 2026\nสรุปภาพรวม 9 โซลูชันบริหารธุรกิจสำหรับองค์กร:\n1. IT Monthly Dashboard (ระบบสรุปสถานะ IT & SLA)\n2. Pass App Vault (ระบบตู้เซฟรหัสผ่าน Zero-Knowledge)\n3. iAsset Store & Tools (ระบบบริหารสโตร์ พัสดุ & เครื่องมือช่าง)\n4. Team Task Tracking (ระบบติดตามงาน Kanban & Timeline)\n5. Thai Accounting App (ระบบ Express ERP บัญชี ภาษี VAT 7% & Aging)\n6. Inventory App POS (ระบบขายหน้าร้าน & สต๊อกสินค้า)\n7. FitPulse Pro Gym OS (ระบบจัดการฟิตเนส & QR Check-in)\n8. TikketHub Stage Pass (ระบบจองตั๋วคอนเสิร์ต & ผังที่นั่งสด)\n9. Tamsang POS (ระบบร้านอาหารตามสั่ง คิวครัว & PromptPay QR)\n\nทดลองใช้งานฟรี: https://it-dashboard-jade.vercel.app/#/`;
                     
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(textSummary)
@@ -3729,6 +3877,14 @@
                         time: 'เมื่อ 46 นาทีที่แล้ว',
                         app: 'Task Tracking & Kanban Board',
                         location: 'ปทุมธานี'
+                    },
+                    {
+                        initials: 'สม',
+                        bg: 'from-orange-600 to-amber-700',
+                        client: 'คุณสมหมาย • ครัวตามสั่งอารีย์',
+                        time: 'เมื่อ 52 นาทีที่แล้ว',
+                        app: 'Tamsang POS & Kitchen Display',
+                        location: 'กรุงเทพฯ'
                     }
                 ];
 
@@ -4111,6 +4267,7 @@
                             <option value="asset">iOS Device Monitor</option>
                             <option value="gym">FitPulse Pro (Gym OS)</option>
                             <option value="ticket">TikketHub (Stage Pass - จองบัตรอีเวนต์)</option>
+                            <option value="tamsang">Tamsang POS (ตามสั่ง - ร้านอาหาร &amp; คิวครัว)</option>
                         </select>
                     </div>
                 </div>
@@ -4295,19 +4452,19 @@
                             <span class="font-extrabold text-2xl tracking-tight text-gray-900">Nexus<span class="text-blue-600">Core</span></span>
                             <span class="text-xs px-2 py-0.5 rounded bg-slate-900 text-white font-semibold ml-2">Enterprise Suite 2026</span>
                         </div>
-                        <p class="text-xs text-gray-500">เอกสารสรุปภาพรวมโซลูชัน 8 แอปพลิเคชัน สำหรับฝ่ายบริหารและฝ่ายจัดซื้อ</p>
+                        <p class="text-xs text-gray-500">เอกสารสรุปภาพรวมโซลูชัน 9 แอปพลิเคชัน สำหรับฝ่ายบริหารและฝ่ายจัดซื้อ</p>
                     </div>
                     <div class="text-xs text-gray-500 sm:text-right">
                         <div><strong>ผู้ให้บริการ:</strong> NexusCore Platform</div>
                         <div><strong>มาตรฐาน:</strong> ISO/IEC 27001 & Thai PDPA</div>
-                        <div><strong>วันที่ออกเอกสาร:</strong> ตุลาคม 2026</div>
+                        <div><strong>วันที่ออกเอกสาร:</strong> พฤศจิกายน 2026</div>
                     </div>
                 </div>
 
-                <!-- 8 Apps Grid / Matrix -->
+                <!-- 9 Apps Grid / Matrix -->
                 <div>
                     <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-1.5">
-                        <i class="ph-bold ph-squares-four text-blue-600"></i> ตารางสรุป 8 แอปพลิเคชันพร้อมใช้งาน (All Solutions Summary)
+                        <i class="ph-bold ph-squares-four text-blue-600"></i> ตารางสรุป 9 แอปพลิเคชันพร้อมใช้งาน (All Solutions Summary)
                     </h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                         <!-- App 1 -->
@@ -4317,7 +4474,7 @@
                                 <span class="text-[10px] bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded">SME & Ent</span>
                             </div>
                             <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">รวบรวมสถานะเซิร์ฟเวอร์ SLA การให้บริการ และสรุปผลรายงานส่งผู้บริหารอัตโนมัติ</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: it-monthly-dashboard-hb21.onrender.com</span>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: it-dashboard-jade.vercel.app</span>
                         </div>
 
                         <!-- App 2 -->
@@ -4333,11 +4490,11 @@
                         <!-- App 3 -->
                         <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
                             <div class="flex justify-between items-start mb-1">
-                                <strong class="text-sm font-bold text-gray-900">3. iOS Device Monitor (MDM)</strong>
+                                <strong class="text-sm font-bold text-gray-900">3. iOS Device Monitor &amp; iAsset Store</strong>
                                 <span class="text-[10px] bg-purple-100 text-purple-700 font-semibold px-2 py-0.5 rounded">SME & Ent</span>
                             </div>
-                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">บริหารจัดการอุปกรณ์ iPhone/iPad บริษัท สั่งล็อค/ล้างข้อมูลระยะไกลทันที</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: ios-device-monitor-lkxv.onrender.com</span>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">บริหารจัดการอุปกรณ์ iPhone/iPad และคลังพัสดุ-เครื่องมือช่าง สั่งล็อค/สแกน QR ทันที</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: asset-wheat-beta.vercel.app</span>
                         </div>
 
                         <!-- App 4 -->
@@ -4347,17 +4504,17 @@
                                 <span class="text-[10px] bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
                             </div>
                             <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ติดตามงาน มอบหมายงานสไตล์ Kanban & Timeline วิเคราะห์ภาระงานทีม</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: team-task-tracking.onrender.com</span>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: team-task-tracking-pi.vercel.app</span>
                         </div>
 
                         <!-- App 5 -->
                         <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60">
                             <div class="flex justify-between items-start mb-1">
-                                <strong class="text-sm font-bold text-gray-900">5. Thai Accounting App</strong>
+                                <strong class="text-sm font-bold text-gray-900">5. Thai Accounting App (Express ERP)</strong>
                                 <span class="text-[10px] bg-emerald-100 text-emerald-700 font-semibold px-2 py-0.5 rounded">All Scales</span>
                             </div>
-                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">บันทึกรายจ่าย บัญชีภาษี VAT 7% ภาษีหัก ณ ที่จ่าย และงบกำไรขาดทุน Real-time</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: thai-accounting-app.onrender.com</span>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">Express ERP ครบวงจร AP/AR/IC, Aging, Auto-GL, ภาษี VAT 7% และงบกำไรขาดทุน Real-time</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: thai-accounting-app-six.vercel.app</span>
                         </div>
 
                         <!-- App 6 -->
@@ -4367,7 +4524,7 @@
                                 <span class="text-[10px] bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded">Startup & SME</span>
                             </div>
                             <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ระบบขายหน้าร้านยิงบาร์โค้ด ตัดสต๊อกอัตโนมัติ แจ้งเตือนจุดสั่งซื้อซ้ำ</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: inventory-app-dvlk.onrender.com</span>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: inventory-woad-iota.vercel.app/pos</span>
                         </div>
 
                         <!-- App 7 -->
@@ -4377,7 +4534,7 @@
                                 <span class="text-[10px] bg-lime-100 text-lime-800 font-semibold px-2 py-0.5 rounded">Startup & SME</span>
                             </div>
                             <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">สแกน QR เช็คอินสมาชิก จัดการสัญญาคอร์ส PT และวิเคราะห์ Peak Hours</p>
-                            <span class="text-[10px] text-gray-400 font-mono">Demo: fitness-zo64.onrender.com</span>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: fitness-zeta-sepia.vercel.app</span>
                         </div>
 
                         <!-- App 8 -->
@@ -4388,6 +4545,16 @@
                             </div>
                             <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">ระบบจองบัตรคอนเสิร์ต ผังที่นั่งสด เลือกรอบแสดง และรายงานยอดจำหน่าย Real-time</p>
                             <span class="text-[10px] text-gray-400 font-mono">Demo: tikkethub.vercel.app</span>
+                        </div>
+
+                        <!-- App 9 -->
+                        <div class="p-3.5 rounded-xl border border-gray-200 bg-gray-50/60 md:col-span-2">
+                            <div class="flex justify-between items-start mb-1">
+                                <strong class="text-sm font-bold text-gray-900">9. Tamsang POS (ตามสั่ง)</strong>
+                                <span class="text-[10px] bg-orange-100 text-orange-800 font-semibold px-2 py-0.5 rounded">Startup & SME</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] mb-2 leading-relaxed">สแกน QR สั่งอาหารตามโต๊ะ รวมออเดอร์คิวครัวกระทะเดียว หารบิล และสร้าง PromptPay QR ทันที</p>
+                            <span class="text-[10px] text-gray-400 font-mono">Demo: tamsang.vercel.app</span>
                         </div>
                     </div>
                 </div>
@@ -4578,6 +4745,7 @@
                             <option value="asset">Device Monitor</option>
                             <option value="gym">FitPulse Pro</option>
                             <option value="ticket">TikketHub</option>
+                            <option value="tamsang">Tamsang POS</option>
                         </select>
                         <button type="button" id="admin-clear-log-btn" class="px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition-colors flex items-center gap-1">
                             <i class="ph-bold ph-trash"></i> <span>ล้างประวัติ</span>

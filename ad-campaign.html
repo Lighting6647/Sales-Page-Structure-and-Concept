@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusCore - Facebook Ad Studio & Banner Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
+        }
+        .text-stroke-blue {
+            text-shadow:
+                0 4px 16px rgba(0, 30, 90, 0.9),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .price-glow {
+            text-shadow:
+                -2px -2px 0 #fff,
+                 2px -2px 0 #fff,
+                -2px  2px 0 #fff,
+                 2px  2px 0 #fff,
+                 0px  6px 18px rgba(37, 99, 235, 0.85);
+        }
+        .ad-banner-bg {
+            background:
+                radial-gradient(circle at 68% 42%, rgba(56, 189, 248, 0.45) 0%, rgba(37, 99, 235, 0.35) 38%, rgba(10, 25, 65, 0.95) 80%),
+                linear-gradient(135deg, #061233 0%, #0d2b6b 45%, #081c4a 100%);
+        }
+        .cyber-grid {
+            background-image:
+                linear-gradient(to right, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Top Header -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold mb-2">
+                    <i class="ph-fill ph-megaphone"></i> HIGH-CONVERTING AD TEMPLATE (DIGICLOUD FORMULA)
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">
+                    ระบบจำลองโฆษณา <span class="text-sky-400">NexusCore Suite</span>
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">
+                    ถอดสูตรการจัดวางสายตา (Visual Hierarchy 4:5) + แคปชันปิดการขายจากข้อมูลจริงของโปรเจกต์ Sale page Light
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <a href="./index.html" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition">
+                    <i class="ph-bold ph-arrow-left"></i> กลับหน้า Sale Page หลัก
+                </a>
+                <a href="images/ad_pos_inventory.jpg" id="download-banner-btn" download="NexusCore_POS_Ad_Banner.jpg" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition">
+                    <i class="ph-bold ph-download-simple"></i> ดาวน์โหลดรูปแอด (.JPG)
+                </a>
+                <button onclick="copyCaption()" id="copy-btn" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 flex items-center gap-2 transition">
+                    <i class="ph-bold ph-copy"></i> คัดลอกแคปชันไปยิงแอด
+                </button>
+            </div>
+        </div>
+
+        <!-- Campaign Angle Switcher -->
+        <div class="flex flex-wrap items-center gap-2 mb-8">
+            <span class="text-xs font-semibold text-slate-400 mr-2"><i class="ph-bold ph-sliders-horizontal"></i> เลือกแคมเปญยิงแอด:</span>
+            <button onclick="selectGraphicAd('pos')" id="tab-pos-graphic" class="campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 text-white shadow">
+                🥇 1. POS & สต๊อกไทย (น่าขายอันดับ 1)
+            </button>
+            <button onclick="selectGraphicAd('gym')" id="tab-gym-graphic" class="campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700">
+                🥈 2. FitPulse Pro ระบบฟิตเนสไทย (น่าขายอันดับ 2)
+            </button>
+            <button onclick="selectGraphicAd('all')" id="tab-all-graphic" class="campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700">
+                🏆 3. ซอฟต์แวร์ธุรกิจไทย (รวมทุกระบบ)
+            </button>
+            <button onclick="setCampaign('all')" id="tab-all" class="campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700">
+                ⚙️ โหมดปรับแก้ข้อความ HTML สด
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT COLUMN: Facebook Mobile Feed Preview (5 cols) -->
+            <div class="lg:col-span-6 flex justify-center">
+                <div class="w-full max-w-[440px] bg-[#18191a] rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.75)] border border-slate-700/80">
+                    
+                    <!-- Phone Status Bar -->
+                    <div class="px-6 pt-3 pb-2 flex items-center justify-between text-white text-xs font-semibold bg-[#18191a]">
+                        <span>10:36 <i class="ph-fill ph-bell-slash text-slate-400 ml-1"></i></span>
+                        <div class="flex items-center gap-1.5">
+                            <i class="ph-bold ph-cell-signal-full"></i>
+                            <i class="ph-bold ph-wifi-high"></i>
+                            <span class="px-1.5 py-0.5 rounded bg-white/20 text-[10px]">99%</span>
+                        </div>
+                    </div>
+
+                    <!-- Facebook Post Header -->
+                    <div class="px-4 py-2.5 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center border-2 border-sky-400 shadow">
+                                    <i class="ph-fill ph-diamonds-four text-white text-xl"></i>
+                                </div>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#18191a] absolute bottom-0 right-0"></span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-1">
+                                    <span class="font-bold text-white text-sm">NexusCore Thailand</span>
+                                    <i class="ph-fill ph-seal-check text-[#1877F2] text-sm"></i>
+                                </div>
+                                <div class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <span>ได้รับการสนับสนุน</span>
+                                    <span>•</span>
+                                    <span>เนื้อหาสำหรับธุรกิจไทย</span>
+                                    <span>•</span>
+                                    <i class="ph-fill ph-globe-hemisphere-east"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="ph-bold ph-dots-three text-slate-400 text-2xl"></i>
+                    </div>
+
+                    <!-- Facebook Ad Caption -->
+                    <div class="px-4 pb-3 text-[13.5px] leading-relaxed text-slate-100 space-y-2" id="fb-caption-box">
+                        <div>
+                            <div>🌐 <a href="https://sales-page-structure-and-concept.onrender.com" target="_blank" class="text-[#4599ff] hover:underline">https://sales-page-structure-and-concept.onrender.com</a></div>
+                            <div>💬 LINE : <a href="https://lin.ee/Zo0psZDF" target="_blank" class="text-[#4599ff] hover:underline">https://lin.ee/Zo0psZDF</a></div>
+                        </div>
+                        <p id="ad-caption-text">
+                            NexusCore – ซอฟต์แวร์บริหารองค์กรครบวงจร ที่คุ้มค่า พร้อมตอบโจทย์ธุรกิจไทยทุกขนาด (บัญชีภาษีไทย • สต๊อก POS • ตามงาน • ฟิตเนส • IT Dashboard)
+                        </p>
+                        <p id="ad-hashtags" class="text-[#4599ff] font-medium">
+                            #NexusCore #ซอฟต์แวร์องค์กร #โปรแกรมบัญชีไทย #ระบบPOS #ระบบเช็คสต๊อก #โปรแกรมบริหารธุรกิจ #SMEไทย
+                        </p>
+                        <div class="pt-0.5">
+                            <span class="text-[#4599ff] text-xs font-medium cursor-pointer">ส่งข้อความ</span>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================= -->
+                    <!-- THE 4:5 HIGH-IMPACT AD BANNER (REAL GRAPHIC + HTML MODE)  -->
+                    <!-- ========================================================= -->
+                    <div id="real-banner-container" class="relative w-full border-y border-sky-400/30 bg-[#061233]">
+                        <img id="real-banner-img" src="images/ad_pos_inventory.jpg" alt="NexusCore Ad Banner" class="w-full h-auto block">
+                    </div>
+
+                    <div id="html-banner-container" class="hidden relative w-full aspect-[4/5] ad-banner-bg overflow-hidden select-none flex flex-col justify-between p-4 sm:p-5 border-y border-sky-400/30">
+                        <!-- Cyber Grid & Ambient Glows -->
+                        <div class="absolute inset-0 cyber-grid pointer-events-none"></div>
+                        <div class="absolute -top-16 -right-16 w-64 h-64 bg-sky-400/30 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500/25 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Thai Ribbon / Accent Top Right -->
+                        <div class="absolute -top-4 -right-8 w-44 h-16 opacity-90 rotate-12 pointer-events-none flex flex-col shadow-lg overflow-hidden rounded-lg border border-white/20">
+                            <div class="h-2.5 bg-[#ED1C24]"></div>
+                            <div class="h-2.5 bg-white"></div>
+                            <div class="h-5 bg-[#241D4F]"></div>
+                            <div class="h-2.5 bg-white"></div>
+                            <div class="h-2.5 bg-[#ED1C24]"></div>
+                        </div>
+
+                        <!-- 1. TOP BRAND & HUGE HEADLINE -->
+                        <div class="relative z-10 text-center pt-1">
+                            <!-- Brand Pill -->
+                            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/95 shadow-md mb-1">
+                                <div class="w-5 h-5 rounded-md bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center">
+                                    <i class="ph-fill ph-diamonds-four text-white text-xs"></i>
+                                </div>
+                                <span class="font-black text-sm tracking-tight text-slate-900">NEXUS<span class="text-blue-600">CORE</span></span>
+                            </div>
+
+                            <!-- Giant Main Headline -->
+                            <div class="leading-none mt-0.5">
+                                <span id="banner-title-white" class="text-[34px] sm:text-[38px] font-black text-white tracking-tight text-stroke-blue">ซอฟต์แวร์</span>
+                                <span id="banner-title-yellow" class="text-[36px] sm:text-[42px] font-black text-[#FFE600] italic tracking-tight text-stroke-blue ml-1">ธุรกิจไทย</span>
+                            </div>
+
+                            <!-- Sub-headline bar -->
+                            <p id="banner-subtitle" class="text-white font-bold text-xs sm:text-sm mt-1 text-stroke-blue">
+                                ระบบเสถียร ครบจบในที่เดียว พร้อมใช้งานทันที!
+                            </p>
+                        </div>
+
+                        <!-- 2. 4 KEY SELLING POINTS BAR (Exactly like Digicloud 4-icon grid) -->
+                        <div class="relative z-10 bg-[#082259]/90 backdrop-blur-md border-2 border-sky-400/70 rounded-2xl p-2 shadow-[0_0_25px_rgba(56,189,248,0.35)] grid grid-cols-4 divide-x divide-sky-400/30 text-center">
+                            <div class="px-1 flex flex-col items-center justify-center">
+                                <i id="feat1-icon" class="ph-bold ph-receipt text-sky-300 text-xl mb-0.5"></i>
+                                <span id="feat1-line1" class="text-[10px] font-bold text-white leading-tight">บัญชี & ภาษีไทย</span>
+                                <span id="feat1-line2" class="text-[9px] text-sky-200 leading-tight">VAT / WHT ครบ</span>
+                            </div>
+                            <div class="px-1 flex flex-col items-center justify-center">
+                                <i id="feat2-icon" class="ph-bold ph-barcode text-sky-300 text-xl mb-0.5"></i>
+                                <span id="feat2-line1" class="text-[10px] font-bold text-white leading-tight">สต๊อก & POS</span>
+                                <span id="feat2-line2" class="text-[9px] text-sky-200 leading-tight">ตัดยอด Real-time</span>
+                            </div>
+                            <div class="px-1 flex flex-col items-center justify-center">
+                                <i id="feat3-icon" class="ph-bold ph-kanban text-sky-300 text-xl mb-0.5"></i>
+                                <span id="feat3-line1" class="text-[10px] font-bold text-white leading-tight">ตามงาน & ทีม</span>
+                                <span id="feat3-line2" class="text-[9px] text-sky-200 leading-tight">งานไม่ตกหล่น</span>
+                            </div>
+                            <div class="px-1 flex flex-col items-center justify-center">
+                                <i id="feat4-icon" class="ph-bold ph-shield-check text-sky-300 text-xl mb-0.5"></i>
+                                <span id="feat4-line1" class="text-[10px] font-bold text-white leading-tight">เสถียร 99.9%</span>
+                                <span id="feat4-line2" class="text-[9px] text-sky-200 leading-tight">ดูแล 24/7</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. CENTER VISUAL + PRICE ANCHOR BOX -->
+                        <div class="relative z-10 grid grid-cols-12 gap-2 items-center my-0.5">
+                            <!-- Left App Showcase Stack (Visual Cue) -->
+                            <div class="col-span-5 relative flex flex-col items-center">
+                                <div class="relative w-full rounded-xl overflow-hidden border-2 border-white/90 shadow-xl bg-slate-900 transform -rotate-2">
+                                    <img id="banner-mockup-img" src="images/it_dashboard.png" alt="NexusCore App" class="w-full h-28 sm:h-32 object-cover object-top">
+                                    <div class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white text-[9px] font-bold py-0.5 px-2 flex items-center justify-between">
+                                        <span>7 แอปในแพลตฟอร์มเดียว</span>
+                                        <i class="ph-fill ph-hand-pointing text-yellow-300 text-xs animate-bounce"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Price Box (Digicloud Style Red Giant Numbers) -->
+                            <div class="col-span-7 bg-gradient-to-b from-white/95 to-sky-100/95 border-2 border-sky-300 rounded-2xl p-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.45)] relative overflow-hidden">
+                                <div class="text-slate-900 font-extrabold text-xs sm:text-sm leading-none mb-0.5 flex items-center justify-between">
+                                    <span>เริ่มต้นเพียง</span>
+                                    <span class="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-bold">ไม่ต้องผูกสัญญา</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 leading-none my-1">
+                                    <span id="banner-price" class="text-[46px] sm:text-[52px] font-black text-[#E60012] tracking-tighter price-glow">990</span>
+                                    <div class="flex flex-col text-slate-900 font-extrabold text-xs leading-tight">
+                                        <span>บาท</span>
+                                        <span>/เดือน</span>
+                                    </div>
+                                    <!-- Thai Badge Pin -->
+                                    <div class="ml-auto flex flex-col items-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-slate-800 overflow-hidden shadow flex flex-col">
+                                            <div class="h-1 bg-[#ED1C24]"></div>
+                                            <div class="h-1 bg-white"></div>
+                                            <div class="h-2 bg-[#241D4F]"></div>
+                                            <div class="h-1 bg-white"></div>
+                                            <div class="h-1 bg-[#ED1C24]"></div>
+                                        </div>
+                                        <span class="text-[8px] font-bold text-slate-700 mt-0.5">Cloud ไทย</span>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] font-bold text-blue-900 bg-sky-200/80 rounded-lg px-2 py-0.5 text-center">
+                                    รองรับ 5-150+ คน • เปิดระบบไวใน 5 นาที
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. TILTED YELLOW PROMO BANNER (Digicloud 3+1 & Free Trial Style) -->
+                        <div class="relative z-10 px-1">
+                            <div class="bg-gradient-to-r from-[#FFE600] via-[#FFF04D] to-[#FFD000] border-2 border-white rounded-2xl p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transform -rotate-1 relative">
+                                <!-- Red Ribbon Tag -->
+                                <div class=" -mt-5 mb-1 inline-block bg-gradient-to-r from-[#E60012] to-[#b8000e] text-white font-black text-xs sm:text-sm px-3 py-0.5 rounded-lg border border-white shadow">
+                                    โปรโมชันพิเศษเดือนนี้!
+                                </div>
+
+                                <div class="flex items-center justify-between gap-2">
+                                    <div class="leading-tight">
+                                        <div id="promo-line-1" class="text-slate-950 font-black text-base sm:text-lg tracking-tight">
+                                            ทดลองใช้ฟรี 14 วัน
+                                        </div>
+                                        <div id="promo-line-2" class="text-[#D9000F] font-black text-lg sm:text-xl tracking-tight">
+                                            ซื้อ 3 เดือน ฟรี 1 เดือน
+                                        </div>
+                                    </div>
+
+                                    <!-- Calendar 3+1 Icon Box -->
+                                    <div class="bg-white border-2 border-[#E60012] rounded-xl overflow-hidden shadow-md flex-shrink-0 w-16 text-center transform rotate-6">
+                                        <div class="bg-[#E60012] text-white text-[8px] font-bold py-0.5">BONUS</div>
+                                        <div class="text-[#E60012] font-black text-lg leading-tight py-1">3+1</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. BOTTOM DUAL PILL BUTTONS (Website + LINE with Mouse Pointer) -->
+                        <div class="relative z-10 grid grid-cols-12 gap-1.5 pt-1">
+                            <div class="col-span-8 bg-gradient-to-r from-blue-600 to-blue-500 border border-sky-200 rounded-full py-1.5 px-2.5 flex items-center justify-center gap-1 text-white font-bold text-[10px] shadow-lg relative">
+                                <i class="ph-bold ph-globe text-xs flex-shrink-0"></i>
+                                <span class="truncate">sales-page-structure-and-concept.onrender.com</span>
+                                <!-- Fake Cursor Pointer (Thumb-stopping trick from Digicloud) -->
+                                <i class="ph-fill ph-cursor-click text-white text-base absolute -bottom-1.5 right-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"></i>
+                            </div>
+                            <div class="col-span-4 bg-gradient-to-r from-[#06C755] to-[#05a847] border border-emerald-200 rounded-full py-1.5 px-2 flex items-center justify-center gap-1 text-white font-bold text-[10px] shadow-lg">
+                                <span class="bg-white text-[#06C755] text-[8px] font-black px-1 py-0.2 rounded">LINE</span>
+                                <span class="truncate">lin.ee/Zo0psZDF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facebook Messenger CTA Bar -->
+                    <div class="p-3 bg-[#242526] flex items-center justify-between border-t border-slate-700/60">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-lg overflow-hidden border border-slate-600 bg-slate-900 flex-shrink-0">
+                                <img src="images/it_dashboard.png" alt="thumb" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-xs">แชทกับทีมวิศวกรของเรา</div>
+                                <div class="text-emerald-400 text-[11px] flex items-center gap-1 font-medium">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                                    กำลังใช้งาน • ตอบกลับใน 3 นาที
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://lin.ee/Zo0psZDF" target="_blank" class="bg-[#1877F2] hover:bg-blue-600 text-white font-bold text-xs px-4 py-2.5 rounded-lg flex items-center gap-1.5 shadow transition">
+                            <i class="ph-fill ph-messenger-logo text-base"></i>
+                            <span>ส่งข้อความ</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Strategy Breakdown & Copy-Paste Kit (6 cols) -->
+            <div class="lg:col-span-6 space-y-6">
+                
+                <!-- Card 1: Why This Works for NexusCore -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="ph-fill ph-sparkle text-amber-400 text-xl"></i>
+                        ทำไมการนำเสนอแบบนี้ถึงดึงดูดลูกค้าได้ทันที?
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                            <div class="font-bold text-sky-400 mb-1">1. เปลี่ยนเรื่องยากให้เข้าใจใน 3 วิ</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                จากเดิมที่หน้าเว็บมี 7 แอปย่อย เรารวบเหลือ 4 กล่องไอคอนชัดเจน: <strong>บัญชีภาษีไทย • สต๊อก POS • ตามงาน • เสถียร 24/7</strong>
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                            <div class="font-bold text-rose-400 mb-1">2. จุดนำสายตาด้วยตัวเลข 990 สีแดง</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                ราคาเริ่มต้น <strong>990 บาท/เดือน</strong> ขนาดใหญ่ขอบขาว ช่วยทลายกำแพงความรู้สึกว่าซอฟต์แวร์องค์กรต้องแพงหลักหมื่น
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                            <div class="font-bold text-amber-400 mb-1">3. โปรฯ 2 ชั้น (ลดความเสี่ยง + เพิ่มยอดขาย)</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                ให้ <strong>"ทดลองใช้ฟรี 14 วัน"</strong> เพื่อดึงคนทักแชทง่ายขึ้น และปิดการขายด้วย <strong>"ซื้อ 3 เดือน ฟรี 1 เดือน (3+1)"</strong> เหมือน Digicloud
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                            <div class="font-bold text-emerald-400 mb-1">4. ปุ่มปลอม + เคอร์เซอร์เมาส์กระตุ้นคลิก</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                วางปุ่มเว็บไซต์คู่กับปุ่ม LINE สีเขียวด้านล่างสุดพร้อมรูปเมาส์ชี้ กระตุ้นให้คนแตะที่ภาพแล้วเด้งเข้าแชททันที
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Ready-to-Use Ad Copy -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="ph-fill ph-copySimple text-blue-400"></i>
+                            แคปชันสำหรับโพสต์ยิงแอด (พร้อมคัดลอก)
+                        </h3>
+                        <button onclick="copyCaption()" class="text-xs bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-lg font-semibold transition">
+                            คัดลอกข้อความ
+                        </button>
+                    </div>
+                    <pre id="raw-copy-area" class="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs sm:text-sm text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">🌐 https://sales-page-structure-and-concept.onrender.com
+💬 LINE : https://lin.ee/Zo0psZDF
+
+NexusCore – ซอฟต์แวร์บริหารองค์กรครบวงจร ที่คุ้มค่า พร้อมตอบโจทย์ธุรกิจไทยทุกขนาด
+✅ ระบบบัญชี & ภาษีไทย (VAT / หัก ณ ที่จ่าย)
+✅ ระบบคลังสินค้า & ขายหน้าร้าน POS ตัดสต๊อก Real-time
+✅ ระบบติดตามงานทีม (Task Tracking) & ฟิตเนส FitPulse Pro
+✅ แดชบอร์ดผู้บริหาร & ระบบความปลอดภัย IT มาตรฐานสากล
+
+🔥 เริ่มต้นเพียง 990 บาท/เดือน (ทดลองใช้ฟรี 14 วัน ไม่ต้องผูกบัตร!)
+🎁 โปรโมชันพิเศษ! สมัคร 3 เดือน ฟรี 1 เดือน (3+1)
+
+#NexusCore #ซอฟต์แวร์องค์กร #โปรแกรมบัญชีไทย #ระบบPOS #ระบบเช็คสต๊อก #โปรแกรมบริหารธุรกิจ #SMEไทย</pre>
+                </div>
+
+                <!-- Card 3: Target Audience Settings for Facebook Ads Manager -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-crosshair text-emerald-400"></i>
+                        การตั้งค่ากลุ่มเป้าหมายแนะนำ (Facebook Ads Targeting)
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-sky-400 font-bold">• วัตถุประสงค์ (Objective):</span>
+                            <span>การมีส่วนร่วม (Engagement) &rarr; แอปส่งข้อความ (Click to Messenger / LINE OA)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-sky-400 font-bold">• อายุ & พื้นที่:</span>
+                            <span>อายุ 25 – 55 ปี | ประเทศไทย (เน้นกรุงเทพฯ ปริมณฑล และหัวเมืองธุรกิจ)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-sky-400 font-bold">• ความสนใจ (Detailed Targeting):</span>
+                            <span>เจ้าของธุรกิจขนาดย่อม (Small business owners), ผู้ดูแลเพจธุรกิจ, ซอฟต์แวร์บัญชี, ระบบขายหน้าร้าน (POS), การจัดการคลังสินค้า, ERP, ผู้บริหาร (CEO/MD)</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const campaigns = {
+            all: {
+                titleWhite: 'ซอฟต์แวร์',
+                titleYellow: 'ธุรกิจไทย',
+                subtitle: 'ระบบเสถียร ครบจบในที่เดียว พร้อมใช้งานทันที!',
+                price: '990',
+                img: 'images/it_dashboard.png',
+                promo1: 'ทดลองใช้ฟรี 14 วัน',
+                promo2: 'ซื้อ 3 เดือน ฟรี 1 เดือน',
+                feats: [
+                    { icon: 'ph-receipt', l1: 'บัญชี & ภาษีไทย', l2: 'VAT / WHT ครบ' },
+                    { icon: 'ph-barcode', l1: 'สต๊อก & POS', l2: 'ตัดยอด Real-time' },
+                    { icon: 'ph-kanban', l1: 'ตามงาน & ทีม', l2: 'งานไม่ตกหล่น' },
+                    { icon: 'ph-shield-check', l1: 'เสถียร 99.9%', l2: 'ดูแล 24/7' }
+                ],
+                caption: 'NexusCore – ซอฟต์แวร์บริหารองค์กรครบวงจร ที่คุ้มค่า พร้อมตอบโจทย์ธุรกิจไทยทุกขนาด (บัญชีภาษีไทย • สต๊อก POS • ตามงาน • ฟิตเนส • IT Dashboard)',
+                hashtags: '#NexusCore #ซอฟต์แวร์องค์กร #โปรแกรมบัญชีไทย #ระบบPOS #ระบบเช็คสต๊อก #โปรแกรมบริหารธุรกิจ #SMEไทย'
+            },
+            pos: {
+                titleWhite: 'บัญชี & สต๊อก',
+                titleYellow: 'POS ไทย',
+                subtitle: 'ตัดสต๊อกไว รู้กำไรทันที ออกใบกำกับภาษีครบในคลิกเดียว',
+                price: '990',
+                img: 'images/inventory.png',
+                promo1: 'เปิดระบบพร้อมใช้ทันที!',
+                promo2: 'ซื้อ 3 เดือน ฟรี 1 เดือน',
+                feats: [
+                    { icon: 'ph-warehouse', l1: 'เช็คสต๊อกแม่นยำ', l2: 'แจ้งเตือนของหมด' },
+                    { icon: 'ph-barcode', l1: 'สแกนขาย POS', l2: 'คิดเงินไวใน 3 วิ' },
+                    { icon: 'ph-calculator', l1: 'ภาษี VAT/WHT', l2: 'พร้อมส่งสรรพากร' },
+                    { icon: 'ph-chart-line-up', l1: 'งบกำไร Real-time', l2: 'ดูผ่านมือถือ 24/7' }
+                ],
+                caption: 'NexusCore – ระบบคลังสินค้า POS และบัญชีภาษีไทยที่คุ้มค่าที่สุด ช่วยร้านค้าและ SME ตัดสต๊อกแม่นยำ รู้กำไร-ขาดทุนแบบ Real-time',
+                hashtags: '#NexusCore #ระบบPOS #เช็คสต๊อกออนไลน์ #โปรแกรมบัญชีไทย #ร้านค้าปลีก #คลังสินค้า #SMEไทย'
+            },
+            it: {
+                titleWhite: 'แดชบอร์ด',
+                titleYellow: 'ผู้บริหาร',
+                subtitle: 'มอนิเตอร์องค์กร คุมเครื่องพนักงาน & ความปลอดภัย IT 24/7',
+                price: '990',
+                img: 'images/asset_monitor.png',
+                promo1: 'ฟรี! วิศวกรติดตั้งระบบ',
+                promo2: 'ซื้อ 3 เดือน ฟรี 1 เดือน',
+                feats: [
+                    { icon: 'ph-chart-pie-slice', l1: 'IT Dashboard', l2: 'สรุปผล Real-time' },
+                    { icon: 'ph-device-mobile', l1: 'คุมเครื่อง iOS/MDM', l2: 'สั่งล็อคระยะไกล' },
+                    { icon: 'ph-lock-key', l1: 'Pass Vault', l2: 'เก็บความลับทีม' },
+                    { icon: 'ph-headset', l1: 'SLA 99.9%', l2: 'วิศวกรดูแล 24/7' }
+                ],
+                caption: 'NexusCore – ยกระดับการบริหารทีมและระบบ IT องค์กร รวมศูนย์ทุกข้อมูลสำคัญไว้ในแดชบอร์ดเดียว ปลอดภัยมาตรฐาน PDPA & TLS 1.3',
+                hashtags: '#NexusCore #ITDashboard #ระบบบริหารองค์กร #MDM #CyberSecurity #ผู้บริหาร #TechThailand'
+            }
+        };
+
+        const graphicAds = {
+            pos: {
+                img: 'images/ad_pos_inventory.jpg',
+                downloadName: 'NexusCore_POS_Ad_Banner.jpg',
+                caption: 'NexusCore POS & สต๊อกไทย – ยิงบาร์โค้ดตัดสต๊อกไว รู้กำไรทันที ออกใบกำกับภาษีครบในคลิกเดียว!',
+                hashtags: '#NexusCore #ระบบPOS #เช็คสต๊อกออนไลน์ #โปรแกรมบัญชีไทย #ตัดสต๊อกอัตโนมัติ #ร้านค้าปลีกส่ง #SMEไทย'
+            },
+            gym: {
+                img: 'images/ad_fitpulse_gym.jpg',
+                downloadName: 'FitPulse_Pro_Gym_Ad_Banner.jpg',
+                caption: 'FitPulse Pro – ระบบบริหารฟิตเนสและยิมครบวงจร สแกน QR เช็คอินสมาชิก ตัดคอร์สเทรนเนอร์ (PT) อัตโนมัติ รู้ยอดขายแบบ Real-time!',
+                hashtags: '#FitPulsePro #ระบบฟิตเนส #โปรแกรมบริหารยิม #จัดการคอร์สPT #ธุรกิจฟิตเนส #GymManagement #NexusCore'
+            },
+            all: {
+                img: 'images/nexuscore_ad_banner.jpg',
+                downloadName: 'NexusCore_AllInOne_Ad_Banner.jpg',
+                caption: 'NexusCore – ซอฟต์แวร์บริหารองค์กรครบวงจร ที่คุ้มค่า พร้อมตอบโจทย์ธุรกิจไทยทุกขนาด (บัญชีภาษีไทย • สต๊อก POS • ตามงาน • ฟิตเนส • IT Dashboard)',
+                hashtags: '#NexusCore #ซอฟต์แวร์องค์กร #โปรแกรมบัญชีไทย #ระบบPOS #ระบบเช็คสต๊อก #โปรแกรมบริหารธุรกิจ #SMEไทย'
+            }
+        };
+
+        function selectGraphicAd(type) {
+            const g = graphicAds[type];
+            document.getElementById('real-banner-container').classList.remove('hidden');
+            document.getElementById('html-banner-container').classList.add('hidden');
+            document.getElementById('real-banner-img').src = g.img;
+            const dlBtn = document.getElementById('download-banner-btn');
+            dlBtn.href = g.img;
+            dlBtn.download = g.downloadName;
+
+            document.getElementById('ad-caption-text').textContent = g.caption;
+            document.getElementById('ad-hashtags').textContent = g.hashtags;
+            document.getElementById('raw-copy-area').textContent =
+`🌐 https://sales-page-structure-and-concept.onrender.com
+💬 LINE : https://lin.ee/Zo0psZDF
+
+${g.caption}
+
+🔥 เริ่มต้นเพียง 990 บาท/เดือน (ทดลองใช้ฟรี 14 วัน ไม่ต้องผูกบัตร!)
+🎁 โปรโมชันพิเศษ! สมัคร 3 เดือน ฟรี 1 เดือน (3+1)
+
+${g.hashtags}`;
+
+            document.querySelectorAll('.campaign-tab').forEach(btn => {
+                btn.className = 'campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700';
+            });
+            document.getElementById(`tab-${type}-graphic`).className = 'campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 text-white shadow';
+        }
+
+        function setCampaign(key) {
+            document.getElementById('real-banner-container').classList.add('hidden');
+            document.getElementById('html-banner-container').classList.remove('hidden');
+            const c = campaigns[key];
+            document.getElementById('banner-title-white').textContent = c.titleWhite;
+            document.getElementById('banner-title-yellow').textContent = c.titleYellow;
+            document.getElementById('banner-subtitle').textContent = c.subtitle;
+            document.getElementById('banner-price').textContent = c.price;
+            document.getElementById('banner-mockup-img').src = c.img;
+            document.getElementById('promo-line-1').textContent = c.promo1;
+            document.getElementById('promo-line-2').textContent = c.promo2;
+            document.getElementById('ad-caption-text').textContent = c.caption;
+            document.getElementById('ad-hashtags').textContent = c.hashtags;
+
+            c.feats.forEach((f, idx) => {
+                const n = idx + 1;
+                document.getElementById(`feat${n}-icon`).className = `ph-bold ${f.icon} text-sky-300 text-xl mb-0.5`;
+                document.getElementById(`feat${n}-line1`).textContent = f.l1;
+                document.getElementById(`feat${n}-line2`).textContent = f.l2;
+            });
+
+            document.getElementById('raw-copy-area').textContent =
+`🌐 https://sales-page-structure-and-concept.onrender.com
+💬 LINE : https://lin.ee/Zo0psZDF
+
+${c.caption}
+
+🔥 เริ่มต้นเพียง ${c.price} บาท/เดือน (ทดลองใช้ฟรี 14 วัน ไม่ต้องผูกบัตร!)
+🎁 โปรโมชันพิเศษ! สมัคร 3 เดือน ฟรี 1 เดือน (3+1)
+
+${c.hashtags}`;
+
+            document.querySelectorAll('.campaign-tab').forEach(btn => {
+                btn.className = 'campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700';
+            });
+            document.getElementById(`tab-${key}`).className = 'campaign-tab px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white shadow';
+        }
+
+        function copyCaption() {
+            const text = document.getElementById('raw-copy-area').textContent;
+            navigator.clipboard.writeText(text);
+            const btn = document.getElementById('copy-btn');
+            const oldHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="ph-bold ph-check"></i> คัดลอกเรียบร้อยแล้ว!';
+            btn.classList.replace('bg-blue-600', 'bg-emerald-600');
+            setTimeout(() => {
+                btn.innerHTML = oldHtml;
+                btn.classList.replace('bg-emerald-600', 'bg-blue-600');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
