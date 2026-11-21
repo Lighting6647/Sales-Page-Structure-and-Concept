@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /archive/
 
 Sitemap: https://light6647-page.vercel.app/sitemap.xml
